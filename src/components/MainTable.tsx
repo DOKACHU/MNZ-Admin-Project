@@ -82,12 +82,14 @@ export default function MainTable({ rows, columns }: MainTableProps) {
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (e, newPage) => {
+    e.preventDefault();
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = (e) => {
+    e.preventDefault();
+    setRowsPerPage(parseInt(e.target.value, 10));
     setPage(0);
   };
 
@@ -116,6 +118,8 @@ export default function MainTable({ rows, columns }: MainTableProps) {
               rowCount={0}
               onRequestSort={undefined}
             />
+
+            {/*  TODO: 분리 필요  */}
             <TableBody
               sx={{
                 border: '1px solid red',
@@ -124,7 +128,7 @@ export default function MainTable({ rows, columns }: MainTableProps) {
             >
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+                .map((row: string, index: number) => {
                   const isItemSelected = isSelected(row.productId);
                   const labelId = `enhanced-table-checkbox-${index}`;
                   return (
@@ -153,14 +157,19 @@ export default function MainTable({ rows, columns }: MainTableProps) {
                           }}
                         />
                       </TableCell>
+                      <TableCell>TEST</TableCell>
+                      <TableCell>TEST</TableCell>
+                      <TableCell>TEST</TableCell>
+                      <TableCell>TEST</TableCell>
+                      <TableCell>TEST</TableCell>
 
-                      <TableCell>{row.productId}</TableCell>
+                      {/* <TableCell>{row.productId}</TableCell>
                       <TableCell>{row.name}</TableCell>
                       <TableCell>{row.description}</TableCell>
                       <TableCell>{row.price}</TableCell>
                       <TableCell>{row.runningTime}</TableCell>
                       <TableCell>{row.discountRate}</TableCell>
-                      <TableCell>{row.progressNumber}</TableCell>
+                      <TableCell>{row.progressNumber}</TableCell> */}
                     </TableRow>
                   );
                 })}

@@ -47,7 +47,6 @@ export default function SideBar() {
             paddingRight: '16px',
           }}
         >
-          <h1>SideBar</h1>
           {mainNavbarItems.map((item) => (
             <ListItem button key={item.id} onClick={() => navigate(item.route)}>
               <ListItemText

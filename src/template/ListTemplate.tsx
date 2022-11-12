@@ -1,6 +1,13 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
-import { Box, Card, Grid, Typography, Button } from '@mui/material';
+import React, { Suspense } from 'react';
+import {
+  Box,
+  Card,
+  Grid,
+  Typography,
+  Button,
+  CircularProgress,
+} from '@mui/material';
 
 interface ListTemplateProps {
   title: string;
@@ -21,39 +28,41 @@ export default function ListTemplate({
         padding: 3,
       }}
     >
-      <Card
-        sx={{
-          marginTop: 3,
-          marginBottom: 3,
-        }}
-        elevation={0}
-      >
-        <Box
+      <Suspense fallback={<CircularProgress />}>
+        <Card
           sx={{
-            p: 2,
-            pl: 2,
+            marginTop: 3,
+            marginBottom: 3,
           }}
+          elevation={0}
         >
-          <Grid
-            container
-            justifyContent="space-between"
-            alignItems="center"
-            spacing={1}
+          <Box
+            sx={{
+              p: 2,
+              pl: 2,
+            }}
           >
-            <Grid item>
-              <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                {title || ''}
-              </Typography>
-            </Grid>
-            {isButton && (
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="center"
+              spacing={1}
+            >
               <Grid item>
-                <Button onClick={handleClick}>생성</Button>
+                <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                  {title || ''}
+                </Typography>
               </Grid>
-            )}
-          </Grid>
-        </Box>
-      </Card>
-      {children}
+              {isButton && (
+                <Grid item>
+                  <Button onClick={handleClick}>생성</Button>
+                </Grid>
+              )}
+            </Grid>
+          </Box>
+        </Card>
+        {children}
+      </Suspense>
     </Box>
   );
 }

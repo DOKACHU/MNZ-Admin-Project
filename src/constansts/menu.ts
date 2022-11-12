@@ -4,18 +4,18 @@
 export const mainNavbarItems = [
   {
     id: 1,
-    label: 'Center',
+    label: '센터 관리',
     route: 'center',
   },
 
   {
-    id: 3,
-    label: 'Coupon',
+    id: 2,
+    label: '쿠폰 관리',
     route: 'coupon',
   },
   {
-    id: 4,
-    label: 'Product',
+    id: 3,
+    label: '상품 관리',
     route: 'product',
   },
 ];
