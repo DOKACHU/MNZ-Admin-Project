@@ -87,8 +87,6 @@ export default function MainDetailForm({ tabs }: MainDetailFormPros) {
             px: 1,
             mr: 2.25,
             color: '#9e9e9e',
-
-            // color: 'grey.600',
           },
           '& a.Mui-selected': {
             color: 'primary.main',
@@ -113,7 +111,8 @@ export default function MainDetailForm({ tabs }: MainDetailFormPros) {
         {tabs.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label}
+              {tab.label === 'profile' && <h1>asdf</h1>}
+              {tab.label === 'etc' && <h1>etc</h1>}
             </TabPanel>
           );
         })}

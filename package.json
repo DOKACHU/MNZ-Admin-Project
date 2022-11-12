@@ -13,6 +13,7 @@
     "@emotion/babel-plugin": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.13",
     "@mui/styled-engine": "^5.10.8",
     "@mui/styled-engine-sc": "^5.10.6",

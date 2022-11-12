@@ -34,7 +34,7 @@ export const bookColumns = [
   { id: 'count', field: 'count', label: '치료 횟수' },
 ];
 
-export const productcolumns = [
+export const productColumns = [
   { id: 'productId', field: 'productId', label: '상품 번호' },
   // { id: 'centerId', field: 'centerId', label: '센터 번호' },
   // { id: 'proId', field: 'proId', label: '프로 번호' },

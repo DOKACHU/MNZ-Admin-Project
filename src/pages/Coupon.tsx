@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { ListTemplate } from '../template';
+import { MainTable } from '../components';
+import { couponColumns } from '../constansts';
 
 export default function Center() {
   return (
     <ListTemplate title="쿠폰 관리" isButton>
-      {/* 테이블 넣어야함. */} 테이블{' '}
+      <MainTable columns={couponColumns} rows={[]} />
     </ListTemplate>
   );
 }
