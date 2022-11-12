@@ -26,6 +26,7 @@ export default function ListTemplate({
           marginTop: 3,
           marginBottom: 3,
         }}
+        elevation={0}
       >
         <Box
           sx={{
