@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
 import { Center, NotFound } from './pages';
 import { MainLayout } from './layouts';
 
@@ -14,5 +15,10 @@ export function App() {
 }
 
 export function WrappedApp() {
-  return <App />;
+  return (
+    <>
+      <CssBaseline />
+      <App />
+    </>
+  );
 }

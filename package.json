@@ -10,7 +10,11 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.13",
+    "@mui/styled-engine": "^5.10.8",
     "@mui/styled-engine-sc": "^5.10.6",
     "@mui/x-date-pickers": "^5.0.8",
     "dayjs": "^1.11.6",
