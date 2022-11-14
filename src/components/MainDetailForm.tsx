@@ -17,11 +17,18 @@ import {
 import { Link } from 'react-router-dom';
 import MainProfile from './MainProfile';
 
-interface MainDetailFormPros {
+interface MainDetailFormProps {
   tabs?: any;
 }
 
-function TabPanel({ children, value, index, ...other }) {
+interface TabPanelProps {
+  children?: React.ReactNode;
+  value: number;
+  index: number;
+  other?: any;
+}
+
+function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
     <div
       role="tabpanel"
@@ -42,7 +49,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function MainDetailForm({ tabs }: MainDetailFormPros) {
+export default function MainDetailForm({ tabs }: MainDetailFormProps) {
   //   const { id } = useParams();
 
   const [value, setValue] = useState(0);

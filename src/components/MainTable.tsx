@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react';
@@ -33,7 +35,7 @@ export default function MainTable({ rows, columns }: MainTableProps) {
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [path, setPath] = useState<any>(null);
 
-  const handleRowClick = (e, id) => {
+  const handleRowClick = (e: any, id: number) => {
     e.stopPropagation();
     // const { value } = e.target
     const URL = `/${path}/${id}`;
@@ -41,25 +43,25 @@ export default function MainTable({ rows, columns }: MainTableProps) {
     // window.open(URL, "_blank", "noopener,noreferrer");
   };
 
-  const handleRequestSort = (e, property) => {
+  const handleRequestSort = (e: any, property: any) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+  const handleSelectAllClick = (e: any) => {
+    if (e.target.checked) {
+      const newSelected = rows.map((n: any) => n.name);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (e, name) => {
+  const handleClick = (e: any, name: string) => {
     e.stopPropagation();
     const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
+    let newSelected = [] as any;
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
@@ -80,14 +82,14 @@ export default function MainTable({ rows, columns }: MainTableProps) {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  const handleChangePage = (e, newPage) => {
+  const handleChangePage = (e: any, newPage: any) => {
     e.preventDefault();
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (e) => {
+  const handleChangeRowsPerPage = (e: any) => {
     e.preventDefault();
     setRowsPerPage(parseInt(e.target.value, 10));
     setPage(0);
@@ -129,19 +131,19 @@ export default function MainTable({ rows, columns }: MainTableProps) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: string, index: number) => {
-                  const isItemSelected = isSelected(row.productId);
+                  // const isItemSelected = isSelected(row.productId);
                   const labelId = `enhanced-table-checkbox-${index}`;
                   return (
                     <TableRow
                       hover
-                      onClick={(e) => {
-                        handleRowClick(e, row.productId);
+                      onClick={() => {
+                        // handleRowClick(e, row.productId);
                       }}
                       role="checkbox"
-                      aria-checked={isItemSelected}
+                      // aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.productId}
-                      selected={isItemSelected}
+                      // key={row.productId}
+                      // selected={isItemSelected}
                     >
                       <TableCell
                         padding="checkbox"
@@ -151,7 +153,7 @@ export default function MainTable({ rows, columns }: MainTableProps) {
                       >
                         <Checkbox
                           color="primary"
-                          checked={isItemSelected}
+                          // checked={isItemSelected}
                           inputProps={{
                             'aria-labelledby': labelId,
                           }}

@@ -34,7 +34,7 @@ export default function MainTableHead({ columns }: MainTableHeadProps) {
             }}
           />
         </TableCell>
-        {columns.map((headCell) => {
+        {columns.map((headCell: any) => {
           return (
             <TableCell key={headCell.id}>
               <TableSortLabel>{headCell.label}</TableSortLabel>

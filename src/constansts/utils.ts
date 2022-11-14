@@ -1,16 +1,16 @@
-export const stableSort = (array, comparator) => {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
+export const stableSort = (array: any, comparator: any) => {
+  const stabilizedThis = array.map((el: never, index: number) => [el, index]);
+  stabilizedThis.sort((a: any, b: any) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
       return order;
     }
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map((el: any) => el[0]);
 };
 
-export const descendingComparator = (a, b, orderBy) => {
+export const descendingComparator = (a: any, b: any, orderBy: any) => {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -20,24 +20,24 @@ export const descendingComparator = (a, b, orderBy) => {
   return 0;
 };
 
-export const getComparator = (order, orderBy) => {
+export const getComparator = (order: string, orderBy: string) => {
   return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a: any, b: any) => descendingComparator(a, b, orderBy)
+    : (a: any, b: any) => -descendingComparator(a, b, orderBy);
 };
 
-export function dateFormat(date) {
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  let second = date.getSeconds();
+export function dateFormat(date: Date) {
+  const initmonth = date.getMonth() + 1;
+  const initday = date.getDate();
+  const inithour = date.getHours();
+  const initminute = date.getMinutes();
+  const initsecond = date.getSeconds();
 
-  month = month >= 10 ? month : `0${month}`;
-  day = day >= 10 ? day : `0${day}`;
-  hour = hour >= 10 ? hour : `0${hour}`;
-  minute = minute >= 10 ? minute : `0${minute}`;
-  second = second >= 10 ? second : `0${second}`;
+  const month = initmonth >= 10 ? initmonth : `0${initmonth}`;
+  const day = initday >= 10 ? initday : `0${initday}`;
+  const hour = inithour >= 10 ? inithour : `0${inithour}`;
+  const minute = initminute >= 10 ? initminute : `0${initminute}`;
+  const second = initsecond >= 10 ? initsecond : `0${initsecond}`;
 
   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
 }

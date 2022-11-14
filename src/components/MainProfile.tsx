@@ -1,3 +1,7 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useRef } from 'react';
@@ -47,13 +51,13 @@ export default function MainProfile() {
   };
 
   // 이미지 상대경로 저장
-  const handleAddImages = (event) => {
-    const imageLists = event.target.files;
+  const handleAddImages = (e: any) => {
+    const imageLists = e.target.files;
     let imageUrlLists = [...showImages];
 
     for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]) as string;
-      imageUrlLists.push(currentImageUrl);
+      const currentImageUrl = URL.createObjectURL(imageLists[i]) as any;
+      imageUrlLists.push(currentImageUrl as never);
     }
 
     if (imageUrlLists.length > 10) {
@@ -64,11 +68,11 @@ export default function MainProfile() {
     fileInput.current.value = '';
   };
 
-  const handleDeleteImage = (id) => {
+  const handleDeleteImage = (id: number) => {
     setShowImages(showImages.filter((_, index) => index !== id));
   };
 
-  const handleFileClick = (e) => {
+  const handleFileClick = (e: any) => {
     fileInput.current.click();
   };
   return (
@@ -117,9 +121,9 @@ export default function MainProfile() {
               views={['day']}
               label="Just date"
               inputFormat="YYYY-MM-DD"
-              //   value={value}
-              onChange={(newValue) => {
-                // setValue(newValue);
+              value={value}
+              onChange={(newValue: any) => {
+                setValue(newValue);
               }}
               renderInput={(params) => (
                 <TextField
@@ -135,7 +139,7 @@ export default function MainProfile() {
         </MainSubCard>
         <br />
         <MainSubCard title="사진 업로드 ">
-          {showImages.map((image, id) => (
+          {showImages.map((image: string, id: number) => (
             <Grid item xs={12}>
               <div
                 style={{
