@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { CENTER_LIST_API } from '../constansts';
@@ -11,17 +11,17 @@ const GetCenterListAPI = async () => {
 };
 
 export function useGetLists() {
-  const [fetchList, setFetchList] = useState<any>([]);
+  // const [fetchList, setFetchList] = useState<any>([]);
   const { data, isLoading } = useQuery(['centers'], () => GetCenterListAPI());
 
-  useEffect(() => {
-    if (data) setFetchList(data);
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) setFetchList(data);
+  // }, [data]);
 
-  const handleDelete = (id: number) => {
-    const result = fetchList.filter((list: any) => list.id !== Number(id));
-    setFetchList(result);
-  };
+  // const handleDelete = (id: number) => {
+  //   const result = fetchList.filter((list: any) => list.id !== Number(id));
+  //   setFetchList(result);
+  // };
 
-  return { fetchList, isLoading, handleDelete };
+  return { fetchList: data, isLoading };
 }

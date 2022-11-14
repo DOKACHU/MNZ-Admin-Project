@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Box,
@@ -16,89 +16,23 @@ import {
   TablePagination,
 } from '@mui/material';
 import MainTableHead from './MainTableHead';
-import { stableSort, getComparator } from '../constansts';
+
+import { useTableList } from '../hooks';
 
 interface MainTableProps {
   rows?: any;
   columns?: any;
+  children?: React.ReactNode;
 }
 
-export default function MainTable({ rows, columns }: MainTableProps) {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const [order, setOrder] = useState<string>('asc');
-  const [orderBy, setOrderBy] = useState<string>('calories');
-
-  const [selected, setSelected] = useState<string[]>([]);
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-  const [path, setPath] = useState<any>(null);
-
-  const handleRowClick = (e: any, id: number) => {
-    e.stopPropagation();
-    // const { value } = e.target
-    const URL = `/${path}/${id}`;
-    navigate(URL);
-    // window.open(URL, "_blank", "noopener,noreferrer");
-  };
-
-  const handleRequestSort = (e: any, property: any) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (e: any) => {
-    if (e.target.checked) {
-      const newSelected = rows.map((n: any) => n.name);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (e: any, name: string) => {
-    e.stopPropagation();
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [] as any;
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
-  const handleChangePage = (e: any, newPage: any) => {
-    e.preventDefault();
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (e: any) => {
-    e.preventDefault();
-    setRowsPerPage(parseInt(e.target.value, 10));
-    setPage(0);
-  };
-
-  useEffect(() => {
-    const parsedTitle = location.pathname.replace(/\W/g, '');
-    setPath(parsedTitle);
-  }, [location]);
+export default function MainTable({ rows, columns, children }: MainTableProps) {
+  const {
+    page,
+    emptyRows,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  } = useTableList(rows);
 
   return (
     <Box
@@ -120,63 +54,7 @@ export default function MainTable({ rows, columns }: MainTableProps) {
               rowCount={0}
               onRequestSort={undefined}
             />
-
-            {/*  TODO: 분리 필요  */}
-            <TableBody
-              sx={{
-                border: '1px solid red',
-                height: '640px',
-              }}
-            >
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row: string, index: number) => {
-                  // const isItemSelected = isSelected(row.productId);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-                  return (
-                    <TableRow
-                      hover
-                      onClick={() => {
-                        // handleRowClick(e, row.productId);
-                      }}
-                      role="checkbox"
-                      // aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      // key={row.productId}
-                      // selected={isItemSelected}
-                    >
-                      <TableCell
-                        padding="checkbox"
-                        // onClick={(e) => {
-                        //   handleClick(e, row.productId);
-                        // }}
-                      >
-                        <Checkbox
-                          color="primary"
-                          // checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell>TEST</TableCell>
-                      <TableCell>TEST</TableCell>
-                      <TableCell>TEST</TableCell>
-                      <TableCell>TEST</TableCell>
-                      <TableCell>TEST</TableCell>
-
-                      {/* <TableCell>{row.productId}</TableCell>
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.description}</TableCell>
-                      <TableCell>{row.price}</TableCell>
-                      <TableCell>{row.runningTime}</TableCell>
-                      <TableCell>{row.discountRate}</TableCell>
-                      <TableCell>{row.progressNumber}</TableCell> */}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-
+            <TableBody>{children}</TableBody>
             {emptyRows > 0 && (
               <TableRow
                 style={{
@@ -191,13 +69,12 @@ export default function MainTable({ rows, columns }: MainTableProps) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={rows?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-        {/* pagination */}
       </Paper>
     </Box>
   );
