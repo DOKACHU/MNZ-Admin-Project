@@ -11,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 interface ListTemplateProps {
+  loading?: boolean;
   title: string;
   isButton?: boolean;
   handleUpdate?: any;
@@ -18,12 +19,29 @@ interface ListTemplateProps {
 }
 
 export default function DetailTemplate({
+  loading,
   title,
   children,
   handleUpdate,
   isButton,
 }: ListTemplateProps) {
   const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          height: '100%',
+          padding: 3,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
   return (
     <Box
       sx={{

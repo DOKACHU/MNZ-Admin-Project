@@ -33,7 +33,12 @@ const top100Films = [
   { label: '토', id: 6 },
   { label: '일', id: 7 },
 ];
-export default function MainProfile() {
+
+interface MainProfileProps {
+  detail?: any;
+}
+
+export default function MainProfile({ detail }: MainProfileProps) {
   const fileInput = useRef<any>(null);
   const [addItem, setAddItem] = useState(init);
   const [value, setValue] = useState(dayjs('2022-04-07'));
@@ -49,6 +54,7 @@ export default function MainProfile() {
       },
     ]);
   };
+  console.log('detail', detail);
 
   // 이미지 상대경로 저장
   const handleAddImages = (e: any) => {
@@ -87,7 +93,7 @@ export default function MainProfile() {
               id="outlined-basic1"
               fullWidth
               // label="Name"
-              // value={fetchPostDetail.center_id}
+              value={detail?.center_id}
               disabled
               // defaultValue={user?.name}
             />
@@ -99,7 +105,7 @@ export default function MainProfile() {
               id="outlined-basic1"
               fullWidth
               // label="Name"
-              // value={fetchPostDetail.center_id}
+              value={detail?.name}
               //   disabled
               // defaultValue={user?.name}
             />
@@ -111,7 +117,7 @@ export default function MainProfile() {
               id="outlined-basic6"
               fullWidth
               name="address"
-              //   value={fetchPostDetail.address}
+              value={detail?.address}
               //   onChange={handleChange}
               helperText="주소"
             />

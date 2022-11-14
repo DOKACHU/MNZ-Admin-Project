@@ -12,34 +12,14 @@ import {
   CardContent,
   Tabs,
   Tab,
-  Box,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import MainProfile from './MainProfile';
 
 interface MainDetailFormProps {
+  value?: number;
   tabs?: any;
-}
-
-interface TabPanelProps {
   children?: React.ReactNode;
-  value: number;
-  index: number;
-  other?: any;
-}
-
-function TabPanel({ children, value, index, ...other }: TabPanelProps) {
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 0 }}>{children}</Box>}
-    </div>
-  );
+  onTabChange: any;
 }
 
 function a11yProps(index: number) {
@@ -49,12 +29,12 @@ function a11yProps(index: number) {
   };
 }
 
-export default function MainDetailForm({ tabs }: MainDetailFormProps) {
-  const [value, setValue] = useState(0);
-
-  const handleTabChange = (e: any, newValue: any) => {
-    setValue(newValue);
-  };
+export default function MainDetailForm({
+  value,
+  children,
+  tabs,
+  onTabChange,
+}: MainDetailFormProps) {
   return (
     <Card
       sx={{
@@ -79,7 +59,7 @@ export default function MainDetailForm({ tabs }: MainDetailFormProps) {
       <Tabs
         value={value}
         indicatorColor="primary"
-        onChange={handleTabChange}
+        onChange={onTabChange}
         sx={{
           mb: 3,
           minHeight: 'auto',
@@ -113,16 +93,7 @@ export default function MainDetailForm({ tabs }: MainDetailFormProps) {
         })}
       </Tabs>
 
-      <CardContent>
-        {tabs.map((tab: any, i: number) => {
-          return (
-            <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && <MainProfile />}
-              {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
-            </TabPanel>
-          );
-        })}
-      </CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 }
