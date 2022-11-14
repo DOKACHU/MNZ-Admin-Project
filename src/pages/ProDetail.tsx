@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, MainProfile } from '../components';
-import { centerTab, CENTER_BASE_API } from '../constansts';
+import { centerTab, COUPON_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -29,9 +29,9 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
     </div>
   );
 }
-export default function CenterDetail() {
+export default function CouponDetail() {
   const { fetchPostDetail, isLoading } = useGetDetail({
-    BaseURL: CENTER_BASE_API,
+    BaseURL: COUPON_BASE_API,
   });
   const [value, setValue] = useState<number>(0);
 
@@ -40,7 +40,7 @@ export default function CenterDetail() {
   };
 
   return (
-    <DetailTemplate loading={isLoading} title="센터 상세페이지" isButton>
+    <DetailTemplate loading={isLoading} title="프로 상세페이지" isButton>
       <MainDetailForm
         tabs={centerTab}
         value={value}

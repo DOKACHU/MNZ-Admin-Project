@@ -3,7 +3,7 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const GetCenterListAPI = async (BaseURL: string) => {
+const GetListAPI = async (BaseURL: string) => {
   const URL = `${BaseURL}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
@@ -15,9 +15,7 @@ interface GetListsProps {
 
 export function useGetLists({ BaseURL }: GetListsProps) {
   // const [fetchList, setFetchList] = useState<any>([]);
-  const { data, isLoading } = useQuery(['centers'], () =>
-    GetCenterListAPI(BaseURL)
-  );
+  const { data, isLoading } = useQuery(['centers'], () => GetListAPI(BaseURL));
 
   // useEffect(() => {
   //   if (data) setFetchList(data);

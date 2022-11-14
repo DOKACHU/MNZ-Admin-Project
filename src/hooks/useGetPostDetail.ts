@@ -6,13 +6,15 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CENTER_BASE_API } from '../constansts';
 
-const GetCenterListAPI = async () => {
+const GetCenterListAPI = async (BaseURL: string) => {
   const URL = `${CENTER_BASE_API}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
 };
-
-export function useGetDetail() {
+interface GetDetailProps {
+  BaseURL: string;
+}
+export function useGetDetail({ BaseURL }: GetDetailProps) {
   // const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -21,7 +23,9 @@ export function useGetDetail() {
   const [fetchPostDetail, setFetchPostDetail] = useState<any>(null);
   // const [updateInfo, setUpdateInfo] = useState(null)
 
-  const { data, isLoading } = useQuery(['details'], () => GetCenterListAPI());
+  const { data, isLoading } = useQuery(['details'], () =>
+    GetCenterListAPI(BaseURL)
+  );
 
   useEffect(() => {
     if (data) {
