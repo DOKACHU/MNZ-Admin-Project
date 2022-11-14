@@ -1,13 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { TableRow, TableCell, Checkbox, TableBody } from '@mui/material';
+import { TableRow, TableCell, Checkbox } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
-import { centerColumns, stableSort, getComparator } from '../constansts';
+import {
+  centerColumns,
+  stableSort,
+  getComparator,
+  CENTER_LIST_API,
+} from '../constansts';
 import { useGetLists, useTableList } from '../hooks';
 
 export default function Center() {
-  const { fetchList, isLoading } = useGetLists();
+  const { fetchList, isLoading } = useGetLists({ BaseURL: CENTER_LIST_API });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.centerList || []
   );

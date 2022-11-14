@@ -2,17 +2,22 @@
 // import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { CENTER_LIST_API } from '../constansts';
 
-const GetCenterListAPI = async () => {
-  const URL = `${CENTER_LIST_API}?per_page=10&cursor=1`;
+const GetCenterListAPI = async (BaseURL: string) => {
+  const URL = `${BaseURL}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
 };
 
-export function useGetLists() {
+interface GetListsProps {
+  BaseURL: string;
+}
+
+export function useGetLists({ BaseURL }: GetListsProps) {
   // const [fetchList, setFetchList] = useState<any>([]);
-  const { data, isLoading } = useQuery(['centers'], () => GetCenterListAPI());
+  const { data, isLoading } = useQuery(['centers'], () =>
+    GetCenterListAPI(BaseURL)
+  );
 
   // useEffect(() => {
   //   if (data) setFetchList(data);

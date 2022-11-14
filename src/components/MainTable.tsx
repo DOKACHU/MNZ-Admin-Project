@@ -39,7 +39,7 @@ export default function MainTable({ rows, columns, children }: MainTableProps) {
       sx={{
         width: '100%',
         background: '#fff',
-        minHeight: 'calc(100vh - 260px)',
+        // minHeight: 'calc(100vh - 260px)',
       }}
     >
       <Paper sx={{ width: '100%', mb: 2 }}>
