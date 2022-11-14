@@ -3,9 +3,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { DetailTemplate } from '../template';
-import { MainDetailForm, MainProfile } from '../components';
+import { MainDetailForm, CouponBasicInfo } from '../components';
 import { centerTab, COUPON_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
@@ -49,7 +49,13 @@ export default function CouponDetail() {
         {centerTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && <h1>[개발] 예정입니다.</h1>}
+              {tab.label === 'profile' && (
+                <Grid container spacing={3}>
+                  <Grid item sm={6} md={6}>
+                    <CouponBasicInfo detail={fetchPostDetail} />
+                  </Grid>
+                </Grid>
+              )}
               {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
             </TabPanel>
           );

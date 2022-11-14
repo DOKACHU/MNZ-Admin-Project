@@ -3,11 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import { CENTER_BASE_API } from '../constansts';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
-const GetCenterListAPI = async (BaseURL: string) => {
-  const URL = `${CENTER_BASE_API}?per_page=10&cursor=1`;
+const GetDetailrListAPI = async (BaseURL: string) => {
+  const URL = `${BaseURL}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
 };
@@ -17,24 +16,27 @@ interface GetDetailProps {
 export function useGetDetail({ BaseURL }: GetDetailProps) {
   // const queryClient = useQueryClient();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const { id: rowId } = useParams();
-
   const [fetchPostDetail, setFetchPostDetail] = useState<any>(null);
   // const [updateInfo, setUpdateInfo] = useState(null)
 
   const { data, isLoading } = useQuery(['details'], () =>
-    GetCenterListAPI(BaseURL)
+    GetDetailrListAPI(BaseURL)
   );
 
   useEffect(() => {
     if (data) {
-      const result = data.centerList.filter(
-        (post: any) => post.center_id === rowId
-      );
-      setFetchPostDetail(result[0]);
+      const path = location.pathname.split('/')[1];
+      const list = data[`${path}List`];
+      const result = list?.filter((post: any) => {
+        const id = post[`${path}_id`];
+        return id === rowId;
+      });
+
+      if (result) setFetchPostDetail(result[0]);
     }
-  }, [data, rowId]);
+  }, [data, location.pathname, rowId]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;

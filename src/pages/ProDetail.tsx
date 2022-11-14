@@ -3,10 +3,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { DetailTemplate } from '../template';
-import { MainDetailForm, MainProfile } from '../components';
-import { centerTab, COUPON_BASE_API } from '../constansts';
+import { MainDetailForm, ProBasicInfo } from '../components';
+import { proTab, PRO_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -29,9 +29,9 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
     </div>
   );
 }
-export default function CouponDetail() {
+export default function ProDetail() {
   const { fetchPostDetail, isLoading } = useGetDetail({
-    BaseURL: COUPON_BASE_API,
+    BaseURL: PRO_BASE_API,
   });
   const [value, setValue] = useState<number>(0);
 
@@ -41,15 +41,17 @@ export default function CouponDetail() {
 
   return (
     <DetailTemplate loading={isLoading} title="프로 상세페이지" isButton>
-      <MainDetailForm
-        tabs={centerTab}
-        value={value}
-        onTabChange={handleTabChange}
-      >
-        {centerTab.map((tab: any, i: number) => {
+      <MainDetailForm tabs={proTab} value={value} onTabChange={handleTabChange}>
+        {proTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && <h1>[개발] 예정입니다.</h1>}
+              {tab.label === 'profile' && (
+                <Grid container spacing={3}>
+                  <Grid item sm={6} md={6}>
+                    <ProBasicInfo detail={fetchPostDetail} />
+                  </Grid>
+                </Grid>
+              )}
               {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
             </TabPanel>
           );
