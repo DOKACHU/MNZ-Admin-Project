@@ -14,7 +14,8 @@ import {
   Tab,
   Box,
 } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import MainProfile from './MainProfile';
 
 interface MainDetailFormPros {
   tabs?: any;
@@ -111,8 +112,8 @@ export default function MainDetailForm({ tabs }: MainDetailFormPros) {
         {tabs.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && <h1>asdf</h1>}
-              {tab.label === 'etc' && <h1>etc</h1>}
+              {tab.label === 'profile' && <MainProfile />}
+              {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
             </TabPanel>
           );
         })}
