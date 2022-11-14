@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 
 interface ListTemplateProps {
-  loading: boolean;
+  loading?: boolean;
   title: string;
   isButton?: boolean;
   handleClick?: any;

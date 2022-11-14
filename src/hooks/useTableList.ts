@@ -60,7 +60,7 @@ export function useTableList(rows: any) {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (e: any, newPage) => {
+  const handleChangePage = (e: any, newPage: any) => {
     setPage(newPage);
   };
 
