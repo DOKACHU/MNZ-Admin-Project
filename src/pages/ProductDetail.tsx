@@ -49,9 +49,7 @@ export default function CouponDetail() {
         {productTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && (
-                <MainProfile detail={fetchPostDetail} />
-              )}
+              {tab.label === 'profile' && <h1>[개발] 예정입니다.</h1>}
               {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
             </TabPanel>
           );

@@ -3,9 +3,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { DetailTemplate } from '../template';
-import { MainDetailForm, MainProfile } from '../components';
+import {
+  MainDetailForm,
+  MainProfile,
+  CenterBasicInfo,
+  CenterUploadImage,
+  CenterSchedule,
+} from '../components';
 import { centerTab, CENTER_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
@@ -50,7 +56,15 @@ export default function CenterDetail() {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.label === 'profile' && (
-                <MainProfile detail={fetchPostDetail} />
+                <Grid container spacing={3}>
+                  <Grid item sm={6} md={6}>
+                    <CenterBasicInfo detail={fetchPostDetail} />
+                    <CenterUploadImage />
+                  </Grid>
+                  <Grid item sm={6} md={6}>
+                    <CenterSchedule />
+                  </Grid>
+                </Grid>
               )}
               {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
             </TabPanel>
