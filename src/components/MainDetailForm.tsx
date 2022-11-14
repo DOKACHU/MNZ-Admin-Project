@@ -50,8 +50,6 @@ function a11yProps(index: number) {
 }
 
 export default function MainDetailForm({ tabs }: MainDetailFormProps) {
-  //   const { id } = useParams();
-
   const [value, setValue] = useState(0);
 
   const handleTabChange = (e: any, newValue: any) => {

@@ -1,2 +1,3 @@
-export * from './useGetPostsList';
+export * from './useGetPostList';
+export * from './useGetPostDetail';
 export * from './useTableList';
