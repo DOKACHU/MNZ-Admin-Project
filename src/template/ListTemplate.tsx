@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 interface ListTemplateProps {
+  loading: boolean;
   title: string;
   isButton?: boolean;
   handleClick?: any;
@@ -17,11 +18,27 @@ interface ListTemplateProps {
 }
 
 export default function ListTemplate({
+  loading,
   title,
   children,
   handleClick,
   isButton,
 }: ListTemplateProps) {
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          height: '100%',
+          padding: 3,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
   return (
     <Box
       sx={{
