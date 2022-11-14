@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CENTER_LIST_API } from '../constansts';
+import { CENTER_BASE_API } from '../constansts';
 
 const GetCenterListAPI = async () => {
-  const URL = `${CENTER_LIST_API}?per_page=10&cursor=1`;
+  const URL = `${CENTER_BASE_API}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
 };

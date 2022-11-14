@@ -7,12 +7,12 @@ import {
   proColumns,
   stableSort,
   getComparator,
-  PRO_LIST_API,
+  PRO_BASE_API,
 } from '../constansts';
 import { useGetLists, useTableList } from '../hooks';
 
 export default function Center() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: PRO_LIST_API });
+  const { fetchList, isLoading } = useGetLists({ BaseURL: PRO_BASE_API });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.proList || []
   );

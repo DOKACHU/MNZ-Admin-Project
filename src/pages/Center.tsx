@@ -7,12 +7,12 @@ import {
   centerColumns,
   stableSort,
   getComparator,
-  CENTER_LIST_API,
+  CENTER_BASE_API,
 } from '../constansts';
 import { useGetLists, useTableList } from '../hooks';
 
 export default function Center() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: CENTER_LIST_API });
+  const { fetchList, isLoading } = useGetLists({ BaseURL: CENTER_BASE_API });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.centerList || []
   );
