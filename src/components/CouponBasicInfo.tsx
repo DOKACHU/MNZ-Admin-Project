@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Grid, TextField } from '@mui/material';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import MainSubCard from './MainSubCard';
 
 interface CouponBasicInfoProps {

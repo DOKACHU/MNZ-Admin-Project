@@ -9,12 +9,10 @@ export const mainNavbarItems = [
     route: 'center',
     // icon: <Apartment />,
   },
-
   {
     id: 2,
     label: '프로 관리',
     route: 'pro',
-    // icon: <Apartment />,
   },
 
   {
@@ -26,5 +24,10 @@ export const mainNavbarItems = [
     id: 4,
     label: '상품 관리',
     route: 'product',
+  },
+  {
+    id: 5,
+    label: '리뷰 관리',
+    route: 'review',
   },
 ];

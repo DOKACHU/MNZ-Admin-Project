@@ -45,3 +45,49 @@ export const productColumns = [
   { id: 'discountRate', field: 'discountRate', label: '할인율' },
   { id: 'progressNumber', field: 'progressNumber', label: '치료 횟수' },
 ];
+
+export const reviewColumns = [
+  { id: 'review_id', field: 'review_id', label: '리뷰 번호' },
+  {
+    id: 'center_id',
+    field: 'center_id',
+    label: '센터 번호',
+  },
+  {
+    id: 'product_id',
+    field: 'product_id',
+    label: '상품 번호',
+  },
+  { id: 'type', field: 'type', label: '리뷰 타입' },
+  { id: 'content', field: 'content', label: '내용' },
+  {
+    id: 'question1',
+    field: 'question1',
+    label: '질문 1',
+  },
+  {
+    id: 'question2',
+    field: 'question2',
+    label: '질문 2',
+  },
+  {
+    id: 'question3',
+    field: 'question3',
+    label: '질문 3',
+  },
+  {
+    id: 'question4',
+    field: 'question4',
+    label: '질문 4',
+  },
+  {
+    id: 'question5',
+    field: 'question5',
+    label: '질문 5',
+  },
+  // {
+  //   id: 'createAt',
+  //   field: 'createAt',
+  //   label: '생성 일자',
+  // },
+];

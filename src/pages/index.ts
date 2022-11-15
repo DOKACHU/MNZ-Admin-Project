@@ -10,4 +10,7 @@ export { default as CouponDetail } from './CouponDetail';
 export { default as Product } from './Product';
 export { default as ProductDetail } from './ProductDetail';
 
+export { default as Review } from './Review';
+export { default as ReviewDetail } from './ReviewDetail';
+
 export { default as NotFound } from './NotFound';

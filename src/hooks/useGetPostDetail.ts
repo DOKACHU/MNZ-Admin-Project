@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import axios from 'axios';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { mockReviewList } from '../constansts';
 
 const GetDetailrListAPI = async (BaseURL: string) => {
   const URL = `${BaseURL}?per_page=10&cursor=1`;
@@ -19,6 +20,8 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   const location = useLocation();
   const { id: rowId } = useParams();
   const [fetchPostDetail, setFetchPostDetail] = useState<any>(null);
+  const [fetchMockPostDetail, setFetchMockPostDetail] = useState<any>(null);
+
   // const [updateInfo, setUpdateInfo] = useState(null)
 
   const { data, isLoading } = useQuery(['details'], () =>
@@ -37,6 +40,13 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
       if (result) setFetchPostDetail(result[0]);
     }
   }, [data, location.pathname, rowId]);
+
+  useEffect(() => {
+    const result = mockReviewList?.filter((post: any) => {
+      return post.review_id === Number(rowId);
+    });
+    setFetchMockPostDetail(result[0]);
+  }, []);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -83,6 +93,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
 
   return {
     fetchPostDetail,
+    fetchMockPostDetail,
     isLoading,
     handleChange,
     handleSave,

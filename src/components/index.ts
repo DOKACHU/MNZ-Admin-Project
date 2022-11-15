@@ -13,3 +13,6 @@ export { default as ProBasicInfo } from './ProBasicInfo';
 
 // Coupon
 export { default as CouponBasicInfo } from './CouponBasicInfo';
+
+// review
+export { default as ReviewBasicInfo } from './ReviewBasicInfo';

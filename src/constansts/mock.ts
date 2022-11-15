@@ -1,0 +1,28 @@
+export const mockReviewList = [
+  {
+    review_id: 1,
+    centerId: 4,
+    productId: '2b02b343-819f-4126-874e-9c8213bfc689',
+    type: 'Good',
+    content: '선생님이 너무 잘해주셨어요.',
+    question1: 2,
+    question2: 3,
+    question3: 1,
+    question4: 4,
+    question5: 5,
+    createAt: '2022-09-18',
+  },
+  {
+    review_id: 2,
+    centerId: 11,
+    productId: '2b02b343-819f-4126-874e-9c8213bfc689',
+    type: 'Bad',
+    content: '시설이 너무 쾌적해지만, 선생님이 너무 불편해요.',
+    question1: 2,
+    question2: 3,
+    question3: 1,
+    question4: 4,
+    question5: 5,
+    createAt: '2022-09-18',
+  },
+];
