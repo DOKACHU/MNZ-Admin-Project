@@ -13,7 +13,7 @@ interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
-  handleClick?: any;
+  onOpenModal?: any;
   children: React.ReactNode;
 }
 
@@ -21,7 +21,7 @@ export default function ListTemplate({
   loading,
   title,
   children,
-  handleClick,
+  onOpenModal,
   isButton,
 }: ListTemplateProps) {
   if (loading) {
@@ -72,7 +72,7 @@ export default function ListTemplate({
               </Grid>
               {isButton && (
                 <Grid item>
-                  <Button onClick={handleClick}>생성</Button>
+                  <Button onClick={onOpenModal}>생성 모달</Button>
                 </Grid>
               )}
             </Grid>

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { TableRow, TableCell, Checkbox } from '@mui/material';
+import { TableRow, TableCell, Checkbox, Rating } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
@@ -54,15 +54,50 @@ export default function Review() {
                   />
                 </TableCell>
                 <TableCell>{row?.review_id}</TableCell>
-                <TableCell>{row?.centerId}</TableCell>
+                {/* <TableCell>{row?.centerId}</TableCell> */}
                 <TableCell>{row?.productId}</TableCell>
                 <TableCell>{row?.type}</TableCell>
                 <TableCell>{row?.content}</TableCell>
-                <TableCell>{row?.question1}</TableCell>
-                <TableCell>{row?.question2}</TableCell>
-                <TableCell>{row?.question3}</TableCell>
-                <TableCell>{row?.question4}</TableCell>
-                <TableCell>{row?.question5}</TableCell>
+                <TableCell align="center">
+                  <Rating
+                    name="read-only"
+                    value={row.question1}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>
+                <TableCell align="center">
+                  <Rating
+                    name="read-only"
+                    value={row.question2}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>{' '}
+                <TableCell align="center">
+                  <Rating
+                    name="read-only"
+                    value={row.question3}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>{' '}
+                <TableCell align="center">
+                  <Rating
+                    name="read-only"
+                    value={row.question4}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>{' '}
+                <TableCell align="center">
+                  <Rating
+                    name="read-only"
+                    value={row.question5}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>
               </TableRow>
             );
           })}

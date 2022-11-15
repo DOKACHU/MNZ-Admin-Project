@@ -48,11 +48,11 @@ export const productColumns = [
 
 export const reviewColumns = [
   { id: 'review_id', field: 'review_id', label: '리뷰 번호' },
-  {
-    id: 'center_id',
-    field: 'center_id',
-    label: '센터 번호',
-  },
+  // {
+  //   id: 'center_id',
+  //   field: 'center_id',
+  //   label: '센터 번호',
+  // },
   {
     id: 'product_id',
     field: 'product_id',

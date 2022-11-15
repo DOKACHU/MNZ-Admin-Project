@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box, Grid, TextField } from '@mui/material';
+import { Box, Grid, TextField, Rating, Typography } from '@mui/material';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, ReviewBasicInfo, MainSubCard } from '../components';
 import { centerTab, CENTER_BASE_API } from '../constansts';
@@ -57,65 +57,125 @@ export default function ReviewDetail() {
                     <ReviewBasicInfo detail={fetchMockPostDetail} />
                   </Grid>
                   <Grid item sm={6} md={6}>
-                    <MainSubCard title="기본 정보">
-                      <Grid item xs={12}>
-                        <TextField
-                          helperText="질문 1"
-                          size="small"
-                          id="outlined-basic1"
-                          fullWidth
-                          // label="Name"
+                    <MainSubCard title="평점 정보">
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          // justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mr: 2,
+                          }}
+                        >
+                          질문 1
+                        </Typography>
+                        <Rating
+                          name="read-only"
                           value={fetchMockPostDetail?.question1}
-                          disabled
-                          // defaultValue={user?.name}
+                          precision={0.5}
+                          readOnly
                         />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          helperText="질문 2"
-                          size="small"
-                          id="outlined-basic1"
-                          fullWidth
-                          // label="Name"
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          // justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mr: 2,
+                          }}
+                        >
+                          질문 2
+                        </Typography>
+                        <Rating
+                          name="read-only"
                           value={fetchMockPostDetail?.question2}
-                          disabled
-                          // defaultValue={user?.name}
+                          precision={0.5}
+                          readOnly
                         />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          helperText="질문 3"
-                          size="small"
-                          id="outlined-basic1"
-                          fullWidth
-                          // label="Name"
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          // justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mr: 2,
+                          }}
+                        >
+                          질문 3
+                        </Typography>
+                        <Rating
+                          name="read-only"
                           value={fetchMockPostDetail?.question3}
-                          disabled
-                          // defaultValue={user?.name}
+                          precision={0.5}
+                          readOnly
                         />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          helperText="질문 4"
-                          size="small"
-                          id="outlined-basic1"
-                          fullWidth
-                          // label="Name"
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          // justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mr: 2,
+                          }}
+                        >
+                          질문 4
+                        </Typography>
+                        <Rating
+                          name="read-only"
                           value={fetchMockPostDetail?.question4}
-                          disabled
-                          // defaultValue={user?.name}
+                          precision={0.5}
+                          readOnly
                         />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          helperText="질문 5"
-                          size="small"
-                          id="outlined-basic1"
-                          fullWidth
-                          // label="Name"
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          // justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mr: 2,
+                          }}
+                        >
+                          질문 5
+                        </Typography>
+                        <Rating
+                          name="read-only"
                           value={fetchMockPostDetail?.question5}
-                          disabled
-                          // defaultValue={user?.name}
+                          precision={0.5}
+                          readOnly
                         />
                       </Grid>
                     </MainSubCard>

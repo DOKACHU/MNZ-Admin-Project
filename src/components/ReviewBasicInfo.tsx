@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, TextField } from '@mui/material';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import dayjs from 'dayjs';
@@ -34,7 +34,7 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
           fullWidth
           // label="Name"
           value={detail?.type}
-          //   disabled
+          disabled
           // defaultValue={user?.name}
         />
       </Grid>
@@ -47,6 +47,8 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
           fullWidth
           name="address"
           value={detail?.content}
+          disabled
+
           //   onChange={handleChange}
         />
       </Grid>

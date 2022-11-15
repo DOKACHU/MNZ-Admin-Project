@@ -1,7 +1,9 @@
+// Main
 export { default as MainTable } from './MainTable';
 export { default as MainDetailForm } from './MainDetailForm';
 export { default as MainProfile } from './MainProfile';
 export { default as MainSubCard } from './MainSubCard';
+export { default as MainModal } from './MainModal';
 
 // center
 export { default as CenterBasicInfo } from './CenterBasicInfo';
