@@ -54,7 +54,6 @@ export default function Review() {
                   />
                 </TableCell>
                 <TableCell>{row?.review_id}</TableCell>
-                {/* <TableCell>{row?.centerId}</TableCell> */}
                 <TableCell>{row?.productId}</TableCell>
                 <TableCell>{row?.type}</TableCell>
                 <TableCell>{row?.content}</TableCell>
@@ -73,7 +72,7 @@ export default function Review() {
                     precision={0.5}
                     readOnly
                   />
-                </TableCell>{' '}
+                </TableCell>
                 <TableCell align="center">
                   <Rating
                     name="read-only"
@@ -81,7 +80,7 @@ export default function Review() {
                     precision={0.5}
                     readOnly
                   />
-                </TableCell>{' '}
+                </TableCell>
                 <TableCell align="center">
                   <Rating
                     name="read-only"
@@ -89,7 +88,7 @@ export default function Review() {
                     precision={0.5}
                     readOnly
                   />
-                </TableCell>{' '}
+                </TableCell>
                 <TableCell align="center">
                   <Rating
                     name="read-only"

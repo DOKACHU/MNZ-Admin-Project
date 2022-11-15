@@ -58,126 +58,130 @@ export default function ReviewDetail() {
                   </Grid>
                   <Grid item sm={6} md={6}>
                     <MainSubCard title="평점 정보">
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            mr: 2,
-                          }}
-                        >
-                          질문 1
-                        </Typography>
-                        <Rating
-                          name="read-only"
-                          value={fetchMockPostDetail?.question1}
-                          precision={0.5}
-                          readOnly
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            mr: 2,
-                          }}
-                        >
-                          질문 2
-                        </Typography>
-                        <Rating
-                          name="read-only"
-                          value={fetchMockPostDetail?.question2}
-                          precision={0.5}
-                          readOnly
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            mr: 2,
-                          }}
-                        >
-                          질문 3
-                        </Typography>
-                        <Rating
-                          name="read-only"
-                          value={fetchMockPostDetail?.question3}
-                          precision={0.5}
-                          readOnly
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            mr: 2,
-                          }}
-                        >
-                          질문 4
-                        </Typography>
-                        <Rating
-                          name="read-only"
-                          value={fetchMockPostDetail?.question4}
-                          precision={0.5}
-                          readOnly
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            mr: 2,
-                          }}
-                        >
-                          질문 5
-                        </Typography>
-                        <Rating
-                          name="read-only"
-                          value={fetchMockPostDetail?.question5}
-                          precision={0.5}
-                          readOnly
-                        />
-                      </Grid>
+                      {fetchMockPostDetail && (
+                        <>
+                          <Grid
+                            item
+                            xs={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              // justifyContent: 'space-between',
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                mr: 2,
+                              }}
+                            >
+                              질문 1
+                            </Typography>
+                            <Rating
+                              name="read-only"
+                              value={fetchMockPostDetail?.question1}
+                              precision={0.5}
+                              readOnly
+                            />
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              // justifyContent: 'space-between',
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                mr: 2,
+                              }}
+                            >
+                              질문 2
+                            </Typography>
+                            <Rating
+                              name="read-only"
+                              value={fetchMockPostDetail?.question2}
+                              precision={0.5}
+                              readOnly
+                            />
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              // justifyContent: 'space-between',
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                mr: 2,
+                              }}
+                            >
+                              질문 3
+                            </Typography>
+                            <Rating
+                              name="read-only"
+                              value={fetchMockPostDetail?.question3}
+                              precision={0.5}
+                              readOnly
+                            />
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              // justifyContent: 'space-between',
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                mr: 2,
+                              }}
+                            >
+                              질문 4
+                            </Typography>
+                            <Rating
+                              name="read-only"
+                              value={fetchMockPostDetail?.question4}
+                              precision={0.5}
+                              readOnly
+                            />
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              // justifyContent: 'space-between',
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                mr: 2,
+                              }}
+                            >
+                              질문 5
+                            </Typography>
+                            <Rating
+                              name="read-only"
+                              value={fetchMockPostDetail?.question5}
+                              precision={0.5}
+                              readOnly
+                            />
+                          </Grid>
+                        </>
+                      )}
                     </MainSubCard>
                   </Grid>
                 </Grid>
