@@ -13,4 +13,7 @@ export { default as ProductDetail } from './ProductDetail';
 export { default as Review } from './Review';
 export { default as ReviewDetail } from './ReviewDetail';
 
+export { default as Book } from './Book';
+export { default as BookDetail } from './BookDetail';
+
 export { default as NotFound } from './NotFound';

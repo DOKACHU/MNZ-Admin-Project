@@ -12,15 +12,11 @@ import {
   getComparator,
   COUPON_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList } from '../hooks';
+import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Coupon() {
-  const [open, setOpen] = useState(false);
+  const { open, handleOpen } = useModal();
   const [value, setValue] = useState(dayjs(new Date()));
-
-  const handleOpen = () => {
-    setOpen(!open);
-  };
 
   const { fetchList, isLoading } = useGetLists({
     BaseURL: COUPON_BASE_API,
@@ -151,7 +147,7 @@ export default function Coupon() {
                 {...params}
                 fullWidth
                 size="small"
-                helperText="임시 휴무일"
+                helperText="만료 기간"
               />
             )}
           />

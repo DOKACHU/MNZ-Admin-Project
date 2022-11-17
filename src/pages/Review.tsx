@@ -28,10 +28,12 @@ export default function Review() {
     };
   });
 
-  console.log('newMockReviewList', newMockReviewList);
-
   return (
-    <ListTemplate title="리뷰 관리" isButton loading={isLoading}>
+    <ListTemplate
+      title="리뷰 관리"
+      // isButton
+      loading={isLoading}
+    >
       <MainTable columns={reviewColumns} rows={newMockReviewList}>
         {stableSort(newMockReviewList || [], getComparator(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

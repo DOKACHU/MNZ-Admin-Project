@@ -12,6 +12,8 @@ import {
   CouponDetail,
   Review,
   ReviewDetail,
+  Book,
+  BookDetail,
 } from './pages';
 import { MainLayout } from './layouts';
 
@@ -19,6 +21,8 @@ export function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
+        <Route path="book" element={<Book />} />
+        <Route path="book/:id" element={<BookDetail />} />
         <Route path="center" element={<Center />} />
         <Route path="center/:id" element={<CenterDetail />} />
         <Route path="pro" element={<Pro />} />
