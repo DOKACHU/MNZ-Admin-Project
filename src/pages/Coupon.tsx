@@ -1,6 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
+import {
+  TableRow,
+  TableCell,
+  Checkbox,
+  Grid,
+  TextField,
+  Alert,
+} from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
@@ -11,15 +17,24 @@ import {
   stableSort,
   getComparator,
   COUPON_BASE_API,
+  couponInit,
 } from '../constansts';
 import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Coupon() {
   const { open, handleOpen } = useModal();
-  const [value, setValue] = useState(dayjs(new Date()));
+  // const [value, setValue] = useState(dayjs(new Date()));
 
-  const { fetchList, isLoading } = useGetLists({
+  const {
+    fetchList,
+    isLoading,
+    createInfo,
+    setCreateInfo,
+    handleCreateChange,
+    handleSubmit,
+  } = useGetLists({
     BaseURL: COUPON_BASE_API,
+    Init: couponInit,
   });
 
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
@@ -83,18 +98,21 @@ export default function Coupon() {
             })}
         </MainTable>
       </ListTemplate>
-      <MainModal open={open} handleClose={handleOpen} title="쿠폰 생성 모달">
+      <MainModal
+        open={open}
+        handleClose={handleOpen}
+        handleCreate={handleSubmit}
+        title="쿠폰 생성 모달"
+      >
         <Grid item sm={12}>
           <TextField
             helperText="쿠폰 이름"
             size="small"
             id="outlined-basic1"
             fullWidth
-
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
+            name="title"
+            onChange={handleCreateChange}
+            value={createInfo.title}
           />
         </Grid>
         <Grid item sm={12}>
@@ -103,10 +121,9 @@ export default function Coupon() {
             size="small"
             id="outlined-basic1"
             fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
+            name="description"
+            onChange={handleCreateChange}
+            value={createInfo.description}
           />
         </Grid>
         <Grid item sm={12}>
@@ -115,10 +132,9 @@ export default function Coupon() {
             size="small"
             id="outlined-basic1"
             fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
+            name="discountRate"
+            onChange={handleCreateChange}
+            value={createInfo.discountRate}
           />
         </Grid>
         <Grid item sm={12}>
@@ -127,20 +143,42 @@ export default function Coupon() {
             size="small"
             id="outlined-basic1"
             fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
+            name="discountPrice"
+            value={createInfo.discountPrice}
+            onChange={handleCreateChange}
           />
         </Grid>
         <Grid item md={12} xs={12}>
           <DatePicker
-            views={['day']}
-            label="Just date"
+            // views={['day']}
             inputFormat="YYYY-MM-DD"
-            value={value}
-            onChange={(newValue: any) => {
-              setValue(newValue);
+            value={createInfo.startPeriod}
+            onChange={(newValue) => {
+              setCreateInfo({
+                ...createInfo,
+                startPeriod: dayjs(newValue),
+              });
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                fullWidth
+                size="small"
+                helperText="시작 기간"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item md={12} xs={12}>
+          <DatePicker
+            // views={['day']}
+            inputFormat="YYYY-MM-DD"
+            value={createInfo.closePeriod}
+            onChange={(newValue) => {
+              setCreateInfo({
+                ...createInfo,
+                closePeriod: dayjs(newValue),
+              });
             }}
             renderInput={(params) => (
               <TextField

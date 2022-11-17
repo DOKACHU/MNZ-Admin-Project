@@ -35,7 +35,7 @@ export default function MainModal({
             borderRadius: '4px',
             width: '450px',
             // width: '1200px',
-            minHeight: `calc(100vh - 200px)`,
+            minHeight: `calc(100vh - 700px)`,
             boxShadow: 24,
             p: 2,
           },
@@ -57,7 +57,13 @@ export default function MainModal({
           {title}
         </Typography>
         <DialogActions>
-          <Button variant="text" onClick={handleCreate}>
+          <Button
+            variant="text"
+            onClick={() => {
+              handleCreate();
+              handleClose();
+            }}
+          >
             생성
           </Button>
           <Button variant="text" color="error" onClick={handleClose}>

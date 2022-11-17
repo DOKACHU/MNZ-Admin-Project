@@ -4,3 +4,4 @@ export * from './utils';
 export * from './tabs';
 export * from './api';
 export * from './mock';
+export * from './init';
