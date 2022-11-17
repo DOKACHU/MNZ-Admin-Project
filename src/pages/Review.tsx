@@ -18,13 +18,26 @@ export default function Review() {
     fetchList?.centerList || []
   );
 
+  const newMockReviewList = mockReviewList.map((list) => {
+    const { question1, question2, question3, question4, question5 } = list;
+    const calcAverage =
+      (question1 + question2 + question3 + question4 + question5) / 5;
+    return {
+      ...list,
+      average: calcAverage,
+    };
+  });
+
+  console.log('newMockReviewList', newMockReviewList);
+
   return (
     <ListTemplate title="리뷰 관리" isButton loading={isLoading}>
-      <MainTable columns={reviewColumns} rows={mockReviewList}>
-        {stableSort(mockReviewList || [], getComparator(order, orderBy))
+      <MainTable columns={reviewColumns} rows={newMockReviewList}>
+        {stableSort(newMockReviewList || [], getComparator(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
+            // console.log('row', row);
             const labelId = `enhanced-table-checkbox-${index}`;
             return (
               <TableRow
@@ -60,40 +73,8 @@ export default function Review() {
                 <TableCell align="center">
                   <Rating
                     name="read-only"
-                    value={row.question1}
-                    precision={0.5}
-                    readOnly
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <Rating
-                    name="read-only"
-                    value={row.question2}
-                    precision={0.5}
-                    readOnly
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <Rating
-                    name="read-only"
-                    value={row.question3}
-                    precision={0.5}
-                    readOnly
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <Rating
-                    name="read-only"
-                    value={row.question4}
-                    precision={0.5}
-                    readOnly
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <Rating
-                    name="read-only"
-                    value={row.question5}
-                    precision={0.5}
+                    value={row?.average}
+                    precision={0.1}
                     readOnly
                   />
                 </TableCell>

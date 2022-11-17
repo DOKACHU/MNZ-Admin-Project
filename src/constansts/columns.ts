@@ -60,31 +60,33 @@ export const reviewColumns = [
   },
   { id: 'type', field: 'type', label: '리뷰 타입' },
   { id: 'content', field: 'content', label: '내용' },
-  {
-    id: 'question1',
-    field: 'question1',
-    label: '질문 1',
-  },
-  {
-    id: 'question2',
-    field: 'question2',
-    label: '질문 2',
-  },
-  {
-    id: 'question3',
-    field: 'question3',
-    label: '질문 3',
-  },
-  {
-    id: 'question4',
-    field: 'question4',
-    label: '질문 4',
-  },
-  {
-    id: 'question5',
-    field: 'question5',
-    label: '질문 5',
-  },
+  { id: 'average', field: 'average', label: '평점' },
+
+  // {
+  //   id: 'question1',
+  //   field: 'question1',
+  //   label: '질문 1',
+  // },
+  // {
+  //   id: 'question2',
+  //   field: 'question2',
+  //   label: '질문 2',
+  // },
+  // {
+  //   id: 'question3',
+  //   field: 'question3',
+  //   label: '질문 3',
+  // },
+  // {
+  //   id: 'question4',
+  //   field: 'question4',
+  //   label: '질문 4',
+  // },
+  // {
+  //   id: 'question5',
+  //   field: 'question5',
+  //   label: '질문 5',
+  // },
   // {
   //   id: 'createAt',
   //   field: 'createAt',
