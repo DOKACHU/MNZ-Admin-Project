@@ -234,7 +234,8 @@ export default function BookDetail() {
                   <Grid item xs={12}>
                     <MainSubCard title="예약 일정">
                       <Grid item xs={6}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <h1>[UI] 내부 수정중 ...</h1>
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <StaticDatePicker
                             onChange={(newValue: any) => setDate(newValue)}
                             value={date}
@@ -249,12 +250,7 @@ export default function BookDetail() {
                               },
                             }}
                           />
-                        </LocalizationProvider>
-
-                        {/* <CalendarPicker
-                          date={date}
-                          onChange={(newDate: any) => setDate(newDate)}
-                        /> */}
+                        </LocalizationProvider> */}
                       </Grid>
                       <Grid
                         item
@@ -265,7 +261,7 @@ export default function BookDetail() {
                         }}
                       >
                         {/* TODO: timpicker 수정 필요  */}
-                        <TextField
+                        {/* <TextField
                           id="time"
                           // label="Alarm clock"
                           type="time"
@@ -279,7 +275,7 @@ export default function BookDetail() {
                           }}
                           fullWidth
                           helperText="예약 시간"
-                        />
+                        /> */}
                       </Grid>
                     </MainSubCard>
                   </Grid>

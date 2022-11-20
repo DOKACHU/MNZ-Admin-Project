@@ -111,16 +111,19 @@ export default function DetailTemplate({
                   <Button variant="outlined" onClick={onUpadate}>
                     {updateText}
                   </Button>
-                  <Button
-                    sx={{
-                      marginLeft: '10px',
-                    }}
-                    variant="outlined"
-                    color="error"
-                    onClick={onDelete}
-                  >
-                    {deleteText}
-                  </Button>
+                  {deleteText && (
+                    <Button
+                      sx={{
+                        marginLeft: '10px',
+                      }}
+                      variant="outlined"
+                      color="error"
+                      onClick={onDelete}
+                    >
+                      {deleteText}
+                    </Button>
+                  )}
+
                   {/* <Button
                     color="secondary"
                     sx={{
