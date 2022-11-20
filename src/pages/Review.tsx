@@ -37,7 +37,7 @@ export default function Review() {
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
-            // console.log('row', row);
+            // console.log('row', Math.ceil(row?.average));
             const labelId = `enhanced-table-checkbox-${index}`;
             return (
               <TableRow
@@ -75,8 +75,8 @@ export default function Review() {
                 <TableCell align="center">
                   <Rating
                     name="read-only"
-                    value={row?.average}
-                    precision={0.1}
+                    value={Math.ceil(row?.average)}
+                    precision={0.5}
                     readOnly
                   />
                 </TableCell>
