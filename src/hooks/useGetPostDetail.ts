@@ -22,8 +22,6 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   const [fetchPostDetail, setFetchPostDetail] = useState<any>(null);
   const [fetchMockPostDetail, setFetchMockPostDetail] = useState<any>(null);
 
-  // const [updateInfo, setUpdateInfo] = useState(null)
-
   const { data, isLoading } = useQuery(['details'], () =>
     GetDetailrListAPI(BaseURL)
   );
@@ -31,8 +29,12 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   useEffect(() => {
     if (data) {
       const path = location.pathname.split('/')[1];
-      const list = data[`${path}List`];
+      const list = path === 'review' ? data.centerList : data[`${path}List`];
       const result = list?.filter((post: any) => {
+        if (path === 'review' || path === 'product') {
+          const id = post[`${path}Id`];
+          return id === rowId;
+        }
         const id = post[`${path}_id`];
         return id === rowId;
       });
@@ -46,7 +48,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
       return post.review_id === Number(rowId);
     });
     setFetchMockPostDetail(result[0]);
-  }, []);
+  }, [rowId]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;

@@ -44,7 +44,7 @@ export default function Review() {
                 key={index}
                 hover
                 onClick={(e: any) => {
-                  handleRowClick(e, row.review_id);
+                  handleRowClick(e, row.reviewId);
                 }}
                 role="checkbox"
                 // aria-checked={isItemSelected}

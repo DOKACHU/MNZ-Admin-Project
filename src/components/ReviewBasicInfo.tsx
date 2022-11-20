@@ -21,7 +21,7 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
           id="outlined-basic1"
           fullWidth
           // label="Name"
-          value={detail?.review_id}
+          value={detail?.reviewId}
           disabled
           // defaultValue={user?.name}
         />
@@ -33,7 +33,7 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
           id="outlined-basic1"
           fullWidth
           // label="Name"
-          value={detail?.type}
+          value={detail?.satisfied ? '만족' : '불만족'}
           disabled
           // defaultValue={user?.name}
         />
@@ -46,7 +46,7 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
           id="outlined-basic6"
           fullWidth
           name="address"
-          value={detail?.content}
+          value={detail?.comment}
           disabled
 
           //   onChange={handleChange}

@@ -46,22 +46,6 @@ export const productColumns = [
   { id: 'progressNumber', field: 'progressNumber', label: '치료 횟수' },
 ];
 
-// "reviewId": "0aa91943-a0c2-4a98-b0d6-2c8bb34ba0ca",
-//     "writerId": "test",
-//     "proId": "test",
-//     "centerId": "test",
-//     "bookingId": "test",
-//     "satisfied": true,
-//     "comment": "test dddddd",
-//     "rating1": 3,
-//     "rating2": 4,
-//     "rating3": 4,
-//     "rating4": 5,
-//     "rating5": 3,
-//     "createdAt": "2022-11-19T09:08:11.692Z",
-//     "updatedAt": "2022-11-19T09:08:11.692Z",
-//     "deletedAt": null
-
 export const reviewColumns = [
   { id: 'reviewId', field: 'reviewId', label: '리뷰 번호' },
   {

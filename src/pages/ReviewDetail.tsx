@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Box, Grid, TextField, Rating, Typography } from '@mui/material';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, ReviewBasicInfo, MainSubCard } from '../components';
-import { centerTab, CENTER_BASE_API } from '../constansts';
+import { centerTab, REVIEW_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -31,7 +31,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
 }
 export default function ReviewDetail() {
   const { fetchPostDetail, fetchMockPostDetail, isLoading } = useGetDetail({
-    BaseURL: CENTER_BASE_API,
+    BaseURL: REVIEW_BASE_API,
   });
 
   // console.log('fetchMockPostDetail', fetchMockPostDetail);
@@ -54,11 +54,11 @@ export default function ReviewDetail() {
               {tab.label === 'profile' && (
                 <Grid container spacing={3}>
                   <Grid item sm={6} md={6}>
-                    <ReviewBasicInfo detail={fetchMockPostDetail} />
+                    <ReviewBasicInfo detail={fetchPostDetail} />
                   </Grid>
                   <Grid item sm={6} md={6}>
                     <MainSubCard title="평점 정보">
-                      {fetchMockPostDetail && (
+                      {fetchPostDetail && (
                         <>
                           <Grid
                             item
@@ -79,7 +79,7 @@ export default function ReviewDetail() {
                             </Typography>
                             <Rating
                               name="read-only"
-                              value={fetchMockPostDetail?.question1}
+                              value={fetchPostDetail?.rating1}
                               precision={0.5}
                               readOnly
                             />
@@ -103,7 +103,7 @@ export default function ReviewDetail() {
                             </Typography>
                             <Rating
                               name="read-only"
-                              value={fetchMockPostDetail?.question2}
+                              value={fetchPostDetail?.rating2}
                               precision={0.5}
                               readOnly
                             />
@@ -127,7 +127,7 @@ export default function ReviewDetail() {
                             </Typography>
                             <Rating
                               name="read-only"
-                              value={fetchMockPostDetail?.question3}
+                              value={fetchPostDetail?.rating3}
                               precision={0.5}
                               readOnly
                             />
@@ -151,7 +151,7 @@ export default function ReviewDetail() {
                             </Typography>
                             <Rating
                               name="read-only"
-                              value={fetchMockPostDetail?.question4}
+                              value={fetchPostDetail?.rating4}
                               precision={0.5}
                               readOnly
                             />
@@ -175,7 +175,7 @@ export default function ReviewDetail() {
                             </Typography>
                             <Rating
                               name="read-only"
-                              value={fetchMockPostDetail?.question5}
+                              value={fetchPostDetail?.rating5}
                               precision={0.5}
                               readOnly
                             />
