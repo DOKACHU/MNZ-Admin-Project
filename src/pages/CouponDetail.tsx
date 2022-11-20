@@ -30,9 +30,10 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   );
 }
 export default function CouponDetail() {
-  const { fetchPostDetail, isLoading } = useGetDetail({
-    BaseURL: COUPON_BASE_API,
-  });
+  const { fetchPostDetail, isLoading, handleUpadate, handleChange } =
+    useGetDetail({
+      BaseURL: COUPON_BASE_API,
+    });
   const [value, setValue] = useState<number>(0);
 
   const handleTabChange = (e: any, newValue: any) => {
@@ -40,7 +41,13 @@ export default function CouponDetail() {
   };
 
   return (
-    <DetailTemplate loading={isLoading} title="쿠폰 상세페이지" isButton>
+    <DetailTemplate
+      loading={isLoading}
+      title="쿠폰 상세페이지"
+      isButton
+      updateText="쿠폰 수정"
+      onUpadate={handleUpadate}
+    >
       <MainDetailForm
         tabs={centerTab}
         value={value}
@@ -52,7 +59,10 @@ export default function CouponDetail() {
               {tab.label === 'profile' && (
                 <Grid container spacing={3}>
                   <Grid item sm={6} md={6}>
-                    <CouponBasicInfo detail={fetchPostDetail} />
+                    <CouponBasicInfo
+                      detail={fetchPostDetail}
+                      onChange={handleChange}
+                    />
                   </Grid>
                 </Grid>
               )}

@@ -7,9 +7,13 @@ import MainSubCard from './MainSubCard';
 
 interface CouponBasicInfoProps {
   detail?: any;
+  onChange?: any;
 }
 
-export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
+export default function CouponBasicInfo({
+  detail,
+  onChange,
+}: CouponBasicInfoProps) {
   // const [value, setValue] = useState(dayjs('2022-04-07'));
 
   return (
@@ -21,6 +25,7 @@ export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
           id="outlined-basic1"
           fullWidth
           // label="Name"
+          onChange={onChange}
           value={detail?.coupon_id}
           disabled
           // defaultValue={user?.name}
@@ -32,7 +37,8 @@ export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
           size="small"
           id="outlined-basic1"
           fullWidth
-          // label="Name"
+          name="title"
+          onChange={onChange}
           value={detail?.title}
           //   disabled
           // defaultValue={user?.name}
@@ -45,7 +51,8 @@ export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
           size="small"
           id="outlined-basic6"
           fullWidth
-          name="address"
+          name="description"
+          onChange={onChange}
           value={detail?.description}
           //   onChange={handleChange}
         />
@@ -57,7 +64,8 @@ export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
           size="small"
           id="outlined-basic6"
           fullWidth
-          name="address"
+          name="discountRate"
+          onChange={onChange}
           value={detail?.discountRate}
           //   onChange={handleChange}
         />
@@ -69,9 +77,9 @@ export default function CouponBasicInfo({ detail }: CouponBasicInfoProps) {
           size="small"
           id="outlined-basic6"
           fullWidth
-          name="address"
+          name="discountPrice"
+          onChange={onChange}
           value={detail?.discountPrice}
-          //   onChange={handleChange}
         />
       </Grid>
       <Grid item md={12} xs={12}>

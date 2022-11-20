@@ -6,16 +6,27 @@ import axios from 'axios';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { mockReviewList } from '../constansts';
 
-const GetDetailrListAPI = async (BaseURL: string) => {
+const GetDetailListAPI = async (BaseURL: string) => {
   const URL = `${BaseURL}?per_page=10&cursor=1`;
   const { data } = await axios.get(URL);
   return data;
 };
+
+const UpdateDetailAPI = async (
+  BaseURL: string,
+  couponId: string | undefined,
+  Body: any
+) => {
+  const URL = `${BaseURL}/${couponId}`;
+  const { data } = await axios.patch(URL, Body);
+  return data;
+};
+
 interface GetDetailProps {
   BaseURL: string;
 }
 export function useGetDetail({ BaseURL }: GetDetailProps) {
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
   const { id: rowId } = useParams();
@@ -23,7 +34,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   const [fetchMockPostDetail, setFetchMockPostDetail] = useState<any>(null);
 
   const { data, isLoading } = useQuery(['details'], () =>
-    GetDetailrListAPI(BaseURL)
+    GetDetailListAPI(BaseURL)
   );
 
   useEffect(() => {
@@ -55,13 +66,17 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
     setFetchPostDetail({ ...fetchPostDetail, [name]: value });
   };
 
-  // const { mutate: updateCoupon } = useMutation((body) => PatchCouponAPI(body), {
-  //   mutationKey: 'updateCoupon',
-  //   onSuccess: () => {
-  //     alert('변경 되었습니다.');
-  //     queryClient.invalidateQueries('coupons');
-  //   },
-  // });
+  const { mutate: updateCoupon } = useMutation(
+    (body: any) => UpdateDetailAPI(BaseURL, rowId, body),
+    {
+      mutationKey: 'updateCoupon',
+      onSuccess: () => {
+        // alert('변경 되었습니다.');
+        queryClient.invalidateQueries('lists');
+        queryClient.invalidateQueries('details');
+      },
+    }
+  );
 
   // const { mutate: deleteCoupon } = useMutation(
   //   (body) => DeleteCouponAPI(body),
@@ -75,13 +90,12 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   //   }
   // );
 
-  const handleSave = () => {
-    // updateCoupon(fetchPostDetail, {
-    //   onSuccess: () => {
-    //     // alert('변경 되었습니다.')
-    //     // handleClickClose()
-    //   },
-    // });
+  const handleUpadate = () => {
+    updateCoupon(fetchPostDetail, {
+      onSuccess: () => {
+        alert('변경 되었습니다.');
+      },
+    });
   };
 
   const handleDelete = () => {
@@ -98,7 +112,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
     fetchMockPostDetail,
     isLoading,
     handleChange,
-    handleSave,
+    handleUpadate,
     handleDelete,
   };
 }

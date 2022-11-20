@@ -16,7 +16,7 @@ interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
-  handleUpdate?: any;
+  onUpadate?: any;
   updateText?: string;
   cancelText?: string;
   extra?: any;
@@ -27,7 +27,7 @@ export default function DetailTemplate({
   loading,
   title,
   children,
-  handleUpdate,
+  onUpadate,
   isButton,
   updateText,
   cancelText,
@@ -104,7 +104,7 @@ export default function DetailTemplate({
                     justifyContent: 'flex-end',
                   }}
                 >
-                  <Button variant="outlined" onClick={handleUpdate}>
+                  <Button variant="outlined" onClick={onUpadate}>
                     {updateText}
                   </Button>
                   {/* <Button
