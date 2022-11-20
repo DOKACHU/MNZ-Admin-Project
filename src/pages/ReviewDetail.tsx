@@ -186,7 +186,7 @@ export default function ReviewDetail() {
                   </Grid>
                 </Grid>
               )}
-              {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
+              {/* {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>} */}
             </TabPanel>
           );
         })}
