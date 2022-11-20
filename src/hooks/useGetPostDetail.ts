@@ -22,6 +22,15 @@ const UpdateDetailAPI = async (
   return data;
 };
 
+const DeleteDetailAPI = async (
+  BaseURL: string,
+  couponId: string | undefined
+) => {
+  const URL = `${BaseURL}/${couponId}`;
+  const { data } = await axios.delete(URL);
+  return data;
+};
+
 interface GetDetailProps {
   BaseURL: string;
 }
@@ -71,40 +80,36 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
     {
       mutationKey: 'updateCoupon',
       onSuccess: () => {
-        // alert('변경 되었습니다.');
         queryClient.invalidateQueries('lists');
         queryClient.invalidateQueries('details');
+        alert('변경 되었습니다.');
       },
     }
   );
 
-  // const { mutate: deleteCoupon } = useMutation(
-  //   (body) => DeleteCouponAPI(body),
-  //   {
-  //     mutationKey: 'deleteCoupon',
-  //     onSuccess: () => {
-  //       alert('삭제 되었습니다.');
-  //       navigate(-1);
-  //       queryClient.invalidateQueries('coupons');
-  //     },
-  //   }
-  // );
+  const { mutate: deleteCoupon } = useMutation(
+    (body) => DeleteDetailAPI(BaseURL, rowId),
+    {
+      mutationKey: 'deleteCoupon',
+      onSuccess: () => {
+        navigate(-1);
+
+        queryClient.invalidateQueries('lists');
+        alert('삭제 되었습니다.');
+      },
+    }
+  );
 
   const handleUpadate = () => {
     updateCoupon(fetchPostDetail, {
-      onSuccess: () => {
-        alert('변경 되었습니다.');
-      },
+      onSuccess: () => {},
     });
   };
 
   const handleDelete = () => {
-    // deleteCoupon(fetchPostDetail, {
-    //   onSuccess: () => {
-    //     // alert('변경 되었습니다.')
-    //     // handleClickClose()
-    //   },
-    // });
+    deleteCoupon(fetchPostDetail, {
+      onSuccess: () => {},
+    });
   };
 
   return {

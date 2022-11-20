@@ -30,10 +30,15 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   );
 }
 export default function CouponDetail() {
-  const { fetchPostDetail, isLoading, handleUpadate, handleChange } =
-    useGetDetail({
-      BaseURL: COUPON_BASE_API,
-    });
+  const {
+    fetchPostDetail,
+    isLoading,
+    handleUpadate,
+    handleChange,
+    handleDelete,
+  } = useGetDetail({
+    BaseURL: COUPON_BASE_API,
+  });
   const [value, setValue] = useState<number>(0);
 
   const handleTabChange = (e: any, newValue: any) => {
@@ -46,7 +51,9 @@ export default function CouponDetail() {
       title="쿠폰 상세페이지"
       isButton
       updateText="쿠폰 수정"
+      deleteText="쿠폰 삭제"
       onUpadate={handleUpadate}
+      onDelete={handleDelete}
     >
       <MainDetailForm
         tabs={centerTab}

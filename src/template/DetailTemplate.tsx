@@ -17,8 +17,10 @@ interface ListTemplateProps {
   title: string;
   isButton?: boolean;
   onUpadate?: any;
+  onDelete?: any;
   updateText?: string;
   cancelText?: string;
+  deleteText?: string;
   extra?: any;
   children: React.ReactNode;
 }
@@ -30,7 +32,9 @@ export default function DetailTemplate({
   onUpadate,
   isButton,
   updateText,
+  deleteText,
   cancelText,
+  onDelete,
   extra,
 }: ListTemplateProps) {
   const navigate = useNavigate();
@@ -106,6 +110,16 @@ export default function DetailTemplate({
                 >
                   <Button variant="outlined" onClick={onUpadate}>
                     {updateText}
+                  </Button>
+                  <Button
+                    sx={{
+                      marginLeft: '10px',
+                    }}
+                    variant="outlined"
+                    color="error"
+                    onClick={onDelete}
+                  >
+                    {deleteText}
                   </Button>
                   {/* <Button
                     color="secondary"
