@@ -9,12 +9,15 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 
 interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
   handleUpdate?: any;
+  updateText?: string;
+  cancelText?: string;
   children: React.ReactNode;
 }
 
@@ -24,6 +27,8 @@ export default function DetailTemplate({
   children,
   handleUpdate,
   isButton,
+  updateText,
+  cancelText,
 }: ListTemplateProps) {
   const navigate = useNavigate();
 
@@ -49,6 +54,7 @@ export default function DetailTemplate({
       }}
     >
       <Suspense fallback={<CircularProgress />}>
+        {/* <Card elevation={0}>asdf</Card> */}
         <Card
           elevation={0}
           sx={{
@@ -64,21 +70,48 @@ export default function DetailTemplate({
           >
             <Grid
               container
-              justifyContent="space-between"
+              xs={12}
+              direction="row"
               alignItems="center"
+              justifyContent="space-between"
               spacing={1}
             >
-              <Grid item>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <Button size="small" onClick={() => navigate(-1)}>
+                  <ArrowBack />
+                </Button>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
                   {title || ''}
                 </Typography>
               </Grid>
               {isButton && (
-                <Grid item>
-                  <Button variant="contained" onClick={handleUpdate}>
-                    수정
+                <Grid
+                  item
+                  xs={6}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <Button variant="outlined" onClick={handleUpdate}>
+                    {updateText}
                   </Button>
-                  <Button onClick={() => navigate(-1)}>취소</Button>
+                  {/* <Button
+                    color="secondary"
+                    sx={{
+                      marginLeft: '10px',
+                    }}
+                    onClick={() => navigate(-1)}
+                  >
+                    {cancelText}
+                  </Button> */}
                 </Grid>
               )}
             </Grid>

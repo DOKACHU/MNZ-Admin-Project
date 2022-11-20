@@ -2,6 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ListTemplate } from '../template';
 import { MainTable, MainModal } from '../components';
 import {
@@ -9,6 +10,7 @@ import {
   stableSort,
   getComparator,
   CENTER_BASE_API,
+  mockBookList,
 } from '../constansts';
 import { useGetLists, useTableList, useModal } from '../hooks';
 
@@ -19,8 +21,6 @@ export default function Book() {
   );
   const { open, handleOpen } = useModal();
 
-  // TODO: mockup 필요
-
   return (
     <>
       <ListTemplate
@@ -29,8 +29,8 @@ export default function Book() {
         loading={isLoading}
         onOpenModal={handleOpen}
       >
-        <MainTable columns={bookColumns} rows={[]}>
-          {stableSort([], getComparator(order, orderBy))
+        <MainTable columns={bookColumns} rows={mockBookList}>
+          {stableSort(mockBookList, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row: any, index: number) => {
               // const isItemSelected = isSelected(row.productId);
@@ -62,22 +62,94 @@ export default function Book() {
                       }}
                     />
                   </TableCell>
-                  <TableCell>{row?.center_id}</TableCell>
+                  <TableCell>{row?.bookId}</TableCell>
                   <TableCell>{row?.name}</TableCell>
-                  <TableCell>{row?.address}</TableCell>
-                  <TableCell>{row?.description}</TableCell>
+                  <TableCell>{row?.pro}</TableCell>
+                  <TableCell>{row?.location}</TableCell>
+                  <TableCell>{row?.target}</TableCell>
+                  <TableCell>{row?.date}</TableCell>
+                  <TableCell>{row?.time}</TableCell>
+                  <TableCell>{row?.count}</TableCell>
                 </TableRow>
               );
             })}
         </MainTable>
       </ListTemplate>
       <MainModal open={open} handleClose={handleOpen} title="예약 생성 모달">
-        <Grid item sm={4}>
+        <Grid item sm={6}>
           <TextField
             inputProps={{
-              maxLength: 2,
+              maxLength: 10,
             }}
-            helperText="치료횟수"
+            name="name"
+            helperText="유저 이름"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            // label="Name"
+            // value={d}
+            //   disabled
+            // defaultValue={user?.name}
+          />
+        </Grid>
+        <Grid item sm={6}>
+          <TextField
+            inputProps={{
+              maxLength: 10,
+            }}
+            name="pro"
+            helperText="프로 이름"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            // label="Name"
+            // value={d}
+            //   disabled
+            // defaultValue={user?.name}
+          />
+        </Grid>
+        <Grid item sm={6}>
+          <TextField
+            inputProps={{
+              maxLength: 10,
+            }}
+            name="location"
+            helperText="지역"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            // label="Name"
+            // value={d}
+            //   disabled
+            // defaultValue={user?.name}
+          />
+        </Grid>
+        <Grid item sm={6}>
+          <TextField
+            inputProps={{
+              maxLength: 10,
+            }}
+            name="target"
+            helperText="치료 부위"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            // label="Name"
+            // value={d}
+            //   disabled
+            // defaultValue={user?.name}
+          />
+        </Grid>
+        <Grid item sm={6} />
+        <Grid item sm={6} />
+
+        <Grid item sm={6}>
+          <TextField
+            inputProps={{
+              maxLength: 10,
+            }}
+            name="count"
+            helperText="치료 횟수"
             size="small"
             id="outlined-basic1"
             fullWidth

@@ -26,3 +26,18 @@ export const mockReviewList = [
     createAt: '2022-09-18',
   },
 ];
+
+export const mockBookList = [
+  {
+    bookId: '1',
+    name: '고민구',
+    pro: '김프로',
+    location: '인천',
+    target: '어깨',
+    date: '2022-10-13',
+    time: '30m',
+    count: 8,
+    createAt: '2022-10-10',
+    updateAt: '2022-10-13',
+  },
+];

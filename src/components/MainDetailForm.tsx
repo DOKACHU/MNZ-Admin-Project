@@ -18,6 +18,8 @@ import { Link } from 'react-router-dom';
 interface MainDetailFormProps {
   value?: number;
   tabs?: any;
+  subtitle1?: string;
+  subtitle2?: string;
   children?: React.ReactNode;
   onTabChange: any;
 }
@@ -34,6 +36,8 @@ export default function MainDetailForm({
   children,
   tabs,
   onTabChange,
+  subtitle1,
+  subtitle2,
 }: MainDetailFormProps) {
   return (
     <Card
@@ -47,10 +51,10 @@ export default function MainDetailForm({
         title={
           <>
             <Typography variant="subtitle2" align="right">
-              마지막 업데이트 : 2022-12-12
+              {subtitle1}
             </Typography>
             <Typography variant="subtitle2" align="right">
-              가입일 : 2022-12-12
+              {subtitle2}
             </Typography>
           </>
         }

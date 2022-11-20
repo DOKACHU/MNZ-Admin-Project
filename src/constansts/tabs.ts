@@ -1,3 +1,21 @@
+export const bookTab = [
+  {
+    id: 0,
+    label: 'info',
+    to: '#',
+  },
+  {
+    id: 1,
+    label: 'chart',
+    to: '#',
+  },
+  {
+    id: 2,
+    label: 'payment',
+    to: '#',
+  },
+];
+
 export const centerTab = [
   {
     id: 0,
