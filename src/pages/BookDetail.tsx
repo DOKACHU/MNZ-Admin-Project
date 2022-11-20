@@ -196,9 +196,6 @@ export default function BookDetail() {
                       <Grid item xs={6}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <StaticDatePicker
-                            sx={{
-                              innerHeight: '300px',
-                            }}
                             onChange={(newValue: any) => setDate(newValue)}
                             value={date}
                             inputFormat="YYYY-MM-DD"
