@@ -10,12 +10,15 @@ import {
   CardContent,
   Typography,
   Avatar,
-  Card,
   CardHeader,
   Autocomplete,
   TextField,
   Chip,
 } from '@mui/material';
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDatePicker, CalendarPicker } from '@mui/x-date-pickers';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, MainSubCard } from '../components';
 import { bookTab, CENTER_BASE_API, mockCountries } from '../constansts';
@@ -59,6 +62,8 @@ export default function BookDetail() {
     BaseURL: CENTER_BASE_API,
   });
   const [value, setValue] = useState<number>(0);
+  // const [date, setDate] = useState(dayjs('2022-04-07'));
+  const [date, setDate] = useState(() => dayjs('2022-02-01T00:00'));
 
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
@@ -94,7 +99,7 @@ export default function BookDetail() {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.label === 'info' && (
-                <Grid container spacing={2} alignItems="center">
+                <Grid container spacing={2} display="row" alignItems="center">
                   <Grid item xs={5}>
                     <MainSubCard title="고객 정보">
                       <Grid item xs={12}>
@@ -183,6 +188,60 @@ export default function BookDetail() {
                           subheader="도수치료 특성"
                         />
                         {/* </Card> */}
+                      </Grid>
+                    </MainSubCard>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <MainSubCard title="예약 일정">
+                      <Grid item xs={6}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <StaticDatePicker
+                            sx={{
+                              innerHeight: '300px',
+                            }}
+                            onChange={(newValue: any) => setDate(newValue)}
+                            value={date}
+                            inputFormat="YYYY-MM-DD"
+                            toolbarFormat="YYYY-MM-DD"
+                            renderInput={(params: any) => (
+                              <TextField {...params} />
+                            )}
+                            componentsProps={{
+                              actionBar: {
+                                actions: ['today'],
+                              },
+                            }}
+                          />
+                        </LocalizationProvider>
+
+                        {/* <CalendarPicker
+                          date={date}
+                          onChange={(newDate: any) => setDate(newDate)}
+                        /> */}
+                      </Grid>
+                      <Grid
+                        item
+                        xs={6}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <TextField
+                          id="time"
+                          // label="Alarm clock"
+                          type="time"
+                          size="small"
+                          defaultValue="00:00"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          inputProps={{
+                            step: 900, // 5 min
+                          }}
+                          fullWidth
+                          helperText="예약 시간"
+                        />
                       </Grid>
                     </MainSubCard>
                   </Grid>
