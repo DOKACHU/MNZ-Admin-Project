@@ -14,19 +14,16 @@ const GetDetailListAPI = async (BaseURL: string) => {
 
 const UpdateDetailAPI = async (
   BaseURL: string,
-  couponId: string | undefined,
+  RowId: string | undefined,
   Body: any
 ) => {
-  const URL = `${BaseURL}/${couponId}`;
+  const URL = `${BaseURL}/${RowId}`;
   const { data } = await axios.patch(URL, Body);
   return data;
 };
 
-const DeleteDetailAPI = async (
-  BaseURL: string,
-  couponId: string | undefined
-) => {
-  const URL = `${BaseURL}/${couponId}`;
+const DeleteDetailAPI = async (BaseURL: string, RowId: string | undefined) => {
+  const URL = `${BaseURL}/${RowId}`;
   const { data } = await axios.delete(URL);
   return data;
 };
