@@ -34,7 +34,7 @@ export default function ReviewDetail() {
     BaseURL: CENTER_BASE_API,
   });
 
-  console.log('fetchMockPostDetail', fetchMockPostDetail);
+  // console.log('fetchMockPostDetail', fetchMockPostDetail);
   const [value, setValue] = useState<number>(0);
 
   const handleTabChange = (e: any, newValue: any) => {

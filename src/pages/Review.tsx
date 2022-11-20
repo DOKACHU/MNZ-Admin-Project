@@ -7,21 +7,19 @@ import {
   reviewColumns,
   stableSort,
   getComparator,
-  CENTER_BASE_API,
-  mockReviewList,
+  REVIEW_BASE_API,
 } from '../constansts';
 import { useGetLists, useTableList } from '../hooks';
 
 export default function Review() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: CENTER_BASE_API });
+  const { fetchList, isLoading } = useGetLists({ BaseURL: REVIEW_BASE_API });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.centerList || []
   );
 
-  const newMockReviewList = mockReviewList.map((list) => {
-    const { question1, question2, question3, question4, question5 } = list;
-    const calcAverage =
-      (question1 + question2 + question3 + question4 + question5) / 5;
+  const newReviewList = fetchList?.centerList.map((list) => {
+    const { rating1, rating2, rating3, rating4, rating5 } = list;
+    const calcAverage = (rating1 + rating2 + rating3 + rating4 + rating5) / 5;
     return {
       ...list,
       average: calcAverage,
@@ -34,8 +32,8 @@ export default function Review() {
       // isButton
       loading={isLoading}
     >
-      <MainTable columns={reviewColumns} rows={newMockReviewList}>
-        {stableSort(newMockReviewList || [], getComparator(order, orderBy))
+      <MainTable columns={reviewColumns} rows={newReviewList}>
+        {stableSort(newReviewList || [], getComparator(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
@@ -68,10 +66,12 @@ export default function Review() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{row?.review_id}</TableCell>
-                <TableCell>{row?.productId}</TableCell>
-                <TableCell>{row?.type}</TableCell>
-                <TableCell>{row?.content}</TableCell>
+                <TableCell>{row?.reviewId}</TableCell>
+                <TableCell>{row?.writerId}</TableCell>
+                <TableCell>{row?.centerId}</TableCell>
+                <TableCell>{row?.bookingId}</TableCell>
+                <TableCell>{row?.satisfied ? '만족' : '불만족'}</TableCell>
+                <TableCell>{row?.comment}</TableCell>
                 <TableCell align="center">
                   <Rating
                     name="read-only"

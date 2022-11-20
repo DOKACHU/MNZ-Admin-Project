@@ -46,20 +46,41 @@ export const productColumns = [
   { id: 'progressNumber', field: 'progressNumber', label: '치료 횟수' },
 ];
 
+// "reviewId": "0aa91943-a0c2-4a98-b0d6-2c8bb34ba0ca",
+//     "writerId": "test",
+//     "proId": "test",
+//     "centerId": "test",
+//     "bookingId": "test",
+//     "satisfied": true,
+//     "comment": "test dddddd",
+//     "rating1": 3,
+//     "rating2": 4,
+//     "rating3": 4,
+//     "rating4": 5,
+//     "rating5": 3,
+//     "createdAt": "2022-11-19T09:08:11.692Z",
+//     "updatedAt": "2022-11-19T09:08:11.692Z",
+//     "deletedAt": null
+
 export const reviewColumns = [
-  { id: 'review_id', field: 'review_id', label: '리뷰 번호' },
-  // {
-  //   id: 'center_id',
-  //   field: 'center_id',
-  //   label: '센터 번호',
-  // },
+  { id: 'reviewId', field: 'reviewId', label: '리뷰 번호' },
   {
-    id: 'product_id',
-    field: 'product_id',
-    label: '상품 번호',
+    id: 'writerId',
+    field: 'writerId',
+    label: '작성자',
   },
-  { id: 'type', field: 'type', label: '리뷰 타입' },
-  { id: 'content', field: 'content', label: '내용' },
+  {
+    id: 'centerId',
+    field: 'centerId',
+    label: '센터 번호',
+  },
+  {
+    id: 'bookingId',
+    field: 'bookingId',
+    label: '예약 번호',
+  },
+  { id: 'satisfied', field: 'satisfied', label: '만족 여부' },
+  { id: 'comment', field: 'comment', label: '리뷰 내용' },
   { id: 'average', field: 'average', label: '평점' },
 
   // {
