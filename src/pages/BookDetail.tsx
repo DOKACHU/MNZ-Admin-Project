@@ -7,11 +7,17 @@ import { useState } from 'react';
 import {
   Box,
   Grid,
-  CardContent,
+  Divider,
   Typography,
   Avatar,
   CardHeader,
   Autocomplete,
+  TableContainer,
+  TableBody,
+  TableHead,
+  Table,
+  TableRow,
+  TableCell,
   TextField,
   Chip,
 } from '@mui/material';
@@ -57,6 +63,40 @@ function codeAtStr(code: string) {
   }
 }
 
+function createData(
+  product: string,
+  description: string,
+  quantity: string,
+  amount: string,
+  total: string
+) {
+  return { product, description, quantity, amount, total };
+}
+
+const rows = [
+  createData(
+    'Logo Design',
+    'lorem ipsum dolor sit amat, connecter adieu siccing eliot',
+    '6',
+    '$200.00',
+    '$1200.00'
+  ),
+  createData(
+    'Landing Page',
+    'lorem ipsum dolor sit amat, connecter adieu siccing eliot',
+    '7',
+    '$100.00',
+    '$700.00'
+  ),
+  createData(
+    'Admin Template',
+    'lorem ipsum dolor sit amat, connecter adieu siccing eliot',
+    '5',
+    '$150.00',
+    '$750.00'
+  ),
+];
+
 export default function BookDetail() {
   const { fetchPostDetail, isLoading } = useGetDetail({
     BaseURL: CENTER_BASE_API,
@@ -89,7 +129,7 @@ export default function BookDetail() {
       }
     >
       <MainDetailForm
-        subtitle1={`마지막 업데이트 : ${new Date()}`}
+        subtitle1={`마지막 업데이트 : ${'2022-04-07'}`}
         subtitle2=""
         tabs={bookTab}
         value={value}
@@ -224,6 +264,7 @@ export default function BookDetail() {
                           alignItems: 'center',
                         }}
                       >
+                        {/* TODO: timpicker 수정 필요  */}
                         <TextField
                           id="time"
                           // label="Alarm clock"
@@ -247,7 +288,26 @@ export default function BookDetail() {
               {tab.label === 'chart' && (
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
-                    <MainSubCard title="진료 차트" />
+                    <MainSubCard title="진료 차트">
+                      <Grid item xs={12}>
+                        {/* TODO: autoncomplete */}
+                        <TableContainer>
+                          <Table>
+                            <TableHead>
+                              <TableRow>
+                                {/* <TableCell sx={{ pl: 3 }} /> */}
+                                <TableCell>진료 번호</TableCell>
+                                <TableCell>진료 날짜</TableCell>
+                                <TableCell>회차 </TableCell>
+                                <TableCell>증상</TableCell>
+                                <TableCell>치료 내용</TableCell>
+                                <TableCell>다음 예약</TableCell>
+                              </TableRow>
+                            </TableHead>
+                          </Table>
+                        </TableContainer>
+                      </Grid>
+                    </MainSubCard>
                   </Grid>
                 </Grid>
               )}
@@ -255,28 +315,139 @@ export default function BookDetail() {
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <MainSubCard title="결제 내역">
-                      <CardContent>
-                        <Grid item xs={12}>
-                          <Grid container spacing={2}>
-                            <Grid item xs={12} sm={4}>
-                              <Typography variant="subtitle1">
-                                2014-2017
-                              </Typography>
-                              <Typography variant="subtitle2">
-                                Master Degree
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={8}>
-                              <Typography variant="subtitle1">
-                                Master Degree in Computer Application
-                              </Typography>
-                              <Typography variant="subtitle2">
-                                University of Oxford, England
-                              </Typography>
+                      <Grid item xs={12}>
+                        <TableContainer>
+                          <Table>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell sx={{ pl: 3 }}>
+                                  Description
+                                </TableCell>
+                                <TableCell align="right">Quantity</TableCell>
+                                <TableCell align="right">Amount</TableCell>
+                                <TableCell align="right">Total</TableCell>
+                                <TableCell align="right" sx={{ pr: 3 }} />
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {rows.map((row, index) => (
+                                <TableRow key={index}>
+                                  <TableCell sx={{ pl: 3 }}>
+                                    <Typography
+                                      align="left"
+                                      variant="subtitle1"
+                                    >
+                                      {row.product}
+                                    </Typography>
+                                    <Typography align="left" variant="body2">
+                                      {row.description}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    {row.quantity}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    {row.amount}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    {row.total}
+                                  </TableCell>
+                                  <TableCell sx={{ pr: 3 }} align="right">
+                                    {/* <IconButton color="primary" size="large">
+                                      <DeleteTwoToneIcon />
+                                    </IconButton> */}
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Box
+                          sx={{
+                            p: 2,
+                            border: 'none',
+                            background: '#E3F2FD',
+                            borderRadius: 4,
+                          }}
+                        >
+                          <Grid container justifyContent="flex-end" spacing={3}>
+                            <Grid item sm={6} md={4}>
+                              <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                  <Grid container spacing={1}>
+                                    <Grid item xs={6}>
+                                      <Typography
+                                        align="right"
+                                        variant="subtitle1"
+                                      >
+                                        Sub Total :
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography align="right" variant="body2">
+                                        $4725.00
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography
+                                        align="right"
+                                        variant="subtitle1"
+                                      >
+                                        Taxes (10%) :
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography align="right" variant="body2">
+                                        $57.00
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography
+                                        align="right"
+                                        variant="subtitle1"
+                                      >
+                                        Discount (5%) :
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography align="right" variant="body2">
+                                        $45.00
+                                      </Typography>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <Divider sx={{ bgcolor: 'dark.main' }} />
+                                </Grid>
+                                <Grid item xs={12}>
+                                  <Grid container spacing={1}>
+                                    <Grid item xs={6}>
+                                      <Typography
+                                        align="right"
+                                        color="primary"
+                                        variant="subtitle1"
+                                      >
+                                        Total :
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                      <Typography
+                                        align="right"
+                                        color="primary"
+                                        variant="subtitle1"
+                                      >
+                                        $4827.00
+                                      </Typography>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                              </Grid>
                             </Grid>
                           </Grid>
-                        </Grid>
-                      </CardContent>
+                        </Box>
+                      </Grid>
                     </MainSubCard>
                   </Grid>
                 </Grid>
