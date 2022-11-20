@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/require-default-props */
 import React, { Suspense } from 'react';
 import {
@@ -18,6 +19,7 @@ interface ListTemplateProps {
   handleUpdate?: any;
   updateText?: string;
   cancelText?: string;
+  extra?: any;
   children: React.ReactNode;
 }
 
@@ -29,6 +31,7 @@ export default function DetailTemplate({
   isButton,
   updateText,
   cancelText,
+  extra,
 }: ListTemplateProps) {
   const navigate = useNavigate();
 
@@ -90,6 +93,7 @@ export default function DetailTemplate({
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
                   {title || ''}
                 </Typography>
+                {extra}
               </Grid>
               {isButton && (
                 <Grid

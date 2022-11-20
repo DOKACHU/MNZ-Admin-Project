@@ -41,3 +41,10 @@ export const mockBookList = [
     updateAt: '2022-10-13',
   },
 ];
+
+// country options
+export const mockCountries = [
+  { code: '00', label: '예약 취소' },
+  { code: '01', label: '예약 진행중' },
+  { code: '02', label: '예약 확인' },
+];

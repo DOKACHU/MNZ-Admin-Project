@@ -40,7 +40,7 @@ export default function Book() {
                   key={index}
                   hover
                   onClick={(e: any) => {
-                    handleRowClick(e, row.center_id);
+                    handleRowClick(e, row.bookId);
                   }}
                   role="checkbox"
                   // aria-checked={isItemSelected}
