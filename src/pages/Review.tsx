@@ -17,7 +17,7 @@ export default function Review() {
     fetchList?.centerList || []
   );
 
-  const newReviewList = fetchList?.centerList.map((list) => {
+  const newReviewList = fetchList?.centerList.map((list: any) => {
     const { rating1, rating2, rating3, rating4, rating5 } = list;
     const calcAverage = (rating1 + rating2 + rating3 + rating4 + rating5) / 5;
     return {
