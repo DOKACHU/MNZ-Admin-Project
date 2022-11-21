@@ -63,7 +63,7 @@ export default function Coupon() {
                   key={index}
                   hover
                   onClick={(e: any) => {
-                    handleRowClick(e, row.coupon_id);
+                    handleRowClick(e, row.couponId);
                   }}
                   role="checkbox"
                   // aria-checked={isItemSelected}
@@ -85,7 +85,7 @@ export default function Coupon() {
                       }}
                     />
                   </TableCell>
-                  <TableCell>{row?.coupon_id}</TableCell>
+                  <TableCell>{row?.couponId}</TableCell>
                   <TableCell>{row?.title}</TableCell>
                   <TableCell>{row?.description}</TableCell>
                   <TableCell>{row?.discountRate}</TableCell>

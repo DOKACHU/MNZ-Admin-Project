@@ -30,7 +30,7 @@ export default function Center() {
                 key={index}
                 hover
                 onClick={(e: any) => {
-                  handleRowClick(e, row.center_id);
+                  handleRowClick(e, row.centerId);
                 }}
                 role="checkbox"
                 // aria-checked={isItemSelected}
@@ -52,7 +52,7 @@ export default function Center() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{row?.center_id}</TableCell>
+                <TableCell>{row?.centerId}</TableCell>
                 <TableCell>{row?.name}</TableCell>
                 <TableCell>{row?.address}</TableCell>
                 <TableCell>{row?.description}</TableCell>

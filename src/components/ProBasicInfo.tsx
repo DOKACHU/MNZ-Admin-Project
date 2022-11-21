@@ -21,7 +21,7 @@ export default function ProBasicInfo({ detail }: ProBasicInfoProps) {
           id="outlined-basic1"
           fullWidth
           // label="Name"
-          value={detail?.pro_id}
+          value={detail?.proId}
           disabled
           // defaultValue={user?.name}
         />

@@ -46,13 +46,14 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
   useEffect(() => {
     if (data) {
       const path = location.pathname.split('/')[1];
-      const list = path === 'review' ? data.centerList : data[`${path}List`];
+      const list = data[`${path}List`];
+      // const list = path === 'review' ? data.centerList : data[`${path}List`];
       const result = list?.filter((post: any) => {
-        if (path === 'review' || path === 'product') {
-          const id = post[`${path}Id`];
-          return id === rowId;
-        }
-        const id = post[`${path}_id`];
+        // if (path === 'review' || path === 'product') {
+        //   const id = post[`${path}Id`];
+        //   return id === rowId;
+        // }
+        const id = post[`${path}Id`];
         return id === rowId;
       });
 
