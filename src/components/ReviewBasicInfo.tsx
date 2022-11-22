@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, TextareaAutosize } from '@mui/material';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import dayjs from 'dayjs';
 import MainSubCard from './MainSubCard';
@@ -41,7 +41,8 @@ export default function ReviewBasicInfo({ detail }: ReviewBasicInfoProps) {
 
       <Grid item md={12} xs={12}>
         <TextField
-          helperText="쿠폰 내용"
+          minRows={4}
+          helperText="리뷰 내용"
           size="small"
           id="outlined-basic6"
           fullWidth

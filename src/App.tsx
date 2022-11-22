@@ -18,6 +18,7 @@ import {
 import { MainLayout } from './layouts';
 
 export function App() {
+  // TODO: 인증 절차 넣기
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

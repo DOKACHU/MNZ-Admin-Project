@@ -42,7 +42,7 @@ export default function MainTable({ rows, columns, children }: MainTableProps) {
         // minHeight: 'calc(100vh - 260px)',
       }}
     >
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%', mb: 2 }} elevation={0}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }}>
             <MainTableHead

@@ -26,7 +26,7 @@ export default function CouponBasicInfo({
           fullWidth
           // label="Name"
           onChange={onChange}
-          value={detail?.coupon_id}
+          value={detail?.couponId}
           disabled
           // defaultValue={user?.name}
         />

@@ -40,7 +40,12 @@ export default function ProDetail() {
   };
 
   return (
-    <DetailTemplate loading={isLoading} title="프로 상세페이지" isButton>
+    <DetailTemplate
+      loading={isLoading}
+      title="프로 상세페이지"
+      updateText="프로 수정"
+      isButton
+    >
       <MainDetailForm tabs={proTab} value={value} onTabChange={handleTabChange}>
         {proTab.map((tab: any, i: number) => {
           return (

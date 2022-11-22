@@ -14,10 +14,10 @@ import { useGetLists, useTableList } from '../hooks';
 export default function Review() {
   const { fetchList, isLoading } = useGetLists({ BaseURL: REVIEW_BASE_API });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.centerList || []
+    fetchList?.reviewList || []
   );
 
-  const newReviewList = fetchList?.centerList?.map((list: any) => {
+  const newReviewList = fetchList?.reviewList?.map((list: any) => {
     const { rating1, rating2, rating3, rating4, rating5 } = list;
     const calcAverage = (rating1 + rating2 + rating3 + rating4 + rating5) / 5;
     return {

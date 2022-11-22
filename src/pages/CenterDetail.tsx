@@ -46,7 +46,12 @@ export default function CenterDetail() {
   };
 
   return (
-    <DetailTemplate loading={isLoading} title="센터 상세페이지" isButton>
+    <DetailTemplate
+      loading={isLoading}
+      title="센터 상세페이지"
+      updateText="센터 수정"
+      isButton
+    >
       <MainDetailForm
         tabs={centerTab}
         value={value}

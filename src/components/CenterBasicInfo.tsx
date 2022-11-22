@@ -21,7 +21,7 @@ export default function CenterBasicInfo({ detail }: CenterBasicInfoProps) {
           id="outlined-basic1"
           fullWidth
           // label="Name"
-          value={detail?.center_id}
+          value={detail?.centerId}
           disabled
           // defaultValue={user?.name}
         />

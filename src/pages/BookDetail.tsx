@@ -9,25 +9,25 @@ import {
   Grid,
   Divider,
   Typography,
-  Avatar,
-  CardHeader,
-  Autocomplete,
+  Stack,
   TableContainer,
   TableBody,
   TableHead,
   Table,
   TableRow,
   TableCell,
-  TextField,
   Chip,
 } from '@mui/material';
 import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker, CalendarPicker } from '@mui/x-date-pickers';
+import {
+  CalendarTodayTwoTone,
+  PhoneAndroidTwoTone,
+  EmailTwoTone,
+} from '@mui/icons-material';
+
 import { DetailTemplate } from '../template';
 import { MainDetailForm, MainSubCard } from '../components';
-import { bookTab, CENTER_BASE_API, mockCountries } from '../constansts';
+import { bookTab, CENTER_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -36,6 +36,33 @@ interface TabPanelProps {
   index: number;
   other?: any;
 }
+
+const detailsIconSX = {
+  width: 15,
+  height: 15,
+  verticalAlign: 'text-top',
+  mr: 0.5,
+  mt: 0.25,
+};
+
+const styleH4 = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 600,
+};
+
+const styleH6 = {
+  color: '#212121',
+  fontSize: 12,
+  fontWeight: 500,
+  mb: 1,
+};
+
+const styleSubtitle = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 500,
+};
 
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
@@ -122,8 +149,9 @@ export default function BookDetail() {
             fontSize: 12,
             marginLeft: 2,
           }}
-          label="예약 확인"
-          color="success"
+          label="예약 취소"
+          size="small"
+          color="error"
           variant="outlined"
         />
       }
@@ -140,175 +168,358 @@ export default function BookDetail() {
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.label === 'info' && (
                 <Grid container spacing={2} display="row" alignItems="center">
-                  <Grid item xs={5}>
-                    <MainSubCard title="고객 정보">
-                      <Grid item xs={12}>
-                        {/* <Card elevation={0}> */}
-                        <CardHeader
-                          sx={
-                            {
-                              // bgcolor: '#e5e5e5',
-                            }
-                          }
-                          avatar={
-                            <Avatar
-                              sx={{ bgcolor: '#e5e5e5' }}
-                              aria-label="recipe"
-                            >
-                              P
-                            </Avatar>
-                          }
-                          // action={}
-                          title="[User] 고민수"
-                          subheader="8회 도수치료 패키지"
-                        />
-                        {/* </Card> */}
-                      </Grid>
-                    </MainSubCard>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <Autocomplete
-                      options={mockCountries}
-                      autoHighlight
-                      clearIcon={false}
-                      defaultValue={mockCountries[0]}
-                      getOptionLabel={(option: any) => option.label}
-                      renderOption={(props, option: any) => (
-                        <li
-                          {...props}
-                          style={{
-                            fontSize: 15,
-                            display: 'flex',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <Chip
-                            sx={{
-                              fontSize: 15,
-                            }}
-                            label={option.label}
-                            color={codeAtStr(option.code)}
-                            variant="outlined"
-                          />
-                        </li>
-                      )}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          size="small"
-                          // label="Choose a country"
-                          inputProps={{
-                            ...params.inputProps,
-                            // autoComplete: 'new-password', // disable autocomplete and autofill
-                          }}
-                        />
-                      )}
-                    />
-                  </Grid>
-                  <Grid item xs={5}>
-                    <MainSubCard title="프로 정보">
-                      <Grid item xs={12}>
-                        {/* <Card elevation={0}> */}
-                        <CardHeader
-                          sx={
-                            {
-                              // bgcolor: '#e5e5e5',
-                            }
-                          }
-                          avatar={
-                            <Avatar
-                              sx={{ bgcolor: '#e5e5e5' }}
-                              aria-label="recipe"
-                            >
-                              P
-                            </Avatar>
-                          }
-                          // action={}
-                          title="[Pro] 김프로"
-                          subheader="도수치료 특성"
-                        />
-                        {/* </Card> */}
-                      </Grid>
-                    </MainSubCard>
-                  </Grid>
                   <Grid item xs={12}>
-                    <MainSubCard title="예약 일정">
-                      <Grid item xs={6}>
-                        <h1>[UI] 내부 수정중 ...</h1>
-                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <StaticDatePicker
-                            onChange={(newValue: any) => setDate(newValue)}
-                            value={date}
-                            inputFormat="YYYY-MM-DD"
-                            toolbarFormat="YYYY-MM-DD"
-                            renderInput={(params: any) => (
-                              <TextField {...params} />
-                            )}
-                            componentsProps={{
-                              actionBar: {
-                                actions: ['today'],
-                              },
-                            }}
-                          />
-                        </LocalizationProvider> */}
-                      </Grid>
-                      <Grid
-                        item
-                        xs={6}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                        }}
-                      >
-                        {/* TODO: timpicker 수정 필요  */}
-                        {/* <TextField
-                          id="time"
-                          // label="Alarm clock"
-                          type="time"
-                          size="small"
-                          defaultValue="00:00"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          inputProps={{
-                            step: 900, // 5 min
-                          }}
-                          fullWidth
-                          helperText="예약 시간"
-                        /> */}
-                      </Grid>
-                    </MainSubCard>
-                  </Grid>
-                </Grid>
-              )}
-              {tab.label === 'chart' && (
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <MainSubCard title="진료 차트">
+                    <MainSubCard title="세부 사항">
+                      {/*  */}
                       <Grid item xs={12}>
-                        {/* TODO: autoncomplete */}
-                        <TableContainer>
-                          <Table>
-                            <TableHead>
-                              <TableRow>
-                                {/* <TableCell sx={{ pl: 3 }} /> */}
-                                <TableCell>진료 번호</TableCell>
-                                <TableCell>진료 날짜</TableCell>
-                                <TableCell>회차 </TableCell>
-                                <TableCell>증상</TableCell>
-                                <TableCell>치료 내용</TableCell>
-                                <TableCell>다음 예약</TableCell>
-                              </TableRow>
-                            </TableHead>
-                          </Table>
-                        </TableContainer>
+                        <Grid container spacing={3}>
+                          <Grid item>
+                            <Typography variant="body2">
+                              <CalendarTodayTwoTone sx={detailsIconSX} /> Sophia
+                              Hale
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography variant="body2">
+                              <PhoneAndroidTwoTone sx={detailsIconSX} /> 070 123
+                              4567
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography variant="body2">
+                              <EmailTwoTone sx={detailsIconSX} />
+                              example@mail.com
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      {/*  */}
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
+
+                      {/*  */}
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            Payment method
+                          </Typography>
+                          <Stack spacing={0}>
+                            <Typography variant="h6" sx={styleH6}>
+                              Credit Card
+                            </Typography>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Transaction ID :
+                              </Typography>
+                              <Typography variant="body2">
+                                000001-TXT
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography variant="subtitle1">
+                                Amount :
+                              </Typography>
+                              <Typography variant="body2">$2500</Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Grid>
+
+                      {/*  */}
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            Shipping method
+                          </Typography>
+                          <Stack spacing={0}>
+                            <Typography variant="h6" sx={styleH6}>
+                              Carrier
+                            </Typography>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Tracking Code :
+                              </Typography>
+                              <Typography variant="body2">
+                                FX-012345-6
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Date :
+                              </Typography>
+                              <Typography variant="body2">
+                                12.15.2018
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Stack spacing={0} sx={{ mt: { xs: 0, md: 3 } }}>
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            alignItems="center"
+                          >
+                            <Typography variant="subtitle1" sx={styleSubtitle}>
+                              Fulfillment status :
+                            </Typography>
+                            <Typography variant="body2">Delivered</Typography>
+                          </Stack>
+                          <Stack direction="row" spacing={1}>
+                            <Typography variant="subtitle1" sx={styleSubtitle}>
+                              Payment status :
+                            </Typography>
+                            <Chip
+                              label="Paid"
+                              variant="outlined"
+                              size="small"
+                              color="success"
+                            />
+                          </Stack>
+                        </Stack>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
+
+                      <Grid item sm={6} md={4}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            Billing address
+                          </Typography>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                First name :
+                              </Typography>
+                              <Typography variant="body2">Joseph</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Last name :
+                              </Typography>
+                              <Typography variant="body2">William</Typography>
+                            </Stack>
+                          </Stack>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Address :
+                              </Typography>
+                              <Typography variant="body2">
+                                4898 Joanne Lane street
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                City :
+                              </Typography>
+                              <Typography variant="body2">Boston</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Country :
+                              </Typography>
+                              <Typography variant="body2">
+                                United States
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                State :
+                              </Typography>
+                              <Typography variant="body2">
+                                Massachusetts
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Zip code :
+                              </Typography>
+                              <Typography variant="body2">02110</Typography>
+                            </Stack>
+                          </Stack>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Phone :
+                              </Typography>
+                              <Typography variant="body2">
+                                +1 (070) 123-4567
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Grid>
+                      <Grid item sm={6} md={4}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            Shipping address
+                          </Typography>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                First name :
+                              </Typography>
+                              <Typography variant="body2">Sara</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Last name :
+                              </Typography>
+                              <Typography variant="body2">Soudan</Typography>
+                            </Stack>
+                          </Stack>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Address :
+                              </Typography>
+                              <Typography variant="body2">
+                                4898 Joanne Lane street
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                City :
+                              </Typography>
+                              <Typography variant="body2">Boston</Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Country :
+                              </Typography>
+                              <Typography variant="body2">
+                                United States
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                State :
+                              </Typography>
+                              <Typography variant="body2">
+                                Massachusetts
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                Zip code :
+                              </Typography>
+                              <Typography variant="body2">02110</Typography>
+                            </Stack>
+                          </Stack>
+                          <Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography variant="subtitle1">
+                                Phone :
+                              </Typography>
+                              <Typography variant="body2">
+                                +1 (070) 123-4567
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
                       </Grid>
                     </MainSubCard>
                   </Grid>
-                </Grid>
-              )}
-              {tab.label === 'payment' && (
-                <Grid container spacing={3}>
+
+                  {/* 결제 내역 */}
                   <Grid item xs={12}>
                     <MainSubCard title="결제 내역">
                       <Grid item xs={12}>
@@ -443,6 +654,34 @@ export default function BookDetail() {
                             </Grid>
                           </Grid>
                         </Box>
+                      </Grid>
+                    </MainSubCard>
+                  </Grid>
+
+                  {/*  */}
+                </Grid>
+              )}
+              {tab.label === 'chart' && (
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <MainSubCard title="진료 차트">
+                      <Grid item xs={12}>
+                        {/* TODO: autoncomplete */}
+                        <TableContainer>
+                          <Table>
+                            <TableHead>
+                              <TableRow>
+                                {/* <TableCell sx={{ pl: 3 }} /> */}
+                                <TableCell>진료 번호</TableCell>
+                                <TableCell>진료 날짜</TableCell>
+                                <TableCell>회차 </TableCell>
+                                <TableCell>증상</TableCell>
+                                <TableCell>치료 내용</TableCell>
+                                <TableCell>다음 예약</TableCell>
+                              </TableRow>
+                            </TableHead>
+                          </Table>
+                        </TableContainer>
                       </Grid>
                     </MainSubCard>
                   </Grid>

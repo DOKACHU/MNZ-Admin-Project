@@ -9,11 +9,11 @@ export const bookTab = [
     label: 'chart',
     to: '#',
   },
-  {
-    id: 2,
-    label: 'payment',
-    to: '#',
-  },
+  // {
+  //   id: 2,
+  //   label: 'payment',
+  //   to: '#',
+  // },
 ];
 
 export const centerTab = [

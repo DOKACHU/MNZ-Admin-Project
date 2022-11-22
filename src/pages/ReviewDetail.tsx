@@ -53,7 +53,7 @@ export default function ReviewDetail() {
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.label === 'profile' && (
                 <Grid container spacing={3}>
-                  <Grid item sm={6} md={6}>
+                  <Grid item xs={6}>
                     <ReviewBasicInfo detail={fetchPostDetail} />
                   </Grid>
                   <Grid item sm={6} md={6}>

@@ -1,3 +1,9 @@
+export { default as Point } from './Point';
+export { default as PointDetail } from './PointDetail';
+
+export { default as User } from './User';
+export { default as UserDetail } from './UserDetail';
+
 export { default as Center } from './Center';
 export { default as CenterDetail } from './CenterDetail';
 
