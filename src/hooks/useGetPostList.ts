@@ -36,9 +36,12 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
 
   const handleSubmit = () => {
     mutate(post, {
+      onError: () => {
+        alert('오류가 발생했습니다.');
+      },
       onSuccess: () => {
         setPost(Init);
-        alert('쿠폰 생성 성공');
+        alert('리스트에 추가 되었습니다.');
       },
     });
   };

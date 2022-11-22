@@ -1,8 +1,8 @@
 export const centerColumns = [
   { id: 'center_id', field: 'center_id', label: '센터 번호' },
-  { id: 'name', field: 'name', label: '이름' },
-  { id: 'address', field: 'address', label: '주소' },
-  { id: 'description', field: 'description', label: '센터 설명' },
+  { id: 'name', field: 'name', label: '병원 이름' },
+  { id: 'address', field: 'address', label: '병원 주소' },
+  { id: 'description', field: 'description', label: '설명' },
 ];
 
 export const proColumns = [
