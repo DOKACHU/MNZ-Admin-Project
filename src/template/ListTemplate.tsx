@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/require-default-props */
-import React, { Suspense } from 'react';
+import React from 'react';
 import {
   Box,
   Card,
@@ -9,22 +9,31 @@ import {
   Button,
   CircularProgress,
 } from '@mui/material';
+import { MainModal } from '../components';
 
 interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
   onOpenModal?: any;
+  open: boolean;
+  onSubmit?: any;
   children: React.ReactNode;
+  createModalForm?: any;
 }
 
 export default function ListTemplate({
+  open,
   loading,
   title,
   children,
   onOpenModal,
   isButton,
+  onSubmit,
+  createModalForm,
 }: ListTemplateProps) {
+  const modalTitle = `${title} 생성 모달`;
+
   if (loading) {
     return (
       <Box
@@ -41,12 +50,20 @@ export default function ListTemplate({
     );
   }
   return (
-    <Box
-      sx={{
-        padding: 3,
-      }}
-    >
-      <Suspense fallback={<CircularProgress />}>
+    <>
+      <MainModal
+        open={open}
+        handleClose={onOpenModal}
+        handleCreate={onSubmit}
+        title={modalTitle}
+      >
+        {createModalForm}
+      </MainModal>
+      <Box
+        sx={{
+          padding: 3,
+        }}
+      >
         <Card
           sx={{
             marginTop: 3,
@@ -68,7 +85,7 @@ export default function ListTemplate({
             >
               <Grid item>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  {title || ''}
+                  {`${title} 관리`}
                 </Typography>
               </Grid>
               {isButton && (
@@ -80,7 +97,7 @@ export default function ListTemplate({
           </Box>
         </Card>
         {children}
-      </Suspense>
-    </Box>
+      </Box>
+    </>
   );
 }

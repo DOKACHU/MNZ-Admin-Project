@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { TableRow, TableCell, Checkbox } from '@mui/material';
+import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
@@ -9,16 +9,58 @@ import {
   getComparator,
   PRO_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList } from '../hooks';
+import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Center() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: PRO_BASE_API });
+  const { fetchList, isLoading, createInfo, handleCreateChange, handleSubmit } =
+    useGetLists({
+      BaseURL: PRO_BASE_API,
+    });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.proList || []
   );
+  const { open, handleOpen } = useModal();
 
   return (
-    <ListTemplate loading={isLoading} title="프로 관리" isButton>
+    <ListTemplate
+      isButton
+      title="프로"
+      loading={isLoading}
+      open={open}
+      onOpenModal={handleOpen}
+      onSubmit={handleSubmit}
+      createModalForm={
+        <Grid item sm={12}>
+          <TextField
+            helperText="프로 이름"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            name="name"
+            onChange={handleCreateChange}
+            value={createInfo?.name}
+          />
+          <TextField
+            helperText="프로 이름"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            name="name"
+            onChange={handleCreateChange}
+            value={createInfo?.name}
+          />
+          <TextField
+            helperText="프로 이름"
+            size="small"
+            id="outlined-basic1"
+            fullWidth
+            name="name"
+            onChange={handleCreateChange}
+            value={createInfo?.name}
+          />
+        </Grid>
+      }
+    >
       <MainTable columns={proColumns} rows={fetchList?.proList}>
         {stableSort(fetchList?.proList || [], getComparator(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
