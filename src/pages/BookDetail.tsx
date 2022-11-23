@@ -150,8 +150,8 @@ export default function BookDetail() {
       }
     >
       <MainDetailForm
-        subtitle1={`마지막 업데이트 : ${'2022-04-07'}`}
-        subtitle2=""
+        updateDateText={`마지막 업데이트 : ${'2022-04-07'}`}
+        createDateText=""
         tabs={bookTab}
         value={value}
         onTabChange={handleTabChange}

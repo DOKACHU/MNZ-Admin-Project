@@ -26,7 +26,7 @@ export default function User() {
   return (
     <ListTemplate
       isButton
-      title="유저"
+      title="고객"
       loading={isLoading}
       open={open}
       onOpenModal={handleOpen}

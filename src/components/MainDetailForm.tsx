@@ -18,8 +18,8 @@ import { Link } from 'react-router-dom';
 interface MainDetailFormProps {
   value?: number;
   tabs?: any;
-  subtitle1?: string;
-  subtitle2?: string;
+  updateDateText?: string;
+  createDateText?: string;
   children?: React.ReactNode;
   onTabChange: any;
 }
@@ -36,8 +36,8 @@ export default function MainDetailForm({
   children,
   tabs,
   onTabChange,
-  subtitle1,
-  subtitle2,
+  updateDateText,
+  createDateText,
 }: MainDetailFormProps) {
   return (
     <Card
@@ -50,11 +50,11 @@ export default function MainDetailForm({
         sx={{ '& .MuiCardHeader-action': { mr: 0 } }}
         title={
           <>
-            <Typography variant="subtitle2" align="right" color="#e5e5e5">
-              {subtitle1}
+            <Typography variant="subtitle2" align="right" color="#9E9E9E">
+              {updateDateText}
             </Typography>
-            <Typography variant="subtitle2" align="right">
-              {subtitle2}
+            <Typography variant="subtitle2" align="right" color="#9E9E9E">
+              {createDateText}
             </Typography>
           </>
         }
