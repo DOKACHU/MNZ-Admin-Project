@@ -15,7 +15,9 @@ import {
 import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Book() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: CENTER_BASE_API });
+  const { fetchList, isLoading, handleSubmit } = useGetLists({
+    BaseURL: CENTER_BASE_API,
+  });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.centerList || []
   );
@@ -27,7 +29,9 @@ export default function Book() {
         title="예약 관리"
         isButton
         loading={isLoading}
+        open={open}
         onOpenModal={handleOpen}
+        onSubmit={handleSubmit}
       >
         <MainTable columns={bookColumns} rows={mockBookList}>
           {stableSort(mockBookList, getComparator(order, orderBy))
