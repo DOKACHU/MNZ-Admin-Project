@@ -4,6 +4,7 @@ import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
+  proInit,
   proColumns,
   stableSort,
   getComparator,
@@ -15,6 +16,7 @@ export default function Center() {
   const { fetchList, isLoading, createInfo, handleCreateChange, handleSubmit } =
     useGetLists({
       BaseURL: PRO_BASE_API,
+      Init: proInit,
     });
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.proList || []
@@ -41,22 +43,22 @@ export default function Center() {
             value={createInfo?.name}
           />
           <TextField
-            helperText="프로 이름"
+            helperText="프로 설명"
             size="small"
             id="outlined-basic1"
             fullWidth
-            name="name"
+            name="description"
             onChange={handleCreateChange}
-            value={createInfo?.name}
+            value={createInfo?.description}
           />
           <TextField
-            helperText="프로 이름"
+            helperText="핸드폰 번호"
             size="small"
             id="outlined-basic1"
             fullWidth
-            name="name"
+            name="phoneNumber"
             onChange={handleCreateChange}
-            value={createInfo?.name}
+            value={createInfo?.phoneNumber}
           />
         </Grid>
       }

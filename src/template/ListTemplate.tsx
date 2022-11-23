@@ -90,7 +90,9 @@ export default function ListTemplate({
               </Grid>
               {isButton && (
                 <Grid item>
-                  <Button onClick={onOpenModal}>생성 모달</Button>
+                  <Button variant="outlined" onClick={onOpenModal}>
+                    {modalTitle}
+                  </Button>
                 </Grid>
               )}
             </Grid>

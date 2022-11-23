@@ -9,13 +9,17 @@ import {
   getComparator,
   REVIEW_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList } from '../hooks';
+import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Review() {
-  const { fetchList, isLoading } = useGetLists({ BaseURL: REVIEW_BASE_API });
+  const { fetchList, isLoading, handleSubmit } = useGetLists({
+    BaseURL: REVIEW_BASE_API,
+  });
+
   const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
     fetchList?.reviewList || []
   );
+  const { open, handleOpen } = useModal();
 
   const newReviewList = fetchList?.reviewList?.map((list: any) => {
     const { rating1, rating2, rating3, rating4, rating5 } = list;
@@ -30,6 +34,9 @@ export default function Review() {
     <ListTemplate
       title="리뷰 관리"
       // isButton
+      open={open}
+      onOpenModal={handleOpen}
+      onSubmit={handleSubmit}
       loading={isLoading}
     >
       <MainTable columns={reviewColumns} rows={newReviewList}>
