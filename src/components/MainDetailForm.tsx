@@ -50,7 +50,7 @@ export default function MainDetailForm({
         sx={{ '& .MuiCardHeader-action': { mr: 0 } }}
         title={
           <>
-            <Typography variant="subtitle2" align="right">
+            <Typography variant="subtitle2" align="right" color="#e5e5e5">
               {subtitle1}
             </Typography>
             <Typography variant="subtitle2" align="right">

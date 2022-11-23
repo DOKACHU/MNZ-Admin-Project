@@ -1,12 +1,12 @@
 export const bookTab = [
   {
     id: 0,
-    label: 'info',
+    label: '예약 상세내역',
     to: '#',
   },
   {
     id: 1,
-    label: 'chart',
+    label: '진료 차트',
     to: '#',
   },
   // {
