@@ -20,6 +20,11 @@ export const mainNavbarItems = [
     label: '프로 관리',
     route: 'pro',
   },
+  {
+    id: 7,
+    label: '고객 관리',
+    route: 'user',
+  },
 
   {
     id: 3,
@@ -35,5 +40,10 @@ export const mainNavbarItems = [
     id: 5,
     label: '리뷰 관리',
     route: 'review',
+  },
+  {
+    id: 6,
+    label: '포인트 관리',
+    route: 'point',
   },
 ];

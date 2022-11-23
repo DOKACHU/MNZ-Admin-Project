@@ -1,15 +1,22 @@
 export const centerColumns = [
-  { id: 'center_id', field: 'center_id', label: '센터 번호' },
+  { id: 'centerId', field: 'centerId', label: '센터 번호' },
   { id: 'name', field: 'name', label: '병원 이름' },
   { id: 'address', field: 'address', label: '병원 주소' },
   { id: 'description', field: 'description', label: '설명' },
 ];
 
 export const proColumns = [
-  { id: 'pro_id', field: 'pro_id', label: '프로 번호' },
+  { id: 'proId', field: 'proId', label: '프로 번호' },
   { id: 'name', field: 'name', label: '프로 이름' },
   { id: 'phoneNumber', field: 'phoneNumber', label: 'H.P' },
   { id: 'description', field: 'description', label: '설명' },
+];
+
+export const UserColumns = [
+  { id: 'userId', field: 'userId', label: '고객 번호' },
+  { id: 'name', field: 'name', label: '고객 이름' },
+  { id: 'phoneNumber', field: 'phoneNumber', label: 'H.P' },
+  // { id: 'description', field: 'description', label: '설명' },
 ];
 
 export const couponColumns = [
@@ -44,6 +51,13 @@ export const productColumns = [
   { id: 'runningTime', field: 'runningTime', label: '진행 시간 ' },
   { id: 'discountRate', field: 'discountRate', label: '할인율' },
   { id: 'progressNumber', field: 'progressNumber', label: '치료 횟수' },
+];
+
+export const PointColumns = [
+  { id: 'pointId', field: 'pointId', label: '포인트 번호' },
+  { id: 'userId', field: 'userId', label: '고객 번호' },
+  { id: 'point', field: 'point', label: '가진 포인트' },
+  // { id: 'description', field: 'description', label: '설명' },
 ];
 
 export const reviewColumns = [

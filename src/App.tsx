@@ -14,6 +14,10 @@ import {
   ReviewDetail,
   Book,
   BookDetail,
+  User,
+  UserDetail,
+  Point,
+  PointDetail,
 } from './pages';
 import { MainLayout } from './layouts';
 
@@ -28,6 +32,10 @@ export function App() {
         <Route path="center/:id" element={<CenterDetail />} />
         <Route path="pro" element={<Pro />} />
         <Route path="pro/:id" element={<ProDetail />} />
+        <Route path="user" element={<User />} />
+        <Route path="user/:id" element={<UserDetail />} />
+        <Route path="point" element={<Point />} />
+        <Route path="point/:id" element={<PointDetail />} />
         <Route path="coupon" element={<Coupon />} />
         <Route path="coupon/:id" element={<CouponDetail />} />
         <Route path="product" element={<Product />} />

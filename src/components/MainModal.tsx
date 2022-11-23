@@ -58,7 +58,7 @@ export default function MainModal({
         </Typography>
         <DialogActions>
           <Button
-            variant="text"
+            variant="outlined"
             onClick={() => {
               handleCreate();
               handleClose();
@@ -66,7 +66,7 @@ export default function MainModal({
           >
             생성
           </Button>
-          <Button variant="text" color="error" onClick={handleClose}>
+          <Button variant="outlined" color="error" onClick={handleClose}>
             취소
           </Button>
         </DialogActions>

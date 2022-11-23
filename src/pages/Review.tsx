@@ -32,7 +32,7 @@ export default function Review() {
 
   return (
     <ListTemplate
-      title="리뷰 관리"
+      title="리뷰"
       // isButton
       open={open}
       onOpenModal={handleOpen}
