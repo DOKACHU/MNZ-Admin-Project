@@ -9,7 +9,7 @@ interface CenterBasicInfoProps {
   detail?: any;
 }
 
-export default function CenterBasicInfo({ detail }: CenterBasicInfoProps) {
+export default function CentwerBasicInfo({ detail }: CenterBasicInfoProps) {
   const [value, setValue] = useState(dayjs('2022-04-07'));
 
   return (

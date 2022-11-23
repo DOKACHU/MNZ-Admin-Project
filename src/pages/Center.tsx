@@ -85,7 +85,7 @@ export default function Center() {
                 key={index}
                 hover
                 onClick={(e: any) => {
-                  handleRowClick(e, row.center_id);
+                  handleRowClick(e, row.centerId);
                 }}
                 role="checkbox"
                 // aria-checked={isItemSelected}

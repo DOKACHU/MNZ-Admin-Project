@@ -45,6 +45,8 @@ export default function CenterDetail() {
     setValue(newValue);
   };
 
+  console.log(fetchPostDetail);
+
   return (
     <DetailTemplate
       loading={isLoading}
