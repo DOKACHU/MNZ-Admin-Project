@@ -10,28 +10,31 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { MainModal } from '../components';
+import { useModal } from '../hooks';
 
 interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
-  onOpenModal?: any;
-  open: boolean;
+  // onOpenModal?: any;
+  // open: boolean;
   onSubmit?: any;
   children: React.ReactNode;
   createModalForm?: any;
 }
 
 export default function ListTemplate({
-  open,
+  // open,
   loading,
   title,
   children,
-  onOpenModal,
+  // onOpenModal,
   isButton,
   onSubmit,
   createModalForm,
 }: ListTemplateProps) {
+  const { open, handleOpen } = useModal();
+
   const modalTitle = `${title} 생성 모달`;
 
   if (loading) {
@@ -53,7 +56,7 @@ export default function ListTemplate({
     <>
       <MainModal
         open={open}
-        handleClose={onOpenModal}
+        handleClose={handleOpen}
         handleCreate={onSubmit}
         title={modalTitle}
       >
@@ -90,7 +93,7 @@ export default function ListTemplate({
               </Grid>
               {isButton && (
                 <Grid item>
-                  <Button variant="outlined" onClick={onOpenModal}>
+                  <Button variant="outlined" onClick={handleOpen}>
                     {modalTitle}
                   </Button>
                 </Grid>

@@ -13,8 +13,6 @@ import {
 import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Center() {
-  const { open, handleOpen } = useModal();
-
   const {
     fetchList,
     isLoading,
@@ -22,19 +20,23 @@ export default function Center() {
     setCreateInfo,
     handleCreateChange,
     handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
   } = useGetLists({ BaseURL: CENTER_BASE_API, Init: centerInit });
 
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.centerList || []
-  );
+  const rows = fetchList?.centerList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
       isButton
       title="센터"
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <>
@@ -74,9 +76,17 @@ export default function Center() {
         </>
       }
     >
-      <MainTable columns={centerColumns} rows={fetchList?.centerList}>
-        {stableSort(fetchList?.centerList || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      <MainTable
+        columns={centerColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
+        {stableSort(rows || [], getComparator(order, orderBy))
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;

@@ -10,26 +10,36 @@ import {
   getComparator,
   PRO_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Point() {
-  const { fetchList, isLoading, createInfo, handleCreateChange, handleSubmit } =
-    useGetLists({
-      BaseURL: PRO_BASE_API,
-      Init: '',
-    });
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.proList || []
-  );
-  const { open, handleOpen } = useModal();
+  const {
+    fetchList,
+    isLoading,
+    createInfo,
+    setCreateInfo,
+    handleCreateChange,
+    handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
+  } = useGetLists({
+    BaseURL: '',
+    Init: '',
+  });
+
+  const rows = fetchList?.couponList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
       isButton
       title="포인트"
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <Grid item sm={12}>
@@ -45,9 +55,17 @@ export default function Point() {
         </Grid>
       }
     >
-      <MainTable columns={PointColumns} rows={[]}>
+      <MainTable
+        columns={PointColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
         {stableSort([] || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;

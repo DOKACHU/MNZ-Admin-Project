@@ -10,26 +10,36 @@ import {
   getComparator,
   PRO_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Center() {
-  const { fetchList, isLoading, createInfo, handleCreateChange, handleSubmit } =
-    useGetLists({
-      BaseURL: PRO_BASE_API,
-      Init: proInit,
-    });
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.proList || []
-  );
-  const { open, handleOpen } = useModal();
+  const {
+    fetchList,
+    isLoading,
+    createInfo,
+    // setCreateInfo,
+    handleCreateChange,
+    handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
+  } = useGetLists({
+    BaseURL: PRO_BASE_API,
+    Init: proInit,
+  });
+
+  const rows = fetchList?.proList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
       isButton
       title="프로"
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <Grid item sm={12}>
@@ -63,9 +73,17 @@ export default function Center() {
         </Grid>
       }
     >
-      <MainTable columns={proColumns} rows={fetchList?.proList}>
-        {stableSort(fetchList?.proList || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      <MainTable
+        columns={proColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
+        {stableSort(rows, getComparator(order, orderBy))
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;

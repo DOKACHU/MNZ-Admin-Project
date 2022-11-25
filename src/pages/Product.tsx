@@ -10,11 +10,9 @@ import {
   PRODUCT_BASE_API,
   productInit,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Product() {
-  const { open, handleOpen } = useModal();
-
   const {
     fetchList,
     isLoading,
@@ -22,18 +20,23 @@ export default function Product() {
     setCreateInfo,
     handleCreateChange,
     handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
   } = useGetLists({ BaseURL: PRODUCT_BASE_API, Init: productInit });
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.productList || []
-  );
+
+  const rows = fetchList?.productList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
       title="상품"
       isButton
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <>
@@ -95,9 +98,17 @@ export default function Product() {
         </>
       }
     >
-      <MainTable columns={productColumns} rows={fetchList?.productList}>
+      <MainTable
+        columns={productColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
         {stableSort(fetchList?.productList || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;

@@ -4,7 +4,6 @@ import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
-  proInit,
   UserColumns,
   stableSort,
   getComparator,
@@ -13,23 +12,33 @@ import {
 import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function User() {
-  const { fetchList, isLoading, createInfo, handleCreateChange, handleSubmit } =
-    useGetLists({
-      BaseURL: PRO_BASE_API,
-      Init: '',
-    });
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.proList || []
-  );
-  const { open, handleOpen } = useModal();
+  const {
+    fetchList,
+    isLoading,
+    createInfo,
+    setCreateInfo,
+    handleCreateChange,
+    handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
+  } = useGetLists({
+    BaseURL: '',
+    Init: '',
+  });
+
+  const rows = fetchList?.couponList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
       isButton
       title="고객"
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <Grid item sm={12}>
@@ -45,9 +54,17 @@ export default function User() {
         </Grid>
       }
     >
-      <MainTable columns={UserColumns} rows={[]}>
+      <MainTable
+        columns={UserColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
         {stableSort([] || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;

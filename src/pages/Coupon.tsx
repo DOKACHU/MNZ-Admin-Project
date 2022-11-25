@@ -19,10 +19,9 @@ import {
   COUPON_BASE_API,
   couponInit,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Coupon() {
-  const { open, handleOpen } = useModal();
   // const [value, setValue] = useState(dayjs(new Date()));
 
   const {
@@ -52,8 +51,6 @@ export default function Coupon() {
       isButton
       title="쿠폰"
       loading={isLoading}
-      open={open}
-      onOpenModal={handleOpen}
       onSubmit={handleSubmit}
       createModalForm={
         <>

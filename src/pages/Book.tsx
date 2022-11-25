@@ -15,155 +15,89 @@ import {
 import { useGetLists, useTableList, useModal } from '../hooks';
 
 export default function Book() {
-  const { fetchList, isLoading, handleSubmit } = useGetLists({
+  const {
+    fetchList,
+    isLoading,
+    // createInfo,
+    // setCreateInfo,
+    // handleCreateChange,
+    handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
+  } = useGetLists({
     BaseURL: CENTER_BASE_API,
   });
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.centerList || []
-  );
+
   const { open, handleOpen } = useModal();
 
-  return (
-    <>
-      <ListTemplate
-        title="예약 관리"
-        isButton
-        loading={isLoading}
-        open={open}
-        onOpenModal={handleOpen}
-        onSubmit={handleSubmit}
-      >
-        <MainTable columns={bookColumns} rows={mockBookList}>
-          {stableSort(mockBookList, getComparator(order, orderBy))
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row: any, index: number) => {
-              // const isItemSelected = isSelected(row.productId);
-              const labelId = `enhanced-table-checkbox-${index}`;
-              return (
-                <TableRow
-                  key={index}
-                  hover
-                  onClick={(e: any) => {
-                    handleRowClick(e, row.bookId);
-                  }}
-                  role="checkbox"
-                  // aria-checked={isItemSelected}
-                  tabIndex={-1}
-                  // key={row.productId}
-                  // selected={isItemSelected}
-                >
-                  <TableCell
-                    padding="checkbox"
-                    // onClick={(e) => {
-                    //   handleClick(e, row.productId);
-                    // }}
-                  >
-                    <Checkbox
-                      color="primary"
-                      // checked={isItemSelected}
-                      inputProps={{
-                        'aria-labelledby': labelId,
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell>{row?.bookId}</TableCell>
-                  <TableCell>{row?.name}</TableCell>
-                  <TableCell>{row?.pro}</TableCell>
-                  <TableCell>{row?.location}</TableCell>
-                  <TableCell>{row?.target}</TableCell>
-                  <TableCell>{row?.date}</TableCell>
-                  <TableCell>{row?.time}</TableCell>
-                  <TableCell>{row?.count}</TableCell>
-                </TableRow>
-              );
-            })}
-        </MainTable>
-      </ListTemplate>
-      <MainModal open={open} handleClose={handleOpen} title="예약 생성 모달">
-        <Grid item sm={6}>
-          <TextField
-            inputProps={{
-              maxLength: 10,
-            }}
-            name="name"
-            helperText="유저 이름"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
-          />
-        </Grid>
-        <Grid item sm={6}>
-          <TextField
-            inputProps={{
-              maxLength: 10,
-            }}
-            name="pro"
-            helperText="프로 이름"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
-          />
-        </Grid>
-        <Grid item sm={6}>
-          <TextField
-            inputProps={{
-              maxLength: 10,
-            }}
-            name="location"
-            helperText="지역"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
-          />
-        </Grid>
-        <Grid item sm={6}>
-          <TextField
-            inputProps={{
-              maxLength: 10,
-            }}
-            name="target"
-            helperText="치료 부위"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
-          />
-        </Grid>
-        <Grid item sm={6} />
-        <Grid item sm={6} />
+  const rows = mockBookList || [];
+  const total = fetchList?.total_count || 0;
 
-        <Grid item sm={6}>
-          <TextField
-            inputProps={{
-              maxLength: 10,
-            }}
-            name="count"
-            helperText="치료 횟수"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            // label="Name"
-            // value={d}
-            //   disabled
-            // defaultValue={user?.name}
-          />
-        </Grid>
-      </MainModal>
-    </>
+  return (
+    <ListTemplate
+      title="예약 관리"
+      // isButton
+      loading={isLoading}
+      onSubmit={handleSubmit}
+    >
+      <MainTable
+        columns={bookColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
+        {stableSort(rows, getComparator(order, orderBy))
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((row: any, index: number) => {
+            // const isItemSelected = isSelected(row.productId);
+            const labelId = `enhanced-table-checkbox-${index}`;
+            return (
+              <TableRow
+                key={index}
+                hover
+                onClick={(e: any) => {
+                  handleRowClick(e, row.bookId);
+                }}
+                role="checkbox"
+                // aria-checked={isItemSelected}
+                tabIndex={-1}
+                // key={row.productId}
+                // selected={isItemSelected}
+              >
+                <TableCell
+                  padding="checkbox"
+                  // onClick={(e) => {
+                  //   handleClick(e, row.productId);
+                  // }}
+                >
+                  <Checkbox
+                    color="primary"
+                    // checked={isItemSelected}
+                    inputProps={{
+                      'aria-labelledby': labelId,
+                    }}
+                  />
+                </TableCell>
+                <TableCell>{row?.bookId}</TableCell>
+                <TableCell>{row?.name}</TableCell>
+                <TableCell>{row?.pro}</TableCell>
+                <TableCell>{row?.location}</TableCell>
+                <TableCell>{row?.target}</TableCell>
+                <TableCell>{row?.date}</TableCell>
+                <TableCell>{row?.time}</TableCell>
+                <TableCell>{row?.count}</TableCell>
+              </TableRow>
+            );
+          })}
+      </MainTable>
+    </ListTemplate>
   );
 }
