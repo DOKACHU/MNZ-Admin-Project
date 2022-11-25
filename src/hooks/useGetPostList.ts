@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const GetListAPI = async (BaseURL: string) => {
-  const URL = `${BaseURL}?per_page=10&cursor=1`;
+const GetListAPI = async (BaseURL: string, pagination: any) => {
+  const { page, rowsPerPage } = pagination;
+  console.log('pagination', pagination);
+
+  const URL = `${BaseURL}?per_page=${rowsPerPage}&cursor=${page + 1}`;
   const { data } = await axios.get(URL);
   return data;
 };
@@ -22,10 +25,26 @@ interface GetListsProps {
 }
 
 export function useGetLists({ BaseURL, Init }: GetListsProps) {
-  // const [fetchList, setFetchList] = useState<any>([]);
+  const navigate = useNavigate();
+  const location = useLocation();
   const queryClient = useQueryClient();
+
+  // const [fetchList, setFetchList] = useState<any>([]);
   const [post, setPost] = useState<any>(Init);
-  const { data, isLoading } = useQuery(['lists'], () => GetListAPI(BaseURL));
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [path, setPath] = useState<any>(null);
+  const [order, setOrder] = useState<string>('asc');
+  const [orderBy, setOrderBy] = useState<string>('');
+
+  const pagination = {
+    page,
+    rowsPerPage,
+  };
+
+  const { data, isLoading } = useQuery(['lists', pagination], () =>
+    GetListAPI(BaseURL, pagination)
+  );
 
   const { mutate } = useMutation((body) => PostListAPI(BaseURL, body), {
     mutationKey: 'create',
@@ -52,10 +71,38 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     setPost({ ...post, [name]: value });
   };
 
+  const handleChangePage = (e: any, newPage: any) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (e: any) => {
+    const parsedInt = parseInt(e.target.value, 10);
+    setRowsPerPage(parsedInt);
+    setPage(0);
+  };
+
   // const handleDelete = (id: number) => {
   //   const result = fetchList.filter((list: any) => list.id !== Number(id));
   //   setFetchList(result);
   // };
+
+  const handleRowClick = (e: any, id: number) => {
+    e.stopPropagation();
+    const URL = `/${path}/${id}`;
+    navigate(URL);
+  };
+
+  const handleRequestSort = (e: any, property: any) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  useEffect(() => {
+    const parsedTitle = location.pathname.replace(/\W/g, '');
+    setPath(parsedTitle);
+    // setFetchList(data);
+  }, [location]);
 
   return {
     fetchList: data,
@@ -64,5 +111,12 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     handleSubmit,
     createInfo: post,
     setCreateInfo: setPost,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
   };
 }

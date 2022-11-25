@@ -17,22 +17,29 @@ import {
 } from '@mui/material';
 import MainTableHead from './MainTableHead';
 
-import { useTableList } from '../hooks';
-
 interface MainTableProps {
   rows?: any;
   columns?: any;
   children?: React.ReactNode;
+  page: number;
+  rowsPerPage: number;
+  handleChangePage: any;
+  handleChangeRowsPerPage: any;
+  total: number;
 }
 
-export default function MainTable({ rows, columns, children }: MainTableProps) {
-  const {
-    page,
-    emptyRows,
-    rowsPerPage,
-    handleChangePage,
-    handleChangeRowsPerPage,
-  } = useTableList(rows);
+export default function MainTable({
+  rows,
+  columns,
+  children,
+  page,
+  total,
+  rowsPerPage,
+  handleChangePage,
+  handleChangeRowsPerPage,
+}: MainTableProps) {
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - total) : 0;
 
   return (
     <Box
@@ -51,7 +58,7 @@ export default function MainTable({ rows, columns, children }: MainTableProps) {
               order=""
               orderBy=""
               numSelected={[]}
-              rowCount={0}
+              rowCount={total}
               onRequestSort={undefined}
             />
             <TableBody>{children}</TableBody>
@@ -61,7 +68,9 @@ export default function MainTable({ rows, columns, children }: MainTableProps) {
                   height: 53,
                 }}
               >
-                <TableCell colSpan={6} />
+                <TableCell colSpan={9} align="center">
+                  데이터 없음
+                </TableCell>
               </TableRow>
             )}
           </Table>
@@ -69,7 +78,7 @@ export default function MainTable({ rows, columns, children }: MainTableProps) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows?.length}
+          count={total}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

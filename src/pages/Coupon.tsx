@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 import { ListTemplate } from '../template';
-import { MainTable, MainModal } from '../components';
+import { MainTable } from '../components';
 import {
   couponColumns,
   stableSort,
@@ -32,14 +32,20 @@ export default function Coupon() {
     setCreateInfo,
     handleCreateChange,
     handleSubmit,
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    order,
+    orderBy,
+    handleRowClick,
   } = useGetLists({
     BaseURL: COUPON_BASE_API,
     Init: couponInit,
   });
 
-  const { page, order, orderBy, rowsPerPage, handleRowClick } = useTableList(
-    fetchList?.couponList || []
-  );
+  const rows = fetchList?.couponList || [];
+  const total = fetchList?.total_count || 0;
 
   return (
     <ListTemplate
@@ -140,11 +146,21 @@ export default function Coupon() {
         </>
       }
     >
-      <MainTable columns={couponColumns} rows={fetchList?.couponList}>
-        {stableSort(fetchList?.couponList || [], getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      <MainTable
+        columns={couponColumns}
+        rows={rows}
+        page={page}
+        total={total}
+        rowsPerPage={rowsPerPage}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      >
+        {stableSort(rows, getComparator(order, orderBy))
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
+            // console.log('row', row);
+            // console.log('index', index);
             const labelId = `enhanced-table-checkbox-${index}`;
             return (
               <TableRow
