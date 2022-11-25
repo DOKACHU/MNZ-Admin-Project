@@ -9,10 +9,10 @@ import {
   bookColumns,
   stableSort,
   getComparator,
-  CENTER_BASE_API,
+  BOOK_BASE_API,
   mockBookList,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Book() {
   const {
@@ -30,12 +30,10 @@ export default function Book() {
     orderBy,
     handleRowClick,
   } = useGetLists({
-    BaseURL: CENTER_BASE_API,
+    BaseURL: BOOK_BASE_API,
   });
 
-  const { open, handleOpen } = useModal();
-
-  const rows = mockBookList || [];
+  const rows = fetchList?.bookingList || [];
   const total = fetchList?.total_count || 0;
 
   return (
@@ -55,7 +53,7 @@ export default function Book() {
         handleChangeRowsPerPage={handleChangeRowsPerPage}
       >
         {stableSort(rows, getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
             const labelId = `enhanced-table-checkbox-${index}`;
@@ -64,7 +62,7 @@ export default function Book() {
                 key={index}
                 hover
                 onClick={(e: any) => {
-                  handleRowClick(e, row.bookId);
+                  handleRowClick(e, row.bookingId);
                 }}
                 role="checkbox"
                 // aria-checked={isItemSelected}
@@ -86,14 +84,13 @@ export default function Book() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{row?.bookId}</TableCell>
-                <TableCell>{row?.name}</TableCell>
-                <TableCell>{row?.pro}</TableCell>
-                <TableCell>{row?.location}</TableCell>
-                <TableCell>{row?.target}</TableCell>
-                <TableCell>{row?.date}</TableCell>
-                <TableCell>{row?.time}</TableCell>
-                <TableCell>{row?.count}</TableCell>
+                <TableCell>{row?.bookingId}</TableCell>
+                <TableCell>{row?.userName}</TableCell>
+                <TableCell>{row?.centerName}</TableCell>
+                <TableCell>{row?.proName}</TableCell>
+                <TableCell>{row?.status}</TableCell>
+                <TableCell>{row?.isCancel ? 'O' : 'X'}</TableCell>
+                <TableCell>{row?.bookingDate}</TableCell>
               </TableRow>
             );
           })}

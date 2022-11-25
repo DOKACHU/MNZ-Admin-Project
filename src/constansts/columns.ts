@@ -31,14 +31,13 @@ export const couponColumns = [
 ];
 
 export const bookColumns = [
-  { id: 'id', field: 'id', label: '예약 번호' },
-  { id: 'name', field: 'name', label: '유저 이름' },
-  { id: 'pro', field: 'pro', label: '프로 이름' },
-  { id: 'location', field: 'locaiton', label: '지역' },
-  { id: 'target', field: 'target', label: '치료 부위' },
-  { id: 'date', field: 'date', label: '예약 일자' },
-  { id: 'time', field: 'time', label: '예약 시간' },
-  { id: 'count', field: 'count', label: '치료 횟수' },
+  { id: 'bookingId', field: 'bookingId', label: '예약 번호' },
+  { id: 'userName', field: 'userName', label: '유저 이름' },
+  { id: 'centerName', field: 'centerName', label: '병원 이름' },
+  { id: 'proName', field: 'proName', label: '프로 이름' },
+  { id: 'status', field: 'status', label: '상태' },
+  { id: 'isCancel', field: 'isCancel', label: '예약 취소' },
+  { id: 'bookingDate', field: 'bookingDate', label: '예약 일자' },
 ];
 
 export const productColumns = [
