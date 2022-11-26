@@ -3,10 +3,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box, Grid, TextField, Rating, Typography } from '@mui/material';
+import { Box, Grid, Rating, Typography, Divider } from '@mui/material';
 import { DetailTemplate } from '../template';
-import { MainDetailForm, ReviewBasicInfo, MainSubCard } from '../components';
-import { centerTab, REVIEW_BASE_API } from '../constansts';
+import {
+  MainDetailForm,
+  MainSubCard,
+  UserBasicRow,
+  InfoBasicRow,
+  InfoReviewRow,
+} from '../components';
+import { reviewTab, REVIEW_BASE_API } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -30,11 +36,10 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   );
 }
 export default function ReviewDetail() {
-  const { fetchPostDetail, fetchMockPostDetail, isLoading } = useGetDetail({
+  const { fetchPostDetail, isLoading } = useGetDetail({
     BaseURL: REVIEW_BASE_API,
   });
 
-  // console.log('fetchMockPostDetail', fetchMockPostDetail);
   const [value, setValue] = useState<number>(0);
 
   const handleTabChange = (e: any, newValue: any) => {
@@ -44,145 +49,41 @@ export default function ReviewDetail() {
   return (
     <DetailTemplate loading={isLoading} title="리뷰 상세페이지" isButton>
       <MainDetailForm
-        tabs={centerTab}
+        tabs={reviewTab}
         value={value}
         onTabChange={handleTabChange}
       >
-        {centerTab.map((tab: any, i: number) => {
+        {reviewTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && (
-                <Grid container spacing={3}>
-                  <Grid item xs={6}>
-                    <ReviewBasicInfo detail={fetchPostDetail} />
-                  </Grid>
-                  <Grid item sm={6} md={6}>
-                    <MainSubCard title="평점 정보">
-                      {fetchPostDetail && (
-                        <>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              // justifyContent: 'space-between',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                mr: 2,
-                              }}
-                            >
-                              질문 1
-                            </Typography>
-                            <Rating
-                              name="read-only"
-                              value={fetchPostDetail?.rating1}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              // justifyContent: 'space-between',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                mr: 2,
-                              }}
-                            >
-                              질문 2
-                            </Typography>
-                            <Rating
-                              name="read-only"
-                              value={fetchPostDetail?.rating2}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              // justifyContent: 'space-between',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                mr: 2,
-                              }}
-                            >
-                              질문 3
-                            </Typography>
-                            <Rating
-                              name="read-only"
-                              value={fetchPostDetail?.rating3}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              // justifyContent: 'space-between',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                mr: 2,
-                              }}
-                            >
-                              질문 4
-                            </Typography>
-                            <Rating
-                              name="read-only"
-                              value={fetchPostDetail?.rating4}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              // justifyContent: 'space-between',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                mr: 2,
-                              }}
-                            >
-                              질문 5
-                            </Typography>
-                            <Rating
-                              name="read-only"
-                              value={fetchPostDetail?.rating5}
-                              precision={0.5}
-                              readOnly
-                            />
-                          </Grid>
-                        </>
-                      )}
+              {tab.id === 0 && (
+                <Grid container spacing={2} display="row" alignItems="center">
+                  <Grid item xs={12}>
+                    <MainSubCard title="세부 사항">
+                      <UserBasicRow title="작성자 정보" />
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
+                      <InfoReviewRow
+                        title="리뷰 정보"
+                        detail={fetchPostDetail}
+                      />
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
+                      <InfoBasicRow
+                        title="프로 정보"
+                        detail={fetchPostDetail}
+                      />
+                      <InfoBasicRow
+                        title="센터 정보"
+                        detail={fetchPostDetail}
+                      />
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
                     </MainSubCard>
+                    {/* <ReviewBasicInfo detail={fetchPostDetail} /> */}
                   </Grid>
                 </Grid>
               )}

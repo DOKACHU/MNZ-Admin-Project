@@ -18,3 +18,8 @@ export { default as CouponBasicInfo } from './CouponBasicInfo';
 
 // review
 export { default as ReviewBasicInfo } from './ReviewBasicInfo';
+
+// detail
+export { default as UserBasicRow } from './UserBasicRow';
+export { default as InfoBasicRow } from './InfoBasicRow';
+export { default as InfoReviewRow } from './InfoReviewRow';

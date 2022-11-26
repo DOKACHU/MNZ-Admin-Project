@@ -16,6 +16,19 @@ export const bookTab = [
   // },
 ];
 
+export const reviewTab = [
+  {
+    id: 0,
+    label: '리뷰정보',
+    to: '#',
+  },
+  // {
+  //   id: 1,
+  //   label: 'etc',
+  //   to: '#',
+  // },
+];
+
 export const centerTab = [
   {
     id: 0,
