@@ -79,35 +79,70 @@ export const reviewColumns = [
   { id: 'satisfied', field: 'satisfied', label: '만족 여부' },
   { id: 'comment', field: 'comment', label: '리뷰 내용' },
   { id: 'average', field: 'average', label: '평점' },
+];
 
+export const paymentColumns = [
+  { id: 'paymentId', field: 'paymentId', label: ' 결제 번호' },
   // {
-  //   id: 'question1',
-  //   field: 'question1',
-  //   label: '질문 1',
+  //   id: 'writerId',
+  //   field: 'writerId',
+  //   label: '작성자',
   // },
   // {
-  //   id: 'question2',
-  //   field: 'question2',
-  //   label: '질문 2',
+  //   id: 'centerId',
+  //   field: 'centerId',
+  //   label: '센터 번호',
   // },
   // {
-  //   id: 'question3',
-  //   field: 'question3',
-  //   label: '질문 3',
+  //   id: 'bookingId',
+  //   field: 'bookingId',
+  //   label: '예약 번호',
+  // },
+  // { id: 'satisfied', field: 'satisfied', label: '만족 여부' },
+  // { id: 'comment', field: 'comment', label: '리뷰 내용' },
+  // { id: 'average', field: 'average', label: '평점' },
+];
+
+export const noticeColumns = [
+  { id: 'noticeId', field: 'noticeId', label: ' 공지 번호' },
+  // {
+  //   id: 'writerId',
+  //   field: 'writerId',
+  //   label: '작성자',
   // },
   // {
-  //   id: 'question4',
-  //   field: 'question4',
-  //   label: '질문 4',
+  //   id: 'centerId',
+  //   field: 'centerId',
+  //   label: '센터 번호',
   // },
   // {
-  //   id: 'question5',
-  //   field: 'question5',
-  //   label: '질문 5',
+  //   id: 'bookingId',
+  //   field: 'bookingId',
+  //   label: '예약 번호',
+  // },
+  // { id: 'satisfied', field: 'satisfied', label: '만족 여부' },
+  // { id: 'comment', field: 'comment', label: '리뷰 내용' },
+  // { id: 'average', field: 'average', label: '평점' },
+];
+
+export const notificationColumns = [
+  { id: 'notificationId', field: 'notificationId', label: ' 알림 번호' },
+  // {
+  //   id: 'writerId',
+  //   field: 'writerId',
+  //   label: '작성자',
   // },
   // {
-  //   id: 'createAt',
-  //   field: 'createAt',
-  //   label: '생성 일자',
+  //   id: 'centerId',
+  //   field: 'centerId',
+  //   label: '센터 번호',
   // },
+  // {
+  //   id: 'bookingId',
+  //   field: 'bookingId',
+  //   label: '예약 번호',
+  // },
+  // { id: 'satisfied', field: 'satisfied', label: '만족 여부' },
+  // { id: 'comment', field: 'comment', label: '리뷰 내용' },
+  // { id: 'average', field: 'average', label: '평점' },
 ];

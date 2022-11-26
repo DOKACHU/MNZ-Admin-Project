@@ -25,7 +25,11 @@ export const mainNavbarItems = [
     label: '고객 관리',
     route: 'user',
   },
-
+  {
+    id: 9,
+    label: '결제 관리',
+    route: 'payment',
+  },
   {
     id: 3,
     label: '쿠폰 관리',
@@ -45,5 +49,16 @@ export const mainNavbarItems = [
     id: 6,
     label: '포인트 관리',
     route: 'point',
+  },
+
+  {
+    id: 7,
+    label: '공지사항 관리',
+    route: 'notice',
+  },
+  {
+    id: 8,
+    label: '푸시 알림 관리',
+    route: 'notification',
   },
 ];

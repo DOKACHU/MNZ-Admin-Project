@@ -18,6 +18,12 @@ import {
   UserDetail,
   Point,
   PointDetail,
+  Notice,
+  NoticeDetail,
+  Notification,
+  NotificationDetail,
+  Payment,
+  PaymentDetail,
 } from './pages';
 import { MainLayout } from './layouts';
 
@@ -42,6 +48,12 @@ export function App() {
         <Route path="product/:id" element={<ProductDetail />} />
         <Route path="review" element={<Review />} />
         <Route path="review/:id" element={<ReviewDetail />} />
+        <Route path="notice" element={<Notice />} />
+        <Route path="notice/:id" element={<NoticeDetail />} />
+        <Route path="notification" element={<Notification />} />
+        <Route path="notification/:id" element={<NotificationDetail />} />
+        <Route path="payment" element={<Payment />} />
+        <Route path="payment/:id" element={<PaymentDetail />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
