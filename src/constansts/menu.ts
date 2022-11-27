@@ -62,3 +62,31 @@ export const mainNavbarItems = [
     route: 'notification',
   },
 ];
+
+export const reviewVoucherInfo = [
+  { id: 1, label: 'ID' },
+  { id: 2, label: '상품이름' },
+  { id: 3, label: '상품가격' },
+];
+
+export const reviewBookingInfo = [
+  { id: 1, label: '예약 ID', value: 'bookingId' },
+  { id: 2, label: '예약 일시', value: 'bookingDate' },
+  { id: 3, label: '시작 시간', value: 'startTime' },
+  { id: 4, label: '마감 시간', value: 'endTime' },
+  { id: 5, label: '진행된 횟수', value: 'round' },
+];
+
+export const reviewProInfo = [
+  { id: 1, label: 'ID', value: 'proId' },
+  { id: 2, label: '이름', value: 'name' },
+  // { id: 3, label: '주소' },
+  // { id: 3, label: '전화 번호' },
+];
+
+export const reviewCenterInfo = [
+  { id: 1, label: 'ID', value: 'centerId' },
+  { id: 2, label: '이름', value: 'name' },
+  // { id: 3, label: '주소' },
+  // { id: 3, label: '전화 번호' },
+];

@@ -22,7 +22,7 @@ const styleH4 = {
 
 interface UserBasicRowProps {
   title: string;
-  detail?: any;
+  detail: any;
 }
 
 export default function UserBasicRow({ title, detail }: UserBasicRowProps) {
@@ -36,19 +36,19 @@ export default function UserBasicRow({ title, detail }: UserBasicRowProps) {
         <Grid item>
           <Typography variant="body2">
             <CalendarTodayTwoTone sx={detailsIconSX} />
-            {detail || '작성자 없음'}
+            {detail?.name || '작성자 없음'}
           </Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2">
             <PhoneAndroidTwoTone sx={detailsIconSX} />
-            {detail || '핸드폰 없음'}
+            {detail?.hp || '핸드폰 없음'}
           </Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2">
             <EmailTwoTone sx={detailsIconSX} />
-            {detail || '이메일 없음'}
+            {detail?.email || '이메일 없음'}
           </Typography>
         </Grid>
       </Grid>

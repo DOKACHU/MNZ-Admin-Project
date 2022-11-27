@@ -92,7 +92,7 @@ export default function Review() {
                   />
                 </TableCell>
                 <TableCell>{row?.reviewId}</TableCell>
-                <TableCell>{row?.writerId}</TableCell>
+                <TableCell>{row?.userId}</TableCell>
                 <TableCell>{row?.centerId}</TableCell>
                 <TableCell>{row?.bookingId}</TableCell>
                 <TableCell>{row?.satisfied ? '만족' : '불만족'}</TableCell>

@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box, Grid, Rating, Typography, Divider } from '@mui/material';
+import { Box, Grid, Divider } from '@mui/material';
 import { DetailTemplate } from '../template';
 import {
   MainDetailForm,
@@ -12,8 +12,14 @@ import {
   InfoBasicRow,
   InfoReviewRow,
 } from '../components';
-import { reviewTab, REVIEW_BASE_API } from '../constansts';
-import { useGetDetail } from '../hooks';
+import {
+  reviewTab,
+  REVIEW_BASE_API,
+  reviewBookingInfo,
+  reviewProInfo,
+  reviewCenterInfo,
+} from '../constansts';
+import { useGetPostDetailById } from '../hooks';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,7 +42,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   );
 }
 export default function ReviewDetail() {
-  const { fetchPostDetail, isLoading } = useGetDetail({
+  const { fetchPostDetail, isLoading } = useGetPostDetailById({
     BaseURL: REVIEW_BASE_API,
   });
 
@@ -45,13 +51,13 @@ export default function ReviewDetail() {
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
   };
-
   return (
-    <DetailTemplate loading={isLoading} title="리뷰 상세페이지" isButton>
+    <DetailTemplate loading={isLoading} title="리뷰 상세페이지">
       <MainDetailForm
         tabs={reviewTab}
         value={value}
         onTabChange={handleTabChange}
+        createDateText={`작성일 : ${fetchPostDetail?.createdAt}`}
       >
         {reviewTab.map((tab: any, i: number) => {
           return (
@@ -60,7 +66,10 @@ export default function ReviewDetail() {
                 <Grid container spacing={2} display="row" alignItems="center">
                   <Grid item xs={12}>
                     <MainSubCard title="세부 사항">
-                      <UserBasicRow title="작성자 정보" />
+                      <UserBasicRow
+                        title="작성자 정보"
+                        detail={fetchPostDetail?.user}
+                      />
                       <Grid item xs={12}>
                         <Divider />
                       </Grid>
@@ -72,11 +81,21 @@ export default function ReviewDetail() {
                         <Divider />
                       </Grid>
                       <InfoBasicRow
+                        title="예약 정보"
+                        type="booking"
+                        menus={reviewBookingInfo}
+                        detail={fetchPostDetail}
+                      />
+                      <InfoBasicRow
                         title="프로 정보"
+                        type="pro"
+                        menus={reviewProInfo}
                         detail={fetchPostDetail}
                       />
                       <InfoBasicRow
                         title="센터 정보"
+                        type="center"
+                        menus={reviewCenterInfo}
                         detail={fetchPostDetail}
                       />
                       <Grid item xs={12}>
