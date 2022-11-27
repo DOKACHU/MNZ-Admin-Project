@@ -48,6 +48,9 @@ export default function InfoReviewRow({ title, detail }: InfoReviewRowProps) {
                 precision={0.5}
                 readOnly
               />
+              <Typography variant="subtitle1" sx={styleSubtitle}>
+                ({detail?.rating1})
+              </Typography>
             </Stack>
             {/*  */}
             <Stack direction="row" spacing={1} alignItems="center">
@@ -60,6 +63,9 @@ export default function InfoReviewRow({ title, detail }: InfoReviewRowProps) {
                 precision={0.5}
                 readOnly
               />
+              <Typography variant="subtitle1" sx={styleSubtitle}>
+                ({detail?.rating2})
+              </Typography>
             </Stack>
             {/*  */}
             {/*  */}
@@ -73,6 +79,9 @@ export default function InfoReviewRow({ title, detail }: InfoReviewRowProps) {
                 precision={0.5}
                 readOnly
               />
+              <Typography variant="subtitle1" sx={styleSubtitle}>
+                ({detail?.rating3})
+              </Typography>
             </Stack>
             {/*  */}
             <Stack direction="row" spacing={1} alignItems="center">
@@ -85,6 +94,9 @@ export default function InfoReviewRow({ title, detail }: InfoReviewRowProps) {
                 precision={0.5}
                 readOnly
               />
+              <Typography variant="subtitle1" sx={styleSubtitle}>
+                ({detail?.rating4})
+              </Typography>
             </Stack>
             {/*  */}
             <Stack direction="row" spacing={1} alignItems="center">
@@ -97,6 +109,9 @@ export default function InfoReviewRow({ title, detail }: InfoReviewRowProps) {
                 precision={0.5}
                 readOnly
               />
+              <Typography variant="subtitle1" sx={styleSubtitle}>
+                ({detail?.rating5})
+              </Typography>
             </Stack>
             {/*  */}
           </Stack>

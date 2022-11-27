@@ -6,7 +6,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const GetListAPI = async (BaseURL: string, pagination: any) => {
   const { page, rowsPerPage } = pagination;
-  console.log('pagination', pagination);
 
   const URL = `${BaseURL}?per_page=${rowsPerPage}&cursor=${page + 1}`;
   const { data } = await axios.get(URL);
