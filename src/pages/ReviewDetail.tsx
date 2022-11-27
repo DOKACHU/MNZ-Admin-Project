@@ -83,21 +83,18 @@ export default function ReviewDetail() {
                       </Grid>
                       <InfoBasicRow
                         title="예약 정보"
-                        type="booking"
                         menus={reviewBookingInfo}
-                        detail={fetchPostDetail}
+                        detail={fetchPostDetail?.booking}
                       />
                       <InfoBasicRow
                         title="프로 정보"
-                        type="pro"
                         menus={reviewProInfo}
-                        detail={fetchPostDetail}
+                        detail={fetchPostDetail?.pro}
                       />
                       <InfoBasicRow
                         title="센터 정보"
-                        type="center"
                         menus={reviewCenterInfo}
-                        detail={fetchPostDetail}
+                        detail={fetchPostDetail?.center}
                       />
                       <Grid item xs={12}>
                         <Divider />

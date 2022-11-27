@@ -15,14 +15,12 @@ const styleSubtitle = {
 
 interface InfoBasicRowProps {
   title: string;
-  type: string;
   detail: any;
   menus: any;
 }
 
 export default function InfoBasicRow({
   title,
-  type,
   menus,
   detail,
 }: InfoBasicRowProps) {
@@ -48,7 +46,7 @@ export default function InfoBasicRow({
                       {menu.label}:
                     </Typography>
                     <Typography variant="body2">
-                      {detail[type][menu.value]}
+                      {detail[menu.value] || ''}
                     </Typography>
                   </Stack>
                 );
