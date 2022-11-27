@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const stableSort = (array: any, comparator: any) => {
   const stabilizedThis = array.map((el: never, index: number) => [el, index]);
   stabilizedThis.sort((a: any, b: any) => {
@@ -26,18 +28,22 @@ export const getComparator = (order: string, orderBy: string) => {
     : (a: any, b: any) => -descendingComparator(a, b, orderBy);
 };
 
-export function dateFormat(date: Date) {
-  const initmonth = date.getMonth() + 1;
-  const initday = date.getDate();
-  const inithour = date.getHours();
-  const initminute = date.getMinutes();
-  const initsecond = date.getSeconds();
+// export function dateFormat(date: Date) {
+//   const initmonth = date.getMonth() + 1;
+//   const initday = date.getDate();
+//   const inithour = date.getHours();
+//   const initminute = date.getMinutes();
+//   const initsecond = date.getSeconds();
 
-  const month = initmonth >= 10 ? initmonth : `0${initmonth}`;
-  const day = initday >= 10 ? initday : `0${initday}`;
-  const hour = inithour >= 10 ? inithour : `0${inithour}`;
-  const minute = initminute >= 10 ? initminute : `0${initminute}`;
-  const second = initsecond >= 10 ? initsecond : `0${initsecond}`;
+//   const month = initmonth >= 10 ? initmonth : `0${initmonth}`;
+//   const day = initday >= 10 ? initday : `0${initday}`;
+//   const hour = inithour >= 10 ? inithour : `0${inithour}`;
+//   const minute = initminute >= 10 ? initminute : `0${initminute}`;
+//   const second = initsecond >= 10 ? initsecond : `0${initsecond}`;
 
-  return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
+//   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
+// }
+
+export function convertDate(date: any) {
+  return dayjs(date).format('YYYY-MM-DD hh:mm:ss'); // '25/01/2019'
 }

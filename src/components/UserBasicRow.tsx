@@ -33,7 +33,7 @@ export default function UserBasicRow({ title, detail }: UserBasicRowProps) {
       </Typography>
       <br />
       <Grid container spacing={3} display="row" alignItems="center">
-        <Grid item>
+        {/* <Grid item>
           <Typography variant="body2">
             <CalendarTodayTwoTone sx={detailsIconSX} />
             {detail?.name || '작성자 없음'}
@@ -44,7 +44,7 @@ export default function UserBasicRow({ title, detail }: UserBasicRowProps) {
             <PhoneAndroidTwoTone sx={detailsIconSX} />
             {detail?.hp || '핸드폰 없음'}
           </Typography>
-        </Grid>
+        </Grid> */}
         <Grid item>
           <Typography variant="body2">
             <EmailTwoTone sx={detailsIconSX} />

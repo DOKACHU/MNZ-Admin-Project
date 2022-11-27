@@ -18,6 +18,7 @@ import {
   reviewBookingInfo,
   reviewProInfo,
   reviewCenterInfo,
+  convertDate,
 } from '../constansts';
 import { useGetPostDetailById } from '../hooks';
 
@@ -57,7 +58,7 @@ export default function ReviewDetail() {
         tabs={reviewTab}
         value={value}
         onTabChange={handleTabChange}
-        createDateText={`작성일 : ${fetchPostDetail?.createdAt}`}
+        createDateText={`작성일 : ${convertDate(fetchPostDetail?.createdAt)}`}
       >
         {reviewTab.map((tab: any, i: number) => {
           return (
