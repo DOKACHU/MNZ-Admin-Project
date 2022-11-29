@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery, useMutation, useQueryClient } from 'react-query';
@@ -102,16 +103,15 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   };
 
   const handleSubmit = () => {
-    console.log('post', post);
-    // mutate(post, {
-    //   onError: () => {
-    //     alert('오류가 발생했습니다.');
-    //   },
-    //   onSuccess: () => {
-    //     setPost(Init);
-    //     alert('리스트에 추가 되었습니다.');
-    //   },
-    // });
+    mutate(post, {
+      onError: () => {
+        alert('오류가 발생했습니다.');
+      },
+      onSuccess: () => {
+        setPost(Init);
+        alert('리스트에 추가 되었습니다.');
+      },
+    });
   };
 
   const handleChangePage = (e: any, newPage: any) => {

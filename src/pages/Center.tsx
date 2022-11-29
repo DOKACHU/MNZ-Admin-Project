@@ -52,8 +52,6 @@ export default function Center() {
   const rows = fetchList?.centerList || [];
   const total = fetchList?.total_count || 0;
 
-  console.log({ createInfo });
-
   const handleAddChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
