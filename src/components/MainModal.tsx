@@ -61,7 +61,7 @@ export default function MainModal({
             variant="outlined"
             onClick={() => {
               handleCreate();
-              handleClose();
+              // handleClose();
             }}
           >
             생성

@@ -28,9 +28,13 @@ export const productInit = {
 };
 
 export const centerInit = {
-  name: '',
-  description: '',
-  address: '',
+  center: {
+    name: '',
+    description: '',
+    address: '',
+  },
+  businessHours: [],
+  images: '',
 };
 
 export const proInit = {

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
@@ -22,6 +23,16 @@ interface GetListsProps {
   BaseURL: string;
   Init?: any;
 }
+
+const top100Films = [
+  { label: '월', dayOfWeek: 1 },
+  { label: '화', dayOfWeek: 2 },
+  { label: '수', dayOfWeek: 3 },
+  { label: '목', dayOfWeek: 4 },
+  { label: '금', dayOfWeek: 5 },
+  { label: '토', dayOfWeek: 6 },
+  { label: '일', dayOfWeek: 7 },
+];
 
 export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const navigate = useNavigate();
@@ -52,22 +63,55 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     },
   });
 
-  const handleSubmit = () => {
-    mutate(post, {
-      onError: () => {
-        alert('오류가 발생했습니다.');
-      },
-      onSuccess: () => {
-        setPost(Init);
-        alert('리스트에 추가 되었습니다.');
-      },
-    });
-  };
-
   const handleCreateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // e.preventDefault();
     const { name, value } = e.target;
     setPost({ ...post, [name]: value });
+  };
+
+  const handleCenterCreateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // e.preventDefault();
+    const { name, value } = e.target;
+    const splited = name.split('.');
+    console.log('splited', splited);
+    if (splited[0] === 'center') {
+      setPost({
+        ...post,
+        [splited[0]]: {
+          ...post[splited[0]],
+          [splited[1]]: value,
+        },
+      });
+    } else {
+      setPost({
+        ...post,
+        businessHours: [...post.businessHours]
+          .filter((_: any, i) => i === Number(splited[1]))
+          .map((item: any) => {
+            let tmp = item[splited[2]];
+            if (splited[2] === 'dayOfWeek') {
+              tmp = top100Films.filter((item: any) => item.label === value)[0]
+                .dayOfWeek;
+            } else {
+              tmp = value;
+            }
+            return { ...item, [splited[2]]: tmp };
+          }),
+      });
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('post', post);
+    // mutate(post, {
+    //   onError: () => {
+    //     alert('오류가 발생했습니다.');
+    //   },
+    //   onSuccess: () => {
+    //     setPost(Init);
+    //     alert('리스트에 추가 되었습니다.');
+    //   },
+    // });
   };
 
   const handleChangePage = (e: any, newPage: any) => {
@@ -107,6 +151,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     fetchList: data,
     isLoading,
     handleCreateChange,
+    handleCenterCreateChange,
     handleSubmit,
     createInfo: post,
     setCreateInfo: setPost,
