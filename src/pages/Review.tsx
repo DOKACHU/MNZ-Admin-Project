@@ -9,7 +9,7 @@ import {
   getComparator,
   REVIEW_BASE_API,
 } from '../constansts';
-import { useGetLists, useTableList, useModal } from '../hooks';
+import { useGetLists } from '../hooks';
 
 export default function Review() {
   const {
@@ -91,12 +91,21 @@ export default function Review() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{row?.reviewId}</TableCell>
+                {/* <TableCell>{row?.reviewId}</TableCell>
                 <TableCell>{row?.userId}</TableCell>
-                <TableCell>{row?.centerId}</TableCell>
+                <TableCell>{row?.centerId}</TableCell> */}
                 <TableCell>{row?.bookingId}</TableCell>
                 <TableCell>{row?.satisfied ? '만족' : '불만족'}</TableCell>
-                <TableCell>{row?.comment}</TableCell>
+                <TableCell
+                  sx={{
+                    maxWidth: 200, // percentage also works
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {row?.comment}
+                </TableCell>
                 <TableCell align="center">
                   <Rating
                     name="read-only"

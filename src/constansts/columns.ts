@@ -60,17 +60,17 @@ export const PointColumns = [
 ];
 
 export const reviewColumns = [
-  { id: 'reviewId', field: 'reviewId', label: '리뷰 번호' },
-  {
-    id: 'writerId',
-    field: 'writerId',
-    label: '작성자',
-  },
-  {
-    id: 'centerId',
-    field: 'centerId',
-    label: '센터 번호',
-  },
+  // { id: 'reviewId', field: 'reviewId', label: '리뷰 번호' },
+  // {
+  //   id: 'writerId',
+  //   field: 'writerId',
+  //   label: '작성자',
+  // },
+  // {
+  //   id: 'centerId',
+  //   field: 'centerId',
+  //   label: '센터 번호',
+  // },
   {
     id: 'bookingId',
     field: 'bookingId',
