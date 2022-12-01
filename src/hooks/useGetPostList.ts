@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const GetListAPI = async (BaseURL: string, pagination: any) => {
@@ -39,6 +39,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const queryClient = useQueryClient();
+  const createFileInput = useRef<any>(null);
 
   // const [fetchList, setFetchList] = useState<any>([]);
   const [post, setPost] = useState<any>(Init);
@@ -47,6 +48,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const [path, setPath] = useState<any>(null);
   const [order, setOrder] = useState<string>('asc');
   const [orderBy, setOrderBy] = useState<string>('');
+  const [createPreview, setCreatePreview] = useState<string>(null);
 
   const pagination = {
     page,
@@ -70,11 +72,27 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     setPost({ ...post, [name]: value });
   };
 
+  const handleCreateUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // e.preventDefault();
+    const { files } = e.target;
+    const reader = new FileReader();
+    if (files) {
+      const file = files[0];
+      reader.onloadend = () => {
+        setPost({ ...post, images: file });
+        setCreatePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const handleCreateFileClick = (e: any) => {
+    createFileInput.current.click();
+  };
+
   const handleCenterCreateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // e.preventDefault();
     const { name, value } = e.target;
     const splited = name.split('.');
-    console.log('splited', splited);
     if (splited[0] === 'center') {
       setPost({
         ...post,
@@ -148,6 +166,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   }, [location]);
 
   return {
+    createPreview,
     fetchList: data,
     isLoading,
     handleCreateChange,
@@ -162,5 +181,8 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     order,
     orderBy,
     handleRowClick,
+    handleCreateFileClick,
+    createFileInput,
+    handleCreateUpload,
   };
 }

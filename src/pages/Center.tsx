@@ -1,14 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   TableRow,
   TableCell,
   Checkbox,
   Grid,
+  Box,
   TextField,
   Button,
   Autocomplete,
+  Typography,
 } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
@@ -33,11 +35,14 @@ const top100Films = [
 
 export default function Center() {
   const {
+    createFileInput,
     fetchList,
     isLoading,
     createInfo,
     setCreateInfo,
-    handleCreateChange,
+    // handleCreateChange,
+    createPreview,
+    handleCreateUpload,
     handleCenterCreateChange,
     handleSubmit,
     page,
@@ -47,6 +52,7 @@ export default function Center() {
     order,
     orderBy,
     handleRowClick,
+    handleCreateFileClick,
   } = useGetLists({ BaseURL: CENTER_BASE_API, Init: centerInit });
 
   const rows = fetchList?.centerList || [];
@@ -66,8 +72,6 @@ export default function Center() {
         },
       ],
     });
-
-    // const { name, value } = e.target;
   };
 
   return (
@@ -111,6 +115,51 @@ export default function Center() {
               value={createInfo.center.address}
             />
           </Grid>
+
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                border: '1px dotted #e5e5e5',
+                height: '100px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                cursor: 'pointer',
+              }}
+              onClick={handleCreateFileClick}
+            >
+              <input
+                hidden
+                ref={createFileInput}
+                type="file"
+                name="imageFile"
+                accept="image/*"
+                onChange={handleCreateUpload}
+              />
+              {createPreview === null ? (
+                <Typography variant="subtitle2" align="center">
+                  Upload/Change Your Profile Image
+                </Typography>
+              ) : (
+                <div
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                  }}
+                >
+                  <img
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    src={createPreview}
+                    alt="preview"
+                  />
+                </div>
+              )}
+            </Box>
+          </Grid>
+
           <Grid item xs={12}>
             <Button variant="contained" size="small" onClick={handleAddChange}>
               영업 시간 추가
