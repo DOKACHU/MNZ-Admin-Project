@@ -48,7 +48,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const [path, setPath] = useState<any>(null);
   const [order, setOrder] = useState<string>('asc');
   const [orderBy, setOrderBy] = useState<string>('');
-  const [createPreview, setCreatePreview] = useState<string>(null);
+  const [createPreview, setCreatePreview] = useState<string | null>(null);
 
   const pagination = {
     page,
