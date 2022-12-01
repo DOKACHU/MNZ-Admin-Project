@@ -32,8 +32,8 @@ export default function Payment() {
     Init: '',
   });
 
-  const rows = fetchList?.couponList || [];
-  const total = fetchList?.total_count || 0;
+  const rows = [] as any;
+  const total = 0;
 
   return (
     <ListTemplate

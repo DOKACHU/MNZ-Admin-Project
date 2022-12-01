@@ -16,19 +16,15 @@ interface ListTemplateProps {
   loading?: boolean;
   title: string;
   isButton?: boolean;
-  // onOpenModal?: any;
-  // open: boolean;
   onSubmit?: any;
   children: React.ReactNode;
   createModalForm?: any;
 }
 
 export default function ListTemplate({
-  // open,
   loading,
   title,
   children,
-  // onOpenModal,
   isButton,
   onSubmit,
   createModalForm,

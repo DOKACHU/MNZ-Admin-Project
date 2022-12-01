@@ -27,7 +27,7 @@ import {
 } from './pages';
 import { MainLayout } from './layouts';
 
-export function App() {
+export function AppRoutes() {
   // TODO: 인증 절차 넣기
   return (
     <Routes>
@@ -64,7 +64,7 @@ export function WrappedApp() {
   return (
     <>
       <CssBaseline />
-      <App />
+      <AppRoutes />
     </>
   );
 }
