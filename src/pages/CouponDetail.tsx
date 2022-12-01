@@ -63,7 +63,7 @@ export default function CouponDetail() {
         {centerTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && (
+              {tab.id === 0 && (
                 <Grid container spacing={3}>
                   <Grid item sm={6} md={6}>
                     <CouponBasicInfo
@@ -73,7 +73,7 @@ export default function CouponDetail() {
                   </Grid>
                 </Grid>
               )}
-              {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>}
+              {/* {tab.label === 'etc' && <h1>[개발] 예정입니다.</h1>} */}
             </TabPanel>
           );
         })}

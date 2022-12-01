@@ -40,7 +40,6 @@ export default function Center() {
     isLoading,
     createInfo,
     setCreateInfo,
-    // handleCreateChange,
     createPreview,
     handleCreateUpload,
     handleCenterCreateChange,

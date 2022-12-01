@@ -30,9 +30,7 @@ export default function ListTemplate({
   createModalForm,
 }: ListTemplateProps) {
   const { open, handleOpen } = useModal();
-
   const modalTitle = `${title} 생성 모달`;
-
   if (loading) {
     return (
       <Box

@@ -55,8 +55,12 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     rowsPerPage,
   };
 
-  const { data, isLoading } = useQuery(['lists', pagination], () =>
-    GetListAPI(BaseURL, pagination)
+  const { data, isLoading } = useQuery(
+    ['lists', pagination],
+    () => GetListAPI(BaseURL, pagination)
+    // {
+    //   refetchOnMount: true,
+    // }
   );
 
   const { mutate } = useMutation((body) => PostListAPI(BaseURL, body), {
