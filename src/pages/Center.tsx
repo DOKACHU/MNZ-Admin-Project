@@ -53,7 +53,6 @@ export default function Center() {
     handleRowClick,
     handleCreateFileClick,
   } = useGetLists({ BaseURL: CENTER_BASE_API, Init: centerInit });
-
   const rows = fetchList?.centerList || [];
   const total = fetchList?.total_count || 0;
 

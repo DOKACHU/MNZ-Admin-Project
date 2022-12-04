@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, Checkbox } from '@mui/material';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import MainSubCard from './MainSubCard';
@@ -51,6 +51,7 @@ export default function ProBasicInfo({ detail }: ProBasicInfoProps) {
         />
       </Grid>
       <Grid item md={12} xs={12}>
+        <Checkbox /> 마케팅 동의 여부
         {/* <DatePicker
           views={['day']}
           label="Just date"

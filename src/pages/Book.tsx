@@ -1,16 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TableRow, TableCell, Checkbox } from '@mui/material';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ListTemplate } from '../template';
-import { MainTable, MainModal } from '../components';
+import { MainTable } from '../components';
 import {
   bookColumns,
   stableSort,
   getComparator,
   BOOK_BASE_API,
-  mockBookList,
 } from '../constansts';
 import { useGetLists } from '../hooks';
 
@@ -18,9 +17,6 @@ export default function Book() {
   const {
     fetchList,
     isLoading,
-    // createInfo,
-    // setCreateInfo,
-    // handleCreateChange,
     handleSubmit,
     page,
     rowsPerPage,
@@ -38,7 +34,7 @@ export default function Book() {
 
   return (
     <ListTemplate
-      title="예약 관리"
+      title="예약"
       // isButton
       loading={isLoading}
       onSubmit={handleSubmit}

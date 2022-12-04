@@ -169,6 +169,8 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     // setFetchList(data);
   }, [location]);
 
+  // console.log({ data });
+
   return {
     createPreview,
     fetchList: data,

@@ -32,6 +32,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
+        <Route path="login" />
         <Route path="book" element={<Book />} />
         <Route path="book/:id" element={<BookDetail />} />
         <Route path="center" element={<Center />} />
@@ -60,7 +61,7 @@ export function AppRoutes() {
   );
 }
 
-export function WrappedApp() {
+export function App() {
   return (
     <>
       <CssBaseline />

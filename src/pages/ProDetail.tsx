@@ -50,7 +50,7 @@ export default function ProDetail() {
         {proTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.label === 'profile' && (
+              {tab.id === 0 && (
                 <Grid container spacing={3}>
                   <Grid item sm={6} md={6}>
                     <ProBasicInfo detail={fetchPostDetail} />

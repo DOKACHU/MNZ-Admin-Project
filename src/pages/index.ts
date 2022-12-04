@@ -1,3 +1,5 @@
+export { default as Login } from './Login';
+
 export { default as Point } from './Point';
 export { default as PointDetail } from './PointDetail';
 
