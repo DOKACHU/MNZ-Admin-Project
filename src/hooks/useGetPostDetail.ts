@@ -53,7 +53,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
         //   const id = post[`${path}Id`];
         //   return id === rowId;
         // }
-        const id = post[`${path}Id`];
+        const id = path === 'point' ? post.pointEventId : post[`${path}Id`];
         return id === rowId;
       });
 

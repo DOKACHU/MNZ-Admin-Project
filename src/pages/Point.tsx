@@ -1,10 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
+// import { v4 as uuidv4 } from 'uuid';
+
+// import React, { useEffect } from 'react';
+import {
+  TableRow,
+  TableCell,
+  Checkbox,
+  Grid,
+  TextField,
+  Autocomplete,
+} from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
-  proInit,
+  pointInit,
   PointColumns,
   stableSort,
   getComparator,
@@ -12,6 +22,10 @@ import {
 } from '../constansts';
 import { useGetLists } from '../hooks';
 
+const statusArr = [
+  { label: '추가', id: 'add' },
+  { label: '차감', id: 'sub' },
+];
 export default function Point() {
   const {
     fetchList,
@@ -29,10 +43,11 @@ export default function Point() {
     handleRowClick,
   } = useGetLists({
     BaseURL: POINT_BASE_API,
-    Init: '',
+    Init: pointInit,
   });
 
   const rows = fetchList?.pointList || [];
+  // console.log({ rows });
   const total = fetchList?.total_count || 0;
 
   return (
@@ -42,17 +57,62 @@ export default function Point() {
       loading={isLoading}
       onSubmit={handleSubmit}
       createModalForm={
-        <Grid item sm={12}>
-          {/* <TextField
-            helperText="핸드폰 번호"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            name="phoneNumber"
-            onChange={handleCreateChange}
-            value={createInfo?.phoneNumber}
-          /> */}
-        </Grid>
+        <>
+          <Grid item sm={12}>
+            <TextField
+              helperText="유저 ID"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="userId"
+              onChange={handleCreateChange}
+              value={createInfo?.userId}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <Autocomplete
+              disableClearable
+              options={statusArr}
+              defaultValue={statusArr[0]}
+              onChange={(e, newValue) => {
+                setCreateInfo({ ...createInfo, status: newValue.id });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="상태"
+                  name="status"
+                  fullWidth
+                  // onChange={handleCreateChange}
+                  size="small"
+                />
+              )}
+            />
+          </Grid>
+
+          <Grid item sm={12}>
+            <TextField
+              helperText="포인트"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="price"
+              onChange={handleCreateChange}
+              value={createInfo?.price}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <TextField
+              helperText="사유"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="reason"
+              onChange={handleCreateChange}
+              value={createInfo?.reason}
+            />
+          </Grid>
+        </>
       }
     >
       <MainTable
@@ -74,7 +134,7 @@ export default function Point() {
                 key={index}
                 hover
                 onClick={(e: any) => {
-                  handleRowClick(e, row.proId);
+                  handleRowClick(e, row.pointEventId);
                 }}
                 role="checkbox"
                 // aria-checked={isItemSelected}
@@ -96,8 +156,9 @@ export default function Point() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{row?.pointEventId}</TableCell>
-                <TableCell>{row?.userId}</TableCell>
+                <TableCell>{index + 1}</TableCell>
+                {/* <TableCell>{row?.pointEventId}</TableCell> */}
+                {/* <TableCell>{row?.userId}</TableCell> */}
                 <TableCell>{row?.status}</TableCell>
                 <TableCell>{row?.price}</TableCell>
                 <TableCell>{row?.reason}</TableCell>

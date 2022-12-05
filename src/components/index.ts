@@ -23,3 +23,6 @@ export { default as ReviewBasicInfo } from './ReviewBasicInfo';
 export { default as UserBasicRow } from './UserBasicRow';
 export { default as InfoBasicRow } from './InfoBasicRow';
 export { default as InfoReviewRow } from './InfoReviewRow';
+
+// point
+export { default as PointBasicInfo } from './PointBasicInfo';

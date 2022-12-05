@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -157,11 +158,11 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     navigate(URL);
   };
 
-  const handleRequestSort = (e: any, property: any) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+  // const handleRequestSort = (e: any, property: any) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   setOrder(isAsc ? 'desc' : 'asc');
+  //   setOrderBy(property);
+  // };
 
   useEffect(() => {
     const parsedTitle = location.pathname.replace(/\W/g, '');
@@ -169,6 +170,9 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     // setFetchList(data);
   }, [location]);
 
+  useEffect(() => {
+    setPost(Init);
+  }, []);
   // console.log({ data });
 
   return {
