@@ -53,10 +53,11 @@ export const productColumns = [
 ];
 
 export const PointColumns = [
-  { id: 'pointId', field: 'pointId', label: '포인트 번호' },
-  { id: 'userId', field: 'userId', label: '고객 번호' },
-  { id: 'point', field: 'point', label: '가진 포인트' },
-  // { id: 'description', field: 'description', label: '설명' },
+  { id: 'pointEventId', field: 'pointEventId', label: '포인트 번호' },
+  { id: 'userId', field: 'userId', label: '유저 번호' },
+  { id: 'status', field: 'status', label: '상태' },
+  { id: 'price', field: 'price', label: '포인트' },
+  { id: 'reason', field: 'reason', label: '사유' },
 ];
 
 export const reviewColumns = [

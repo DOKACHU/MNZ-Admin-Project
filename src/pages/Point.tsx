@@ -8,7 +8,7 @@ import {
   PointColumns,
   stableSort,
   getComparator,
-  PRO_BASE_API,
+  POINT_BASE_API,
 } from '../constansts';
 import { useGetLists } from '../hooks';
 
@@ -28,11 +28,11 @@ export default function Point() {
     orderBy,
     handleRowClick,
   } = useGetLists({
-    BaseURL: '',
+    BaseURL: POINT_BASE_API,
     Init: '',
   });
 
-  const rows = fetchList?.couponList || [];
+  const rows = fetchList?.pointList || [];
   const total = fetchList?.total_count || 0;
 
   return (
@@ -64,7 +64,7 @@ export default function Point() {
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
       >
-        {stableSort([] || [], getComparator(order, orderBy))
+        {stableSort(rows, getComparator(order, orderBy))
           // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row: any, index: number) => {
             // const isItemSelected = isSelected(row.productId);
@@ -96,10 +96,11 @@ export default function Point() {
                     }}
                   />
                 </TableCell>
-                {/* <TableCell>{row?.proId}</TableCell>
-                <TableCell>{row?.name}</TableCell>
-                <TableCell>{row?.phoneNumber}</TableCell>
-                <TableCell>{row?.description}</TableCell> */}
+                <TableCell>{row?.pointEventId}</TableCell>
+                <TableCell>{row?.userId}</TableCell>
+                <TableCell>{row?.status}</TableCell>
+                <TableCell>{row?.price}</TableCell>
+                <TableCell>{row?.reason}</TableCell>
               </TableRow>
             );
           })}
