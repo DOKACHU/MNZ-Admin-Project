@@ -42,17 +42,43 @@ export default function Notification() {
       loading={isLoading}
       onSubmit={handleSubmit}
       createModalForm={
-        <Grid item sm={12}>
-          {/* <TextField
-            helperText="핸드폰 번호"
-            size="small"
-            id="outlined-basic1"
-            fullWidth
-            name="phoneNumber"
-            onChange={handleCreateChange}
-            value={createInfo?.phoneNumber}
-          /> */}
-        </Grid>
+        <>
+          <Grid item sm={12}>
+            <TextField
+              helperText="보낼 유저 아이디"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="userId"
+              onChange={handleCreateChange}
+              value={createInfo?.phoneNumber}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <TextField
+              helperText="제목"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="title"
+              onChange={handleCreateChange}
+              value={createInfo?.phoneNumber}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <TextField
+              helperText="보낼 내용"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              rows={4}
+              multiline
+              name="content"
+              // onChange={handleCreateChange}
+              // value={createInfo?.phoneNumber}
+            />
+          </Grid>
+        </>
       }
     >
       <MainTable
