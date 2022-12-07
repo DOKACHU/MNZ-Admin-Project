@@ -47,3 +47,8 @@ export const getComparator = (order: string, orderBy: string) => {
 export function convertDate(date: any) {
   return dayjs(date).format('YYYY-MM-DD hh:mm:ss'); // '25/01/2019'
 }
+
+export const statusArr = [
+  { label: '추가', id: 'add' },
+  { label: '차감', id: 'sub' },
+];

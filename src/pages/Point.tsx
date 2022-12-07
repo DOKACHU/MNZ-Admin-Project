@@ -19,13 +19,10 @@ import {
   stableSort,
   getComparator,
   POINT_BASE_API,
+  statusArr,
 } from '../constansts';
 import { useGetLists } from '../hooks';
 
-const statusArr = [
-  { label: '추가', id: 'add' },
-  { label: '차감', id: 'sub' },
-];
 export default function Point() {
   const {
     fetchList,
@@ -47,9 +44,8 @@ export default function Point() {
   });
 
   const rows = fetchList?.pointList || [];
-  // console.log({ rows });
   const total = fetchList?.total_count || 0;
-
+  console.log({ createInfo });
   return (
     <ListTemplate
       isButton
@@ -73,9 +69,9 @@ export default function Point() {
             <Autocomplete
               disableClearable
               options={statusArr}
-              defaultValue={statusArr[0]}
-              onChange={(e, newValue) => {
-                setCreateInfo({ ...createInfo, status: newValue.id });
+              defaultValue={createInfo?.status}
+              onChange={(e, statusVal) => {
+                setCreateInfo({ ...createInfo, status: statusVal.id });
               }}
               renderInput={(params) => (
                 <TextField

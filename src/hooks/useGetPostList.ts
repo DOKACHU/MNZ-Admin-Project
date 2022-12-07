@@ -128,6 +128,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const handleSubmit = () => {
     mutate(post, {
       onError: () => {
+        setPost(Init);
         alert('오류가 발생했습니다.');
       },
       onSuccess: () => {
@@ -147,22 +148,11 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     setPage(0);
   };
 
-  // const handleDelete = (id: number) => {
-  //   const result = fetchList.filter((list: any) => list.id !== Number(id));
-  //   setFetchList(result);
-  // };
-
   const handleRowClick = (e: any, id: number) => {
     e.stopPropagation();
     const URL = `/${path}/${id}`;
     navigate(URL);
   };
-
-  // const handleRequestSort = (e: any, property: any) => {
-  //   const isAsc = orderBy === property && order === 'asc';
-  //   setOrder(isAsc ? 'desc' : 'asc');
-  //   setOrderBy(property);
-  // };
 
   useEffect(() => {
     const parsedTitle = location.pathname.replace(/\W/g, '');
@@ -173,7 +163,6 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   useEffect(() => {
     setPost(Init);
   }, []);
-  // console.log({ data });
 
   return {
     createPreview,
