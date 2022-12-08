@@ -16,6 +16,8 @@ interface MainModalProps {
   children: React.ReactNode;
   handleCreate?: any;
   handleClose?: any;
+  setCreateInfo?: any;
+  createInfo?: any;
 }
 
 export default function MainModal({
@@ -24,6 +26,8 @@ export default function MainModal({
   children,
   handleCreate,
   handleClose,
+  setCreateInfo,
+  createInfo,
 }: MainModalProps) {
   return (
     <Dialog
@@ -66,7 +70,14 @@ export default function MainModal({
           >
             생성
           </Button>
-          <Button variant="outlined" color="error" onClick={handleClose}>
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={() => {
+              handleClose();
+              setCreateInfo(createInfo);
+            }}
+          >
             취소
           </Button>
         </DialogActions>

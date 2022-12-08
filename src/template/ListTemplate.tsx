@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/require-default-props */
 import React from 'react';
@@ -33,26 +34,9 @@ export default function ListTemplate({
   setCreateInfo,
   createInfo,
 }: ListTemplateProps) {
-  const { open, handleOpen, handleModalClose } = useModal({
-    setCreateInfo,
-    createInfo,
-  });
+  const { open, handleOpen, handleModalClose } = useModal();
   const modalTitle = `${title} 생성 모달`;
-  // if (loading) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         height: '100%',
-  //         padding: 3,
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <CircularProgress />
-  //     </Box>
-  //   );
-  // }
+
   return (
     <>
       <MainModal
@@ -60,6 +44,8 @@ export default function ListTemplate({
         handleClose={handleModalClose}
         handleCreate={onSubmit}
         title={modalTitle}
+        setCreateInfo={setCreateInfo}
+        createInfo={createInfo}
       >
         {createModalForm}
       </MainModal>

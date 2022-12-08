@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 
-interface ModalProps {
-  createInfo: any;
-  setCreateInfo: any;
-}
-
-export function useModal({ setCreateInfo, createInfo }: ModalProps) {
+export function useModal() {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -13,13 +8,8 @@ export function useModal({ setCreateInfo, createInfo }: ModalProps) {
   };
 
   const handleModalClose = () => {
-    // setCreateInfo(createInfo);
     setOpen(false);
   };
-
-  useEffect(() => {
-    setCreateInfo(createInfo);
-  }, []);
 
   return {
     open,

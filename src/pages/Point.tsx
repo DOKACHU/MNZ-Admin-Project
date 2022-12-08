@@ -10,6 +10,7 @@ import {
   Grid,
   TextField,
   Autocomplete,
+  Radio,
 } from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
@@ -48,6 +49,8 @@ export default function Point() {
   const rows = fetchList?.pointList || [];
   const total = fetchList?.total_count || 0;
 
+  console.log({ createInfo });
+
   return (
     <ListTemplate
       isButton
@@ -55,7 +58,7 @@ export default function Point() {
       loading={isLoading}
       onSubmit={handlePointSubmit}
       setCreateInfo={setCreateInfo}
-      createInfo={createInfo}
+      createInfo={pointInit}
       createModalForm={
         <>
           <Grid item sm={12}>
@@ -70,7 +73,23 @@ export default function Point() {
             />
           </Grid>
           <Grid item sm={12}>
-            <TextField
+            <Radio
+              checked={createInfo?.status === 'add'}
+              onChange={handleCreateChange}
+              value="add"
+              name="status"
+              inputProps={{ 'aria-label': 'A' }}
+            />
+            지급
+            <Radio
+              checked={createInfo?.status === 'sub'}
+              onChange={handleCreateChange}
+              value="sub"
+              name="status"
+              inputProps={{ 'aria-label': 'B' }}
+            />
+            차감
+            {/* <TextField
               helperText="상태"
               size="small"
               id="outlined-basic1"
@@ -78,7 +97,7 @@ export default function Point() {
               name="status"
               onChange={handleCreateChange}
               value={createInfo?.status}
-            />
+            /> */}
           </Grid>
 
           {/* <Grid item sm={12}>
