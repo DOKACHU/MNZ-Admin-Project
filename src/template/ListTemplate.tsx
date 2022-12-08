@@ -20,7 +20,7 @@ interface ListTemplateProps {
   children: React.ReactNode;
   createModalForm?: any;
   setCreateInfo?: any;
-  createInfo: any;
+  createInfo?: any;
 }
 
 export default function ListTemplate({
