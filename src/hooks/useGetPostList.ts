@@ -138,6 +138,21 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     });
   };
 
+  const handlePointSubmit = () => {
+    mutate(post, {
+      onError: (e: any) => {
+        if (e.response.data.statusCode === 409) {
+          setPost(Init);
+          alert('포인트가 부족합니다.');
+        }
+      },
+      onSuccess: () => {
+        setPost(Init);
+        alert('포인트가 지급 되었습니다.');
+      },
+    });
+  };
+
   const handleChangePage = (e: any, newPage: any) => {
     setPage(newPage);
   };
@@ -183,5 +198,6 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     handleCreateFileClick,
     createFileInput,
     handleCreateUpload,
+    handlePointSubmit,
   };
 }

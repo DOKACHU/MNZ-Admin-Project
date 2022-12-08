@@ -46,10 +46,6 @@ export default function Point() {
 
   const rows = fetchList?.pointList || [];
   const total = fetchList?.total_count || 0;
-  console.log({ createInfo });
-
-  const result = statusArr.filter((v) => v.id === createInfo?.status)[0];
-  console.log({ result });
 
   return (
     <ListTemplate

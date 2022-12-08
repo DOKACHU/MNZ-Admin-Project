@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function useModal() {
+interface ModalProps {
+  createInfo: any;
+  setCreateInfo: any;
+}
+
+export function useModal({ setCreateInfo, createInfo }: ModalProps) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
   };
 
   const handleModalClose = () => {
+    // setCreateInfo(createInfo);
     setOpen(false);
   };
+
+  useEffect(() => {
+    setCreateInfo(createInfo);
+  }, []);
 
   return {
     open,

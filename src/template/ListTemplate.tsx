@@ -19,6 +19,8 @@ interface ListTemplateProps {
   onSubmit?: any;
   children: React.ReactNode;
   createModalForm?: any;
+  setCreateInfo?: any;
+  createInfo: any;
 }
 
 export default function ListTemplate({
@@ -28,8 +30,13 @@ export default function ListTemplate({
   isButton,
   onSubmit,
   createModalForm,
+  setCreateInfo,
+  createInfo,
 }: ListTemplateProps) {
-  const { open, handleOpen } = useModal();
+  const { open, handleOpen, handleModalClose } = useModal({
+    setCreateInfo,
+    createInfo,
+  });
   const modalTitle = `${title} 생성 모달`;
   // if (loading) {
   //   return (
@@ -50,7 +57,7 @@ export default function ListTemplate({
     <>
       <MainModal
         open={open}
-        handleClose={handleOpen}
+        handleClose={handleModalClose}
         handleCreate={onSubmit}
         title={modalTitle}
       >
