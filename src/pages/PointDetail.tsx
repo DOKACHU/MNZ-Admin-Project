@@ -164,7 +164,7 @@ export default function CouponDetail() {
                                 variant="subtitle1"
                                 sx={styleSubtitle}
                               >
-                                생성일 :
+                                생성 일시:
                               </Typography>
                               <Typography variant="body2">
                                 {convertDate(fetchPostDetail?.createdAt)}
