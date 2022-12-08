@@ -123,7 +123,7 @@ export default function Notification() {
                 />
                 {createPreview === null ? (
                   <Typography variant="subtitle2" align="center">
-                    Upload/Change Your Profile Image
+                    Upload/Change Image
                   </Typography>
                 ) : (
                   <div
