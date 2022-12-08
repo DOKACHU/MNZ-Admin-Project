@@ -60,6 +60,7 @@ export const PointColumns = [
   { id: 'status', field: 'status', label: '상태' },
   { id: 'price', field: 'price', label: '포인트' },
   { id: 'reason', field: 'reason', label: '사유' },
+  { id: 'createdAt', field: 'createdAt', label: '생성일' },
 ];
 
 export const reviewColumns = [

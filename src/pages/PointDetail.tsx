@@ -3,10 +3,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography, Stack } from '@mui/material';
 import { DetailTemplate } from '../template';
-import { MainDetailForm, PointBasicInfo } from '../components';
-import { centerTab, POINT_BASE_API } from '../constansts';
+import { MainDetailForm, PointBasicInfo, MainSubCard } from '../components';
+import { centerTab, POINT_BASE_API, convertDate } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -15,6 +15,25 @@ interface TabPanelProps {
   index: number;
   other?: any;
 }
+const detailsIconSX = {
+  width: 15,
+  height: 15,
+  verticalAlign: 'text-top',
+  mr: 0.5,
+  mt: 0.25,
+};
+
+const styleH4 = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 600,
+};
+
+const styleSubtitle = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 500,
+};
 
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
@@ -64,12 +83,138 @@ export default function CouponDetail() {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.id === 0 && (
-                <Grid container spacing={3}>
-                  <Grid item sm={6} md={6}>
-                    <PointBasicInfo
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <MainSubCard title="세부 사항">
+                      <Grid item xs={6}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            포인트 지급 정보
+                          </Typography>
+                          <Stack spacing={0}>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                포인트 번호 :
+                              </Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.pointEventId}
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                포인트 상태 :
+                              </Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.status === 'add'
+                                  ? '지급'
+                                  : '차감'}
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                사유:
+                              </Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.reason}
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                포인트 :
+                              </Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.price}
+                              </Typography>
+                            </Stack>
+
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                생성일 :
+                              </Typography>
+                              <Typography variant="body2">
+                                {convertDate(fetchPostDetail?.createdAt)}
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Stack spacing={2}>
+                          <Typography variant="h4" sx={styleH4}>
+                            유저 정보
+                          </Typography>
+                          <Stack spacing={0}>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                유저 번호 :
+                              </Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.userId}
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                이름 :
+                              </Typography>
+                              <Typography variant="body2">테스트</Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Grid>
+                    </MainSubCard>
+                    {/* <PointBasicInfo
                       detail={fetchPostDetail}
                       onChange={handleChange}
-                    />
+                    /> */}
                   </Grid>
                 </Grid>
               )}

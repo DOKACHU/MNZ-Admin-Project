@@ -20,6 +20,7 @@ import {
   getComparator,
   POINT_BASE_API,
   statusArr,
+  convertDate,
 } from '../constansts';
 import { useGetLists } from '../hooks';
 
@@ -169,10 +170,12 @@ export default function Point() {
                 </TableCell>
                 <TableCell>{index + 1}</TableCell>
                 {/* <TableCell>{row?.pointEventId}</TableCell> */}
-                {/* <TableCell>{row?.userId}</TableCell> */}
-                <TableCell>{row?.status}</TableCell>
+                <TableCell>
+                  {row?.status === 'add' ? '지급' : ' 차감'}
+                </TableCell>
                 <TableCell>{row?.price}</TableCell>
                 <TableCell>{row?.reason}</TableCell>
+                <TableCell>{convertDate(row?.createdAt)}</TableCell>
               </TableRow>
             );
           })}
