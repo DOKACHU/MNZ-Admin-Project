@@ -38,6 +38,7 @@ export default function Point() {
     order,
     orderBy,
     handleRowClick,
+    handlePointSubmit,
   } = useGetLists({
     BaseURL: POINT_BASE_API,
     Init: pointInit,
@@ -46,12 +47,18 @@ export default function Point() {
   const rows = fetchList?.pointList || [];
   const total = fetchList?.total_count || 0;
   console.log({ createInfo });
+
+  const result = statusArr.filter((v) => v.id === createInfo?.status)[0];
+  console.log({ result });
+
   return (
     <ListTemplate
       isButton
       title="포인트"
       loading={isLoading}
-      onSubmit={handleSubmit}
+      onSubmit={handlePointSubmit}
+      setCreateInfo={setCreateInfo}
+      createInfo={createInfo}
       createModalForm={
         <>
           <Grid item sm={12}>
@@ -66,10 +73,22 @@ export default function Point() {
             />
           </Grid>
           <Grid item sm={12}>
+            <TextField
+              helperText="상태"
+              size="small"
+              id="outlined-basic1"
+              fullWidth
+              name="status"
+              onChange={handleCreateChange}
+              value={createInfo?.status}
+            />
+          </Grid>
+
+          {/* <Grid item sm={12}>
             <Autocomplete
               disableClearable
               options={statusArr}
-              defaultValue={createInfo?.status}
+              // defaultValue={statusArr[0]}
               onChange={(e, statusVal) => {
                 setCreateInfo({ ...createInfo, status: statusVal.id });
               }}
@@ -84,7 +103,7 @@ export default function Point() {
                 />
               )}
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item sm={12}>
             <TextField
