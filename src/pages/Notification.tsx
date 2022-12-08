@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { TableRow, TableCell, Checkbox, Grid, TextField } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  TableRow,
+  TableCell,
+  Checkbox,
+  Grid,
+  TextField,
+  Typography,
+  Box,
+} from '@mui/material';
 import { ListTemplate } from '../template';
 import { MainTable } from '../components';
 import {
@@ -14,6 +22,8 @@ import { useGetLists } from '../hooks';
 
 export default function Notification() {
   const {
+    createFileInput,
+
     fetchList,
     isLoading,
     createInfo,
@@ -27,13 +37,20 @@ export default function Notification() {
     order,
     orderBy,
     handleRowClick,
+    handleCreateFileClick,
+    createPreview,
+    handleCreateUpload,
   } = useGetLists({
     BaseURL: '',
     Init: '',
   });
-
+  const [toggle, setToggle] = useState(false);
   const rows = fetchList?.couponList || [];
   const total = fetchList?.total_count || 0;
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
 
   return (
     <ListTemplate
@@ -41,6 +58,8 @@ export default function Notification() {
       title="푸시 알림"
       loading={isLoading}
       onSubmit={handleSubmit}
+      setCreateInfo={setCreateInfo}
+      createInfo={createInfo}
       createModalForm={
         <>
           <Grid item sm={12}>
@@ -77,6 +96,54 @@ export default function Notification() {
               // onChange={handleCreateChange}
               // value={createInfo?.phoneNumber}
             />
+          </Grid>
+          <Grid item xs={12} />
+
+          <Grid item xs={12}>
+            <Checkbox value={toggle} onChange={handleToggle} /> 이미지 추가
+            {toggle && (
+              <Box
+                sx={{
+                  border: '1px dotted #e5e5e5',
+                  height: '100px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
+                onClick={handleCreateFileClick}
+              >
+                <input
+                  hidden
+                  ref={createFileInput}
+                  type="file"
+                  name="imageFile"
+                  accept="image/*"
+                  onChange={handleCreateUpload}
+                />
+                {createPreview === null ? (
+                  <Typography variant="subtitle2" align="center">
+                    Upload/Change Your Profile Image
+                  </Typography>
+                ) : (
+                  <div
+                    style={{
+                      width: '100px',
+                      height: '100px',
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      src={createPreview}
+                      alt="preview"
+                    />
+                  </div>
+                )}
+              </Box>
+            )}
           </Grid>
         </>
       }
