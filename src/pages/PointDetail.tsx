@@ -69,7 +69,7 @@ export default function PointDetail() {
     setValue(newValue);
   };
 
-  console.log({ fetchPostDetail });
+  // console.log({ fetchPostDetail });
 
   return (
     <DetailTemplate

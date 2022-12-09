@@ -55,7 +55,7 @@ export const productColumns = [
 export const PointColumns = [
   // { id: 'pointEventId', field: 'pointEventId', label: '포인트 번호' },
   // { id: 'userId', field: 'userId', label: '유저 번호' },
-  { id: 'index', field: 'index', label: 'No' },
+  // { id: 'index', field: 'index', label: 'No' },
   // TODO: 사용자 정보 입력
   { id: 'status', field: 'status', label: '상태' },
   { id: 'price', field: 'price', label: '포인트' },

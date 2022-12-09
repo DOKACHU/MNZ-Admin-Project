@@ -157,7 +157,7 @@ export default function Point() {
                   />
                 </TableCell>
                 {/* <TableCell>{index + 1}</TableCell> */}
-                <TableCell>{row?.pointEventId}</TableCell>
+                {/* <TableCell>{row?.pointEventId}</TableCell> */}
                 <TableCell>
                   {row?.status === 'add' ? '지급' : ' 차감'}
                 </TableCell>

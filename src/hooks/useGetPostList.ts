@@ -141,7 +141,12 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   };
 
   const handlePointSubmit = () => {
-    mutate(post, {
+    const newPost = {
+      ...post,
+      price: Number(post.price),
+    };
+
+    mutate(newPost, {
       onError: (e: any) => {
         if (e.response.data.statusCode === 409) {
           setPost(Init);
@@ -150,7 +155,9 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
       },
       onSuccess: () => {
         setPost(Init);
-        alert('포인트가 지급 되었습니다.');
+        alert(
+          `포인트가 ${newPost.status === 'add' ? '지급' : '차감'} 되었습니다.`
+        );
       },
     });
   };
