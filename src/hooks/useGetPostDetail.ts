@@ -7,7 +7,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { mockReviewList } from '../constansts';
 
 const GetDetailListAPI = async (BaseURL: string) => {
-  const URL = `${BaseURL}?per_page=10&cursor=1`;
+  const URL = `${BaseURL}?cursor=1&per_page=100`;
   const { data } = await axios.get(URL);
   return data;
 };

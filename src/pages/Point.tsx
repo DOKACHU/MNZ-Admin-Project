@@ -49,8 +49,6 @@ export default function Point() {
   const rows = fetchList?.pointList || [];
   const total = fetchList?.total_count || 0;
 
-  console.log({ createInfo });
-
   return (
     <ListTemplate
       isButton
@@ -187,8 +185,8 @@ export default function Point() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{index + 1}</TableCell>
-                {/* <TableCell>{row?.pointEventId}</TableCell> */}
+                {/* <TableCell>{index + 1}</TableCell> */}
+                <TableCell>{row?.pointEventId}</TableCell>
                 <TableCell>
                   {row?.status === 'add' ? '지급' : ' 차감'}
                 </TableCell>

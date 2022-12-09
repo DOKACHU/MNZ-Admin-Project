@@ -48,7 +48,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
     </div>
   );
 }
-export default function CouponDetail() {
+export default function PointDetail() {
   const {
     fetchPostDetail,
     isLoading,
@@ -63,6 +63,8 @@ export default function CouponDetail() {
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
   };
+
+  console.log({ fetchPostDetail });
 
   return (
     <DetailTemplate
@@ -164,7 +166,7 @@ export default function CouponDetail() {
                                 variant="subtitle1"
                                 sx={styleSubtitle}
                               >
-                                생성 일시:
+                                생성 일시 :
                               </Typography>
                               <Typography variant="body2">
                                 {convertDate(fetchPostDetail?.createdAt)}
