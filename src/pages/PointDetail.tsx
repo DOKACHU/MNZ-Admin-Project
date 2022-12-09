@@ -40,6 +40,11 @@ const styleSubtitle = {
   fontWeight: 500,
 };
 
+const styleValue = {
+  color: '#212121',
+  fontWeight: 600,
+};
+
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
     <div
@@ -75,7 +80,7 @@ export default function PointDetail() {
     <DetailTemplate
       loading={isLoading}
       title="포인터 상세페이지"
-      isButton
+      // isButton
       updateText="포인트 수정"
       deleteText="포인트 삭제"
       onUpadate={handleUpadate}
@@ -99,7 +104,7 @@ export default function PointDetail() {
                             포인트 지급 정보
                           </Typography>
                           <Stack spacing={0}>
-                            <Stack
+                            {/* <Stack
                               direction="row"
                               spacing={1}
                               alignItems="center"
@@ -110,10 +115,10 @@ export default function PointDetail() {
                               >
                                 포인트 번호 :
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {fetchPostDetail?.pointEventId}
                               </Typography>
-                            </Stack>
+                            </Stack> */}
                             <Stack
                               direction="row"
                               spacing={1}
@@ -125,7 +130,7 @@ export default function PointDetail() {
                               >
                                 포인트 상태 :
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {fetchPostDetail?.status === 'add'
                                   ? '지급'
                                   : '차감'}
@@ -142,7 +147,7 @@ export default function PointDetail() {
                               >
                                 사유:
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {fetchPostDetail?.reason}
                               </Typography>
                             </Stack>
@@ -157,7 +162,7 @@ export default function PointDetail() {
                               >
                                 포인트 :
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {numberWithCommas(
                                   Number(fetchPostDetail?.price)
                                 )}
@@ -175,7 +180,7 @@ export default function PointDetail() {
                               >
                                 생성 일시 :
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {convertDate(fetchPostDetail?.createdAt)}
                               </Typography>
                             </Stack>
@@ -199,7 +204,7 @@ export default function PointDetail() {
                               >
                                 유저 번호 :
                               </Typography>
-                              <Typography variant="body2">
+                              <Typography variant="body2" sx={styleValue}>
                                 {fetchPostDetail?.userId}
                               </Typography>
                             </Stack>
@@ -214,7 +219,9 @@ export default function PointDetail() {
                               >
                                 이름 :
                               </Typography>
-                              <Typography variant="body2">테스트</Typography>
+                              <Typography variant="body2" sx={styleValue}>
+                                테스트
+                              </Typography>
                             </Stack>
                           </Stack>
                         </Stack>
