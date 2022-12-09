@@ -6,7 +6,12 @@ import { useState } from 'react';
 import { Box, Grid, Typography, Stack } from '@mui/material';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, PointBasicInfo, MainSubCard } from '../components';
-import { centerTab, POINT_BASE_API, convertDate } from '../constansts';
+import {
+  centerTab,
+  POINT_BASE_API,
+  convertDate,
+  numberWithCommas,
+} from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -153,7 +158,9 @@ export default function PointDetail() {
                                 포인트 :
                               </Typography>
                               <Typography variant="body2">
-                                {fetchPostDetail?.price}
+                                {numberWithCommas(
+                                  Number(fetchPostDetail?.price)
+                                )}
                               </Typography>
                             </Stack>
 

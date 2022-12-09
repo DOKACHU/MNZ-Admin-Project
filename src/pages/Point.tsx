@@ -21,6 +21,7 @@ import {
   getComparator,
   POINT_BASE_API,
   statusArr,
+  numberWithCommas,
   convertDate,
 } from '../constansts';
 import { useGetLists } from '../hooks';
@@ -76,7 +77,7 @@ export default function Point() {
               onChange={handleCreateChange}
               value="add"
               name="status"
-              inputProps={{ 'aria-label': 'A' }}
+              // inputProps={{ 'aria-label': 'A' }}
             />
             지급
             <Radio
@@ -84,40 +85,10 @@ export default function Point() {
               onChange={handleCreateChange}
               value="sub"
               name="status"
-              inputProps={{ 'aria-label': 'B' }}
+              // inputProps={{ 'aria-label': 'B' }}
             />
             차감
-            {/* <TextField
-              helperText="상태"
-              size="small"
-              id="outlined-basic1"
-              fullWidth
-              name="status"
-              onChange={handleCreateChange}
-              value={createInfo?.status}
-            /> */}
           </Grid>
-
-          {/* <Grid item sm={12}>
-            <Autocomplete
-              disableClearable
-              options={statusArr}
-              // defaultValue={statusArr[0]}
-              onChange={(e, statusVal) => {
-                setCreateInfo({ ...createInfo, status: statusVal.id });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="상태"
-                  name="status"
-                  fullWidth
-                  // onChange={handleCreateChange}
-                  size="small"
-                />
-              )}
-            />
-          </Grid> */}
 
           <Grid item sm={12}>
             <TextField
@@ -127,7 +98,7 @@ export default function Point() {
               fullWidth
               name="price"
               onChange={handleCreateChange}
-              value={createInfo?.price}
+              value={Number(createInfo?.price)}
             />
           </Grid>
           <Grid item sm={12}>
@@ -190,7 +161,7 @@ export default function Point() {
                 <TableCell>
                   {row?.status === 'add' ? '지급' : ' 차감'}
                 </TableCell>
-                <TableCell>{row?.price}</TableCell>
+                <TableCell>{numberWithCommas(row?.price)}</TableCell>
                 <TableCell>{row?.reason}</TableCell>
                 <TableCell>{convertDate(row?.createdAt)}</TableCell>
               </TableRow>

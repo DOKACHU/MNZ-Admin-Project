@@ -44,6 +44,10 @@ export const getComparator = (order: string, orderBy: string) => {
 //   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
 // }
 
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 export function convertDate(date: any) {
   return dayjs(date).format('YYYY-MM-DD hh:mm:ss'); // '25/01/2019'
 }

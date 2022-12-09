@@ -47,6 +47,6 @@ export const proInit = {
 export const pointInit = {
   userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
   status: 'add',
-  price: '',
+  price: 0,
   reason: '',
 };
