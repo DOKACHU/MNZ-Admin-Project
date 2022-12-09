@@ -49,7 +49,7 @@ export function numberWithCommas(x) {
 }
 
 export function convertDate(date: any) {
-  return dayjs(date).format('YYYY-MM-DD hh:mm:ss'); // '25/01/2019'
+  return dayjs(date).format('YYYY-MM-DD HH:mm:ss'); // '25/01/2019'
 }
 
 export const statusArr = [
