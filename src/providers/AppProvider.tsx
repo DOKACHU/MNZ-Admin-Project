@@ -3,7 +3,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { CircularProgress, Button, Box, CssBaseline } from '@mui/material';
+import {
+  CircularProgress,
+  Button,
+  Box,
+  CssBaseline,
+  Typography,
+} from '@mui/material';
 
 const style = {
   height: '100%',
@@ -21,7 +27,8 @@ function ErrorFallback() {
   //   console.log('ERROR');
   return (
     <Box>
-      <Button> Refresh</Button>
+      <Typography variant="h5"> 뭔가 문제 발생 </Typography>
+      <Button>Refresh</Button>
     </Box>
   );
 }

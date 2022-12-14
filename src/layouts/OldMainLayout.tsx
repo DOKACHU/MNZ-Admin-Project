@@ -1,17 +1,10 @@
 import React from 'react';
+import { Outlet, Link as RouterLink } from 'react-router-dom';
 import { Box, AppBar, Toolbar, Typography, Link } from '@mui/material';
+
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
+
 import SideBar from './SideBar';
-
-interface MainLayoutProps {
-  children: React.ReactNode;
-}
-
-const MainBlock = {
-  display: 'flex',
-  height: '100vh',
-};
 
 const Main = styled.main`
   margin-top: 88px;
@@ -21,9 +14,9 @@ const Main = styled.main`
   border-radius: 8px;
 `;
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function OldMainLayout() {
   return (
-    <Box sx={MainBlock}>
+    <Box sx={{ display: 'flex' }}>
       <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0}>
         <Toolbar
           sx={{
@@ -55,7 +48,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </Toolbar>
       </AppBar>
       <SideBar />
-      <Main>{children}</Main>
+      <Main>
+        <Outlet />
+      </Main>
     </Box>
   );
 }
