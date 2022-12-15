@@ -39,8 +39,11 @@ export const protectedRoutes = [
         path: 'pro',
         element: <div>pro</div>,
       },
+      {
+        path: 'coupon',
+        element: <div>coupon</div>,
+      },
       // TODO: /admin/asdfasdf 이렇게 아무렇게나 입려하면 /admin 으로 빠지기
-
       { path: '*', element: <Navigate to="." /> },
     ],
   },
