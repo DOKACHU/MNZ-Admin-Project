@@ -1,15 +1,25 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import { Suspense } from 'react';
+import { Box, CircularProgress } from '@mui/material';
 import { Navigate, Outlet } from 'react-router-dom';
-import { Dashboard } from '../feature/misc';
+import { Dashboard } from '../features/misc';
 import { MainLayout } from '../layouts';
 
 export default function App() {
-  // TODO: mainLayout
   return (
     <MainLayout>
-      ProtectedRoutes
-      <Outlet />
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              border: '1px solid red',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        }
+      >
+        <Outlet />
+      </Suspense>
     </MainLayout>
   );
 }
@@ -24,6 +34,10 @@ export const protectedRoutes = [
       {
         path: '',
         element: <Dashboard />,
+      },
+      {
+        path: 'pro',
+        element: <div>pro</div>,
       },
       // TODO: /admin/asdfasdf 이렇게 아무렇게나 입려하면 /admin 으로 빠지기
 

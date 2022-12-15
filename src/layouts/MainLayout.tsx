@@ -19,6 +19,7 @@ const Main = styled.main`
   width: 100%;
   background-color: #e3f2fd;
   border-radius: 8px;
+  padding: 10px;
 `;
 
 export default function MainLayout({ children }: MainLayoutProps) {
@@ -42,7 +43,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <Box component="span">
               <Link
                 component={RouterLink}
-                to="/"
+                to="/admin"
                 sx={{
                   color: '##e3f2fd',
                   textDecoration: 'none',
