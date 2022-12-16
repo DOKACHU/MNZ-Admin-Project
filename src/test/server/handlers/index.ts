@@ -1,3 +1,4 @@
-import { usersHandlers } from './users';
+// import { usersHandlers } from './users';
+import { couponsHandlers } from './coupons';
 
-export const handlers = [...usersHandlers];
+export const handlers = [...couponsHandlers];

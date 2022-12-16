@@ -31,7 +31,9 @@ function ErrorFallback() {
   return (
     <Box>
       <Typography variant="h5"> 뭔가 문제 발생 </Typography>
-      <Button>Refresh</Button>
+      <Button onClick={() => window.location.assign(window.location.origin)}>
+        Refresh
+      </Button>
     </Box>
   );
 }
