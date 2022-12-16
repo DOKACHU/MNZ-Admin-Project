@@ -7,6 +7,7 @@ import { useCoupons } from '../api';
 
 export default function Coupons() {
   const couponsQuery = useCoupons();
+
   console.log({ couponsQuery });
 
   return (

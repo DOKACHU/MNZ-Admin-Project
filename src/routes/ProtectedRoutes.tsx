@@ -35,8 +35,6 @@ export default function App() {
   );
 }
 
-// TODO: routes array
-
 export const protectedRoutes = [
   {
     path: '/admin',
@@ -46,10 +44,10 @@ export const protectedRoutes = [
         path: '',
         element: <Dashboard />,
       },
-      {
-        path: 'pro',
-        element: <div>pro</div>,
-      },
+      // {
+      //   path: 'pro',
+      //   element: <div>pro</div>,
+      // },
       {
         path: 'coupon/*',
         element: <CouponRoutes />,
