@@ -25,13 +25,13 @@ import {
   Payment,
   PaymentDetail,
 } from './pages';
-import { MainLayout } from './layouts';
+import { OldMainLayout } from './layouts';
 
 export function AppRoutes() {
   // TODO: 인증 절차 넣기
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
+      <Route path="/" element={<OldMainLayout />}>
         <Route path="login" />
         <Route path="book" element={<Book />} />
         <Route path="book/:id" element={<BookDetail />} />

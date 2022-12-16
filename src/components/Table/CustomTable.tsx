@@ -74,7 +74,7 @@ export function CustomTable<Entry extends { id: string }>({
                           <Cell entry={entry} />
                         </TableCell>
                       ) : (
-                        <TableCell>{entry[field]}</TableCell>
+                        <TableCell>{entry[field] as any}</TableCell>
                       )}
                     </>
                   ))}

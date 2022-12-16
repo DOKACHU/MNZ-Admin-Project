@@ -63,7 +63,7 @@ export const usersHandlers = [
       const result = db.user.delete({
         where: {
           id: {
-            equals: userId,
+            equals: userId as any,
           },
           teamId: {
             equals: user.teamId,
