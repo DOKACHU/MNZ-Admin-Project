@@ -1,6 +1,7 @@
 import Reac, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {
@@ -10,6 +11,8 @@ import {
   CssBaseline,
   Typography,
 } from '@mui/material';
+import { AuthProvider } from '../lib/auth';
+import { queryClient } from '../lib/react-query';
 
 const style = {
   height: '100%',
@@ -34,6 +37,7 @@ function ErrorFallback() {
 }
 
 export default function AppProvider({ children }: AppProviderProps) {
+  console.log(import.meta.env.MODE);
   return (
     <Suspense
       fallback={
@@ -45,10 +49,13 @@ export default function AppProvider({ children }: AppProviderProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <CssBaseline />
         <HelmetProvider>
-          {/* <QueryClientProvider> */}
-          {/* TODO: notification */}
-          <Router>{children}</Router>
-          {/* </QueryClientProvider> */}
+          {import.meta.env.MODE !== 'development' && <ReactQueryDevtools />}
+          <QueryClientProvider client={queryClient}>
+            {/* TODO: notification */}
+            <AuthProvider>
+              <Router>{children}</Router>
+            </AuthProvider>
+          </QueryClientProvider>
         </HelmetProvider>
       </ErrorBoundary>
     </Suspense>

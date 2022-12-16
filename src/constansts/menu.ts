@@ -4,6 +4,11 @@
 // TODO: icon 넣기
 export const mainNavbarItems = [
   {
+    id: 8,
+    label: 'Dashboard',
+    route: '',
+  },
+  {
     id: 0,
     label: '예약 관리',
     route: 'book',
