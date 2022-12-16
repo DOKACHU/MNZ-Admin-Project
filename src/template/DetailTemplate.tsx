@@ -71,7 +71,7 @@ export default function DetailTemplate({
       <MainUpdateModal
         open={open}
         handleClose={handleModalClose}
-        handleCreate={onSubmit}
+        handleUpdate={onSubmit}
         title={modalTitle}
         setUpdateInfo={setUpdateInfo}
         updateInfo={updateInfo}

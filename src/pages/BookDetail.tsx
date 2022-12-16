@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   Box,
@@ -19,6 +20,8 @@ import {
   Chip,
   TextField,
   CircularProgress,
+  Autocomplete,
+  Button,
 } from '@mui/material';
 import {
   CalendarTodayTwoTone,
@@ -62,6 +65,12 @@ const styleSubtitle = {
   fontWeight: 500,
 };
 
+const bookingStatusArr = [
+  { label: '예약 취소', id: 'cancel' },
+  { label: '예약 대기', id: 'wait' },
+  { label: '예약 성공', id: 'success' },
+];
+
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
     <div
@@ -76,17 +85,17 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   );
 }
 
-// function codeAtStr(code: string) {
-//   if (code === '00') {
-//     return 'error';
-//   }
-//   if (code === '01') {
-//     return 'warning';
-//   }
-//   if (code === '02') {
-//     return 'success';
-//   }
-// }
+function codeAtStr(value: string) {
+  if (value === 'cancel') {
+    return 'error';
+  }
+  if (value === 'wait') {
+    return 'wait';
+  }
+  if (value === 'success') {
+    return 'success';
+  }
+}
 
 function createData(
   product: string,
@@ -109,18 +118,56 @@ const rows = [
 ];
 
 export default function BookDetail() {
-  const { fetchPostDetail, isLoading } = useGetDetail({
+  const {
+    fetchPostDetail,
+    isLoading,
+    handleChange,
+    setFetchPostDetail,
+    setToggle,
+    toggle,
+  } = useGetDetail({
     BaseURL: BOOK_BASE_API,
+    UpdateInit: '',
   });
 
   const [value, setValue] = useState<number>(0);
+
   const [dayValue, setDayValue] = useState(new Date('2022-12-07'));
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  console.log({ startDate, endDate });
 
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
   };
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
   console.log({ fetchPostDetail });
-  console.log({ dayValue });
+  // console.log({ dayValue });
+
+  const seletedValue = bookingStatusArr.filter(
+    (v: any) => v.id === fetchPostDetail?.status
+  )[0]?.label;
+
+  const seletedId = bookingStatusArr.filter(
+    (v: any) => v.id === fetchPostDetail?.status
+  )[0]?.id;
+
+  const color = codeAtStr(seletedId || '');
+
+  console.log({ color, seletedValue });
+
+  const handleSubmit = () => {
+    setFetchPostDetail({
+      ...fetchPostDetail,
+      bookingDate: dayValue,
+    });
+  };
 
   if (isLoading) {
     return <CircularProgress />;
@@ -132,6 +179,7 @@ export default function BookDetail() {
       loading={isLoading}
       title="예약 상세"
       isButton
+      onSubmit={handleSubmit}
       updateModalForm={
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -159,6 +207,8 @@ export default function BookDetail() {
               type="time"
               size="small"
               defaultValue="09:00"
+              name="startTime"
+              onChange={handleChange}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -166,7 +216,7 @@ export default function BookDetail() {
                 step: 300, // 5 min
               }}
               fullWidth
-              helperText="시작 시간 "
+              helperText="예약 시작 시간 "
             />
           </Grid>
           <Grid item xs={6}>
@@ -175,6 +225,8 @@ export default function BookDetail() {
               label="Alarm clock"
               type="time"
               size="small"
+              name="endTime"
+              onChange={handleChange}
               defaultValue="18:00"
               InputLabelProps={{
                 shrink: true,
@@ -183,22 +235,26 @@ export default function BookDetail() {
                 step: 300, // 5 min
               }}
               fullWidth
-              helperText="마감 시간 "
+              helperText="예약 마감 시간 "
             />
           </Grid>
         </Grid>
       }
       extra={
-        <Chip
-          sx={{
-            fontSize: 12,
-            marginLeft: 2,
-          }}
-          label="예약 취소"
-          size="small"
-          color="error"
-          variant="outlined"
-        />
+        <>
+          {fetchPostDetail?.isCancel && (
+            <Chip
+              sx={{
+                fontSize: 12,
+                marginLeft: 2,
+              }}
+              label="예약 취소"
+              size="small"
+              color="error"
+              variant="outlined"
+            />
+          )}
+        </>
       }
     >
       <MainDetailForm
@@ -225,7 +281,7 @@ export default function BookDetail() {
                           <Grid item>
                             <Typography variant="body2">
                               <CalendarTodayTwoTone sx={detailsIconSX} />
-                              고민구
+                              {fetchPostDetail?.userName}
                             </Typography>
                           </Grid>
                           <Grid item>
@@ -329,7 +385,7 @@ export default function BookDetail() {
                               >
                                 진행시간 :
                               </Typography>
-                              <Typography variant="body2">30분</Typography>
+                              <Typography variant="body2">{`${fetchPostDetail?.runningTime}분`}</Typography>
                             </Stack>
                           </Stack>
                         </Stack>
@@ -356,7 +412,7 @@ export default function BookDetail() {
                             <Typography variant="subtitle1" sx={styleSubtitle}>
                               치료 횟수 :
                             </Typography>
-                            <Typography variant="body2">1/8</Typography>
+                            <Typography variant="body2">{`${fetchPostDetail?.round}회`}</Typography>
                           </Stack>
                           <Stack
                             direction="row"
@@ -366,12 +422,56 @@ export default function BookDetail() {
                             <Typography variant="subtitle1" sx={styleSubtitle}>
                               예약 상태 :
                             </Typography>
-                            <Chip
-                              label="예약 성공"
-                              variant="outlined"
-                              size="small"
-                              color="success"
-                            />
+                            {toggle ? (
+                              <>
+                                <Autocomplete
+                                  sx={{ width: 150 }}
+                                  disableClearable
+                                  options={bookingStatusArr}
+                                  // onChange={(e) => {
+                                  //   handleChange(e);
+                                  // }}
+                                  onSelect={(e) => {
+                                    // setToggle(false);
+                                    handleChange(e);
+                                  }}
+                                  value={seletedValue}
+                                  renderInput={(params: any) => (
+                                    <TextField
+                                      {...params}
+                                      label=""
+                                      name="status"
+                                      fullWidth
+                                      size="small"
+                                    />
+                                  )}
+                                />
+
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  onClick={() => setToggle(false)}
+                                >
+                                  확인
+                                </Button>
+                              </>
+                            ) : (
+                              <>
+                                {color && (
+                                  <Chip
+                                    sx={{
+                                      cursor: 'pointer',
+                                    }}
+                                    onClick={handleToggle}
+                                    label={seletedValue}
+                                    variant="outlined"
+                                    size="small"
+                                    // color={color}
+                                    // color="success"
+                                  />
+                                )}
+                              </>
+                            )}
                           </Stack>
                         </Stack>
                       </Grid>
@@ -398,7 +498,7 @@ export default function BookDetail() {
                                 프로 ID :
                               </Typography>
                               <Typography variant="body2">
-                                30a12e6e-f726-4514-8da4-2ab45bbf959b
+                                {fetchPostDetail?.proId}
                               </Typography>
                             </Stack>
                             <Stack
@@ -412,7 +512,9 @@ export default function BookDetail() {
                               >
                                 프로 이름 :
                               </Typography>
-                              <Typography variant="body2">김도카츄</Typography>
+                              <Typography variant="body2">
+                                {fetchPostDetail?.proName}
+                              </Typography>
                             </Stack>
                           </Stack>
                           {/*  */}
@@ -468,7 +570,7 @@ export default function BookDetail() {
                                 병원 ID :
                               </Typography>
                               <Typography variant="body2">
-                                3753b4df-0a3b-43bf-8d94-aceb1745cfe1
+                                {fetchPostDetail?.centerId}
                               </Typography>
                             </Stack>
                             <Stack

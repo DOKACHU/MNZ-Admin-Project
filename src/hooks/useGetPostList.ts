@@ -7,7 +7,6 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { numberWithCommas } from '../constansts';
 
 const GetListAPI = async (BaseURL: string, pagination: any) => {
   const { page, rowsPerPage } = pagination;

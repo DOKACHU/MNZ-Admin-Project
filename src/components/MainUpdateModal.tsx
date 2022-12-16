@@ -14,7 +14,7 @@ interface MainModalProps {
   title: string;
   open: boolean;
   children: React.ReactNode;
-  handleCreate?: any;
+  handleUpdate?: any;
   handleClose?: any;
   setUpdateInfo?: any;
   updateInfo?: any;
@@ -24,7 +24,7 @@ export default function MainUpdateModal({
   title,
   open,
   children,
-  handleCreate,
+  handleUpdate,
   handleClose,
   setUpdateInfo,
   updateInfo,
@@ -64,7 +64,7 @@ export default function MainUpdateModal({
           <Button
             variant="outlined"
             onClick={() => {
-              handleCreate();
+              handleUpdate();
               handleClose();
             }}
           >
