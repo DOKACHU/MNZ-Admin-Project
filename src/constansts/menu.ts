@@ -6,7 +6,7 @@ export const mainNavbarItems = [
   {
     id: 0,
     label: '예약 관리',
-    route: 'book',
+    route: 'booking',
     // icon: <Apartment />,
   },
   {

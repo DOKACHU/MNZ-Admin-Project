@@ -17,17 +17,22 @@ import {
   TableRow,
   TableCell,
   Chip,
+  TextField,
+  CircularProgress,
 } from '@mui/material';
-import dayjs from 'dayjs';
 import {
   CalendarTodayTwoTone,
   PhoneAndroidTwoTone,
   EmailTwoTone,
 } from '@mui/icons-material';
+import dayjs from 'dayjs';
 
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, MainSubCard } from '../components';
-import { bookTab, CENTER_BASE_API } from '../constansts';
+import { bookTab, BOOK_BASE_API, convertDay, convertTime } from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -101,41 +106,88 @@ const rows = [
     '80,000'
     // '$1200.00'
   ),
-  // createData(
-  //   'Landing Page',
-  //   'lorem ipsum dolor sit amat, connecter adieu siccing eliot',
-  //   '7',
-  //   '$100.00',
-  //   '$700.00'
-  // ),
-  // createData(
-  //   'Admin Template',
-  //   'lorem ipsum dolor sit amat, connecter adieu siccing eliot',
-  //   '5',
-  //   '$150.00',
-  //   '$750.00'
-  // ),
 ];
 
 export default function BookDetail() {
   const { fetchPostDetail, isLoading } = useGetDetail({
-    BaseURL: CENTER_BASE_API,
+    BaseURL: BOOK_BASE_API,
   });
+
   const [value, setValue] = useState<number>(0);
-  // const [date, setDate] = useState(dayjs('2022-04-07'));
-  // const [date, setDate] = useState(() => dayjs('2022-02-01T00:00'));
+  const [dayValue, setDayValue] = useState(new Date('2022-12-07'));
 
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
   };
+  console.log({ fetchPostDetail });
+  console.log({ dayValue });
 
+  if (isLoading) {
+    return <CircularProgress />;
+  }
   return (
     <DetailTemplate
       updateText="예약 수정"
       cancelText="예약 취소"
       loading={isLoading}
-      title="예약 상세페이지"
+      title="예약 상세"
       isButton
+      updateModalForm={
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <StaticDatePicker
+                orientation="landscape"
+                openTo="day"
+                value={dayValue}
+                componentsProps={{
+                  actionBar: {
+                    actions: ['today'],
+                  },
+                }}
+                onChange={(newValue: any) => {
+                  setDayValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              id="time"
+              label="Alarm clock"
+              type="time"
+              size="small"
+              defaultValue="09:00"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              inputProps={{
+                step: 300, // 5 min
+              }}
+              fullWidth
+              helperText="시작 시간 "
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              id="time"
+              label="Alarm clock"
+              type="time"
+              size="small"
+              defaultValue="18:00"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              inputProps={{
+                step: 300, // 5 min
+              }}
+              fullWidth
+              helperText="마감 시간 "
+            />
+          </Grid>
+        </Grid>
+      }
       extra={
         <Chip
           sx={{
@@ -214,9 +266,10 @@ export default function BookDetail() {
                                 예약 번호 :
                               </Typography>
                               <Typography variant="body2">
-                                000001-TXT
+                                {fetchPostDetail?.bookingId}
                               </Typography>
                             </Stack>
+                            {/*  */}
                             <Stack
                               direction="row"
                               spacing={1}
@@ -229,9 +282,42 @@ export default function BookDetail() {
                                 예약 날짜 :
                               </Typography>
                               <Typography variant="body2">
-                                YYYY-MM-DD
+                                {convertDay(fetchPostDetail?.bookingDate)}
                               </Typography>
                             </Stack>
+
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                예약 시작 시간:
+                              </Typography>
+                              <Typography variant="body2">
+                                {convertTime(fetchPostDetail?.startTime)}
+                              </Typography>
+                            </Stack>
+
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography
+                                variant="subtitle1"
+                                sx={styleSubtitle}
+                              >
+                                예약 마감 시간:
+                              </Typography>
+                              <Typography variant="body2">
+                                {convertTime(fetchPostDetail?.endTime)}
+                              </Typography>
+                            </Stack>
+
                             <Stack
                               direction="row"
                               spacing={1}

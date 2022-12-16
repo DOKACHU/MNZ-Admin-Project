@@ -4,6 +4,7 @@ export { default as MainDetailForm } from './MainDetailForm';
 export { default as MainProfile } from './MainProfile';
 export { default as MainSubCard } from './MainSubCard';
 export { default as MainModal } from './MainModal';
+export { default as MainUpdateModal } from './MainUpdateModal';
 
 // center
 export { default as CenterBasicInfo } from './CenterBasicInfo';

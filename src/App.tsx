@@ -33,8 +33,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="login" />
-        <Route path="book" element={<Book />} />
-        <Route path="book/:id" element={<BookDetail />} />
+        <Route path="booking" element={<Book />} />
+        <Route path="booking/:id" element={<BookDetail />} />
         <Route path="center" element={<Center />} />
         <Route path="center/:id" element={<CenterDetail />} />
         <Route path="pro" element={<Pro />} />
