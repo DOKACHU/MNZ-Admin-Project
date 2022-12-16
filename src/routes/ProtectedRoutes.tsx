@@ -18,7 +18,7 @@ export default function App() {
         fallback={
           <Box
             sx={{
-              height: '100vh',
+              minHeight: 'calc(100vh - 110px)',
               border: '1px solid red',
               display: 'flex',
               justifyContent: 'center',
