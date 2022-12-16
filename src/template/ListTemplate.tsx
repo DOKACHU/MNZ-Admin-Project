@@ -31,21 +31,7 @@ export default function ListTemplate({
 }: ListTemplateProps) {
   const { open, handleOpen } = useModal();
   const modalTitle = `${title} 생성 모달`;
-  // if (loading) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         height: '100%',
-  //         padding: 3,
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <CircularProgress />
-  //     </Box>
-  //   );
-  // }
+
   return (
     <>
       <MainModal

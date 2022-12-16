@@ -4,6 +4,13 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { Dashboard } from '../features/misc';
 import { MainLayout } from '../layouts';
 
+import { lazyImport } from '../utils/lazyImport';
+
+const { CouponRoutes } = lazyImport(
+  () => import('../features/coupons'),
+  'CouponRoutes'
+);
+
 export default function App() {
   return (
     <MainLayout>
@@ -11,7 +18,11 @@ export default function App() {
         fallback={
           <Box
             sx={{
+              height: '100vh',
               border: '1px solid red',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <CircularProgress />
@@ -40,8 +51,8 @@ export const protectedRoutes = [
         element: <div>pro</div>,
       },
       {
-        path: 'coupon',
-        element: <div>coupon</div>,
+        path: 'coupon/*',
+        element: <CouponRoutes />,
       },
       // TODO: /admin/asdfasdf 이렇게 아무렇게나 입려하면 /admin 으로 빠지기
       { path: '*', element: <Navigate to="." /> },
