@@ -30,13 +30,12 @@ const DeleteDetailAPI = async (BaseURL: string, RowId: string | undefined) => {
 
 interface GetDetailProps {
   BaseURL: string;
-  UpdateInit: any;
+  UpdateInit?: any;
 }
 
 const bookingStatusArr = [
-  { label: '예약 취소', id: 'cancel' },
   { label: '예약 대기', id: 'wait' },
-  { label: '예약 성공', id: 'success' },
+  { label: '예약 확정 ', id: 'success' },
 ];
 export function useGetDetail({ BaseURL, UpdateInit }: GetDetailProps) {
   const queryClient = useQueryClient();

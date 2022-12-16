@@ -51,7 +51,7 @@ export default function ProBasicInfo({ detail }: ProBasicInfoProps) {
         />
       </Grid>
       <Grid item md={12} xs={12}>
-        <Checkbox /> 마케팅 동의 여부
+        {/* <Checkbox /> 마케팅 동의 여부 */}
         {/* <DatePicker
           views={['day']}
           label="Just date"

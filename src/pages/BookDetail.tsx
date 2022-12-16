@@ -35,7 +35,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { DetailTemplate } from '../template';
 import { MainDetailForm, MainSubCard } from '../components';
-import { bookTab, BOOK_BASE_API, convertDay, convertTime } from '../constansts';
+import {
+  bookTab,
+  BOOK_BASE_API,
+  convertDay,
+  convertTime,
+  mockTimeSlots,
+} from '../constansts';
 import { useGetDetail } from '../hooks';
 
 interface TabPanelProps {
@@ -66,9 +72,8 @@ const styleSubtitle = {
 };
 
 const bookingStatusArr = [
-  { label: '예약 취소', id: 'cancel' },
   { label: '예약 대기', id: 'wait' },
-  { label: '예약 성공', id: 'success' },
+  { label: '예약 확정 ', id: 'success' },
 ];
 
 function TabPanel({ children, value, index, ...other }: TabPanelProps) {
@@ -134,8 +139,8 @@ export default function BookDetail() {
 
   const [dayValue, setDayValue] = useState(new Date('2022-12-07'));
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   console.log({ startDate, endDate });
 
@@ -147,20 +152,24 @@ export default function BookDetail() {
     setToggle(!toggle);
   };
 
-  console.log({ fetchPostDetail });
-  // console.log({ dayValue });
+  const handleTimeChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === 'startDate') {
+      setStartDate(value);
+    } else {
+      setEndDate(value);
+    }
+  };
 
   const seletedValue = bookingStatusArr.filter(
     (v: any) => v.id === fetchPostDetail?.status
-  )[0]?.label;
+  )[0]?.label as any;
 
   const seletedId = bookingStatusArr.filter(
     (v: any) => v.id === fetchPostDetail?.status
   )[0]?.id;
 
   const color = codeAtStr(seletedId || '');
-
-  console.log({ color, seletedValue });
 
   const handleSubmit = () => {
     setFetchPostDetail({
@@ -200,44 +209,37 @@ export default function BookDetail() {
               />
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="time"
-              label="Alarm clock"
-              type="time"
-              size="small"
-              defaultValue="09:00"
-              name="startTime"
-              onChange={handleChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
+          <Grid item xs={12}>
+            <Autocomplete
+              id="disabled-options-demo"
+              options={mockTimeSlots}
+              getOptionDisabled={(option) =>
+                option === mockTimeSlots[0] || option === mockTimeSlots[2]
+              }
               fullWidth
-              helperText="예약 시작 시간 "
+              onSelect={handleChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="예약 시작 시간"
+                  name="startTime"
+                />
+              )}
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="time"
-              label="Alarm clock"
-              type="time"
-              size="small"
-              name="endTime"
-              onChange={handleChange}
-              defaultValue="18:00"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
-              fullWidth
-              helperText="예약 마감 시간 "
+          {/* <Grid item xs={6}>
+            <Autocomplete
+              id="disabled-options-demo"
+              options={mockTimeSlots}
+              getOptionDisabled={(option) =>
+                option === mockTimeSlots[0] || option === mockTimeSlots[2]
+              }
+              onSelect={handleChange}
+              renderInput={(params) => (
+                <TextField {...params} label="예약 마감 시간 " name="endTime" />
+              )}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       }
       extra={
