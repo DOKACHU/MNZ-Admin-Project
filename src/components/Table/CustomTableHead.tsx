@@ -10,25 +10,24 @@ import {
 
 interface CustomTableHeadProps {
   columns: any;
-  //   onSelectAllClick: any;
-  //   order: string;
-  //   orderBy: string;
-  //   numSelected: any[];
-  //   rowCount: number;
-  //   onRequestSort: any;
 }
 
 export default function CustomTableHead({ columns }: CustomTableHeadProps) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell>
-          <Checkbox color="primary" />
+        <TableCell padding="checkbox">
+          <Checkbox
+            color="primary"
+            inputProps={{
+              'aria-label': 'select all desserts',
+            }}
+          />
         </TableCell>
-        {columns?.map((headCell: any) => {
+        {columns.map((headCell: any) => {
           return (
             <TableCell key={headCell.id}>
-              <TableSortLabel>{headCell.label}</TableSortLabel>
+              <TableSortLabel>{headCell.title}</TableSortLabel>
             </TableCell>
           );
         })}

@@ -39,7 +39,6 @@ function ErrorFallback() {
 }
 
 export default function AppProvider({ children }: AppProviderProps) {
-  console.log(import.meta.env.MODE);
   return (
     <Suspense
       fallback={
@@ -51,8 +50,8 @@ export default function AppProvider({ children }: AppProviderProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <CssBaseline />
         <HelmetProvider>
-          {import.meta.env.MODE !== 'development' && <ReactQueryDevtools />}
           <QueryClientProvider client={queryClient}>
+            {import.meta.env.MODE === 'development' && <ReactQueryDevtools />}
             {/* TODO: notification */}
             <AuthProvider>
               <Router>{children}</Router>
