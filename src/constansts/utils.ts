@@ -44,7 +44,7 @@ export const getComparator = (order: string, orderBy: string) => {
 //   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
 // }
 
-export function numberWithCommas(x) {
+export function numberWithCommas(x: any) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
