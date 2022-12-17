@@ -782,6 +782,7 @@ export default function BookDetail() {
                               id="outlined-basic1"
                               fullWidth
                               name="center.address"
+                              placeholder="환자 증상을 입력해주세요."
                             />
                           </Grid>
                           <Grid item xs={12}>
@@ -797,7 +798,7 @@ export default function BookDetail() {
                                 <TextField
                                   {...params}
                                   fullWidth
-                                  label="진료 시간 "
+                                  label="진료한 시간"
                                   name="endTime"
                                   size="small"
                                 />
@@ -806,19 +807,20 @@ export default function BookDetail() {
                           </Grid>
                           <Grid item xs={12}>
                             <TextField
-                              helperText="tx) 현재 치료"
+                              helperText="tx)치료 내용"
                               size="small"
                               id="outlined-basic1"
                               fullWidth
                               name="center.address"
                               multiline
                               rows={4}
+                              placeholder="치료 내용을 입력해주세요."
                             />
                           </Grid>
                           <Grid item xs={6}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DatePicker
-                                label="다음 예약 시간 "
+                                label="다음 예약 일정"
                                 value={nextDate}
                                 inputFormat="YYYY-MM-DD"
                                 onChange={(newValue: any) => {
@@ -848,7 +850,7 @@ export default function BookDetail() {
                                 <TextField
                                   {...params}
                                   fullWidth
-                                  label="다음 예약 시간 "
+                                  label="다음 예약 시간"
                                   name="endTime"
                                   size="small"
                                 />
@@ -860,7 +862,19 @@ export default function BookDetail() {
                     </Card>
                   </Grid>
 
+                  {/* TODO : 서치바 넣기  */}
                   <Grid item xs={7}>
+                    <Grid item xs={12}>
+                      <TextField
+                        helperText=""
+                        size="small"
+                        id="outlined-basic1"
+                        fullWidth
+                        placeholder="검색할 키워드를 입력해주세요."
+                        name="comment"
+                      />
+                    </Grid>
+                    <br />
                     <MainSubCard title="2022 - 1월 진료 차트">
                       <Grid item xs={12}>
                         <Grid item xs={12}>
