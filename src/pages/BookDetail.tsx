@@ -22,6 +22,9 @@ import {
   CircularProgress,
   Autocomplete,
   Button,
+  Card,
+  CardHeader,
+  CardContent,
 } from '@mui/material';
 import {
   CalendarTodayTwoTone,
@@ -29,7 +32,7 @@ import {
   EmailTwoTone,
 } from '@mui/icons-material';
 import dayjs from 'dayjs';
-
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
@@ -140,9 +143,7 @@ export default function BookDetail() {
   const [dayValue, setDayValue] = useState(new Date('2022-12-07'));
 
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-
-  console.log({ startDate, endDate });
+  const [nextDate, setNextDate] = useState(new Date('2022-12-07'));
 
   const handleTabChange = (e: any, newValue: any) => {
     setValue(newValue);
@@ -150,15 +151,6 @@ export default function BookDetail() {
 
   const handleToggle = () => {
     setToggle(!toggle);
-  };
-
-  const handleTimeChange = (e: any) => {
-    const { name, value } = e.target;
-    if (name === 'startDate') {
-      setStartDate(value);
-    } else {
-      setEndDate(value);
-    }
   };
 
   const seletedValue = bookingStatusArr.filter(
@@ -771,26 +763,503 @@ export default function BookDetail() {
                 </Grid>
               )}
               {tab.id === 1 && (
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <MainSubCard title="진료 차트">
+                <Grid container spacing={2}>
+                  <Grid item xs={5}>
+                    <Card sx={{ border: '1px solid #eceff1' }} elevation={0}>
+                      <CardHeader
+                        sx={{ p: 2.5 }}
+                        title={<Typography variant="h6">차트 작성</Typography>}
+                        action={<Button variant="contained">작성하기</Button>}
+                      />
+                      <Divider />
+
+                      <CardContent sx={{ p: 2 }}>
+                        <Grid container xs={12} spacing={2}>
+                          <Grid item xs={12}>
+                            <TextField
+                              helperText="cx) 환자 증상"
+                              size="small"
+                              id="outlined-basic1"
+                              fullWidth
+                              name="center.address"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Autocomplete
+                              id="disabled-options-demo"
+                              options={mockTimeSlots}
+                              getOptionDisabled={(option) =>
+                                option === mockTimeSlots[0] ||
+                                option === mockTimeSlots[2]
+                              }
+                              onSelect={handleChange}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  label="진료 시간 "
+                                  name="endTime"
+                                  size="small"
+                                />
+                              )}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              helperText="tx) 현재 치료"
+                              size="small"
+                              id="outlined-basic1"
+                              fullWidth
+                              name="center.address"
+                              multiline
+                              rows={4}
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <DatePicker
+                                label="다음 예약 시간 "
+                                value={nextDate}
+                                inputFormat="YYYY-MM-DD"
+                                onChange={(newValue: any) => {
+                                  setNextDate(newValue);
+                                  // console.log({ newValue });
+                                }}
+                                renderInput={(params) => (
+                                  <TextField
+                                    {...params}
+                                    size="small"
+                                    fullWidth
+                                  />
+                                )}
+                              />
+                            </LocalizationProvider>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <Autocomplete
+                              id="disabled-options-demo"
+                              options={mockTimeSlots}
+                              getOptionDisabled={(option) =>
+                                option === mockTimeSlots[0] ||
+                                option === mockTimeSlots[2]
+                              }
+                              onSelect={handleChange}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  label="다음 예약 시간 "
+                                  name="endTime"
+                                  size="small"
+                                />
+                              )}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+
+                  <Grid item xs={7}>
+                    <MainSubCard title="2022 - 1월 진료 차트">
+                      <Grid item xs={12}>
+                        <Grid item xs={12}>
+                          <Stack
+                            spacing={2}
+                            sx={{
+                              p: 2,
+                              border: '1px dotted #000',
+                            }}
+                          >
+                            <Typography variant="h4" sx={styleH4}>
+                              1회차
+                            </Typography>
+                            <Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Cx (환자 증상) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  마음이 아픕니다.
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Tx (치료 내용) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  13:30 도수치료 진행
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Nx (다음 예약) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  12. 02(목) 통증치료 예정
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                            {/*  */}
+                          </Stack>
+                        </Grid>
+                        {/*  */}
+                      </Grid>
+                    </MainSubCard>
+                    <br />
+                    <MainSubCard title="2021 - 12월 진료 차트">
                       <Grid item xs={12}>
                         {/* TODO: autoncomplete */}
-                        <TableContainer>
-                          <Table>
-                            <TableHead>
-                              <TableRow>
-                                {/* <TableCell sx={{ pl: 3 }} /> */}
-                                <TableCell>진료 번호</TableCell>
-                                <TableCell>진료 날짜</TableCell>
-                                <TableCell>회차 </TableCell>
-                                <TableCell>증상</TableCell>
-                                <TableCell>치료 내용</TableCell>
-                                <TableCell>다음 예약</TableCell>
-                              </TableRow>
-                            </TableHead>
-                          </Table>
-                        </TableContainer>
+                        <Grid item xs={12}>
+                          <Stack
+                            spacing={2}
+                            sx={{
+                              p: 2,
+                              border: '1px dotted #000',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography variant="h4" sx={styleH4}>
+                                1회차
+                              </Typography>
+                              <Chip
+                                sx={{
+                                  fontSize: 12,
+                                  marginLeft: 2,
+                                }}
+                                label="진행중 회차"
+                                size="small"
+                                color="warning"
+                                variant="outlined"
+                              />
+                            </Stack>
+                            <Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Cx (환자 증상) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  얼굴이 아픕니다.
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Tx (치료 내용) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  13:30 도수치료 진행
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Nx (다음 예약) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  12. 02(목) 통증치료 예정
+                                </Typography>
+                              </Stack>
+
+                              <Stack
+                                spacing={2}
+                                sx={{
+                                  p: 1,
+                                  border: '1px dotted #000',
+                                }}
+                              >
+                                <Typography variant="caption">
+                                  2022-12-02 14:00
+                                </Typography>
+                                <Typography variant="caption">
+                                  진료 진행하면서 해당 환자에 압력 세기를 4로
+                                  경감시켰음.
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                            {/*  */}
+                            <Grid item xs={12}>
+                              <TextField
+                                helperText=""
+                                size="small"
+                                id="outlined-basic1"
+                                fullWidth
+                                placeholder="진료 관련 코멘트를 남겨주세요."
+                                name="comment"
+                              />
+                            </Grid>
+                          </Stack>
+                        </Grid>
+                        {/*  */}
+                      </Grid>
+                    </MainSubCard>
+                    <br />
+
+                    <MainSubCard title="2021 - 11월 진료 차트">
+                      <Grid item xs={12}>
+                        {/* TODO: autoncomplete */}
+
+                        <Grid item xs={12}>
+                          <Stack
+                            spacing={2}
+                            sx={{
+                              p: 2,
+                              border: '1px dotted #000',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              alignItems="center"
+                            >
+                              <Typography variant="h4" sx={styleH4}>
+                                3회차
+                              </Typography>
+                              <Chip
+                                sx={{
+                                  fontSize: 12,
+                                  marginLeft: 2,
+                                }}
+                                label="마지막 회차"
+                                size="small"
+                                color="success"
+                                variant="outlined"
+                              />
+                            </Stack>
+                            <Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Cx (환자 증상) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  머리가 아픕니다.
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Tx (치료 내용) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  13:30 도수치료 진행
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Nx (다음 예약) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  12. 02(목) 통증치료 예정
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                            {/*  */}
+                          </Stack>
+                        </Grid>
+                        <br />
+                        <Grid item xs={12}>
+                          <Stack
+                            spacing={2}
+                            sx={{
+                              p: 2,
+                              border: '1px dotted #000',
+                            }}
+                          >
+                            <Typography variant="h4" sx={styleH4}>
+                              2회차
+                            </Typography>
+                            <Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Cx (환자 증상) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  종아리, 어깨가 결로 증상이 보임
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Tx (치료 내용) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  13:30 도수치료 진행
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Nx (다음 예약) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  12. 02(목) 통증치료 예정
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                            {/*  */}
+                          </Stack>
+                        </Grid>
+                        <br />
+                        <Grid item xs={12}>
+                          <Stack
+                            spacing={2}
+                            sx={{
+                              p: 2,
+                              border: '1px dotted #000',
+                            }}
+                          >
+                            <Typography variant="h4" sx={styleH4}>
+                              1회차
+                            </Typography>
+                            <Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Cx (환자 증상) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  허리가 아픕니다.{' '}
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Tx (치료 내용) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  13:30 도수치료 진행
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                alignItems="center"
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  sx={styleSubtitle}
+                                >
+                                  Nx (다음 예약) :
+                                </Typography>
+                                <Typography variant="body2">
+                                  12. 02(목) 통증치료 예정
+                                </Typography>
+                              </Stack>
+                              <Stack
+                                spacing={2}
+                                sx={{
+                                  p: 1,
+                                  border: '1px dotted #000',
+                                }}
+                              >
+                                <Typography variant="caption">
+                                  2022-12-02 14:00
+                                </Typography>
+                                <Typography variant="caption">
+                                  연세가 있으셔서 관절이 약해, 강도르 1로
+                                  고정해야함.
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                            {/*  */}
+                          </Stack>
+                        </Grid>
+                        {/*  */}
                       </Grid>
                     </MainSubCard>
                   </Grid>
