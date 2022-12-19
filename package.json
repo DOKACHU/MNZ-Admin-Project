@@ -63,5 +63,8 @@
     "vite": "^3.0.7",
     "vitest": "^0.22.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }

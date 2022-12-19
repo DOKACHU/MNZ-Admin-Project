@@ -13,6 +13,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  // 필수 추가
+  define: {
+    'process.env': {},
+  },
   test: {
     globals: true,
     environment: 'jsdom',

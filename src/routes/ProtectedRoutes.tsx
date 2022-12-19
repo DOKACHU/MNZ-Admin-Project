@@ -19,7 +19,6 @@ export default function App() {
           <Box
             sx={{
               minHeight: 'calc(100vh - 110px)',
-              border: '1px solid red',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -44,10 +43,6 @@ export const protectedRoutes = [
         path: '',
         element: <Dashboard />,
       },
-      // {
-      //   path: 'pro',
-      //   element: <div>pro</div>,
-      // },
       {
         path: 'coupon/*',
         element: <CouponRoutes />,

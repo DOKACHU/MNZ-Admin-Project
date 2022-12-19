@@ -4,7 +4,7 @@ import { rest } from 'msw';
 import { API_URL } from '../../../config';
 
 import { db, persistDb } from '../db';
-import { requireAuth, requireAdmin, delayedResponse } from '../utils';
+import { delayedResponse } from '../utils';
 
 // type ProfileBody = {
 //   email: string;
@@ -14,19 +14,21 @@ import { requireAuth, requireAdmin, delayedResponse } from '../utils';
 // };
 
 export const couponsHandlers = [
-  rest.get(`${API_URL}/coupons`, (req, res, ctx) => {
+  rest.get(`${API_URL}/coupons?cursor=1&per_page=10`, (req, res, ctx) => {
     try {
       console.log({ req, res, ctx });
       // const user = requireAuth(req);
-      // const result = db.user.findMany({
-      //   where: {
-      //     teamId: {
-      //       equals: user.teamId,
-      //     },
-      //   },
-      // });
 
-      // return delayedResponse(ctx.json(result));
+      const result = db.coupons.findMany({
+        // where: {
+        //   teamId: {
+        //     equals: user.teamId,
+        //   },
+        // },
+      });
+      console.log({ result });
+      persistDb('coupons');
+      return delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),

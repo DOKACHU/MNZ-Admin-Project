@@ -1,16 +1,15 @@
-import { server } from './server';
-import { worker } from './browser';
-
 export const initMocks = () => {
   if (import.meta.env.VITE_API_MOCKING === 'true') {
-    if (typeof window === 'undefined') {
-      console.log('1');
-      server.listen();
+    const isUndefined = typeof window === 'undefined';
+    if (isUndefined) {
+      // TODO: import 를 이용한 then 처리
+      import('./server').then(({ server }) => {
+        server.listen();
+      });
     } else {
-      console.log('2');
-      worker.start();
+      import('./browser').then(({ worker }) => {
+        worker.start();
+      });
     }
-  } else {
-    console.log('3');
   }
 };

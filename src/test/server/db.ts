@@ -1,40 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { factory, primaryKey } from '@mswjs/data';
 
 const models = {
-  user: {
-    id: primaryKey(String),
-    firstName: String,
-    lastName: String,
-    email: String,
-    password: String,
-    teamId: String,
-    role: String,
-    bio: String,
-    createdAt: Number,
-  },
-  coupon: {
+  coupons: {
     couponId: primaryKey(String),
+    title: String,
+    description: String,
+    discountRate: Number,
+    discountPrice: Number,
+    startPeriod: String,
+    closePeriod: String,
+    isDeleted: Boolean,
+    createdAt: String,
+    updatedAt: String,
+    deletedAt: String,
   },
-  // team: {
-  //   id: primaryKey(String),
-  //   name: String,
-  //   description: String,
-  //   createdAt: Number,
-  // },
-  // discussion: {
-  //   id: primaryKey(String),
-  //   title: String,
-  //   body: String,
-  //   teamId: String,
-  //   createdAt: Number,
-  // },
-  // comment: {
-  //   id: primaryKey(String),
-  //   body: String,
-  //   authorId: String,
-  //   discussionId: String,
-  //   createdAt: Number,
-  // },
 };
 
 export const db = factory(models);
@@ -45,9 +25,10 @@ export const loadDb = () =>
   Object.assign(JSON.parse(window.localStorage.getItem('mnz-db') || '{}'));
 
 export const persistDb = (model: Model) => {
+  console.log({ model });
   if (import.meta.env.MODE === 'development') return;
   const data = loadDb();
-  // data[model] = db[model].getAll();
+  data[model] = db[model].getAll();
   window.localStorage.setItem('mnz-db', JSON.stringify(data));
 };
 

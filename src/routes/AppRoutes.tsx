@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-// TODO: Landing
 // TODO : useAuth
 import React from 'react';
 import { useRoutes } from 'react-router-dom';

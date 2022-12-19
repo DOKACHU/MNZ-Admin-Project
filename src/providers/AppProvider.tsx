@@ -53,9 +53,9 @@ export default function AppProvider({ children }: AppProviderProps) {
           <QueryClientProvider client={queryClient}>
             {import.meta.env.MODE === 'development' && <ReactQueryDevtools />}
             {/* TODO: notification */}
-            <AuthProvider>
-              <Router>{children}</Router>
-            </AuthProvider>
+            {/* <AuthProvider> */}
+            <Router>{children}</Router>
+            {/* </AuthProvider> */}
           </QueryClientProvider>
         </HelmetProvider>
       </ErrorBoundary>
