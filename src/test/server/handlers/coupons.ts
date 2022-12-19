@@ -14,20 +14,13 @@ import { delayedResponse } from '../utils';
 // };
 
 export const couponsHandlers = [
-  rest.get(`${API_URL}/coupons?cursor=1&per_page=10`, (req, res, ctx) => {
+  rest.get(`${API_URL}/coupons`, (req, res, ctx) => {
     try {
-      console.log({ req, res, ctx });
-      // const user = requireAuth(req);
+      // const cursor = req.url.searchParams.get('cursor');
+      // const per_page = req.url.searchParams.get('per_page');
+      // console.log({ cursor, per_page });
 
-      const result = db.coupons.findMany({
-        // where: {
-        //   teamId: {
-        //     equals: user.teamId,
-        //   },
-        // },
-      });
-      console.log({ result });
-      persistDb('coupons');
+      const result = db.coupons.getAll();
       return delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(

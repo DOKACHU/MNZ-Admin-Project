@@ -25,7 +25,7 @@ export const loadDb = () =>
   Object.assign(JSON.parse(window.localStorage.getItem('mnz-db') || '{}'));
 
 export const persistDb = (model: Model) => {
-  console.log({ model });
+  console.log(import.meta.env.MODE);
   if (import.meta.env.MODE === 'development') return;
   const data = loadDb();
   data[model] = db[model].getAll();

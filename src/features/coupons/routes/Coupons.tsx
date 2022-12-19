@@ -10,14 +10,15 @@ import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
 
 export default function Coupons() {
-  const { data, isLoading } = useCoupons();
+  const couponsQuery = useCoupons();
+  console.log({ couponsQuery });
 
   return (
     <ContentLayout title="쿠폰" isButton>
       {/* TODO: data, columns */}
       <Table<CouponsType>
-        loading={isLoading}
-        data={data?.data?.couponList}
+        loading={couponsQuery.isLoading}
+        data={[]}
         columns={[
           {
             id: 'title',

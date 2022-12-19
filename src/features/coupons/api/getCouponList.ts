@@ -18,7 +18,7 @@ type UseCouponsOptions = {
 export const useCoupons = ({ config }: UseCouponsOptions = {}) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['Coupons'],
+    queryKey: ['coupons'],
     queryFn: () => getCoupons(),
   });
 };
