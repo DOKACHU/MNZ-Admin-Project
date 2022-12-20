@@ -36,7 +36,17 @@ export function CustomTable<Entry extends { id: string }>({
   loading,
 }: CustomTableProps<Entry>) {
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress />;
+      </Box>
+    );
   }
 
   if (!data) return null;

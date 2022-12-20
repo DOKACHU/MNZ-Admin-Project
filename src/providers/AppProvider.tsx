@@ -11,6 +11,8 @@ import {
   CssBaseline,
   Typography,
 } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { AuthProvider } from '../lib/auth';
 import { queryClient } from '../lib/react-query';
 
@@ -52,10 +54,13 @@ export default function AppProvider({ children }: AppProviderProps) {
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
             {import.meta.env.MODE === 'development' && <ReactQueryDevtools />}
+
             {/* TODO: notification */}
-            {/* <AuthProvider> */}
-            <Router>{children}</Router>
-            {/* </AuthProvider> */}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <AuthProvider> */}
+              <Router>{children}</Router>
+              {/* </AuthProvider> */}
+            </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>
       </ErrorBoundary>

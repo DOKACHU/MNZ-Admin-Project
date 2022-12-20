@@ -1,21 +1,32 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, { useState } from 'react';
 // import { CircularProgress } from '@mui/material';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useCoupons } from '../api';
 import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
+import { CreateCoupon } from '../components';
 
 export default function Coupons() {
   const couponsQuery = useCoupons();
-  console.log({ couponsQuery });
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <ContentLayout title="쿠폰" isButton>
+    <ContentLayout title="쿠폰" isButton onOpen={handleOpen}>
       {/* TODO: data, columns */}
+      <CreateCoupon open={open} onClose={handleClose} />
       <Table<CouponsType>
         loading={couponsQuery.isLoading}
         data={[]}

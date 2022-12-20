@@ -11,9 +11,9 @@ const models = {
     startPeriod: String,
     closePeriod: String,
     isDeleted: Boolean,
-    createdAt: String,
-    updatedAt: String,
-    deletedAt: String,
+    createdAt: Number,
+    updatedAt: Number,
+    deletedAt: Number,
   },
 };
 

@@ -13,14 +13,17 @@ type ContentLayoutProps = {
   children: React.ReactNode;
   title: string;
   isButton?: boolean;
+  onOpen: () => void;
 };
 
 export default function ContentLayout({
   children,
   title,
   isButton,
+  onOpen,
 }: ContentLayoutProps) {
   const modalTitle = `${title} 생성 모달`;
+
   return (
     <Box
       sx={{
@@ -47,7 +50,9 @@ export default function ContentLayout({
             </Grid>
             {isButton && (
               <Grid item>
-                <Button variant="outlined">{modalTitle}</Button>
+                <Button variant="outlined" onClick={onOpen}>
+                  {modalTitle}
+                </Button>
               </Grid>
             )}
           </Grid>
