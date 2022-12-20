@@ -6,6 +6,7 @@ export { default as MainDetailForm } from './MainDetailForm';
 export { default as MainProfile } from './MainProfile';
 export { default as MainSubCard } from './MainSubCard';
 export { default as MainModal } from './MainModal';
+export { default as MainUpdateModal } from './MainUpdateModal';
 
 // center
 export { default as CenterBasicInfo } from './CenterBasicInfo';
@@ -25,3 +26,6 @@ export { default as ReviewBasicInfo } from './ReviewBasicInfo';
 export { default as UserBasicRow } from './UserBasicRow';
 export { default as InfoBasicRow } from './InfoBasicRow';
 export { default as InfoReviewRow } from './InfoReviewRow';
+
+// point
+export { default as PointBasicInfo } from './PointBasicInfo';

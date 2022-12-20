@@ -1,14 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/require-default-props */
 import React from 'react';
-import {
-  Box,
-  Card,
-  Grid,
-  Typography,
-  Button,
-  CircularProgress,
-} from '@mui/material';
+import { Box, Card, Grid, Typography, Button } from '@mui/material';
 import { MainModal } from '../components';
 import { useModal } from '../hooks';
 
@@ -19,6 +13,8 @@ interface ListTemplateProps {
   onSubmit?: any;
   children: React.ReactNode;
   createModalForm?: any;
+  setCreateInfo?: any;
+  createInfo?: any;
 }
 
 export default function ListTemplate({
@@ -28,17 +24,21 @@ export default function ListTemplate({
   isButton,
   onSubmit,
   createModalForm,
+  setCreateInfo,
+  createInfo,
 }: ListTemplateProps) {
-  const { open, handleOpen } = useModal();
+  const { open, handleOpen, handleModalClose } = useModal();
   const modalTitle = `${title} 생성 모달`;
 
   return (
     <>
       <MainModal
         open={open}
-        handleClose={handleOpen}
+        handleClose={handleModalClose}
         handleCreate={onSubmit}
         title={modalTitle}
+        setCreateInfo={setCreateInfo}
+        createInfo={createInfo}
       >
         {createModalForm}
       </MainModal>

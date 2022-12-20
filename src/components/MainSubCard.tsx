@@ -5,8 +5,10 @@ import {
   CardHeader,
   Divider,
   Typography,
+  IconButton,
   Grid,
 } from '@mui/material';
+import { ArrowDropDownTwoTone } from '@mui/icons-material';
 
 interface MainSubCardProps {
   title?: string;
@@ -29,6 +31,11 @@ export default function MainSubCard({ title, children }: MainSubCardProps) {
           >
             {title}
           </Typography>
+        }
+        action={
+          <IconButton>
+            <ArrowDropDownTwoTone />
+          </IconButton>
         }
       />
       <Divider />

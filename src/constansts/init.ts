@@ -43,3 +43,10 @@ export const proInit = {
   phoneNumber: '',
   centerId: '3753b4df-0a3b-43bf-8d94-aceb1745cfe1',
 };
+
+export const pointInit = {
+  userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
+  status: 'add',
+  price: '',
+  reason: '',
+};

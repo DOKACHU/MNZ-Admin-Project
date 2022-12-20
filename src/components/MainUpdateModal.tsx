@@ -14,20 +14,20 @@ interface MainModalProps {
   title: string;
   open: boolean;
   children: React.ReactNode;
-  handleCreate?: any;
+  handleUpdate?: any;
   handleClose?: any;
-  setCreateInfo?: any;
-  createInfo?: any;
+  setUpdateInfo?: any;
+  updateInfo?: any;
 }
 
-export default function MainModal({
+export default function MainUpdateModal({
   title,
   open,
   children,
-  handleCreate,
+  handleUpdate,
   handleClose,
-  setCreateInfo,
-  createInfo,
+  setUpdateInfo,
+  updateInfo,
 }: MainModalProps) {
   return (
     <Dialog
@@ -37,8 +37,8 @@ export default function MainModal({
             // background: '#e3f2fd',
             m: 0,
             borderRadius: '4px',
-            width: '450px',
-            // width: '1200px',
+            // width: '450px',
+            width: '1200px',
             minHeight: `calc(100vh - 700px)`,
             boxShadow: 24,
             p: 2,
@@ -64,18 +64,18 @@ export default function MainModal({
           <Button
             variant="outlined"
             onClick={() => {
-              handleCreate();
+              handleUpdate();
               handleClose();
             }}
           >
-            생성
+            수정
           </Button>
           <Button
             variant="outlined"
             color="error"
             onClick={() => {
               handleClose();
-              setCreateInfo(createInfo);
+              setUpdateInfo(updateInfo);
             }}
           >
             취소

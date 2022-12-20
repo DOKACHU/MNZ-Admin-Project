@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -127,11 +129,34 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
   const handleSubmit = () => {
     mutate(post, {
       onError: () => {
+        setPost(Init);
         alert('오류가 발생했습니다.');
       },
       onSuccess: () => {
         setPost(Init);
         alert('리스트에 추가 되었습니다.');
+      },
+    });
+  };
+
+  const handlePointSubmit = () => {
+    const newPost = {
+      ...post,
+      price: Number(post.price),
+    };
+
+    mutate(newPost, {
+      onError: (e: any) => {
+        if (e.response.data.statusCode === 409) {
+          setPost(Init);
+          alert('포인트가 부족합니다.');
+        }
+      },
+      onSuccess: () => {
+        setPost(Init);
+        alert(
+          `포인트가 ${newPost.status === 'add' ? '지급' : '차감'} 되었습니다.`
+        );
       },
     });
   };
@@ -146,21 +171,10 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     setPage(0);
   };
 
-  // const handleDelete = (id: number) => {
-  //   const result = fetchList.filter((list: any) => list.id !== Number(id));
-  //   setFetchList(result);
-  // };
-
   const handleRowClick = (e: any, id: number) => {
     e.stopPropagation();
     const URL = `/${path}/${id}`;
     navigate(URL);
-  };
-
-  const handleRequestSort = (e: any, property: any) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
   };
 
   useEffect(() => {
@@ -169,7 +183,9 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     // setFetchList(data);
   }, [location]);
 
-  // console.log({ data });
+  useEffect(() => {
+    setPost(Init);
+  }, []);
 
   return {
     createPreview,
@@ -190,5 +206,6 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
     handleCreateFileClick,
     createFileInput,
     handleCreateUpload,
+    handlePointSubmit,
   };
 }

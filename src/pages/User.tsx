@@ -36,7 +36,7 @@ export default function User() {
 
   return (
     <ListTemplate
-      isButton
+      // isButton
       title="고객"
       loading={isLoading}
       onSubmit={handleSubmit}

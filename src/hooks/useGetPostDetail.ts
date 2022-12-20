@@ -7,7 +7,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { mockReviewList } from '../constansts';
 
 const GetDetailListAPI = async (BaseURL: string) => {
-  const URL = `${BaseURL}?per_page=10&cursor=1`;
+  const URL = `${BaseURL}?cursor=1&per_page=100`;
   const { data } = await axios.get(URL);
   return data;
 };
@@ -30,14 +30,21 @@ const DeleteDetailAPI = async (BaseURL: string, RowId: string | undefined) => {
 
 interface GetDetailProps {
   BaseURL: string;
+  UpdateInit?: any;
 }
-export function useGetDetail({ BaseURL }: GetDetailProps) {
+
+const bookingStatusArr = [
+  { label: '예약 대기', id: 'wait' },
+  { label: '예약 확정 ', id: 'success' },
+];
+export function useGetDetail({ BaseURL, UpdateInit }: GetDetailProps) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
   const { id: rowId } = useParams();
   const [fetchPostDetail, setFetchPostDetail] = useState<any>(null);
   const [fetchMockPostDetail, setFetchMockPostDetail] = useState<any>(null);
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const { data, isLoading } = useQuery(['details'], () =>
     GetDetailListAPI(BaseURL)
@@ -53,7 +60,7 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
         //   const id = post[`${path}Id`];
         //   return id === rowId;
         // }
-        const id = post[`${path}Id`];
+        const id = path === 'point' ? post.pointEventId : post[`${path}Id`];
         return id === rowId;
       });
 
@@ -70,7 +77,14 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setFetchPostDetail({ ...fetchPostDetail, [name]: value });
+
+    const seletedValue = bookingStatusArr.filter((v: any) => v.label === value);
+
+    if (name === 'status') {
+      setFetchPostDetail({ ...fetchPostDetail, [name]: seletedValue[0].id });
+    } else {
+      setFetchPostDetail({ ...fetchPostDetail, [name]: value });
+    }
   };
 
   const { mutate: updateCoupon } = useMutation(
@@ -117,5 +131,8 @@ export function useGetDetail({ BaseURL }: GetDetailProps) {
     handleChange,
     handleUpadate,
     handleDelete,
+    setFetchPostDetail,
+    setToggle,
+    toggle,
   };
 }

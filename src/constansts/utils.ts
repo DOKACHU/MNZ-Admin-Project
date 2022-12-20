@@ -44,6 +44,23 @@ export const getComparator = (order: string, orderBy: string) => {
 //   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
 // }
 
-export function convertDate(date: any) {
-  return dayjs(date).format('YYYY-MM-DD hh:mm:ss'); // '25/01/2019'
+export function numberWithCommas(x: any) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function convertDate(date: any) {
+  return dayjs(date).format('YYYY-MM-DD HH:mm:ss'); // '25/01/2019'
+}
+
+export function convertDay(date: any) {
+  return dayjs(date).format('YYYY-MM-DD'); // '25/01/2019'
+}
+
+export function convertTime(date: any) {
+  return dayjs(date).format('HH:mm:ss'); // '25/01/2019'
+}
+
+export const statusArr = [
+  { label: '추가', id: 'add' },
+  { label: '차감', id: 'sub' },
+];
