@@ -1,16 +1,17 @@
 import { BaseEntity } from '../../../types';
 
 export type BookingType = {
-  //   total_count: number;
-  BookingId: string;
-  //   title: string;
-  //   description: string;
-  //   discountRate: number;
-  //   discountPrice: number;
-  //   startPeriod: string;
-  //   closePeriod: string;
-  //   isDeleted: boolean;
-  //   createdAt: string;
-  //   updatedAt: string;
-  //   deletedAt: string;
+  bookingId: string;
+  userName: string;
+  centerName: string;
+  proName: string;
+  productName: string;
+  status: string;
+  round: number;
+  runningTime: number;
+  pressure: number;
+  bookingDate: string;
+  requestComment: string;
+  isCancel: boolean;
+  deletedAt: string;
 } & BaseEntity;

@@ -22,13 +22,11 @@ export const createCoupons = ({
   return axios.post(`/coupons`, data);
 };
 
-type UseCreateDiscussionOptions = {
+type UseCreateCouponsOptions = {
   config?: MutationConfig<typeof createCoupons>;
 };
 
-export const useCreateCoupon = ({
-  config,
-}: UseCreateDiscussionOptions = {}) => {
+export const useCreateCoupon = ({ config }: UseCreateCouponsOptions = {}) => {
   // const { addNotification } = useNotificationStore();
   return useMutation({
     onMutate: async (newCoupons: any) => {
@@ -45,8 +43,8 @@ export const useCreateCoupon = ({
       return { previousCoupons };
     },
     onError: (_, __, context: any) => {
-      if (context?.previousDiscussions) {
-        queryClient.setQueryData('discussions', context.previousDiscussions);
+      if (context?.previousCoupons) {
+        queryClient.setQueryData('coupons', context.previousCoupons);
       }
     },
     onSuccess: () => {

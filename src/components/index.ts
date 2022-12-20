@@ -1,4 +1,5 @@
 export { default as Table } from './Table';
+export { default as Drawer } from './Drawer';
 
 // Main
 export { default as MainTable } from './MainTable';

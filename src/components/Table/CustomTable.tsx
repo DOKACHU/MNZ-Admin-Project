@@ -42,9 +42,10 @@ export function CustomTable<Entry extends { id: string }>({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          minHeight: 'calc(100vh - 310px)',
         }}
       >
-        <CircularProgress />;
+        <CircularProgress />
       </Box>
     );
   }

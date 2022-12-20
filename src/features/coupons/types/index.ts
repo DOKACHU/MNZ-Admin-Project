@@ -1,7 +1,6 @@
 import { BaseEntity } from '../../../types';
 
 export type CouponsType = {
-  total_count: number;
   couponId: string;
   title: string;
   description: string;

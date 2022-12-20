@@ -11,12 +11,12 @@ type CreateCouponProps = {
 };
 
 export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
-  const createcCouponMutation = useCreateCoupon();
+  const { mutateAsync } = useCreateCoupon();
   const { control, handleSubmit } = useForm<CreateCouponsDTO['data']>();
   const [startDate, setStartDate] = useState(new Date());
 
   const onSubmit = async (data: CreateCouponsDTO['data']) => {
-    await createcCouponMutation.mutateAsync({ data });
+    await mutateAsync({ data });
   };
 
   return (

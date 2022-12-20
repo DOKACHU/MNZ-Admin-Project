@@ -5,12 +5,17 @@
 export const mainNavbarItems = [
   {
     id: 0,
+    label: 'Dashboard',
+    route: '',
+  },
+  {
+    id: 1,
     label: '예약 관리',
     route: 'booking',
     // icon: <Apartment />,
   },
   {
-    id: 1,
+    id: 2,
     label: '쿠폰 관리',
     route: 'coupon',
   },

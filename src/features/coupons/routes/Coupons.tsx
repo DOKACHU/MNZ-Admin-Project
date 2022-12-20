@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useState } from 'react';
+import React from 'react';
 // import { CircularProgress } from '@mui/material';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
@@ -12,8 +12,7 @@ import { CreateCoupon } from '../components';
 import { useModal } from '../../../hooks';
 
 export default function Coupons() {
-  const couponsQuery = useCoupons();
-  // const { close, open, isOpen } = useDisclosure();
+  const { isLoading, data } = useCoupons();
   const { open, handleClose, handleOpen } = useModal();
 
   return (
@@ -21,8 +20,9 @@ export default function Coupons() {
       {/* TODO: data, columns */}
       <CreateCoupon open={open} onClose={handleClose} />
       <Table<CouponsType>
-        loading={couponsQuery.isLoading}
-        data={couponsQuery.data}
+        loading={isLoading}
+        data={data}
+        // data={data?.couponList}
         columns={[
           {
             id: 'title',
