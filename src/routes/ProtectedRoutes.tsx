@@ -11,6 +11,11 @@ const { CouponRoutes } = lazyImport(
   'CouponRoutes'
 );
 
+const { BookingRoutes } = lazyImport(
+  () => import('../features/bookings'),
+  'BookingRoutes'
+);
+
 export default function App() {
   return (
     <MainLayout>
@@ -44,11 +49,15 @@ export const protectedRoutes = [
         element: <Dashboard />,
       },
       {
+        path: 'booking/*',
+        element: <BookingRoutes />,
+      },
+      {
         path: 'coupon/*',
         element: <CouponRoutes />,
       },
       // TODO: /admin/asdfasdf 이렇게 아무렇게나 입려하면 /admin 으로 빠지기
-      { path: '*', element: <Navigate to="." /> },
+      // { path: '*', element: <Navigate to="." /> },
     ],
   },
 
