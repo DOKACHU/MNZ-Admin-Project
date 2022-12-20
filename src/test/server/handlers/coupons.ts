@@ -16,20 +16,22 @@ type CreateCouponBody = {
   title: string;
   description: string;
   discountRate: number;
+  // discountPrice: number;
   startPeriod: string;
 };
 
 export const couponsHandlers = [
   // 쿠폰 리스트
-  rest.post<CreateCouponBody>(`${API_URL}/coupons`, (req, res, ctx) => {
+  rest.post<CreateCouponBody>(`${API_URL}/coupons`, async (req, res, ctx) => {
     try {
-      // const user = requireAuth(req);
-      const data = req.body;
+      console.log({ req, res });
+      const data = await req.json();
+
+      console.log({ data });
+
       const result = db.coupons.create({
-        // authorId: user.id,
         couponId: nanoid(),
         createdAt: Date.now(),
-        // createdAt: Date.now(),
         ...data,
       });
 
@@ -46,11 +48,8 @@ export const couponsHandlers = [
   // 쿠폰 리스트
   rest.get(`${API_URL}/coupons`, (req, res, ctx) => {
     try {
-      // const cursor = req.url.searchParams.get('cursor');
-      // const per_page = req.url.searchParams.get('per_page');
-      // console.log({ cursor, per_page });
-
       const result = db.coupons.getAll();
+      console.log('list', result);
       return delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(

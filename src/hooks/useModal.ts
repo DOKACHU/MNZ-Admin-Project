@@ -4,16 +4,16 @@ export function useModal() {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
   };
 
-  const handleModalClose = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
   return {
     open,
     handleOpen,
-    handleModalClose,
+    handleClose,
   };
 }

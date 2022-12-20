@@ -9,19 +9,12 @@ import { useCoupons } from '../api';
 import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
 import { CreateCoupon } from '../components';
+import { useModal } from '../../../hooks';
 
 export default function Coupons() {
   const couponsQuery = useCoupons();
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const { close, open, isOpen } = useDisclosure();
+  const { open, handleClose, handleOpen } = useModal();
 
   return (
     <ContentLayout title="쿠폰" isButton onOpen={handleOpen}>
@@ -29,7 +22,7 @@ export default function Coupons() {
       <CreateCoupon open={open} onClose={handleClose} />
       <Table<CouponsType>
         loading={couponsQuery.isLoading}
-        data={[]}
+        data={couponsQuery.data}
         columns={[
           {
             id: 'title',
