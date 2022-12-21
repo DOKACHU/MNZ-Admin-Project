@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Paper,
@@ -13,9 +14,10 @@ import {
   Checkbox,
   CircularProgress,
 } from '@mui/material';
+// import { useNavigate, useLocation } from 'react-router-dom';
 import CustomTableHead from './CustomTableHead';
 import CustomTableBody from './CustomTableBody';
-
+import { useTableList } from '../../hooks';
 import { stableSort, getComparator } from '../../constansts';
 
 type TableColumn<Entry> = {
@@ -30,11 +32,24 @@ export type CustomTableProps<Entry> = {
   columns: TableColumn<Entry>[];
   loading: boolean;
 };
+
 export function CustomTable<Entry extends { id: string }>({
   data,
   columns,
   loading,
 }: CustomTableProps<Entry>) {
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const [path, setPath] = useState<any>(null);
+
+  // const handleRowClick = (e: any, id: number) => {
+  //   e.stopPropagation();
+  //   const URL = `/${path}/${id}`;
+  //   navigate(URL);
+  // };
+
+  const { handleRowClick } = useTableList();
+
   if (loading) {
     return (
       <Box
@@ -69,6 +84,7 @@ export function CustomTable<Entry extends { id: string }>({
                   key={entry?.id || entryIndex}
                   role="checkbox"
                   tabIndex={-1}
+                  onClick={(e) => handleRowClick(e, entryIndex)}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
@@ -94,7 +110,7 @@ export function CustomTable<Entry extends { id: string }>({
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" />{' '} */}
+        <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" />{' '}
       </Paper>
     </Box>
   );

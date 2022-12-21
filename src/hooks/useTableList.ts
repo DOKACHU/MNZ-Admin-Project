@@ -20,7 +20,7 @@ export function useTableList(rows: any) {
 
   const handleRowClick = (e: any, id: number) => {
     e.stopPropagation();
-    const URL = `/${path}/${id}`;
+    const URL = `${path}/${id}`;
     navigate(URL);
   };
 
@@ -70,7 +70,9 @@ export function useTableList(rows: any) {
   };
 
   useEffect(() => {
-    const parsedTitle = location.pathname.replace(/\W/g, '');
+    // const parsedTitle = location.pathname.replace(/\W/g, '');
+    const parsedTitle = location.pathname;
+    console.log({ parsedTitle });
     setPath(parsedTitle);
   }, [location]);
 
