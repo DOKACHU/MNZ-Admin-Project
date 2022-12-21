@@ -13,7 +13,7 @@ type ContentLayoutProps = {
   children: React.ReactNode;
   title: string;
   isButton?: boolean;
-  onOpen: () => void;
+  onOpen?: () => void;
 };
 
 export default function ContentLayout({
@@ -45,7 +45,7 @@ export default function ContentLayout({
           >
             <Grid item>
               <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                {`${title} 관리`}
+                {`${title}`}
               </Typography>
             </Grid>
             {isButton && (

@@ -1,5 +1,7 @@
 export { default as Table } from './Table';
 export { default as Drawer } from './Drawer';
+export { default as CustomDetailForm } from './CustomDetailForm';
+export { default as CustomSubCard } from './CustomSubCard';
 
 // Main
 export { default as MainTable } from './MainTable';

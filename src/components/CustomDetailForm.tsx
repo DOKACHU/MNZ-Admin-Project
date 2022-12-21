@@ -15,13 +15,13 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-interface MainDetailFormProps {
+interface CustomDetailFormProps {
   value?: number;
   tabs?: any;
   children?: React.ReactNode;
   updateDateText?: string;
   createDateText?: string;
-  onTabChange: () => void;
+  onTabChange: (e: any, newValue: any) => void;
 }
 
 function a11yProps(index: number) {
@@ -31,18 +31,18 @@ function a11yProps(index: number) {
   };
 }
 
-export default function MainDetailForm({
+export default function CustomDetailForm({
   value,
   children,
   tabs,
   onTabChange,
   updateDateText,
   createDateText,
-}: MainDetailFormProps) {
+}: CustomDetailFormProps) {
   return (
     <Card
       sx={{
-        padding: 3,
+        marginTop: 3,
       }}
       elevation={0}
     >
@@ -65,6 +65,7 @@ export default function MainDetailForm({
         indicatorColor="primary"
         onChange={onTabChange}
         sx={{
+          p: 2,
           mb: 3,
           minHeight: 'auto',
           '& button': {
