@@ -11,89 +11,55 @@ export const mainNavbarItems = [
   {
     id: 1,
     label: '예약 관리',
-    route: 'booking',
+    route: 'bookings',
     // icon: <Apartment />,
   },
   {
     id: 2,
     label: '쿠폰 관리',
-    route: 'coupon',
+    route: 'coupons',
   },
-  // {
-  //   id: 1,
-  //   label: '센터 관리',
-  //   route: 'center',
-  //   // icon: <Apartment />,
-  // },
-  // {
-  //   id: 2,
-  //   label: '프로 관리',
-  //   route: 'pro',
-  // },
-  // {
-  //   id: 7,
-  //   label: '고객 관리',
-  //   route: 'user',
-  // },
-  // {
-  //   id: 9,
-  //   label: '결제 관리',
-  //   route: 'payment',
-  // },
-  // {
-  //   id: 0,
-  //   label: '예약 관리',
-  //   route: 'book',
-  //   // icon: <Apartment />,
-  // },
-  // {
-  //   id: 1,
-  //   label: '센터 관리',
-  //   route: 'center',
-  //   // icon: <Apartment />,
-  // },
-  // {
-  //   id: 2,
-  //   label: '프로 관리',
-  //   route: 'pro',
-  // },
-  // {
-  //   id: 7,
-  //   label: '고객 관리',
-  //   route: 'user',
-  // },
-  // {
-  //   id: 9,
-  //   label: '결제 관리',
-  //   route: 'payment',
-  // },
-
-  // {
-  //   id: 4,
-  //   label: '상품 관리',
-  //   route: 'product',
-  // },
-  // {
-  //   id: 5,
-  //   label: '리뷰 관리',
-  //   route: 'review',
-  // },
-  // {
-  //   id: 6,
-  //   label: '포인트 관리',
-  //   route: 'point',
-  // },
-
-  // {
-  //   id: 7,
-  //   label: '공지사항 관리',
-  //   route: 'notice',
-  // },
-  // {
-  //   id: 8,
-  //   label: '푸시 알림 관리',
-  //   route: 'notification',
-  // },
+  {
+    id: 3,
+    label: '센터 관리',
+    route: 'centers',
+    // icon: <Apartment />,
+  },
+  {
+    id: 4,
+    label: '프로 관리',
+    route: 'pros',
+  },
+  {
+    id: 5,
+    label: '고객 관리',
+    route: 'users',
+  },
+  {
+    id: 9,
+    label: '결제 관리',
+    route: 'payments',
+  },
+  {
+    id: 10,
+    label: '리뷰 관리',
+    route: 'reviews',
+  },
+  {
+    id: 11,
+    label: '포인트 관리',
+    route: 'points',
+  },
+  {
+    id: 12,
+    label: '공지사항 관리',
+    route: 'notices',
+  },
+  {
+    id: 13,
+    label: '푸시 알림 관리',
+    route: 'notifications',
+  },
 ];
 
 export const reviewVoucherInfo = [

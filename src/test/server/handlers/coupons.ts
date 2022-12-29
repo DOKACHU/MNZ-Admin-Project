@@ -36,7 +36,7 @@ export const couponsHandlers = [
       });
 
       persistDb('coupons');
-      return delayedResponse(ctx.json(result));
+      return await delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
