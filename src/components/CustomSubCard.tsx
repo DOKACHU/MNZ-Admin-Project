@@ -13,9 +13,14 @@ import { ArrowDropDownTwoTone } from '@mui/icons-material';
 interface CustomSubCardProps {
   title?: string;
   children?: React.ReactNode;
+  onToggle?: () => void;
 }
 
-export default function CustomSubCard({ title, children }: CustomSubCardProps) {
+export default function CustomSubCard({
+  title,
+  children,
+  onToggle,
+}: CustomSubCardProps) {
   return (
     <Card sx={{ border: '1px solid #eceff1', mt: 2 }} elevation={0}>
       <CardHeader
@@ -33,13 +38,13 @@ export default function CustomSubCard({ title, children }: CustomSubCardProps) {
           </Typography>
         }
         action={
-          <IconButton>
+          <IconButton onClick={onToggle}>
             <ArrowDropDownTwoTone />
           </IconButton>
         }
       />
       <Divider />
-      <CardContent sx={{ p: 2.5 }}>
+      <CardContent>
         <Grid container spacing={3}>
           {children}
         </Grid>

@@ -39,6 +39,22 @@ const models = {
     productId: String,
     voucherId: String,
   },
+  charts: {
+    chartId: primaryKey(String),
+    cx: String,
+    tx: String,
+    nx: Number,
+    createdAt: Number,
+    updatedAt: Number,
+    deletedAt: Number,
+  },
+  chartCommment: {
+    commentId: primaryKey(String),
+    content: String,
+    createdAt: Number,
+    updatedAt: Number,
+    deletedAt: Number,
+  },
 };
 
 export const db = factory(models);

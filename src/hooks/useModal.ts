@@ -11,9 +11,14 @@ export function useModal() {
     setOpen(false);
   };
 
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
   return {
     open,
     handleOpen,
     handleClose,
+    handleToggle,
   };
 }
