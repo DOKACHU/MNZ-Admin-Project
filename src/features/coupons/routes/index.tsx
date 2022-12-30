@@ -6,7 +6,7 @@ export function CouponRoutes() {
   return (
     <Routes>
       <Route path="" element={<Coupons />} />
-      <Route path="" element={<CouponDetail />} />
+      <Route path=":id" element={<CouponDetail />} />
     </Routes>
   );
 }

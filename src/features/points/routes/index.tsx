@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Points from './Points';
 import PointDetail from './PointDetail';
 
-export function UsersRoutes() {
+export function PointRoutes() {
   return (
     <Routes>
       <Route path="" element={<Points />} />
