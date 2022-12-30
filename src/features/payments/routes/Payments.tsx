@@ -1,5 +1,6 @@
 import React from 'react';
+import { ContentLayout } from '../../../layouts';
 
 export default function Payments() {
-  return <div>Payments</div>;
+  return <ContentLayout title="결제관리">Payments</ContentLayout>;
 }

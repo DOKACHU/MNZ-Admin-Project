@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react';
-import { Box, CircularProgress } from '@mui/material';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Dashboard, NotFound } from '../features/misc';
 import { MainLayout } from '../layouts';
-
+import { Spinner } from '../components';
 import { lazyImport } from '../utils/lazyImport';
 
 const { CouponRoutes } = lazyImport(
@@ -59,20 +58,7 @@ const { PushsRoutes } = lazyImport(
 export default function App() {
   return (
     <MainLayout>
-      <Suspense
-        fallback={
-          <Box
-            sx={{
-              minHeight: 'calc(100vh - 110px)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <CircularProgress />
-          </Box>
-        }
-      >
+      <Suspense fallback={<Spinner />}>
         <Outlet />
       </Suspense>
     </MainLayout>

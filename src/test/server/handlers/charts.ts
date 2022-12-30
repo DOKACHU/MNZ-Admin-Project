@@ -25,7 +25,7 @@ export const chartsHandlers = [
       });
 
       persistDb('charts');
-      return delayedResponse(ctx.json(result));
+      return await delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
