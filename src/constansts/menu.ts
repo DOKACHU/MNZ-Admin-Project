@@ -26,6 +26,11 @@ export const mainNavbarItems = [
     // icon: <Apartment />,
   },
   {
+    id: 14,
+    label: '상품 관리',
+    route: 'products',
+  },
+  {
     id: 4,
     label: '프로 관리',
     route: 'pros',
