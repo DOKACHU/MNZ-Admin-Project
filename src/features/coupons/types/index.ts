@@ -13,3 +13,8 @@ export type CouponsType = {
   updatedAt: string;
   deletedAt: string;
 } & BaseEntity;
+
+export type ServerCouponType = {
+  total_count: number;
+  couponList: CouponsType[];
+};

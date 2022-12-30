@@ -5,7 +5,7 @@ import { axios } from '../../../lib/axios';
 import { MutationConfig, queryClient } from '../../../lib/react-query';
 // import { useNotificationStore } from '@/stores/notifications';
 
-import { CouponsType } from '../types';
+import { CouponsType, ServerCouponType } from '../types';
 
 export type CreateCouponsDTO = {
   data: {
@@ -31,12 +31,21 @@ export const useCreateCoupon = ({ config }: UseCreateCouponsOptions = {}) => {
   return useMutation({
     onMutate: async (newCoupons: any) => {
       await queryClient.cancelQueries('coupons');
+      // mocking
+      // const previousCoupons =
+      //   queryClient.getQueryData<CouponsType[]>('coupons');
 
+      //   queryClient.setQueryData('coupons', [
+      //   ...(previousCoupons. || []),
+      //   newCoupons.data,
+      // ]);
+
+      // server
       const previousCoupons =
-        queryClient.getQueryData<CouponsType[]>('coupons');
+        queryClient.getQueryData<ServerCouponType>('coupons');
 
       queryClient.setQueryData('coupons', [
-        ...(previousCoupons || []),
+        ...(previousCoupons?.couponList || []),
         newCoupons.data,
       ]);
 
@@ -56,6 +65,6 @@ export const useCreateCoupon = ({ config }: UseCreateCouponsOptions = {}) => {
       // });
     },
     ...config,
-    mutationFn: createCoupons,
+    mutationFn: createCoupons as any,
   });
 };

@@ -16,7 +16,8 @@ export default function Bookings() {
       <CreateBookings open={open} onClose={handleClose} />
       <Table<BookingType>
         loading={isLoading}
-        data={data as any}
+        // data={data as any}
+        data={data?.bookingList}
         columns={[
           {
             id: 'bookingId',

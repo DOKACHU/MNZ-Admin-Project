@@ -56,7 +56,7 @@ export const useCreateBookings = ({
     },
     onSuccess: () => {
       queryClient.invalidateQueries('bookings');
-      alert(' 예약 생성 완료');
+      alert('예약 생성 완료');
       // addNotification({
       //   type: 'success',
       //   title: 'Discussion Created',
