@@ -13,6 +13,7 @@ import {
   TableCell,
   Checkbox,
   CircularProgress,
+  Typography,
 } from '@mui/material';
 // import { useNavigate, useLocation } from 'react-router-dom';
 import CustomTableHead from './CustomTableHead';
@@ -78,35 +79,41 @@ export function CustomTable<Entry extends { id: string }>({
           <Table sx={{ minWidth: 750 }}>
             <CustomTableHead columns={columns} />
             <TableBody>
-              {data.map((entry, entryIndex) => (
-                <TableRow
-                  hover
-                  key={entry?.id || entryIndex}
-                  role="checkbox"
-                  tabIndex={-1}
-                  onClick={(e) => handleRowClick(e, entryIndex)}
-                >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      color="primary"
-                      inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${entry.id}`,
-                      }}
-                    />
-                  </TableCell>
-                  {columns.map(({ Cell, field, id }, columnIndex) => (
-                    <>
-                      {Cell ? (
-                        <TableCell>
-                          <Cell entry={entry} />
-                        </TableCell>
-                      ) : (
-                        <TableCell>{entry[field] as any}</TableCell>
-                      )}
-                    </>
-                  ))}
-                </TableRow>
-              ))}
+              {data.length === 0 ? (
+                <TableCell align="center">
+                  <Typography variant="h5">No Data</Typography>
+                </TableCell>
+              ) : (
+                data.map((entry, entryIndex) => (
+                  <TableRow
+                    hover
+                    key={entry?.id || entryIndex}
+                    role="checkbox"
+                    tabIndex={-1}
+                    onClick={(e) => handleRowClick(e, entryIndex)}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                        inputProps={{
+                          'aria-labelledby': `enhanced-table-checkbox-${entry.id}`,
+                        }}
+                      />
+                    </TableCell>
+                    {columns.map(({ Cell, field, id }, columnIndex) => (
+                      <>
+                        {Cell ? (
+                          <TableCell>
+                            <Cell entry={entry} />
+                          </TableCell>
+                        ) : (
+                          <TableCell>{entry[field] as any}</TableCell>
+                        )}
+                      </>
+                    ))}
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>

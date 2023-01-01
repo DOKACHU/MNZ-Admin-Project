@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export function useTableList(rows: any) {
+export function useTableList() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,8 +13,8 @@ export function useTableList(rows: any) {
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [path, setPath] = useState<any>(null);
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const emptyRows =
+  //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
@@ -30,14 +30,14 @@ export function useTableList(rows: any) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (e: any) => {
-    if (e.target.checked) {
-      const newSelected = rows.map((n: any) => n.name);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
+  // const handleSelectAllClick = (e: any) => {
+  //   if (e.target.checked) {
+  //     const newSelected = rows.map((n: any) => n.name);
+  //     setSelected(newSelected);
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
 
   const handleClick = (e: any, name: string) => {
     e.stopPropagation();
@@ -80,14 +80,14 @@ export function useTableList(rows: any) {
     page,
     order,
     orderBy,
-    emptyRows,
+    // emptyRows,
     setPage,
     rowsPerPage,
     setRowsPerPage,
     isSelected,
     handleRowClick,
     handleRequestSort,
-    handleSelectAllClick,
+    // handleSelectAllClick,
     handleClick,
 
     handleChangePage,

@@ -9,7 +9,6 @@ export default function Products() {
 
   return (
     <ContentLayout title="상품">
-      {' '}
       <Table<ProductType>
         loading={isLoading}
         // data={data}
