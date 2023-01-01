@@ -33,7 +33,8 @@ export default function SearchListChart() {
             justifyContent: 'center',
           }}
         >
-          <Pagination count={10} color="primary" />
+          {/* TODO: 바우처 연 월 일  리스트 추가  */}
+          {/* <Pagination count={10} color="primary" /> */}
         </Box>
       </Grid>
       <Suspense fallback={<>Loading...</>}>

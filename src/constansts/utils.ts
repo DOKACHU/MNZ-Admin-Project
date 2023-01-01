@@ -28,6 +28,33 @@ export const getComparator = (order: string, orderBy: string) => {
     : (a: any, b: any) => -descendingComparator(a, b, orderBy);
 };
 
+export const mockTimeSlots = Array.from(new Array(24 * 2)).map(
+  (_, index) =>
+    `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${
+      index % 2 === 0 ? '00' : '30'
+    }`
+);
+
+export const detailsIconSX = {
+  width: 15,
+  height: 15,
+  verticalAlign: 'text-top',
+  mr: 0.5,
+  mt: 0.25,
+};
+
+export const styleH4 = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 600,
+};
+
+export const styleSubtitle = {
+  color: '#212121',
+  fontSize: 14,
+  fontWeight: 500,
+};
+
 // export function dateFormat(date: Date) {
 //   const initmonth = date.getMonth() + 1;
 //   const initday = date.getDate();

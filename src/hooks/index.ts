@@ -4,3 +4,4 @@ export * from './useGetPostDetailById';
 export * from './useTableList';
 export * from './useModal';
 export * from './useDisclosure';
+export * from './useDetailTab';
