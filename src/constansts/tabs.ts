@@ -71,12 +71,12 @@ export const couponTab = [
 export const productTab = [
   {
     id: 0,
-    label: 'profile',
+    label: '상품 상세 정보',
     to: '#',
   },
-  {
-    id: 1,
-    label: 'etc',
-    to: '#',
-  },
+  // {
+  //   id: 1,
+  //   label: 'etc',
+  //   to: '#',
+  // },
 ];
