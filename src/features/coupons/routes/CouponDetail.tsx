@@ -3,7 +3,7 @@ import { ContentLayout } from '../../../layouts';
 import { CustomDetailForm } from '../../../components';
 import { couponTab } from '../../../constansts';
 import { useDetailTab } from '../../../hooks';
-import { CouponInfo } from '../components';
+import { BasicInfo } from '../components';
 
 export default function CouponDetail() {
   const { value, handleTabChange, TabPanel } = useDetailTab();
@@ -18,7 +18,7 @@ export default function CouponDetail() {
         {couponTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.id === 0 && <CouponInfo />}
+              {tab.id === 0 && <BasicInfo />}
               {/* {tab.id === 1 && <MedicalCharts />} */}
             </TabPanel>
           );

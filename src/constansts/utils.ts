@@ -45,20 +45,20 @@ export const detailsIconSX = {
 
 export const styleH4 = {
   color: '#212121',
-  fontSize: 18,
+  fontSize: 20,
   fontWeight: 600,
 };
 
 export const styleSubtitle = {
   color: '#212121',
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: 500,
 };
 
 export const styleBody = {
   color: '#212121',
   fontSize: 14,
-  // fontWeight: 500,
+  fontWeight: 400,
 };
 
 // export function dateFormat(date: Date) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
 import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
 
-export default function CouponInfo() {
+export default function BasicInfo() {
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>

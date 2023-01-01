@@ -58,7 +58,7 @@ export const proTab = [
 export const couponTab = [
   {
     id: 0,
-    label: '상세 정보',
+    label: '기본 정보',
     to: '#',
   },
   // {
