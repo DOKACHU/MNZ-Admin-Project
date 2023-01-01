@@ -21,7 +21,6 @@ export default function CreateBookings({ open, onClose }: CreateCouponProps) {
     await mutateAsync({ data });
   };
 
-  console.log({ startDate });
   return (
     <Drawer
       title="예약 생성 모달"

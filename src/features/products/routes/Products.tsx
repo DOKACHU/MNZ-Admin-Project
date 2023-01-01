@@ -3,12 +3,16 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useProducts } from '../api';
 import { ProductType } from '../types';
+import { CreateProducts } from '../components';
+import { useModal } from '../../../hooks';
 
 export default function Products() {
   const { isLoading, data } = useProducts();
+  const { open, handleClose, handleOpen } = useModal();
 
   return (
-    <ContentLayout title="상품">
+    <ContentLayout title="상품" isButton onOpen={handleOpen}>
+      <CreateProducts open={open} onClose={handleClose} />
       <Table<ProductType>
         loading={isLoading}
         // data={data}

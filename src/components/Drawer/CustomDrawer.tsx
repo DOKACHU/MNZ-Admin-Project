@@ -2,12 +2,12 @@ import React from 'react';
 import { Drawer, Box, Grid, Typography, Divider } from '@mui/material';
 
 type CustomDrawerProps = {
-  title: string;
+  title?: string;
   open: boolean;
   children: React.ReactNode;
-  renderHeader: React.ReactNode;
+  renderHeader?: React.ReactNode;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 };
 
 export default function CustomDrawer({
