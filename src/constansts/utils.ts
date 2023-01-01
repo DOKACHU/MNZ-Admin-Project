@@ -45,7 +45,7 @@ export const detailsIconSX = {
 
 export const styleH4 = {
   color: '#212121',
-  fontSize: 14,
+  fontSize: 18,
   fontWeight: 600,
 };
 
@@ -53,6 +53,12 @@ export const styleSubtitle = {
   color: '#212121',
   fontSize: 14,
   fontWeight: 500,
+};
+
+export const styleBody = {
+  color: '#212121',
+  fontSize: 14,
+  // fontWeight: 500,
 };
 
 // export function dateFormat(date: Date) {
