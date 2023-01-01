@@ -1,18 +1,14 @@
 import React from 'react';
 
-import {
-  Box,
-  Card,
-  Grid,
-  Typography,
-  Button,
-  CircularProgress,
-} from '@mui/material';
+import { Box, Card, Grid, Typography, Button } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 type ContentLayoutProps = {
   children: React.ReactNode;
   title: string;
   isButton?: boolean;
+  isBackButton?: boolean;
   onOpen?: () => void;
 };
 
@@ -21,8 +17,10 @@ export default function ContentLayout({
   title,
   isButton,
   onOpen,
+  isBackButton,
 }: ContentLayoutProps) {
   const modalTitle = `${title} 생성 모달`;
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -44,9 +42,20 @@ export default function ContentLayout({
             spacing={1}
           >
             <Grid item>
-              <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                {`${title}`}
-              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                }}
+              >
+                {isBackButton && (
+                  <Button size="small" onClick={() => navigate(-1)}>
+                    <ArrowBack />
+                  </Button>
+                )}
+                <Typography variant="h5" sx={{ fontWeight: 500 }}>
+                  {`${title}`}
+                </Typography>
+              </Box>
             </Grid>
             {isButton && (
               <Grid item>

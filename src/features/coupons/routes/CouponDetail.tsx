@@ -8,7 +8,7 @@ export default function CouponDetail() {
   const { value, handleTabChange, TabPanel } = useDetailTab();
 
   return (
-    <ContentLayout title="쿠폰 상세">
+    <ContentLayout title="쿠폰 상세" isBackButton>
       <CustomDetailForm
         value={value}
         tabs={couponTab}
