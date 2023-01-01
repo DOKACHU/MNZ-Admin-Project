@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useState } from 'react';
-import { Box } from '@mui/material';
+
 import { ContentLayout } from '../../../layouts';
 import { CustomDetailForm } from '../../../components';
 import { bookingTab } from '../types';
