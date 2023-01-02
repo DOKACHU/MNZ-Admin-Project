@@ -3,6 +3,7 @@ import { ContentLayout } from '../../../layouts';
 import { CustomDetailForm } from '../../../components';
 import { reviewTab } from '../../../constansts';
 import { useDetailTab } from '../../../hooks';
+import { BasicInfo } from '../components';
 
 export default function ReviewDetail() {
   const { value, handleTabChange, TabPanel } = useDetailTab();
@@ -17,8 +18,8 @@ export default function ReviewDetail() {
         {reviewTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {/* {tab.id === 0 && <BookingInfo />}
-              {tab.id === 1 && <MedicalCharts />} */}
+              {tab.id === 0 && <BasicInfo />}
+              {/* {tab.id === 1 && <MedicalCharts />} */}
             </TabPanel>
           );
         })}
