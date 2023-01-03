@@ -61,6 +61,11 @@ export const styleBody = {
   fontWeight: 400,
 };
 
+export const styleValue = {
+  color: '#212121',
+  fontWeight: 400,
+};
+
 // export function dateFormat(date: Date) {
 //   const initmonth = date.getMonth() + 1;
 //   const initday = date.getDate();

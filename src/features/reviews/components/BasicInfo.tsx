@@ -1,74 +1,66 @@
 import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
-import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
+import {
+  reviewBookingInfo,
+  reviewProInfo,
+  reviewCenterInfo,
+  convertDate,
+} from '../../../constansts';
+
+import {
+  MainDetailForm,
+  MainSubCard,
+  UserBasicRow,
+  InfoBasicRow,
+  InfoReviewRow,
+} from '../../../components';
 
 interface BasicInfoProps {
   detail?: any;
 }
 export default function BasicInfo({ detail }: BasicInfoProps) {
+  console.log(detail.booking);
+
+  const newBooking = {
+    ...detail.booking,
+    bookingDate: convertDate(detail.booking.bookingDate),
+    startTime: convertDate(detail.booking.startTime),
+    endTime: convertDate(detail.booking.endTime),
+  };
+
   return (
-    <Grid item xs={6}>
-      <Stack spacing={2}>
-        <Typography variant="h4" sx={styleH4}>
-          리뷰 상세 정보
-        </Typography>
-        <Divider />
-        <Stack spacing={0}>
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              리뷰 번호 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              {detail.reviewId}
-            </Typography>
-          </Stack>
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 이름 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
-            </Typography>
-          </Stack>
-          {/*  */}
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 설명 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
-            </Typography>
-          </Stack>
-          {/*  */}
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인율 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              할인율
-            </Typography>
-          </Stack>
-          {/*  */}
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인가격 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              할인가격
-            </Typography>
-          </Stack>
-          {/*  */}
-        </Stack>
-      </Stack>
+    <Grid container spacing={2} display="row" alignItems="center">
+      <Grid item xs={12}>
+        <MainSubCard title="세부 사항">
+          <UserBasicRow title="작성자 정보" detail={detail?.user} />
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          <InfoReviewRow title="리뷰 정보" detail={detail} />
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          <InfoBasicRow
+            title="예약 정보"
+            menus={reviewBookingInfo}
+            detail={newBooking}
+          />
+          <InfoBasicRow
+            title="프로 정보"
+            menus={reviewProInfo}
+            detail={detail?.pro}
+          />
+          <InfoBasicRow
+            title="센터 정보"
+            menus={reviewCenterInfo}
+            detail={detail?.center}
+          />
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+        </MainSubCard>
+        {/* <ReviewBasicInfo detail={detail} /> */}
+      </Grid>
     </Grid>
   );
 }

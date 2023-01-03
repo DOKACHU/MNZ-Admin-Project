@@ -35,6 +35,7 @@ export default function InfoBasicRow({
           {detail && (
             <>
               {menus.map((menu: any) => {
+                console.log({ menu });
                 return (
                   <Stack
                     key={menu.id}
