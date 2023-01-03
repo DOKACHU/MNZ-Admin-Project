@@ -3,6 +3,7 @@ export { default as Drawer } from './Drawer';
 export { default as CustomDetailForm } from './CustomDetailForm';
 export { default as CustomSubCard } from './CustomSubCard';
 export { default as Spinner } from './Spinner';
+export { default as UploadImage } from './UploadImage';
 
 // Main
 export { default as MainTable } from './MainTable';

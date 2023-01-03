@@ -1,16 +1,20 @@
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
-import { ServerPointType, PointType } from '../types';
+import { CenterType } from '../types';
 import { useCenters } from '../api';
+import { useModal } from '../../../hooks';
+import { CreateCenters } from '../components';
 
 export default function Centers() {
   const { isLoading, data } = useCenters();
+  const { open, handleClose, handleOpen } = useModal();
 
   return (
-    <ContentLayout title="센터">
-      {' '}
-      <Table<PointType>
+    <ContentLayout title="센터" isButton onOpen={handleOpen}>
+      <CreateCenters open={open} onClose={handleClose} />
+
+      <Table<CenterType>
         loading={isLoading}
         // data={data}
         data={data?.centerList}
