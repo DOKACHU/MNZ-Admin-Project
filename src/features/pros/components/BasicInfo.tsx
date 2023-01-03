@@ -2,7 +2,12 @@ import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
 import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
 
-export default function BasicInfo() {
+interface BasicInfoProps {
+  detail?: any;
+}
+
+export default function BasicInfo({ detail }: BasicInfoProps) {
+  console.log({ detail });
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -14,31 +19,20 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 번호 :
+              프로 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 정보
+              {detail.proId}
             </Typography>
           </Stack>
 
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 이름 :
+              프로 이름 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
-            </Typography>
-          </Stack>
-          {/*  */}
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 설명 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
+              {detail.name}
             </Typography>
           </Stack>
           {/*  */}
@@ -46,10 +40,10 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인율 :
+              핸드폰 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인율
+              {detail.phoneNumber}
             </Typography>
           </Stack>
           {/*  */}
@@ -57,10 +51,10 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인가격 :
+              소개 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인가격
+              {detail.description}
             </Typography>
           </Stack>
           {/*  */}
