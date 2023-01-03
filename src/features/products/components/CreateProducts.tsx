@@ -6,6 +6,7 @@ import { Grid, Button, TextField, Box } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import dayjs from 'dayjs';
 import Select from 'react-select';
+import { useCreateProducts, CreateProductsDTO } from '../api';
 
 import { Drawer } from '../../../components';
 
@@ -15,14 +16,25 @@ type CreateProductsProps = {
 };
 
 export default function CreateProducts({ open, onClose }: CreateProductsProps) {
-  const { control, handleSubmit } = useForm<any>();
-  const [startDate, setStartDate] = useState(dayjs(''));
+  const { mutateAsync } = useCreateProducts();
+  const { control, handleSubmit } = useForm<CreateProductsDTO['data']>();
+  // const [startDate, setStartDate] = useState(dayjs(''));
+
+  const onSubmit = async (data: CreateProductsDTO['data']) => {
+    const newData = {
+      ...data,
+      centerId: '3753b4df-0a3b-43bf-8d94-aceb1745cfe1',
+      proId: '30a12e6e-f726-4514-8da4-2ab45bbf959b',
+    };
+    await mutateAsync({ data: newData });
+  };
 
   return (
     <Drawer
       title="상품 생성 모달"
       open={open}
       onClose={onClose}
+      onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
           sx={{
@@ -46,7 +58,7 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="상품이름"
+              helperText="상품 이름"
               fullWidth
               size="small"
             />
@@ -61,7 +73,7 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="상품설명"
+              helperText="상품 설명"
               fullWidth
               multiline
               rows={4}
@@ -81,7 +93,37 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
         />
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={12}>
+        <Controller
+          name="runningTime"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              helperText="진행 시간"
+              fullWidth
+              size="small"
+            />
+          )}
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <Controller
+          name="progressNumber"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              helperText="진행 횟수"
+              fullWidth
+              size="small"
+            />
+          )}
+        />
+      </Grid>
+
+      {/* <Grid item xs={6}>
         <Controller
           name="runningTime"
           render={({ field }) => (
@@ -98,7 +140,6 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
             </>
           )}
           control={control}
-          defaultValue=""
         />
       </Grid>
 
@@ -121,7 +162,7 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
           control={control}
           defaultValue=""
         />
-      </Grid>
+      </Grid> */}
 
       {/* TODO: 프로, 센터 검색  */}
     </Drawer>
