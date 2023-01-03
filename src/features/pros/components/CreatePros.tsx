@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { Grid, Button, TextField, Box } from '@mui/material';
@@ -5,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { Drawer, UploadImage } from '../../../components';
-// import { useCreateBookings, CreateBookingDTO } from '../api';
+import { useCreatePros, CreateProsDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
@@ -13,20 +14,24 @@ type CreateCouponProps = {
 };
 
 export default function CreatePros({ open, onClose }: CreateCouponProps) {
-  // const { mutateAsync } = useCreateBookings();
-  const { control, handleSubmit } = useForm<any>();
+  const { mutateAsync } = useCreatePros();
+  const { control, handleSubmit } = useForm<CreateProsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
-  // const onSubmit = async (data: CreateBookingDTO['data']) => {
-  //   await mutateAsync({ data });
-  // };
+  const onSubmit = async (data: CreateProsDTO['data']) => {
+    const newData = {
+      ...data,
+      centerId: '3753b4df-0a3b-43bf-8d94-aceb1745cfe1',
+    };
+    await mutateAsync({ data: newData });
+  };
 
   return (
     <Drawer
       title="프로 생성 모달"
       open={open}
       onClose={onClose}
-      // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
           sx={{
@@ -45,7 +50,7 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
     >
       <Grid item xs={12}>
         <Controller
-          name="center.name"
+          name="name"
           control={control}
           render={({ field }) => (
             <TextField
@@ -59,7 +64,7 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
       </Grid>
       <Grid item xs={12}>
         <Controller
-          name="center.description"
+          name="description"
           control={control}
           render={({ field }) => (
             <TextField
@@ -74,7 +79,7 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
 
       <Grid item xs={12}>
         <Controller
-          name="center.address"
+          name="phoneNumber"
           control={control}
           render={({ field }) => (
             <TextField

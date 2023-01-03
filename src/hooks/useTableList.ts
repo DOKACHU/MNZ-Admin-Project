@@ -85,9 +85,6 @@ export function useTableList() {
     setRowId(pathMap[splited]);
   }, [location]);
 
-  console.log({ path });
-  console.log({ rowId });
-
   return {
     page,
     order,
