@@ -1,32 +1,50 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { Grid, Button, TextField, Box, Radio } from '@mui/material';
+import {
+  Grid,
+  Button,
+  TextField,
+  Box,
+  Radio,
+  RadioGroup,
+  Typography,
+} from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { Drawer, UploadImage } from '../../../components';
-// import { useCreateBookings, CreateBookingDTO } from '../api';
+import { useCreatePoint, CreatePointsDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
   onClose: () => void;
 };
 
+const StyleRadio = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
 export default function CreatePoints({ open, onClose }: CreateCouponProps) {
-  // const { mutateAsync } = useCreateBookings();
-  const { control, handleSubmit } = useForm<any>();
+  const { mutateAsync } = useCreatePoint();
+  const { control, handleSubmit } = useForm<CreatePointsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
-  // const onSubmit = async (data: CreateBookingDTO['data']) => {
-  //   await mutateAsync({ data });
-  // };
+  const onSubmit = async (data: CreatePointsDTO['data']) => {
+    const newData = {
+      ...data,
+      userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
+    };
+
+    await mutateAsync({ data: newData });
+  };
 
   return (
     <Drawer
       title="포인트 생성 모달"
       open={open}
       onClose={onClose}
-      // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
           sx={{
@@ -43,7 +61,7 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
         </Box>
       }
     >
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <Controller
           name="center.name"
           control={control}
@@ -51,45 +69,45 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
             <TextField {...field} helperText="고객 ID" fullWidth size="small" />
           )}
         />
-      </Grid>
+      </Grid> */}
 
       <Grid item sm={12}>
-        <Radio
-          // checked={createInfo?.status === 'add'}
-          // onChange={handleCreateChange}
-          value="add"
-          name="status"
-          // inputProps={{ 'aria-label': 'A' }}
-        />
-        지급
-        <Radio
-          // checked={createInfo?.status === 'sub'}
-          // onChange={handleCreateChange}
-          value="sub"
-          name="status"
-          // inputProps={{ 'aria-label': 'B' }}
-        />
-        차감
-      </Grid>
-
-      <Grid item xs={12}>
         <Controller
-          name="point"
+          name="status"
           control={control}
           render={({ field }) => (
-            <TextField {...field} helperText="포인트" fullWidth size="small" />
+            <RadioGroup {...field}>
+              <Box sx={StyleRadio}>
+                <Radio value="add" />
+                <Typography>지급</Typography>
+              </Box>
+              <Box sx={StyleRadio}>
+                <Radio value="sub" />
+                <Typography>차감</Typography>
+              </Box>
+            </RadioGroup>
           )}
         />
       </Grid>
 
       <Grid item xs={12}>
         <Controller
-          name="requestComment"
+          name="price"
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} helperText="가격" fullWidth size="small" />
+          )}
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <Controller
+          name="reason"
           control={control}
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="사유"
+              helperText="지급 사유"
               fullWidth
               multiline
               rows={4}

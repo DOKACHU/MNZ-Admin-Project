@@ -11,7 +11,6 @@ export const getPoint = async ({
   pointId: string;
 }): Promise<any> => {
   const result = await axios.get(`points/?cursor=1&per_page=100`);
-  console.log({ result });
   const detail = result.pointList.filter(
     (list: any) => list.pointEventId === pointId
   );
