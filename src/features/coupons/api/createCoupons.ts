@@ -12,6 +12,7 @@ export type CreateCouponsDTO = {
     title: string;
     description: string;
     discountRate: number;
+    discountPrice: number;
     startPeriod: string;
   };
 };
