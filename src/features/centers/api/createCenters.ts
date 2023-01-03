@@ -7,6 +7,13 @@ import { MutationConfig, queryClient } from '../../../lib/react-query';
 
 import { ServerCenterType } from '../types';
 
+type BusinessHoursType = {
+  dayOfWeek: number;
+  startTime: string;
+  closeTime: string;
+  dayOflabel?: string;
+};
+
 export type CreateCentersDTO = {
   data: {
     center: {
@@ -14,10 +21,8 @@ export type CreateCentersDTO = {
       description: string;
       address: string;
     };
-
-    discountRate: number;
-    discountPrice: number;
-    startPeriod: string;
+    businessHours: BusinessHoursType[];
+    images: string;
   };
 };
 
