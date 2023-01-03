@@ -1,12 +1,15 @@
+/* eslint-disable import/no-cycle */
 export { default as Table } from './Table';
 export { default as Drawer } from './Drawer';
 export { default as CustomDetailForm } from './CustomDetailForm';
 export { default as CustomSubCard } from './CustomSubCard';
 export { default as Spinner } from './Spinner';
 export { default as UploadImage } from './UploadImage';
+export { default as MainDeleteModal } from './MainDeleteModal';
 
 // Main
 export { default as MainTable } from './MainTable';
+
 export { default as MainDetailForm } from './MainDetailForm';
 export { default as MainProfile } from './MainProfile';
 export { default as MainSubCard } from './MainSubCard';

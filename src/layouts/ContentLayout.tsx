@@ -9,20 +9,25 @@ type ContentLayoutProps = {
   title: string;
   isButton?: boolean;
   isBackButton?: boolean;
-  onOpen?: () => void;
+  handleOpen?: () => void;
+  handleDeleteOpen?: () => void;
   isUpdateButton?: boolean;
+  isDeleteButton?: boolean;
 };
 
 export default function ContentLayout({
   children,
   title,
   isButton,
-  onOpen,
+  handleOpen,
+  handleDeleteOpen,
   isBackButton,
   isUpdateButton,
+  isDeleteButton,
 }: ContentLayoutProps) {
   const modalTitle = `${title} 생성 모달`;
   const updateModalTitle = `${title} 수정 모달`;
+  const deleteModalTitle = `${title} 삭제 모달`;
   const navigate = useNavigate();
 
   return (
@@ -60,20 +65,31 @@ export default function ContentLayout({
                 </Typography>
               </Box>
             </Grid>
-            {isButton && (
-              <Grid item>
-                <Button variant="outlined" onClick={onOpen}>
+
+            <Grid item>
+              {isButton && (
+                <Button variant="outlined" onClick={handleOpen}>
                   {modalTitle}
                 </Button>
-              </Grid>
-            )}
-            {isUpdateButton && (
-              <Grid item>
-                <Button variant="outlined" onClick={onOpen}>
+              )}
+              {isUpdateButton && (
+                <Button variant="outlined" onClick={handleOpen}>
                   {updateModalTitle}
                 </Button>
-              </Grid>
-            )}
+              )}
+              {isDeleteButton && (
+                <Button
+                  variant="outlined"
+                  color="error"
+                  sx={{
+                    ml: 2,
+                  }}
+                  onClick={handleDeleteOpen}
+                >
+                  {deleteModalTitle}
+                </Button>
+              )}
+            </Grid>
           </Grid>
         </Box>
       </Card>

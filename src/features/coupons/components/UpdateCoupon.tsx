@@ -11,16 +11,15 @@ type CreateCouponProps = {
   couponId: string;
   open: boolean;
   detail: any;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
 export default function UpdateCoupon({
   couponId,
   open,
-  onClose,
+  handleClose,
   detail,
 }: CreateCouponProps) {
-  console.log({ detail });
   const { mutateAsync } = useUpdateCoupon({ couponId });
   const { control, handleSubmit } = useForm<UpdateDiscussionDTO['data']>({
     defaultValues: {
@@ -35,14 +34,14 @@ export default function UpdateCoupon({
 
   const onSubmit = async (data: UpdateDiscussionDTO['data']) => {
     await mutateAsync({ data, couponId });
-    onClose();
+    handleClose();
   };
 
   return (
     <Drawer
       title="쿠폰 수정 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -54,7 +53,7 @@ export default function UpdateCoupon({
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             수정
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>
