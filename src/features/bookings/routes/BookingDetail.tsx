@@ -4,7 +4,7 @@
 import { ContentLayout } from '../../../layouts';
 import { CustomDetailForm } from '../../../components';
 import { bookingTab } from '../types';
-import { BookingInfo, MedicalCharts } from '../components';
+import { BasicInfo, MedicalCharts } from '../components';
 import { useDetailTab } from '../../../hooks';
 
 export default function BookingDetail() {
@@ -21,7 +21,7 @@ export default function BookingDetail() {
           console.log({ tab });
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.id === 0 && <BookingInfo />}
+              {tab.id === 0 && <BasicInfo />}
               {tab.id === 1 && <MedicalCharts />}
             </TabPanel>
           );

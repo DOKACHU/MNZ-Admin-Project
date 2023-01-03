@@ -7,7 +7,7 @@ export default function BasicInfo() {
     <Grid item xs={6}>
       <Stack spacing={2}>
         <Typography variant="h4" sx={styleH4}>
-          포인트 상세 정보
+          상품 상세 정보
         </Typography>
         <Divider />
         <Stack spacing={0}>

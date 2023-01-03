@@ -7,7 +7,7 @@ export default function BasicInfo() {
     <Grid item xs={6}>
       <Stack spacing={2}>
         <Typography variant="h4" sx={styleH4}>
-          센터 상세 정보
+          예약 상세 정보
         </Typography>
         <Divider />
         <Stack spacing={0}>
