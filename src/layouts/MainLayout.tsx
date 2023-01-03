@@ -10,7 +10,7 @@ interface MainLayoutProps {
 
 const MainBlock = {
   display: 'flex',
-  height: '100vh',
+  // height: '100vh',
 };
 
 const Main = styled.main`
@@ -20,6 +20,7 @@ const Main = styled.main`
   background-color: #e3f2fd;
   border-radius: 8px;
   padding: 10px;
+  /* border: 1px solid red; */
 `;
 
 export default function MainLayout({ children }: MainLayoutProps) {

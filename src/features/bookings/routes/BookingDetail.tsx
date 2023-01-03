@@ -18,7 +18,6 @@ export default function BookingDetail() {
         onTabChange={handleTabChange}
       >
         {bookingTab.map((tab: any, i: number) => {
-          console.log({ tab });
           return (
             <TabPanel key={i} value={value} index={tab.id}>
               {tab.id === 0 && <BasicInfo />}

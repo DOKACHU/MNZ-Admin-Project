@@ -50,7 +50,7 @@ export default function CustomDetailForm({
     <Card
       sx={{
         marginTop: 3,
-        minHeight: 'calc(100vh - 250px)',
+        minheight: 'calc(100vh - 250px)',
       }}
       elevation={0}
     >
