@@ -6,7 +6,7 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 import { ServerCenterType } from '../types';
 
 export const getCenters = (): Promise<ServerCenterType> => {
-  return axios.get(`centers/?cursor=1&per_page=10`);
+  return axios.get(`centers/?cursor=1&per_page=100`);
 };
 
 type QueryFnType = typeof getCenters;

@@ -14,7 +14,6 @@ type CreateCouponProps = {
 export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
   const { mutateAsync } = useCreateCoupon();
   const { control, handleSubmit } = useForm<CreateCouponsDTO['data']>();
-  const [startDate, setStartDate] = useState(new Date());
 
   const onSubmit = async (data: CreateCouponsDTO['data']) => {
     await mutateAsync({ data });
@@ -102,22 +101,38 @@ export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
         <Controller
           name="startPeriod"
           control={control}
-          render={({ field: { onChange, ...restField } }) => (
+          render={({ field }) => (
             <DatePicker
               inputFormat="YYYY-MM-DD"
-              onChange={(newValue: any) => {
-                setStartDate(newValue);
-              }}
+              {...field}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   helperText="시작 기간"
                   fullWidth
-                  value={startDate}
                   size="small"
                 />
               )}
-              {...restField}
+            />
+          )}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Controller
+          name="closePeriod"
+          control={control}
+          render={({ field }) => (
+            <DatePicker
+              inputFormat="YYYY-MM-DD"
+              {...field}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText="마감 기간"
+                  fullWidth
+                  size="small"
+                />
+              )}
             />
           )}
         />

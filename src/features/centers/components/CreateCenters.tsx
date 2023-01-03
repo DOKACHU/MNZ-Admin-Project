@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import { Grid, Button, TextField, Box, Typography } from '@mui/material';
+import { Grid, Button, TextField, Box } from '@mui/material';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
 import { Drawer, UploadImage } from '../../../components';
 import { useCreateCenters, CreateCentersDTO } from '../api';
 
