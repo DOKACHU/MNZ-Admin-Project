@@ -49,9 +49,12 @@ export const useCreatePoint = ({ config }: UseCreateCouponsOptions = {}) => {
 
       return { previousCoupons };
     },
-    onError: (_, __, context: any) => {
+    onError: (e: any, _, context: any) => {
       if (context?.previousCoupons) {
         queryClient.setQueryData('points', context.previousCoupons);
+      }
+      if (e.response.data.statusCode === 409) {
+        alert('포인트가 부족합니다.');
       }
     },
     onSuccess: () => {

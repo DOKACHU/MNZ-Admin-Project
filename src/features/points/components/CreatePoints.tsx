@@ -53,10 +53,10 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
           }}
         >
           <Button type="button" variant="outlined" onClick={onClose}>
-            Cancel
+            취소
           </Button>
           <Button type="submit" variant="contained">
-            Submit
+            생성
           </Button>
         </Box>
       }
