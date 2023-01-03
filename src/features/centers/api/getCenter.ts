@@ -5,12 +5,16 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
 import { CenterType } from '../types';
 
-export const getCenter = ({ centerId }: { centerId: string }): Promise<any> => {
-  const result = axios.get(`centers/?cursor=1&per_page=100`);
+export const getCenter = async ({
+  centerId,
+}: {
+  centerId: string;
+}): Promise<any> => {
+  const result = await axios.get(`centers/?cursor=1&per_page=100`);
   const detail = result.centerList.filter(
     (list: any) => list.centerId === centerId
   );
-  return detail;
+  return detail[0];
 };
 
 type QueryFnType = typeof getCenter;

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+const pathMap: any = {
+  centers: 'centerId',
+};
 export function useTableList() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -12,6 +15,7 @@ export function useTableList() {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [path, setPath] = useState<any>(null);
+  const [rowId, setRowId] = useState<string>(null);
 
   // const emptyRows =
   //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -20,7 +24,7 @@ export function useTableList() {
 
   const handleRowClick = (e: any, id: number) => {
     e.stopPropagation();
-    const URL = `${path}/${id}`;
+    const URL = `/admin/${path}/${id}`;
     navigate(URL);
   };
 
@@ -71,16 +75,20 @@ export function useTableList() {
 
   useEffect(() => {
     // const parsedTitle = location.pathname.replace(/\W/g, '');
-    const parsedTitle = location.pathname;
-    console.log({ parsedTitle });
-    setPath(parsedTitle);
+    const splited = location.pathname.split('/')[2] || '';
+    setPath(splited);
+    setRowId(pathMap[splited]);
   }, [location]);
+
+  console.log({ path });
+  console.log({ rowId });
 
   return {
     page,
     order,
     orderBy,
     // emptyRows,
+    rowId,
     setPage,
     rowsPerPage,
     setRowsPerPage,

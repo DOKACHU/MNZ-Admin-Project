@@ -16,6 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 // import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import CustomTableHead from './CustomTableHead';
 import CustomTableBody from './CustomTableBody';
 import { useTableList } from '../../hooks';
@@ -49,7 +50,7 @@ export function CustomTable<Entry extends { id: string }>({
   //   navigate(URL);
   // };
 
-  const { handleRowClick } = useTableList();
+  const { handleRowClick, rowId } = useTableList();
 
   if (loading) {
     return (
@@ -84,13 +85,13 @@ export function CustomTable<Entry extends { id: string }>({
                   <Typography variant="h5">No Data</Typography>
                 </TableCell>
               ) : (
-                data.map((entry, entryIndex) => (
+                data.map((entry: any, entryIndex: number) => (
                   <TableRow
                     hover
                     key={entry?.id || entryIndex}
                     role="checkbox"
                     tabIndex={-1}
-                    onClick={(e) => handleRowClick(e, entryIndex)}
+                    onClick={(e) => handleRowClick(e, entry[rowId])}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox

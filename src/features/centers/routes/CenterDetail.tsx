@@ -13,7 +13,7 @@ export default function CenterDetail() {
   const { value, handleTabChange, TabPanel } = useDetailTab();
   const { isLoading, data } = useCenter({ centerId });
 
-  console.log(data);
+  console.log({ data });
 
   return (
     <ContentLayout title="센터 상세">
@@ -21,11 +21,12 @@ export default function CenterDetail() {
         value={value}
         tabs={centerTab}
         onTabChange={handleTabChange}
+        loading={isLoading}
       >
         {centerTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
-              {tab.id === 0 && <BasicInfo />}
+              {tab.id === 0 && <BasicInfo detail={data} />}
               {/* {tab.id === 1 && <MedicalCharts />} */}
             </TabPanel>
           );

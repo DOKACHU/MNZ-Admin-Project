@@ -14,6 +14,7 @@ import {
   Tab,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Spinner } from '.';
 
 interface CustomDetailFormProps {
   value?: number;
@@ -21,6 +22,7 @@ interface CustomDetailFormProps {
   children?: React.ReactNode;
   updateDateText?: string;
   createDateText?: string;
+  loading?: boolean;
   onTabChange: (e: any, newValue: any) => void;
 }
 
@@ -38,7 +40,12 @@ export default function CustomDetailForm({
   onTabChange,
   updateDateText,
   createDateText,
+  loading,
 }: CustomDetailFormProps) {
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <Card
       sx={{
