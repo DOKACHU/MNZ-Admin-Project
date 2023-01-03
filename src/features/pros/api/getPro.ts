@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { ProType } from '../types';
+// import { ProType } from '../types';
 
 export const getPro = async ({ proId }: { proId: string }): Promise<any> => {
   const result = await axios.get(`pros/?cursor=1&per_page=100`);

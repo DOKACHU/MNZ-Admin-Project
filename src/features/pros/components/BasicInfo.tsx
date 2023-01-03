@@ -7,7 +7,6 @@ interface BasicInfoProps {
 }
 
 export default function BasicInfo({ detail }: BasicInfoProps) {
-  console.log({ detail });
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>

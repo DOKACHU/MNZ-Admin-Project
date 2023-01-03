@@ -6,6 +6,7 @@ const pathMap: any = {
   coupons: 'couponId',
   reviews: 'reviewId',
   pros: 'proId',
+  points: 'pointEventId',
 };
 
 export function useTableList() {
