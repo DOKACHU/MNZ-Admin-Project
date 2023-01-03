@@ -140,7 +140,6 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
               fullWidth
               multiline
               rows={4}
-              size="small"
             />
           )}
         /> */}
