@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { CouponsType } from '../types';
+import { ServerCouponType, CouponsType } from '../types';
 
-export const getCoupons = (): Promise<CouponsType[]> => {
+export const getCoupons = (): Promise<ServerCouponType> => {
   return axios.get(`coupons/?cursor=1&per_page=10`);
 };
 

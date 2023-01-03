@@ -6,7 +6,7 @@ import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useCoupons } from '../api';
-import { CouponsType } from '../types';
+import { CouponsType, ServerCouponType } from '../types';
 import { formatDate } from '../../../utils/format';
 import { CreateCoupon } from '../components';
 import { useModal } from '../../../hooks';

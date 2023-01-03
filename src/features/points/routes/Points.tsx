@@ -3,12 +3,16 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { usePoints } from '../api';
 import { ServerPointType, PointType } from '../types';
+import { useModal } from '../../../hooks';
+import { CreatePoints } from '../components';
 
 export default function Points() {
   const { isLoading, data } = usePoints();
+  const { open, handleClose, handleOpen } = useModal();
 
   return (
-    <ContentLayout title="포인트">
+    <ContentLayout title="포인트" isButton onOpen={handleOpen}>
+      <CreatePoints open={open} onClose={handleClose} />
       <Table<PointType>
         loading={isLoading}
         // data={data}

@@ -35,10 +35,10 @@ export default function CustomDrawer({
       >
         <form onSubmit={onSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <Typography variant="h4">{title}</Typography>
             </Grid>
-            <Grid item xs={6} justifyContent="flex-end">
+            <Grid item xs={5} justifyContent="flex-end">
               {renderHeader}
             </Grid>
             <Divider />
