@@ -1,12 +1,19 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { ContentLayout } from '../../../layouts';
 import { CustomDetailForm } from '../../../components';
 import { centerTab } from '../../../constansts';
 import { useDetailTab } from '../../../hooks';
 import { BasicInfo } from '../components';
+import { useCenter } from '../api';
 
 export default function CenterDetail() {
+  const { centerId } = useParams();
+
   const { value, handleTabChange, TabPanel } = useDetailTab();
+  const { isLoading, data } = useCenter({ centerId });
+
+  console.log(data);
 
   return (
     <ContentLayout title="센터 상세">

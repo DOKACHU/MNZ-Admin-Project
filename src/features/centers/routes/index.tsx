@@ -6,7 +6,7 @@ export function CentersRoutes() {
   return (
     <Routes>
       <Route path="" element={<Centers />} />
-      <Route path=":bookingId" element={<CenterDetail />} />
+      <Route path=":centerId" element={<CenterDetail />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );
