@@ -48,7 +48,7 @@ export default function DetailTemplate({
   updateModalForm,
 }: ListTemplateProps) {
   const navigate = useNavigate();
-  const { open, handleOpen, handleModalClose } = useModal();
+  const { open, handleOpen } = useModal();
   const modalTitle = `${title} 수정 모달`;
 
   if (loading) {
@@ -70,7 +70,6 @@ export default function DetailTemplate({
     <>
       <MainUpdateModal
         open={open}
-        handleClose={handleModalClose}
         handleUpdate={onSubmit}
         title={modalTitle}
         setUpdateInfo={setUpdateInfo}

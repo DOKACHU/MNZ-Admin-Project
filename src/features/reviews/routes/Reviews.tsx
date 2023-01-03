@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { Typography } from '@mui/material';
@@ -27,7 +28,7 @@ export default function Reviews() {
             field: 'satisfied',
             title: '만족 여부',
             Cell({ entry: { satisfied } }) {
-              return satisfied ? 'O' : 'X';
+              return <Typography>{satisfied ? 'O' : 'X'}</Typography>;
             },
           },
           {
@@ -56,7 +57,7 @@ export default function Reviews() {
             Cell({ entry: { rating1, rating2, rating3, rating4, rating5 } }) {
               const calcAverage =
                 (rating1 + rating2 + rating3 + rating4 + rating5) / 5;
-              return calcAverage;
+              return <Typography>{calcAverage}</Typography>;
             },
           },
         ]}

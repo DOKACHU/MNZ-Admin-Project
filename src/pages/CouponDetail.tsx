@@ -55,11 +55,7 @@ export default function CouponDetail() {
       onUpadate={handleUpadate}
       onDelete={handleDelete}
     >
-      <MainDetailForm
-        tabs={centerTab}
-        value={value}
-        onTabChange={handleTabChange}
-      >
+      <MainDetailForm tabs={centerTab} value={value}>
         {centerTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>

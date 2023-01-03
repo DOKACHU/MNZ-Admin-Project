@@ -21,7 +21,7 @@ interface MainDetailFormProps {
   children?: React.ReactNode;
   updateDateText?: string;
   createDateText?: string;
-  onTabChange: () => void;
+  onTabChange?: () => void;
 }
 
 function a11yProps(index: number) {

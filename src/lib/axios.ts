@@ -11,7 +11,7 @@ function authRequestInterceptor(config: AxiosRequestConfig) {
   // }
   // config.headers.Accept = 'application/json';
   // return config;
-  config.headers.Accept = 'application/json';
+  // config.headers.Accept = 'application/json';
   return config;
 }
 

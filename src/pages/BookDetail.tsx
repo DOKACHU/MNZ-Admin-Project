@@ -256,7 +256,6 @@ export default function BookDetail() {
         createDateText=""
         tabs={bookTab}
         value={value}
-        onTabChange={handleTabChange}
       >
         {bookTab.map((tab: any, i: number) => {
           return (

@@ -27,14 +27,13 @@ export default function ListTemplate({
   setCreateInfo,
   createInfo,
 }: ListTemplateProps) {
-  const { open, handleOpen, handleModalClose } = useModal();
+  const { open, handleOpen } = useModal();
   const modalTitle = `${title} 생성 모달`;
 
   return (
     <>
       <MainModal
         open={open}
-        handleClose={handleModalClose}
         handleCreate={onSubmit}
         title={modalTitle}
         setCreateInfo={setCreateInfo}

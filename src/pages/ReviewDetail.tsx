@@ -57,7 +57,6 @@ export default function ReviewDetail() {
       <MainDetailForm
         tabs={reviewTab}
         value={value}
-        onTabChange={handleTabChange}
         createDateText={`작성일 : ${convertDate(fetchPostDetail?.createdAt)}`}
       >
         {reviewTab.map((tab: any, i: number) => {

@@ -46,11 +46,7 @@ export default function CouponDetail() {
       updateText="상품 수정"
       isButton
     >
-      <MainDetailForm
-        tabs={productTab}
-        value={value}
-        onTabChange={handleTabChange}
-      >
+      <MainDetailForm tabs={productTab} value={value}>
         {productTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>

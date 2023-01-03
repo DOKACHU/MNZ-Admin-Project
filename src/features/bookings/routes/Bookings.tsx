@@ -1,4 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
+import { Typography } from '@mui/material';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useBookings } from '../api';
@@ -49,7 +52,7 @@ export default function Bookings() {
             field: 'isCancel',
             title: ' 취소 여부 ',
             Cell({ entry: { isCancel } }) {
-              return isCancel ? 'O' : 'X';
+              return <Typography>{isCancel ? 'O' : 'X'}</Typography>;
             },
           },
         ]}

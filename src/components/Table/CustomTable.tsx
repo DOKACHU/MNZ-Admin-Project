@@ -117,7 +117,7 @@ export function CustomTable<Entry extends { id: string }>({
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" />{' '}
+        {/* <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" />{' '} */}
       </Paper>
     </Box>
   );

@@ -68,7 +68,7 @@ export const persistDb = (model: Model) => {
   // console.log(import.meta.env.MODE);
   // if (import.meta.env.MODE === 'development') return;
   const data = loadDb();
-  data[model] = db[model].getAll();
+  // data[model] = db[model].getAll();
   window.localStorage.setItem('mnz-db', JSON.stringify(data));
 };
 

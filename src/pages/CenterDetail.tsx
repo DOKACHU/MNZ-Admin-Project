@@ -54,11 +54,7 @@ export default function CenterDetail() {
       updateText="센터 수정"
       isButton
     >
-      <MainDetailForm
-        tabs={centerTab}
-        value={value}
-        onTabChange={handleTabChange}
-      >
+      <MainDetailForm tabs={centerTab} value={value}>
         {centerTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>

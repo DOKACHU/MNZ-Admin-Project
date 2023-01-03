@@ -26,17 +26,19 @@ async function loadUser() {
   return null;
 }
 
-// async function loginFn(data: LoginCredentialsDTO) {
-//   const response = await loginWithEmailAndPassword(data);
-//   const user = await handleUserResponse(response);
-//   return user;
-// }
+async function loginFn() {
+  // const response = await loginWithEmailAndPassword(data);
+  // const user = await handleUserResponse(response);
+  // return user;
+  return '';
+}
 
-// async function registerFn(data: RegisterCredentialsDTO) {
-//   const response = await registerWithEmailAndPassword(data);
-//   const user = await handleUserResponse(response);
-//   return user;
-// }
+async function registerFn() {
+  // const response = await registerWithEmailAndPassword(data);
+  // const user = await handleUserResponse(response);
+  // return user;
+  return '';
+}
 
 async function logoutFn() {
   storage.clearToken();
@@ -45,8 +47,8 @@ async function logoutFn() {
 
 const authConfig = {
   loadUser,
-  // loginFn,
-  // registerFn,
+  loginFn,
+  registerFn,
   logoutFn,
   LoaderComponent() {
     return (
@@ -60,6 +62,6 @@ const authConfig = {
 export const { AuthProvider, useAuth } = initReactQueryAuth<
   AuthUser | null,
   unknown
-  //   LoginCredentialsDTO,
-  //   RegisterCredentialsDTO
+  // LoginCredentialsDTO,
+  // RegisterCredentialsDTO
 >(authConfig);

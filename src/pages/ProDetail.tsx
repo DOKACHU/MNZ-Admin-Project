@@ -46,7 +46,7 @@ export default function ProDetail() {
       updateText="프로 수정"
       isButton
     >
-      <MainDetailForm tabs={proTab} value={value} onTabChange={handleTabChange}>
+      <MainDetailForm tabs={proTab} value={value}>
         {proTab.map((tab: any, i: number) => {
           return (
             <TabPanel key={i} value={value} index={tab.id}>
