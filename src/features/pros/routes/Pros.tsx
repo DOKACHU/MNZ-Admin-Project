@@ -3,13 +3,16 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { usePros } from '../api';
 import { ProType } from '../types';
+import { useModal } from '../../../hooks';
+import { CreatePros } from '../components';
 
 export default function Pros() {
   const { isLoading, data } = usePros();
+  const { open, handleClose, handleOpen } = useModal();
 
   return (
-    <ContentLayout title="프로">
-      {' '}
+    <ContentLayout title="프로" isButton onOpen={handleOpen}>
+      <CreatePros open={open} onClose={handleClose} />
       <Table<ProType>
         loading={isLoading}
         // data={data}

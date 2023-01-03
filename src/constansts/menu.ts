@@ -20,25 +20,9 @@ export const mainNavbarItems = [
     route: 'coupons',
   },
   {
-    id: 3,
-    label: '센터 관리',
-    route: 'centers',
-    // icon: <Apartment />,
-  },
-  {
     id: 14,
     label: '상품 관리',
     route: 'products',
-  },
-  {
-    id: 4,
-    label: '프로 관리',
-    route: 'pros',
-  },
-  {
-    id: 5,
-    label: '고객 관리',
-    route: 'users',
   },
   {
     id: 9,
@@ -55,6 +39,23 @@ export const mainNavbarItems = [
     label: '포인트 관리',
     route: 'points',
   },
+  {
+    id: 3,
+    label: '센터 관리',
+    route: 'centers',
+    // icon: <Apartment />,
+  },
+  {
+    id: 4,
+    label: '프로 관리',
+    route: 'pros',
+  },
+  {
+    id: 5,
+    label: '고객 관리',
+    route: 'users',
+  },
+
   {
     id: 12,
     label: '공지사항 관리',
