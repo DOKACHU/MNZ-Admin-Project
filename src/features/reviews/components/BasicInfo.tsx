@@ -2,7 +2,10 @@ import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
 import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
 
-export default function BasicInfo() {
+interface BasicInfoProps {
+  detail?: any;
+}
+export default function BasicInfo({ detail }: BasicInfoProps) {
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -14,10 +17,10 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 번호 :
+              리뷰 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 정보
+              {detail.reviewId}
             </Typography>
           </Stack>
 

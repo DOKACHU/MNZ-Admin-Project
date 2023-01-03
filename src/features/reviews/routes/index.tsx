@@ -6,7 +6,7 @@ export function ReviewRoutes() {
   return (
     <Routes>
       <Route path="" element={<Reviews />} />
-      <Route path=":bookingId" element={<ReviewDetail />} />
+      <Route path=":id" element={<ReviewDetail />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );
