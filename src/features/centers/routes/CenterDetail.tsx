@@ -8,12 +8,10 @@ import { BasicInfo } from '../components';
 import { useCenter } from '../api';
 
 export default function CenterDetail() {
-  const { centerId } = useParams();
-
+  const { id } = useParams();
+  const centerId = id || '';
   const { value, handleTabChange, TabPanel } = useDetailTab();
   const { isLoading, data } = useCenter({ centerId });
-
-  console.log({ data });
 
   return (
     <ContentLayout title="센터 상세">

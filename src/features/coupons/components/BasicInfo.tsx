@@ -2,7 +2,11 @@ import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
 import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
 
-export default function BasicInfo() {
+interface BasicInfoProps {
+  detail?: any;
+}
+export default function BasicInfo({ detail }: BasicInfoProps) {
+  console.log({ detail });
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -17,7 +21,7 @@ export default function BasicInfo() {
               쿠폰 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 정보
+              {detail.couponId}
             </Typography>
           </Stack>
 
@@ -27,7 +31,7 @@ export default function BasicInfo() {
               쿠폰 이름 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
+              {detail.title}
             </Typography>
           </Stack>
           {/*  */}
@@ -38,7 +42,7 @@ export default function BasicInfo() {
               쿠폰 설명 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
+              {detail.description}
             </Typography>
           </Stack>
           {/*  */}
@@ -49,7 +53,7 @@ export default function BasicInfo() {
               할인율 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인율
+              {detail.discountRate}
             </Typography>
           </Stack>
           {/*  */}
@@ -60,7 +64,7 @@ export default function BasicInfo() {
               할인가격 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인가격
+              {detail.discountPrice}
             </Typography>
           </Stack>
           {/*  */}

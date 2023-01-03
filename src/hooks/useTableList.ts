@@ -3,7 +3,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const pathMap: any = {
   centers: 'centerId',
+  coupons: 'couponId',
+  reviews: 'reviewId',
 };
+
 export function useTableList() {
   const navigate = useNavigate();
   const location = useLocation();
