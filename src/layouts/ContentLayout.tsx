@@ -10,6 +10,7 @@ type ContentLayoutProps = {
   isButton?: boolean;
   isBackButton?: boolean;
   onOpen?: () => void;
+  isUpdateButton?: boolean;
 };
 
 export default function ContentLayout({
@@ -18,8 +19,10 @@ export default function ContentLayout({
   isButton,
   onOpen,
   isBackButton,
+  isUpdateButton,
 }: ContentLayoutProps) {
   const modalTitle = `${title} 생성 모달`;
+  const updateModalTitle = `${title} 수정 모달`;
   const navigate = useNavigate();
 
   return (
@@ -61,6 +64,13 @@ export default function ContentLayout({
               <Grid item>
                 <Button variant="outlined" onClick={onOpen}>
                   {modalTitle}
+                </Button>
+              </Grid>
+            )}
+            {isUpdateButton && (
+              <Grid item>
+                <Button variant="outlined" onClick={onOpen}>
+                  {updateModalTitle}
                 </Button>
               </Grid>
             )}
