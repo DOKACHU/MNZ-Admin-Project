@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/display-name */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { Grid, Button, TextField, Box } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
-import dayjs from 'dayjs';
-import Select from 'react-select';
+// import dayjs from 'dayjs';
+// import Select from 'react-select';
 import { useCreateProducts, CreateProductsDTO } from '../api';
 
 import { Drawer } from '../../../components';
@@ -17,7 +17,7 @@ type CreateProductsProps = {
 
 export default function CreateProducts({ open, onClose }: CreateProductsProps) {
   const { mutateAsync } = useCreateProducts();
-  const { control, handleSubmit } = useForm<CreateProductsDTO['data']>();
+  const { control, handleSubmit, reset } = useForm<CreateProductsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
   const onSubmit = async (data: CreateProductsDTO['data']) => {
@@ -26,7 +26,9 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
       centerId: '3753b4df-0a3b-43bf-8d94-aceb1745cfe1',
       proId: '30a12e6e-f726-4514-8da4-2ab45bbf959b',
     };
-    await mutateAsync({ data: newData });
+    const result = await mutateAsync({ data: newData });
+    reset(result as any);
+    onClose();
   };
 
   return (
