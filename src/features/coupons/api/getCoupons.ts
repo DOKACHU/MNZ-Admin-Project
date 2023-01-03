@@ -6,7 +6,7 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 import { ServerCouponType, CouponsType } from '../types';
 
 export const getCoupons = (): Promise<ServerCouponType> => {
-  return axios.get(`coupons/?cursor=1&per_page=10`);
+  return axios.get(`coupons/?cursor=1&per_page=100`);
 };
 
 type QueryFnType = typeof getCoupons;

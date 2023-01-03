@@ -39,11 +39,11 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
             justifyContent: 'flex-end',
           }}
         >
-          <Button type="button" variant="outlined" onClick={onClose}>
-            Cancel
+          <Button type="submit" variant="contained" sx={{ mr: 2 }}>
+            생성
           </Button>
-          <Button type="submit" variant="contained">
-            Submit
+          <Button type="button" variant="outlined" onClick={onClose}>
+            취소
           </Button>
         </Box>
       }

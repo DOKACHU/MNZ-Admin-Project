@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { Drawer, UploadImage } from '../../../components';
-// import { useCreateBookings, CreateBookingDTO } from '../api';
+import { useCreateCenters, CreateCentersDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
@@ -13,20 +13,22 @@ type CreateCouponProps = {
 };
 
 export default function CreateCenters({ open, onClose }: CreateCouponProps) {
-  // const { mutateAsync } = useCreateBookings();
-  const { control, handleSubmit } = useForm<any>();
+  const { mutateAsync } = useCreateCenters();
+  const { control, handleSubmit } = useForm<CreateCentersDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
-  // const onSubmit = async (data: CreateBookingDTO['data']) => {
-  //   await mutateAsync({ data });
-  // };
+  const onSubmit = async (data: CreateCentersDTO['data']) => {
+    console.log({ data });
+
+    // await mutateAsync({ data });
+  };
 
   return (
     <Drawer
-      title="예약 생성 모달"
+      title="센터 생성 모달"
       open={open}
       onClose={onClose}
-      // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
           sx={{
@@ -34,11 +36,11 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
             justifyContent: 'flex-end',
           }}
         >
-          <Button type="button" variant="outlined" onClick={onClose}>
-            Cancel
+          <Button type="submit" variant="contained" sx={{ mr: 2 }}>
+            생성
           </Button>
-          <Button type="submit" variant="contained">
-            Submit
+          <Button type="button" variant="outlined" onClick={onClose}>
+            취소
           </Button>
         </Box>
       }
@@ -74,7 +76,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="병원 이름"
+              helperText="센터 이름"
               fullWidth
               size="small"
             />
@@ -88,7 +90,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="병원 설명"
+              helperText="센터 설명"
               fullWidth
               size="small"
             />
@@ -103,7 +105,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="병원 주소"
+              helperText="센터 주소"
               fullWidth
               size="small"
             />
@@ -113,12 +115,27 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
 
       <Grid item xs={12}>
         <Controller
+          name="center.address"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              helperText="센터 주소"
+              fullWidth
+              size="small"
+            />
+          )}
+        />
+      </Grid>
+
+      {/* <Grid item xs={12}>
+        <Controller
           name="requestComment"
           control={control}
           render={({ field }) => (
             <TextField
               {...field}
-              helperText="요청사항"
+              helperText="요청 사항"
               fullWidth
               multiline
               rows={4}
@@ -126,7 +143,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
             />
           )}
         />
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={12}>
         <UploadImage />

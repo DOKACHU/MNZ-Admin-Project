@@ -6,7 +6,6 @@ interface BasicInfoProps {
   detail?: any;
 }
 export default function BasicInfo({ detail }: BasicInfoProps) {
-  console.log({ detail });
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -56,10 +55,6 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               {detail.reason}
             </Typography>
           </Stack>
-          {/*  */}
-
-          {/*  */}
-
           {/*  */}
         </Stack>
       </Stack>

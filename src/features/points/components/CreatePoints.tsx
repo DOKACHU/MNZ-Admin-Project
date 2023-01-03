@@ -52,11 +52,11 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
             justifyContent: 'flex-end',
           }}
         >
+          <Button type="submit" variant="contained" sx={{ mr: 2 }}>
+            생성
+          </Button>
           <Button type="button" variant="outlined" onClick={onClose}>
             취소
-          </Button>
-          <Button type="submit" variant="contained">
-            생성
           </Button>
         </Box>
       }
