@@ -1,8 +1,17 @@
 import React from 'react';
 import { Grid, Typography, Stack, Divider } from '@mui/material';
-import { styleSubtitle, styleH4, styleBody } from '../../../constansts';
+import {
+  styleSubtitle,
+  styleH4,
+  styleBody,
+  numberWithCommas,
+} from '../../../constansts';
 
-export default function BasicInfo() {
+interface BasicInfoProps {
+  detail?: any;
+}
+
+export default function BasicInfo({ detail }: BasicInfoProps) {
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -14,31 +23,20 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 번호 :
+              상품 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 정보
+              {detail.productId}
             </Typography>
           </Stack>
 
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 이름 :
+              상품 이름 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
-            </Typography>
-          </Stack>
-          {/*  */}
-
-          {/*  */}
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography variant="subtitle1" sx={styleSubtitle}>
-              쿠폰 설명 :
-            </Typography>
-            <Typography variant="body2" sx={styleBody}>
-              쿠폰 이름
+              {detail.name}
             </Typography>
           </Stack>
           {/*  */}
@@ -46,10 +44,10 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인율 :
+              상품 설명 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인율
+              {detail.description}
             </Typography>
           </Stack>
           {/*  */}
@@ -57,10 +55,43 @@ export default function BasicInfo() {
           {/*  */}
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
-              할인가격 :
+              상품 가격:
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              할인가격
+              {numberWithCommas(detail.price)}
+            </Typography>
+          </Stack>
+          {/*  */}
+
+          {/*  */}
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography variant="subtitle1" sx={styleSubtitle}>
+              할인율:
+            </Typography>
+            <Typography variant="body2" sx={styleBody}>
+              {`${detail.discountRate}%`}
+            </Typography>
+          </Stack>
+          {/*  */}
+
+          {/*  */}
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography variant="subtitle1" sx={styleSubtitle}>
+              진행 시간:
+            </Typography>
+            <Typography variant="body2" sx={styleBody}>
+              {`${detail.runningTime}분`}
+            </Typography>
+          </Stack>
+          {/*  */}
+
+          {/*  */}
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography variant="subtitle1" sx={styleSubtitle}>
+              진행 횟수:
+            </Typography>
+            <Typography variant="body2" sx={styleBody}>
+              {`${detail.progressNumber}회`}
             </Typography>
           </Stack>
           {/*  */}

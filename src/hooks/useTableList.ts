@@ -7,6 +7,7 @@ const pathMap: any = {
   coupons: 'couponId',
   reviews: 'reviewId',
   pros: 'proId',
+  products: 'productId',
   points: 'pointEventId',
 };
 

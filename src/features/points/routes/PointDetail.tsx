@@ -12,6 +12,7 @@ export default function PointDetail() {
   const pointId = id || '';
   const { value, handleTabChange, TabPanel } = useDetailTab();
   const { isLoading, data } = usePoint({ pointId });
+
   return (
     <ContentLayout title="포인트 상세" isBackButton>
       <CustomDetailForm
