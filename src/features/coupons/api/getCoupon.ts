@@ -13,11 +13,10 @@ export const getCoupon = async ({
   const result = await axios.get<ServerCouponType>(
     `coupons/?cursor=1&per_page=100`
   );
-
-  const detail = result.couponList.filter(
+  const detail = result.data.couponList.filter(
     (list: any) => list.couponId === couponId
   );
-  return detail?.[0];
+  return detail[0];
 };
 
 type QueryFnType = typeof getCoupon;

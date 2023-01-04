@@ -13,6 +13,7 @@ export default function CouponDetail() {
   const couponId = id || '';
   const { value, handleTabChange, TabPanel } = useDetailTab();
   const { isLoading, data } = useCoupon({ couponId });
+  console.log({ data });
   const modal = useModal();
   const deleteCoupon = useDeleteCoupon();
 

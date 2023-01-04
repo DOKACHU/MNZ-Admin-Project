@@ -14,11 +14,10 @@ export default function Centers() {
   return (
     <ContentLayout title="센터" isButton {...modal}>
       <CreateCenters {...modal} />
-
       <Table<CenterType>
         loading={isLoading}
         // data={data}
-        data={data?.centerList}
+        data={data}
         columns={[
           {
             id: 'centerId',
