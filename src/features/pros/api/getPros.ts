@@ -3,10 +3,11 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { ServerProType } from '../types';
+import { ServerProType, ProType } from '../types';
 
-export const getPros = (): Promise<ServerProType> => {
-  return axios.get(`pros/?cursor=1&per_page=10`);
+export const getPros = async (): Promise<ProType[]> => {
+  const result = await axios.get<ServerProType>(`pros/?cursor=1&per_page=100`);
+  return result.data.proList;
 };
 
 type QueryFnType = typeof getPros;

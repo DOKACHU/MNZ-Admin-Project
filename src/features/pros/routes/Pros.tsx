@@ -16,8 +16,7 @@ export default function Pros() {
       <CreatePros {...modal} />
       <Table<ProType>
         loading={isLoading}
-        // data={data}
-        data={data?.proList}
+        data={data}
         columns={[
           {
             id: 'proId',
