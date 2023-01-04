@@ -11,7 +11,8 @@ export const getReview = async ({
 }: {
   reviewId: string;
 }): Promise<ReviewType> => {
-  return axios.get(`reviews/${reviewId}`);
+  const result = await axios.get(`reviews/${reviewId}`);
+  return result.data;
 };
 
 type QueryFnType = typeof getReview;

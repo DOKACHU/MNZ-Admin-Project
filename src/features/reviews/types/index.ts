@@ -20,5 +20,5 @@ export type ReviewType = {
 
 export type ServerReviewType = {
   total_count: number;
-  pointList: ReviewType[];
+  reviewList: ReviewType[];
 };

@@ -6,7 +6,6 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { ReviewType } from '../types';
 import { useReviews } from '../api';
-import { formatDate } from '../../../utils/format';
 
 export default function Reviews() {
   const { isLoading, data } = useReviews();
@@ -15,8 +14,7 @@ export default function Reviews() {
     <ContentLayout title="리뷰">
       <Table<ReviewType>
         loading={isLoading}
-        // data={data}
-        data={data?.reviewList}
+        data={data}
         columns={[
           {
             id: 'bookingId',

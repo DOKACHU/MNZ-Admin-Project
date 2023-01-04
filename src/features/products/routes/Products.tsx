@@ -17,7 +17,7 @@ export default function Products() {
       <Table<ProductType>
         loading={isLoading}
         // data={data}
-        data={data?.productList}
+        data={data}
         columns={[
           {
             id: 'productId',
