@@ -17,7 +17,7 @@ export default function Points() {
       <Table<PointType>
         loading={isLoading}
         // data={data}
-        data={data?.pointList}
+        data={data}
         columns={[
           {
             id: 'pointEventId',

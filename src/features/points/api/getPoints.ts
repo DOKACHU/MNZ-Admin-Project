@@ -5,8 +5,11 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
 import { ServerPointType, PointType } from '../types';
 
-export const getPoints = (): Promise<ServerPointType> => {
-  return axios.get(`points/?cursor=1&per_page=10`);
+export const getPoints = async (): Promise<PointType[]> => {
+  const result = await axios.get<ServerPointType>(
+    `points/?cursor=1&per_page=100`
+  );
+  return result.data.pointList;
 };
 
 type QueryFnType = typeof getPoints;

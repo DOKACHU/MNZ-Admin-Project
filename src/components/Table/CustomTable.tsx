@@ -30,7 +30,7 @@ type TableColumn<Entry> = {
 };
 
 export type CustomTableProps<Entry> = {
-  data: Entry[];
+  data: any;
   columns: TableColumn<Entry>[];
   loading: boolean;
 };
