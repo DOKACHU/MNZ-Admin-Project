@@ -9,10 +9,13 @@ import { useCreateBookings, CreateBookingDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
-export default function CreateBookings({ open, onClose }: CreateCouponProps) {
+export default function CreateBookings({
+  open,
+  handleClose,
+}: CreateCouponProps) {
   const { mutateAsync } = useCreateBookings();
   const { control, handleSubmit } = useForm<CreateBookingDTO['data']>();
   const [startDate, setStartDate] = useState(dayjs(''));
@@ -25,7 +28,7 @@ export default function CreateBookings({ open, onClose }: CreateCouponProps) {
     <Drawer
       title="예약 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -34,7 +37,7 @@ export default function CreateBookings({ open, onClose }: CreateCouponProps) {
             justifyContent: 'flex-end',
           }}
         >
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             Cancel
           </Button>
           <Button type="submit" variant="contained">

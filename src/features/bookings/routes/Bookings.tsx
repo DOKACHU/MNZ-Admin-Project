@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
@@ -6,17 +7,16 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useBookings } from '../api';
 import { BookingType } from '../types';
-import { formatDate } from '../../../utils/format';
 import { CreateBookings } from '../components';
 import { useModal } from '../../../hooks';
 
 export default function Bookings() {
   const { isLoading, data } = useBookings();
-  const { open, handleClose, handleOpen } = useModal();
+  const modal = useModal();
 
   return (
-    <ContentLayout title="예약" isButton onOpen={handleOpen}>
-      <CreateBookings open={open} onClose={handleClose} />
+    <ContentLayout title="예약" {...modal}>
+      <CreateBookings {...modal} />
       <Table<BookingType>
         loading={isLoading}
         // data={data as any}

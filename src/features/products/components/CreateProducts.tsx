@@ -12,10 +12,13 @@ import { Drawer } from '../../../components';
 
 type CreateProductsProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
-export default function CreateProducts({ open, onClose }: CreateProductsProps) {
+export default function CreateProducts({
+  open,
+  handleClose,
+}: CreateProductsProps) {
   const { mutateAsync } = useCreateProducts();
   const { control, handleSubmit, reset } = useForm<CreateProductsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
@@ -28,14 +31,14 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
     };
     const result = await mutateAsync({ data: newData });
     reset(result as any);
-    onClose();
+    handleClose();
   };
 
   return (
     <Drawer
       title="상품 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -47,7 +50,7 @@ export default function CreateProducts({ open, onClose }: CreateProductsProps) {
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>

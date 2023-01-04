@@ -6,7 +6,7 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 import { BookingType } from '../types';
 
 export const getBookings = (): Promise<BookingType[]> => {
-  return axios.get(`bookings/?cursor=1&per_page=10`);
+  return axios.get(`bookings/?cursor=1&per_page=100`);
 };
 
 type QueryFnType = typeof getBookings;

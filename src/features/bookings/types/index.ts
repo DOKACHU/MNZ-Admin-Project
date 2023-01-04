@@ -16,6 +16,11 @@ export type BookingType = {
   deletedAt: string;
 } & BaseEntity;
 
+export type ServerBookingType = {
+  total_count: number;
+  bookingList: BookingType[];
+};
+
 export const bookingTab = [
   {
     id: 0,

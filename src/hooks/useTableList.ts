@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const pathMap: any = {
+  bookings: 'bookingId',
   centers: 'centerId',
   coupons: 'couponId',
   reviews: 'reviewId',

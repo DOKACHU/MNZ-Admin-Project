@@ -6,6 +6,7 @@ interface BasicInfoProps {
   detail?: any;
 }
 export default function BasicInfo({ detail }: BasicInfoProps) {
+  console.log({ detail });
   return (
     <Grid item xs={6}>
       <Stack spacing={2}>
@@ -20,7 +21,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               쿠폰 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.couponId}
+              {detail?.couponId}
             </Typography>
           </Stack>
 
@@ -30,7 +31,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               쿠폰 이름 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.title}
+              {detail?.title}
             </Typography>
           </Stack>
           {/*  */}
@@ -41,7 +42,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               쿠폰 설명 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.description}
+              {detail?.description}
             </Typography>
           </Stack>
           {/*  */}
@@ -52,7 +53,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               할인율 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.discountRate}
+              {detail?.discountRate}
             </Typography>
           </Stack>
           {/*  */}
@@ -63,7 +64,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               할인가격 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.discountPrice}
+              {detail?.discountPrice}
             </Typography>
           </Stack>
           {/*  */}

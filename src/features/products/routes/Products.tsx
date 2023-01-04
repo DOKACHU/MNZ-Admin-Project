@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
@@ -8,11 +9,11 @@ import { useModal } from '../../../hooks';
 
 export default function Products() {
   const { isLoading, data } = useProducts();
-  const { open, handleClose, handleOpen } = useModal();
+  const modal = useModal();
 
   return (
-    <ContentLayout title="상품" isButton onOpen={handleOpen}>
-      <CreateProducts open={open} onClose={handleClose} />
+    <ContentLayout title="상품" isButton {...modal}>
+      <CreateProducts {...modal} />
       <Table<ProductType>
         loading={isLoading}
         // data={data}

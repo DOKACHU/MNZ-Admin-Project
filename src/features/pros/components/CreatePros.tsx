@@ -10,10 +10,10 @@ import { useCreatePros, CreateProsDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
-export default function CreatePros({ open, onClose }: CreateCouponProps) {
+export default function CreatePros({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreatePros();
   const { control, handleSubmit } = useForm<CreateProsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
@@ -30,7 +30,7 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
     <Drawer
       title="프로 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -42,7 +42,7 @@ export default function CreatePros({ open, onClose }: CreateCouponProps) {
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>

@@ -3,20 +3,21 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { CouponsType } from '../types';
+import { CouponsType, ServerCouponType } from '../types';
 
 export const getCoupon = async ({
   couponId,
 }: {
   couponId: string;
-}): Promise<any> => {
-  const result = await axios.get(`coupons/?cursor=1&per_page=100`);
+}): Promise<CouponsType> => {
+  const result = await axios.get<ServerCouponType>(
+    `coupons/?cursor=1&per_page=100`
+  );
+
   const detail = result.couponList.filter(
     (list: any) => list.couponId === couponId
   );
-
-  console.log(couponId, detail);
-  return detail[0] || null;
+  return detail?.[0];
 };
 
 type QueryFnType = typeof getCoupon;
