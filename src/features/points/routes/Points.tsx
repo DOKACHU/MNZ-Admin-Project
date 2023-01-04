@@ -1,18 +1,19 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { usePoints } from '../api';
-import { ServerPointType, PointType } from '../types';
+import { PointType } from '../types';
 import { useModal } from '../../../hooks';
 import { CreatePoints } from '../components';
 
 export default function Points() {
   const { isLoading, data } = usePoints();
-  const { open, handleClose, handleOpen } = useModal();
+  const modal = useModal();
 
   return (
-    <ContentLayout title="포인트" isButton onOpen={handleOpen}>
-      <CreatePoints open={open} onClose={handleClose} />
+    <ContentLayout title="포인트" isButton {...modal}>
+      <CreatePoints {...modal} />
       <Table<PointType>
         loading={isLoading}
         // data={data}

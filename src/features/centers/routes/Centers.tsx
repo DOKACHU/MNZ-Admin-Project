@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
@@ -8,11 +9,11 @@ import { CreateCenters } from '../components';
 
 export default function Centers() {
   const { isLoading, data } = useCenters();
-  const { open, handleClose, handleOpen } = useModal();
+  const modal = useModal();
 
   return (
-    <ContentLayout title="센터" isButton onOpen={handleOpen}>
-      <CreateCenters open={open} onClose={handleClose} />
+    <ContentLayout title="센터" isButton {...modal}>
+      <CreateCenters {...modal} />
 
       <Table<CenterType>
         loading={isLoading}

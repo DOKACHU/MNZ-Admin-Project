@@ -7,10 +7,13 @@ import { useCreateCenters, CreateCentersDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
-export default function CreateCenters({ open, onClose }: CreateCouponProps) {
+export default function CreateCenters({
+  open,
+  handleClose,
+}: CreateCouponProps) {
   const { mutateAsync } = useCreateCenters();
   const { control, handleSubmit } = useForm<CreateCentersDTO['data']>({
     defaultValues: {
@@ -74,7 +77,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
     <Drawer
       title="센터 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -86,7 +89,7 @@ export default function CreateCenters({ open, onClose }: CreateCouponProps) {
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>

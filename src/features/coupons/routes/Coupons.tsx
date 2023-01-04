@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
@@ -6,19 +7,19 @@ import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useCoupons } from '../api';
-import { CouponsType, ServerCouponType } from '../types';
+import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
 import { CreateCoupon } from '../components';
 import { useModal } from '../../../hooks';
 
 export default function Coupons() {
   const { isLoading, data } = useCoupons();
-  const { open, handleClose, handleOpen } = useModal();
+  const modal = useModal();
 
   return (
-    <ContentLayout title="쿠폰" isButton onOpen={handleOpen}>
+    <ContentLayout title="쿠폰" isButton {...modal}>
       {/* TODO: data, columns */}
-      <CreateCoupon open={open} onClose={handleClose} />
+      <CreateCoupon {...modal} />
       <Table<CouponsType>
         loading={isLoading}
         // data={data}

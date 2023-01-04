@@ -17,7 +17,7 @@ import { useCreatePoint, CreatePointsDTO } from '../api';
 
 type CreateCouponProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
 const StyleRadio = {
@@ -25,7 +25,7 @@ const StyleRadio = {
   alignItems: 'center',
 };
 
-export default function CreatePoints({ open, onClose }: CreateCouponProps) {
+export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreatePoint();
   const { control, handleSubmit } = useForm<CreatePointsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
@@ -43,7 +43,7 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
     <Drawer
       title="포인트 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -55,7 +55,7 @@ export default function CreatePoints({ open, onClose }: CreateCouponProps) {
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>

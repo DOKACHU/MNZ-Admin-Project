@@ -8,10 +8,10 @@ import { Drawer } from '../../../components';
 
 type CreateCouponProps = {
   open: boolean;
-  onClose: () => void;
+  handleClose: () => void;
 };
 
-export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
+export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreateCoupon();
   const { control, handleSubmit } = useForm<CreateCouponsDTO['data']>();
 
@@ -23,7 +23,7 @@ export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
     <Drawer
       title="쿠폰 생성 모달"
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
       renderHeader={
         <Box
@@ -35,7 +35,7 @@ export default function CreateCoupon({ open, onClose }: CreateCouponProps) {
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>
-          <Button type="button" variant="outlined" onClick={onClose}>
+          <Button type="button" variant="outlined" onClick={handleClose}>
             취소
           </Button>
         </Box>
