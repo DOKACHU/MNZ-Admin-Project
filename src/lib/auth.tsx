@@ -64,4 +64,4 @@ export const { AuthProvider, useAuth } = initReactQueryAuth<
   unknown
   // LoginCredentialsDTO,
   // RegisterCredentialsDTO
->(authConfig);
+>(authConfig as any);

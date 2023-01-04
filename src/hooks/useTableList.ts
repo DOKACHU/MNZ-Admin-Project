@@ -22,7 +22,7 @@ export function useTableList() {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [path, setPath] = useState<any>(null);
-  const [rowId, setRowId] = useState<string>(null);
+  const [rowId, setRowId] = useState<string>('');
 
   // const emptyRows =
   //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
