@@ -5,3 +5,4 @@ export * from './useTableList';
 export * from './useModal';
 export * from './useDisclosure';
 export * from './useDetailTab';
+export * from './usePagination';

@@ -33,6 +33,7 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
   const onSubmit = async (data: CreatePointsDTO['data']) => {
     const newData = {
       ...data,
+      price: Number(data.price),
       userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
     };
 
