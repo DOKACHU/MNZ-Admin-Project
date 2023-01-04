@@ -46,7 +46,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     포인트 :
                   </Typography>
                   <Typography variant="body2" sx={styleValue}>
-                    {numberWithCommas(Number(detail?.price))}
+                    {numberWithCommas(Number(detail?.price))}P
                   </Typography>
                 </Stack>
 

@@ -10,6 +10,7 @@ import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
 import { CreateCoupon } from '../components';
 import { useModal } from '../../../hooks';
+import { numberWithCommas } from '../../../constansts';
 
 export default function Coupons() {
   const { isLoading, data } = useCoupons();
@@ -36,11 +37,19 @@ export default function Coupons() {
             id: 'discountRate',
             field: 'discountRate',
             title: '할인율',
+            Cell({ entry: { discountRate } }) {
+              return <span>{`${discountRate}%`}</span>;
+            },
           },
           {
             id: 'discountPrice',
             field: 'discountPrice',
             title: '할인 가격',
+            Cell({ entry: { discountPrice } }) {
+              return (
+                <span>{`${numberWithCommas(discountPrice || 0)} 원`}</span>
+              );
+            },
           },
           {
             id: 'isDeleted',
