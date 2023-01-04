@@ -3,16 +3,18 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { CenterType } from '../types';
+import { CenterType, ServerCenterType } from '../types';
 
 export const getCenter = async ({
   centerId,
 }: {
   centerId: string;
-}): Promise<any> => {
-  const result = await axios.get(`centers/?cursor=1&per_page=100`);
-  const detail = result.centerList.filter(
-    (list: any) => list.centerId === centerId
+}): Promise<CenterType> => {
+  const result = await axios.get<ServerCenterType>(
+    `centers/?cursor=1&per_page=100`
+  );
+  const detail = result.data.centerList.filter(
+    (list) => list.centerId === centerId
   );
   return detail[0];
 };
