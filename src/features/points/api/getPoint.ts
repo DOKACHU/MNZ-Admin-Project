@@ -3,15 +3,17 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-// import { ProType } from '../types';
+import { PointType, ServerPointType } from '../types';
 
 export const getPoint = async ({
   pointId,
 }: {
   pointId: string;
-}): Promise<any> => {
-  const result = await axios.get(`points/?cursor=1&per_page=100`);
-  const detail = result.pointList.filter(
+}): Promise<PointType> => {
+  const result = await axios.get<ServerPointType>(
+    `points/?cursor=1&per_page=100`
+  );
+  const detail = result.data.pointList.filter(
     (list: any) => list.pointEventId === pointId
   );
   return detail[0];
