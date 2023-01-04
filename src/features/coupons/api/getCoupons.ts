@@ -5,8 +5,11 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
 import { ServerCouponType, CouponsType } from '../types';
 
-export const getCoupons = (): Promise<ServerCouponType> => {
-  return axios.get(`coupons/?cursor=1&per_page=100`);
+export const getCoupons = async (): Promise<CouponsType[]> => {
+  const result = await axios.get<ServerCouponType>(
+    `coupons/?cursor=1&per_page=100`
+  );
+  return result.data.couponList;
 };
 
 type QueryFnType = typeof getCoupons;

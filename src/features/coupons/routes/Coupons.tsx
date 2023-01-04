@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-// import { CircularProgress } from '@mui/material';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { useCoupons } from '../api';
@@ -18,12 +17,10 @@ export default function Coupons() {
 
   return (
     <ContentLayout title="쿠폰" isButton {...modal}>
-      {/* TODO: data, columns */}
       <CreateCoupon {...modal} />
       <Table<CouponsType>
         loading={isLoading}
-        // data={data}
-        data={data?.couponList}
+        data={data}
         columns={[
           {
             id: 'title',
@@ -50,7 +47,7 @@ export default function Coupons() {
             field: 'isDeleted',
             title: '삭제 여부',
             Cell({ entry: { isDeleted } }) {
-              return isDeleted ? 'O' : 'X';
+              return <span>{isDeleted ? 'O' : 'X'}</span>;
             },
           },
           {

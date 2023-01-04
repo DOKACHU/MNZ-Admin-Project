@@ -19,8 +19,7 @@ export default function Bookings() {
       <CreateBookings {...modal} />
       <Table<BookingType>
         loading={isLoading}
-        // data={data as any}
-        data={data?.bookingList}
+        data={data}
         columns={[
           {
             id: 'bookingId',
