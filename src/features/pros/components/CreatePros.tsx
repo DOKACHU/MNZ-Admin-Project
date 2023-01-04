@@ -15,7 +15,7 @@ type CreateCouponProps = {
 
 export default function CreatePros({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreatePros();
-  const { control, handleSubmit } = useForm<CreateProsDTO['data']>();
+  const { control, handleSubmit, reset } = useForm<CreateProsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
   const onSubmit = async (data: CreateProsDTO['data']) => {
@@ -23,7 +23,9 @@ export default function CreatePros({ open, handleClose }: CreateCouponProps) {
       ...data,
       centerId: '3753b4df-0a3b-43bf-8d94-aceb1745cfe1',
     };
-    await mutateAsync({ data: newData });
+    const result = await mutateAsync({ data: newData });
+    reset(result as any);
+    handleClose();
   };
 
   return (

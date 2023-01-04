@@ -15,7 +15,7 @@ export default function CreateCenters({
   handleClose,
 }: CreateCouponProps) {
   const { mutateAsync } = useCreateCenters();
-  const { control, handleSubmit } = useForm<CreateCentersDTO['data']>({
+  const { control, handleSubmit, reset } = useForm<CreateCentersDTO['data']>({
     defaultValues: {
       businessHours: [
         {
@@ -70,7 +70,9 @@ export default function CreateCenters({
   });
 
   const onSubmit = async (data: CreateCentersDTO['data']) => {
-    await mutateAsync({ data });
+    const result = await mutateAsync({ data });
+    reset(result as any);
+    handleClose();
   };
 
   return (

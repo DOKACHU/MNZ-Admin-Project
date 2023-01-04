@@ -13,10 +13,12 @@ type CreateCouponProps = {
 
 export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreateCoupon();
-  const { control, handleSubmit } = useForm<CreateCouponsDTO['data']>();
+  const { control, handleSubmit, reset } = useForm<CreateCouponsDTO['data']>();
 
   const onSubmit = async (data: CreateCouponsDTO['data']) => {
-    await mutateAsync({ data });
+    const result = await mutateAsync({ data });
+    reset(result as any);
+    handleClose();
   };
 
   return (

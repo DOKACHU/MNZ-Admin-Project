@@ -27,7 +27,7 @@ const StyleRadio = {
 
 export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreatePoint();
-  const { control, handleSubmit } = useForm<CreatePointsDTO['data']>();
+  const { control, handleSubmit, reset } = useForm<CreatePointsDTO['data']>();
   // const [startDate, setStartDate] = useState(dayjs(''));
 
   const onSubmit = async (data: CreatePointsDTO['data']) => {
@@ -36,7 +36,9 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
       userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
     };
 
-    await mutateAsync({ data: newData });
+    const result = await mutateAsync({ data: newData });
+    reset(result as any);
+    handleClose();
   };
 
   return (
