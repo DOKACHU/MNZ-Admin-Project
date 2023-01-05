@@ -35,11 +35,11 @@ export type CustomTableProps<Entry> = {
   data: any;
   columns: TableColumn<Entry>[];
   loading: boolean;
-  total: number;
-  page: number;
-  rowsPerPage: number;
-  handleChangePage: () => {};
-  handleChangeRowsPerPage: () => {};
+  total?: number;
+  page?: number;
+  rowsPerPage?: number;
+  handleChangePage?: () => {};
+  handleChangeRowsPerPage?: () => {};
 };
 
 export function CustomTable<Entry extends { id: string }>({

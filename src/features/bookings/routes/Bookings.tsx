@@ -8,10 +8,11 @@ import { Table } from '../../../components';
 import { useBookings } from '../api';
 import { BookingType } from '../types';
 import { CreateBookings } from '../components';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 
 export default function Bookings() {
-  const { isLoading, data } = useBookings();
+  const pagination = usePagination();
+  const { isLoading, data } = useBookings({ ...pagination });
   const modal = useModal();
 
   return (
@@ -19,7 +20,9 @@ export default function Bookings() {
       <CreateBookings {...modal} />
       <Table<BookingType>
         loading={isLoading}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.bookingList}
         columns={[
           {
             id: 'bookingId',

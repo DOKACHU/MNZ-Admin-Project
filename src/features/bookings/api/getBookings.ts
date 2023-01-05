@@ -5,23 +5,35 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
 import { BookingType, ServerBookingType } from '../types';
 
-export const getBookings = async (): Promise<BookingType[]> => {
+export const getBookings = async (
+  page: number,
+  rowsPerPage: number
+): Promise<ServerBookingType> => {
   const result = await axios.get<ServerBookingType>(
-    `bookings/?cursor=1&per_page=100`
+    `bookings/?cursor=${page + 1}&per_page=${rowsPerPage}`
   );
-  return result.data.bookingList;
+  return {
+    total_count: result.data.total_count,
+    bookingList: result.data.bookingList,
+  };
 };
 
 type QueryFnType = typeof getBookings;
 
 type UseBookingsOptions = {
   config?: QueryConfig<QueryFnType>;
+  page: number;
+  rowsPerPage: number;
 };
 
-export const useBookings = ({ config }: UseBookingsOptions = {}) => {
+export const useBookings = ({
+  config,
+  page,
+  rowsPerPage,
+}: UseBookingsOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['bookings'],
-    queryFn: () => getBookings(),
+    queryKey: ['bookings', page, rowsPerPage],
+    queryFn: () => getBookings(page, rowsPerPage),
   });
 };

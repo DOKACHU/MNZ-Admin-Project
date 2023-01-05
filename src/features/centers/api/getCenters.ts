@@ -10,13 +10,10 @@ export const getCenters = async (
   page: number,
   rowsPerPage: number
 ): Promise<ServerCenterType> => {
-  console.log(page, rowsPerPage);
   const result = await axios.get<ServerCenterType>(
     `centers/?cursor=${page + 1}&per_page=${rowsPerPage}`
   );
 
-  console.log({ result });
-  // return result.data.centerList;
   return {
     total_count: result.data.total_count,
     centerList: result.data.centerList,
