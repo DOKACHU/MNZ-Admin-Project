@@ -133,9 +133,9 @@ export function CustomTable<Entry extends { id: string }>({
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={total}
-          rowsPerPage={rowsPerPage}
-          page={page}
+          count={total || 0}
+          rowsPerPage={rowsPerPage || 0}
+          page={page || 0}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
