@@ -9,11 +9,12 @@ import { useCoupons } from '../api';
 import { CouponsType } from '../types';
 import { formatDate } from '../../../utils/format';
 import { CreateCoupon } from '../components';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 import { numberWithCommas } from '../../../constansts';
 
 export default function Coupons() {
-  const { isLoading, data } = useCoupons();
+  const pagination = usePagination();
+  const { isLoading, data } = useCoupons({ ...pagination });
   const modal = useModal();
 
   return (
@@ -21,7 +22,9 @@ export default function Coupons() {
       <CreateCoupon {...modal} />
       <Table<CouponsType>
         loading={isLoading}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.couponList}
         columns={[
           {
             id: 'title',
