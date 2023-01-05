@@ -4,11 +4,12 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { usePros } from '../api';
 import { ProType } from '../types';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 import { CreatePros } from '../components';
 
 export default function Pros() {
-  const { isLoading, data } = usePros();
+  const pagination = usePagination();
+  const { isLoading, data } = usePros({ ...pagination });
   const modal = useModal();
 
   return (
@@ -16,7 +17,9 @@ export default function Pros() {
       <CreatePros {...modal} />
       <Table<ProType>
         loading={isLoading}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.proList}
         columns={[
           {
             id: 'proId',
