@@ -1,6 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { TextField, Box, Grid, Button } from '@mui/material';
+import {
+  TextField,
+  Box,
+  Grid,
+  Button,
+  Typography,
+  Radio,
+  RadioGroup,
+} from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useForm, Controller } from 'react-hook-form';
 import { useCreateCoupon, CreateCouponsDTO } from '../api';
@@ -11,14 +19,23 @@ type CreateCouponProps = {
   handleClose: () => void;
 };
 
+const StyleRadio = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
 export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreateCoupon();
   const { control, handleSubmit, reset } = useForm<CreateCouponsDTO['data']>();
-
+  const [toggle, setToggle] = useState<boolean>(false);
   const onSubmit = async (data: CreateCouponsDTO['data']) => {
     const result = await mutateAsync({ data });
     reset(result as any);
     handleClose();
+  };
+
+  const handleToggle = () => {
+    setToggle(!toggle);
   };
 
   return (
@@ -75,28 +92,44 @@ export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
 
       {/* TODO: 둘중 하나 보여주기  */}
       <Grid item xs={12}>
-        <Controller
-          name="discountRate"
-          control={control}
-          render={({ field }) => (
-            <TextField {...field} helperText="할인율" fullWidth size="small" />
-          )}
-        />
+        <RadioGroup onChange={handleToggle} defaultValue>
+          <Box sx={StyleRadio}>
+            <Radio value={false} />
+            <Typography>할인율</Typography>
+            <Radio value />
+            <Typography>할인 가격</Typography>
+          </Box>
+        </RadioGroup>
       </Grid>
 
       <Grid item xs={12}>
-        <Controller
-          name="discountPrice"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              helperText="할인 가격"
-              fullWidth
-              size="small"
-            />
-          )}
-        />
+        {toggle ? (
+          <Controller
+            name="discountRate"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                helperText="할인율"
+                fullWidth
+                size="small"
+              />
+            )}
+          />
+        ) : (
+          <Controller
+            name="discountPrice"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                helperText="할인 가격"
+                fullWidth
+                size="small"
+              />
+            )}
+          />
+        )}
       </Grid>
 
       <Grid item xs={12}>

@@ -164,6 +164,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                   }}
                   variant="outlined"
                   size="small"
+                  label={detail.status}
                   // color={color}
                   // color="success"
                 />
