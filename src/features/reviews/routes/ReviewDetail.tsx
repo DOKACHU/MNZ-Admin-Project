@@ -13,7 +13,7 @@ export default function ReviewDetail() {
   const { value, handleTabChange, TabPanel } = useDetailTab();
   const { isLoading, data } = useReview({ reviewId });
   return (
-    <ContentLayout title="리뷰 상세">
+    <ContentLayout title="리뷰 상세" isBackButton>
       <CustomDetailForm
         value={value}
         tabs={reviewTab}

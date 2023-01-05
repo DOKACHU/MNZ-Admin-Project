@@ -7,11 +7,12 @@ import { Table } from '../../../components';
 import { useProducts } from '../api';
 import { ProductType } from '../types';
 import { CreateProducts } from '../components';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 import { numberWithCommas } from '../../../constansts';
 
 export default function Products() {
-  const { isLoading, data } = useProducts();
+  const pagination = usePagination();
+  const { isLoading, data } = useProducts({ ...pagination });
   const modal = useModal();
 
   return (
@@ -19,8 +20,10 @@ export default function Products() {
       <CreateProducts {...modal} />
       <Table<ProductType>
         loading={isLoading}
-        // data={data}
+        {...pagination}
         data={data}
+        total={data?.total_count}
+        data={data?.productList}
         columns={[
           {
             id: 'productId',

@@ -6,12 +6,13 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { usePoints } from '../api';
 import { PointType } from '../types';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 import { CreatePoints } from '../components';
 import { numberWithCommas } from '../../../constansts';
 
 export default function Points() {
-  const { isLoading, data } = usePoints();
+  const pagination = usePagination();
+  const { isLoading, data } = usePoints({ ...pagination });
   const modal = useModal();
 
   return (
@@ -19,8 +20,9 @@ export default function Points() {
       <CreatePoints {...modal} />
       <Table<PointType>
         loading={isLoading}
-        // data={data}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.pointList}
         columns={[
           {
             id: 'pointEventId',

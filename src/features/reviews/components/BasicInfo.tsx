@@ -19,8 +19,6 @@ interface BasicInfoProps {
   detail?: any;
 }
 export default function BasicInfo({ detail }: BasicInfoProps) {
-  console.log(detail.booking);
-
   const newBooking = {
     ...detail.booking,
     bookingDate: convertDate(detail.booking.bookingDate),

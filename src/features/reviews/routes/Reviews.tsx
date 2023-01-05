@@ -6,15 +6,19 @@ import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
 import { ReviewType } from '../types';
 import { useReviews } from '../api';
+import { usePagination } from '../../../hooks';
 
 export default function Reviews() {
-  const { isLoading, data } = useReviews();
+  const pagination = usePagination();
+  const { isLoading, data } = useReviews({ ...pagination });
 
   return (
     <ContentLayout title="리뷰">
       <Table<ReviewType>
         loading={isLoading}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.reviewList}
         columns={[
           {
             id: 'bookingId',
