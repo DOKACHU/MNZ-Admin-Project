@@ -2,14 +2,16 @@
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
-import { CenterType } from '../types';
+import { CenterType, ServerCenterType } from '../types';
 import { useCenters } from '../api';
-import { useModal } from '../../../hooks';
+import { useModal, usePagination } from '../../../hooks';
 import { CreateCenters } from '../components';
 
 export default function Centers() {
-  const { isLoading, data } = useCenters();
+  const pagination = usePagination();
+  const { isLoading, data } = useCenters<ServerCenterType>({ ...pagination });
   const modal = useModal();
+  console.log({ pagination, data });
 
   return (
     <ContentLayout title="센터" isButton {...modal}>
@@ -17,7 +19,9 @@ export default function Centers() {
       <Table<CenterType>
         loading={isLoading}
         // data={data}
-        data={data}
+        {...pagination}
+        total={data?.total_count}
+        data={data?.centerList}
         columns={[
           {
             id: 'centerId',

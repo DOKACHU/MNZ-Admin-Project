@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
@@ -33,12 +35,22 @@ export type CustomTableProps<Entry> = {
   data: any;
   columns: TableColumn<Entry>[];
   loading: boolean;
+  total: number;
+  page: number;
+  rowsPerPage: number;
+  handleChangePage: () => {};
+  handleChangeRowsPerPage: () => {};
 };
 
 export function CustomTable<Entry extends { id: string }>({
   data,
   columns,
   loading,
+  total,
+  page,
+  rowsPerPage,
+  handleChangePage,
+  handleChangeRowsPerPage,
 }: CustomTableProps<Entry>) {
   // const navigate = useNavigate();
   // const location = useLocation();
@@ -118,7 +130,15 @@ export function CustomTable<Entry extends { id: string }>({
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" />{' '} */}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={total}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Paper>
     </Box>
   );

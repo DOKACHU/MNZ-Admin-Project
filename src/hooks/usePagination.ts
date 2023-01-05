@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export function usePagination() {
   const [page, setPage] = useState<number>(0);
@@ -14,8 +14,12 @@ export function usePagination() {
     setPage(newPage);
   };
 
+  // useEffect(() => {
+  //   console.log('');
+  // }, [page, rowsPerPage]);
+
   return {
-    cursor: page + 1,
+    page,
     rowsPerPage,
     handleChangeRowsPerPage,
     handleChangePage,

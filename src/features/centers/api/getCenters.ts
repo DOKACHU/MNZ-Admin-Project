@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useQuery } from 'react-query';
 
 import { axios } from '../../../lib/axios';
@@ -5,23 +6,39 @@ import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
 import { ServerCenterType, CenterType } from '../types';
 
-export const getCenters = async (): Promise<CenterType[]> => {
+export const getCenters = async (
+  page: number,
+  rowsPerPage: number
+): Promise<ServerCenterType> => {
+  console.log(page, rowsPerPage);
   const result = await axios.get<ServerCenterType>(
-    `centers/?cursor=1&per_page=100`
+    `centers/?cursor=${page + 1}&per_page=${rowsPerPage}`
   );
-  return result.data.centerList;
+
+  console.log({ result });
+  // return result.data.centerList;
+  return {
+    total_count: result.data.total_count,
+    centerList: result.data.centerList,
+  };
 };
 
 type QueryFnType = typeof getCenters;
 
 type UseCouponsOptions = {
   config?: QueryConfig<QueryFnType>;
+  page: number;
+  rowsPerPage: number;
 };
 
-export const useCenters = ({ config }: UseCouponsOptions = {}) => {
+export const useCenters = ({
+  config,
+  page,
+  rowsPerPage,
+}: UseCouponsOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['centers'],
-    queryFn: () => getCenters(),
+    queryKey: ['centers', page, rowsPerPage],
+    queryFn: () => getCenters(page, rowsPerPage),
   });
 };

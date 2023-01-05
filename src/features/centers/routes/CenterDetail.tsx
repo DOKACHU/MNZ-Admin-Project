@@ -14,7 +14,7 @@ export default function CenterDetail() {
   const { isLoading, data } = useCenter({ centerId });
 
   return (
-    <ContentLayout title="센터 상세">
+    <ContentLayout title="센터 상세" isBackButton>
       <CustomDetailForm
         value={value}
         tabs={centerTab}
