@@ -78,7 +78,7 @@ export default function UploadImage() {
               onChange={handleAddImages}
             />
             <Typography variant="subtitle2" align="center">
-              Upload/Change Your Profile Image
+              Upload/Change Multiple Image
             </Typography>
           </Grid>
           <Grid
@@ -90,7 +90,7 @@ export default function UploadImage() {
             }}
           >
             <Button variant="contained" size="small" onClick={handleFileClick}>
-              Upload Avatar
+              Upload Button
             </Button>
           </Grid>
         </Grid>

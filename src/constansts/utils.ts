@@ -66,6 +66,16 @@ export const styleValue = {
   fontWeight: 400,
 };
 
+export const dayOfWeeks = [
+  { label: '월', dayOfWeek: 1 },
+  { label: '화', dayOfWeek: 2 },
+  { label: '수', dayOfWeek: 3 },
+  { label: '목', dayOfWeek: 4 },
+  { label: '금', dayOfWeek: 5 },
+  { label: '토', dayOfWeek: 6 },
+  { label: '일', dayOfWeek: 7 },
+];
+
 // export function dateFormat(date: Date) {
 //   const initmonth = date.getMonth() + 1;
 //   const initday = date.getDate();

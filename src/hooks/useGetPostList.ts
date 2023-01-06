@@ -27,7 +27,7 @@ interface GetListsProps {
   Init?: any;
 }
 
-const top100Films = [
+const dayOfWeeks = [
   { label: '월', dayOfWeek: 1 },
   { label: '화', dayOfWeek: 2 },
   { label: '수', dayOfWeek: 3 },
@@ -115,7 +115,7 @@ export function useGetLists({ BaseURL, Init }: GetListsProps) {
           .map((item: any) => {
             let tmp = item[splited[2]];
             if (splited[2] === 'dayOfWeek') {
-              tmp = top100Films.filter((item: any) => item.label === value)[0]
+              tmp = dayOfWeeks.filter((item: any) => item.label === value)[0]
                 .dayOfWeek;
             } else {
               tmp = value;

@@ -20,18 +20,9 @@ import {
   getComparator,
   CENTER_BASE_API,
   centerInit,
+  dayOfWeeks,
 } from '../constansts';
 import { useGetLists } from '../hooks';
-
-const top100Films = [
-  { label: '월', dayOfWeek: 1 },
-  { label: '화', dayOfWeek: 2 },
-  { label: '수', dayOfWeek: 3 },
-  { label: '목', dayOfWeek: 4 },
-  { label: '금', dayOfWeek: 5 },
-  { label: '토', dayOfWeek: 6 },
-  { label: '일', dayOfWeek: 7 },
-];
 
 export default function Center() {
   const {
@@ -170,9 +161,9 @@ export default function Center() {
                 <Grid item md={2} xs={12}>
                   <Autocomplete
                     disableClearable
-                    options={top100Films}
+                    options={dayOfWeeks}
                     value={
-                      top100Films[createInfo.businessHours[i].dayOfWeek - 1]
+                      dayOfWeeks[createInfo.businessHours[i].dayOfWeek - 1]
                     }
                     onSelect={handleCenterCreateChange}
                     // defaultValue={top100Films[0]}
