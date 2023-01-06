@@ -9,6 +9,7 @@ const pathMap: any = {
   pros: 'proId',
   products: 'productId',
   points: 'pointEventId',
+  users: 'userId',
 };
 
 export function useTableList() {

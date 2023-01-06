@@ -16,10 +16,23 @@ export const bookTab = [
   // },
 ];
 
+export const userTab = [
+  {
+    id: 0,
+    label: '유저 정보',
+    to: '#',
+  },
+  // {
+  //   id: 1,
+  //   label: 'etc',
+  //   to: '#',
+  // },
+];
+
 export const reviewTab = [
   {
     id: 0,
-    label: '리뷰정보',
+    label: '리뷰 정보',
     to: '#',
   },
   // {
