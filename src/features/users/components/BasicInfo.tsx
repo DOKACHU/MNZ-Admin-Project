@@ -160,7 +160,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                 <TableBody>
                   {/*  */}
 
-                  {detail.bookings.map((row, index) => (
+                  {detail.bookings.map((row: any, index: number) => (
                     <TableRow key={index}>
                       <TableCell sx={{ pl: 3 }}>
                         <Typography align="left" variant="subtitle1">
