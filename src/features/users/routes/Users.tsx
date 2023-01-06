@@ -15,7 +15,7 @@ export default function Users() {
   const { isLoading, data } = useUsers({ ...pagination });
 
   return (
-    <ContentLayout title="고객">
+    <ContentLayout title="유저">
       <Table<UserType>
         loading={isLoading}
         {...pagination}

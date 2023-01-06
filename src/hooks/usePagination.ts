@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export function usePagination() {
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(20);
 
   const handleChangeRowsPerPage = (e: any) => {
     const parsedInt = parseInt(e.target.value, 10);

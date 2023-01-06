@@ -24,22 +24,22 @@ export default function Centers() {
           {
             id: 'centerId',
             field: 'centerId',
-            title: '병원 번호',
+            title: '센터 번호',
           },
           {
             id: 'name',
             field: 'name',
-            title: '병원 이름',
+            title: '센터 이름',
           },
           {
             id: 'address',
             field: 'address',
-            title: '병원 주소',
+            title: '센터 주소',
           },
           {
             id: 'description',
             field: 'description',
-            title: '병원 설명',
+            title: '센터 설명',
           },
         ]}
       />

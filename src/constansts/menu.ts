@@ -52,7 +52,7 @@ export const mainNavbarItems = [
   },
   {
     id: 5,
-    label: '고객 관리',
+    label: '유저 관리',
     route: 'users',
   },
 
