@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Card, Grid, Typography, Button } from '@mui/material';
+import { Box, Card, Grid, Typography, Button, Chip } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ type ContentLayoutProps = {
   title: string;
   isButton?: boolean;
   isBackButton?: boolean;
+  isBookCancel?: boolean;
   handleOpen?: () => void;
   handleDeleteOpen?: () => void;
   isUpdateButton?: boolean;
@@ -19,6 +20,7 @@ export default function ContentLayout({
   children,
   title,
   isButton,
+  isBookCancel,
   handleOpen,
   handleDeleteOpen,
   isBackButton,
@@ -63,6 +65,16 @@ export default function ContentLayout({
                 <Typography variant="h5" sx={{ fontWeight: 500 }}>
                   {`${title}`}
                 </Typography>
+                {isBookCancel && (
+                  <Chip
+                    sx={{
+                      ml: 2,
+                    }}
+                    variant="outlined"
+                    color="error"
+                    label="예약 취소"
+                  />
+                )}
               </Box>
             </Grid>
 

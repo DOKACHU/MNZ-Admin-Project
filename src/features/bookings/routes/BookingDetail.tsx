@@ -16,7 +16,7 @@ export default function BookingDetail() {
   const modal = useModal();
   // const deleteCoupon = useDeleteCoupon();
   return (
-    <ContentLayout title="예약" {...modal}>
+    <ContentLayout title="예약" isBookCancel={data?.isCancel} {...modal}>
       <CustomDetailForm
         value={value}
         tabs={bookingTab}

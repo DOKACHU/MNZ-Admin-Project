@@ -72,13 +72,13 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               <Grid item>
                 <Typography variant="body2">
                   <PhoneAndroidTwoTone sx={detailsIconSX} />
-                  010-0000-0000
+                  {detail.user.phoneNumber}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2">
                   <EmailTwoTone sx={detailsIconSX} />
-                  example@mail.com
+                  {detail.user.email}
                 </Typography>
               </Grid>
             </Grid>
@@ -141,12 +141,12 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
 
           <Grid item xs={12} sm={6} md={4}>
             <Stack spacing={0} sx={{ mt: { xs: 0, md: 4 } }}>
-              <Stack direction="row" spacing={1} alignItems="center">
+              {/* <Stack direction="row" spacing={1} alignItems="center">
                 <Typography variant="subtitle1" sx={styleSubtitle}>
                   치료 부위 :
                 </Typography>
                 <Typography variant="body2">어깨</Typography>
-              </Stack>
+              </Stack> */}
 
               <Stack direction="row" spacing={1} alignItems="center">
                 <Typography variant="subtitle1" sx={styleSubtitle}>
@@ -184,32 +184,35 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               <Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
-                    프로 ID :
+                    ID :
                   </Typography>
                   <Typography variant="body2">{detail?.proId}</Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
-                    프로 이름 :
+                    이름 :
                   </Typography>
-                  <Typography variant="body2">{detail?.proName}</Typography>
+                  <Typography variant="body2">{detail?.pro.name}</Typography>
+                </Stack>
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography variant="subtitle1" sx={styleSubtitle}>
+                    핸드폰 번호 :
+                  </Typography>
+                  <Typography variant="body2">
+                    {detail?.pro.phoneNumber}
+                  </Typography>
                 </Stack>
               </Stack>
               {/*  */}
               <Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
+                  {/* <Typography variant="subtitle1" sx={styleSubtitle}>
                     주소 :
                   </Typography>
-                  <Typography variant="body2">00시 00구 00로</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
-                    전화번호 :
-                  </Typography>
-                  <Typography variant="body2">+1 (070) 123-4567</Typography>
+                  <Typography variant="body2">00시 00구 00로</Typography> */}
                 </Stack>
               </Stack>
+              {/*  */}
             </Stack>
           </Grid>
           <Grid item sm={6} md={4}>
@@ -220,32 +223,35 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               <Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
-                    병원 ID :
+                    ID :
                   </Typography>
                   <Typography variant="body2">{detail?.centerId}</Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
-                    병원 이름 :
+                    이름 :
                   </Typography>
-                  <Typography variant="body2">인천 병원</Typography>
+                  <Typography variant="body2">{detail.center.name}</Typography>
                 </Stack>
-              </Stack>
-              {/*  */}
-              <Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
                     주소 :
                   </Typography>
-                  <Typography variant="body2">00시 00구 00로</Typography>
+                  <Typography variant="body2">
+                    {detail.center.address}
+                  </Typography>
                 </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
+              </Stack>
+
+              <Stack>
+                {/* <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="subtitle1" sx={styleSubtitle}>
                     전화번호 :
                   </Typography>
                   <Typography variant="body2">+1 (070) 123-4567</Typography>
-                </Stack>
+                </Stack> */}
               </Stack>
+              {/*  */}
             </Stack>
           </Grid>
         </MainSubCard>
@@ -262,9 +268,8 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     <TableCell sx={{ pl: 3 }}>상품 이름</TableCell>
                     <TableCell sx={{ pl: 3 }}>상품 설명 </TableCell>
                     <TableCell align="right">진행 횟수</TableCell>
-                    <TableCell align="right">상품 가격</TableCell>
                     {/* <TableCell align="right">Total</TableCell> */}
-                    <TableCell align="right" sx={{ pr: 3 }} />
+                    <TableCell align="right" />
                   </TableRow>
                 </TableHead>
                 <TableBody>
