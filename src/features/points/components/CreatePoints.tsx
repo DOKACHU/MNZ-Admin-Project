@@ -34,7 +34,7 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
     const newData = {
       ...data,
       price: Number(data.price),
-      userId: 'd39df513-b124-4a00-b8fe-96ae9a0b13c9',
+      userId: '482363c5-f160-4c97-952d-d9f4d73e92ca',
     };
 
     const result = await mutateAsync({ data: newData });

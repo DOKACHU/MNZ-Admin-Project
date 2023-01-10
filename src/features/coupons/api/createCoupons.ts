@@ -9,6 +9,7 @@ import { CouponsType, ServerCouponType } from '../types';
 
 export type CreateCouponsDTO = {
   data: {
+    couponCode: string;
     title: string;
     description: string;
     discountRate: number;
@@ -60,7 +61,7 @@ export const useCreateCoupon = ({ config }: UseCreateCouponsOptions = {}) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries('coupons');
-      alert('생성 완료');
+      alert('새로운 쿠폰이 추가되었습니다.');
       // addNotification({
       //   type: 'success',
       //   title: 'Discussion Created',

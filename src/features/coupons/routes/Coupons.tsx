@@ -27,6 +27,11 @@ export default function Coupons() {
         data={data?.couponList}
         columns={[
           {
+            id: 'couponCode',
+            field: 'couponCode',
+            title: '쿠폰 코드',
+          },
+          {
             id: 'title',
             field: 'title',
             title: '쿠폰 이름',
@@ -41,7 +46,7 @@ export default function Coupons() {
             field: 'discountRate',
             title: '할인율',
             Cell({ entry: { discountRate } }) {
-              return <span>{`${discountRate}%`}</span>;
+              return <span>{`${discountRate || 0}%`}</span>;
             },
           },
           {

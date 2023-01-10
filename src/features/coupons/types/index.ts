@@ -1,6 +1,7 @@
 import { BaseEntity } from '../../../types';
 
 export type CouponsType = {
+  couponCode: string;
   couponId: string;
   title: string;
   description: string;

@@ -16,6 +16,16 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
         <Divider />
         <Stack spacing={0}>
           {/*  */}
+
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography variant="subtitle1" sx={styleSubtitle}>
+              쿠폰 코드 :
+            </Typography>
+            <Typography variant="body2" sx={styleBody}>
+              {detail?.couponCode}
+            </Typography>
+          </Stack>
+
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="subtitle1" sx={styleSubtitle}>
               쿠폰 번호 :

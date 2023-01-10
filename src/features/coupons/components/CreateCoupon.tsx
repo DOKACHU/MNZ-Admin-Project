@@ -62,6 +62,20 @@ export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
     >
       <Grid item xs={12}>
         <Controller
+          name="couponCode"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              helperText="쿠폰 코드"
+              fullWidth
+              size="small"
+            />
+          )}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Controller
           name="title"
           control={control}
           render={({ field }) => (
