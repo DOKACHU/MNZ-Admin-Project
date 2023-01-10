@@ -34,7 +34,7 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
     const newData = {
       ...data,
       price: Number(data.price),
-      userId: '482363c5-f160-4c97-952d-d9f4d73e92ca',
+      // userId: '482363c5-f160-4c97-952d-d9f4d73e92ca',
     };
 
     const result = await mutateAsync({ data: newData });
@@ -116,6 +116,16 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
               rows={4}
               size="small"
             />
+          )}
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <Controller
+          name="userId"
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} helperText="유저 ID" fullWidth size="small" />
           )}
         />
       </Grid>
