@@ -129,6 +129,7 @@ export const protectedRoutes = [
   },
 
   // TODO: 아무렇게나 입려하면 /admin 으로 빠지기
+
   // NotFound
   { path: '*', element: <Navigate to="/admin" /> },
   // { path: '*', element: <NotFound /> },
