@@ -129,6 +129,24 @@ export default function CreatePoints({ open, handleClose }: CreateCouponProps) {
           )}
         />
       </Grid>
+      <Grid item xs={12}>
+        <Controller
+          name="bookingId"
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} helperText="예약 ID" fullWidth size="small" />
+          )}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Controller
+          name="reviewId"
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} helperText="리뷰 ID" fullWidth size="small" />
+          )}
+        />
+      </Grid>
     </Drawer>
   );
 }

@@ -10,6 +10,8 @@ import { PointType, ServerPointType } from '../types';
 export type CreatePointsDTO = {
   data: {
     userId: string;
+    bookingId: string;
+    reviewId: string;
     status: 'sub' | 'add';
     price: number;
     reason: string;
