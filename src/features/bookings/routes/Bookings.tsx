@@ -13,6 +13,7 @@ import { useModal, usePagination } from '../../../hooks';
 export default function Bookings() {
   const pagination = usePagination();
   const { isLoading, data } = useBookings({ ...pagination });
+  console.log({ data });
   const modal = useModal();
 
   return (

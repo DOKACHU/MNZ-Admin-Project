@@ -5,7 +5,7 @@ import {
   UseMutationOptions,
   DefaultOptions,
 } from '@tanstack/react-query';
-import { a } from 'type-fest';
+import { AsyncReturnType } from 'type-fest';
 
 const queryConfig: DefaultOptions = {
   queries: {

@@ -12,6 +12,8 @@ export const getBookings = async (
   const result = await axios.get<ServerBookingType>(
     `bookings/?cursor=${page + 1}&per_page=${rowsPerPage}`
   );
+
+  console.log({ result });
   return {
     total_count: result.data.total_count,
     bookingList: result.data.bookingList,

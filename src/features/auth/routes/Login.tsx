@@ -2,10 +2,10 @@ import React from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../../../layouts';
-import { useAuth } from '../../../lib/auth';
+// import { useLogin } from '../../../lib/auth';
 
 export default function Login() {
-  const { isLoggingIn } = useAuth();
+  // const {  } = useLogin();
 
   const navigate = useNavigate();
 
@@ -13,9 +13,9 @@ export default function Login() {
     navigate('/auth/register');
   };
 
-  if (isLoggingIn) {
-    return <div>로딩중 ....</div>;
-  }
+  // if (isLoggingIn) {
+  //   return <div>로딩중 ....</div>;
+  // }
 
   return (
     <AuthLayout title="로그인">

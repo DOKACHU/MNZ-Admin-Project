@@ -13,8 +13,10 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { AuthProvider } from '../lib/auth';
+import { AuthLoader } from '../lib/auth';
 import { queryClient } from '../lib/react-query';
+// import { } from '../features/auth'
+// import { publicRoutes } from '../routes/PublicRoutes';
 
 const style = {
   height: '100%',
@@ -57,9 +59,18 @@ export default function AppProvider({ children }: AppProviderProps) {
 
             {/* TODO: notification */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <AuthProvider>
-                <Router>{children}</Router>
-              </AuthProvider>
+              {/* <AuthLoader
+                renderLoading={() => (
+                  <Box sx={style}>
+                    <CircularProgress />
+                  </Box>
+                )}
+                renderUnauthenticated={() => (
+                  <div>renderUnauthenticated ...</div>
+                )}
+              > */}
+              <Router>{children}</Router>
+              {/* </AuthLoader> */}
             </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>

@@ -1,12 +1,12 @@
-import { initReactQueryAuth } from 'react-query-auth';
-
-import { CircularProgress } from '@mui/material';
+/* eslint-disable import/no-cycle */
+import { configureAuth } from 'react-query-auth';
+import { axios } from './axios';
 import {
   loginWithEmailAndPassword,
-  AuthUser,
   LoginDTO,
   UserResponse,
 } from '../features/auth';
+
 import storage from '../utils/storage';
 
 async function handleUserResponse(data: UserResponse) {
@@ -26,20 +26,11 @@ async function logoutFn() {
   window.location.assign(window.location.origin as unknown as string);
 }
 
-const authConfig = {
-  loginFn,
-  logoutFn,
-  LoaderComponent() {
-    return (
-      <div>
-        <CircularProgress />
-      </div>
-    );
-  },
-};
-
-export const { AuthProvider, useAuth } = initReactQueryAuth<
-  AuthUser | null,
-  unknown,
-  LoginDTO
->(authConfig);
+export const { useUser, useLogin, useRegister, useLogout, AuthLoader } =
+  configureAuth({
+    userFn: () => axios.get('/me'),
+    loginFn: (credentials: LoginDTO) =>
+      axios.post('users/auth/login', credentials),
+    registerFn: (credentials) => axios.post('/register', credentials),
+    logoutFn: () => axios.post('/logout'),
+  });
