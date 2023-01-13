@@ -1,43 +1,24 @@
-import { initReactQueryAuth } from 'react-query-auth';
+import { initReactQueryAuth } from '@tanstack/react-query-auth';
 
 import { CircularProgress } from '@mui/material';
 import {
-  //   loginWithEmailAndPassword,
-  getUser,
-  //   registerWithEmailAndPassword,
-  UserResponse,
-  //   LoginCredentialsDTO,
-  //   RegisterCredentialsDTO,
+  loginWithEmailAndPassword,
   AuthUser,
+  LoginDTO,
+  UserResponse,
 } from '../features/auth';
 import storage from '../utils/storage';
 
 async function handleUserResponse(data: UserResponse) {
-  const { jwt, user } = data;
-  storage.setToken(jwt);
+  const { token, user } = data;
+  storage.setToken(token);
   return user;
 }
 
-async function loadUser() {
-  if (storage.getToken()) {
-    const data = await getUser();
-    return data;
-  }
-  return null;
-}
-
-async function loginFn() {
-  // const response = await loginWithEmailAndPassword(data);
-  // const user = await handleUserResponse(response);
-  // return user;
-  return '';
-}
-
-async function registerFn() {
-  // const response = await registerWithEmailAndPassword(data);
-  // const user = await handleUserResponse(response);
-  // return user;
-  return '';
+async function loginFn(data: LoginDTO) {
+  const response = await loginWithEmailAndPassword(data);
+  const user = await handleUserResponse(response);
+  return user;
 }
 
 async function logoutFn() {
@@ -46,9 +27,7 @@ async function logoutFn() {
 }
 
 const authConfig = {
-  loadUser,
   loginFn,
-  registerFn,
   logoutFn,
   LoaderComponent() {
     return (
@@ -61,7 +40,6 @@ const authConfig = {
 
 export const { AuthProvider, useAuth } = initReactQueryAuth<
   AuthUser | null,
-  unknown
-  // LoginCredentialsDTO,
-  // RegisterCredentialsDTO
->(authConfig as any);
+  unknown,
+  LoginDTO
+>(authConfig);

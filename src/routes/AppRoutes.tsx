@@ -1,20 +1,24 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 // TODO : useAuth
 import React, { useState } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, Navigate, Outlet } from 'react-router-dom';
 
 // protect, public
 import { protectedRoutes } from './ProtectedRoutes';
 import { publicRoutes } from './PublicRoutes';
+import { useAuth } from '../lib/auth';
 
 export default function AppRoutes() {
   // TODO: useAuth
-  const test = true;
+  const auth = useAuth();
+  console.log({ auth });
 
-  const commonRoutes = [{ path: '/auth', element: <div>Landing</div> }];
+  const test = false;
+
+  const commonRoutes = [{ path: '/', element: <Navigate to="/auth/login" /> }];
 
   // route
-  const routes = !test ? protectedRoutes : publicRoutes;
+  const routes = test ? protectedRoutes : publicRoutes;
 
   // element
   const element = useRoutes([...routes, ...commonRoutes]);
