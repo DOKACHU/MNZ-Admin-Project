@@ -1,4 +1,4 @@
-import { initReactQueryAuth } from '@tanstack/react-query-auth';
+import { initReactQueryAuth } from 'react-query-auth';
 
 import { CircularProgress } from '@mui/material';
 import {

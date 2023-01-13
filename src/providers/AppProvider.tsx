@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
-import { ReactQueryDevtools } from '@tanstack/react-query/devtools';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {
@@ -13,8 +12,9 @@ import {
 } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '../lib/auth';
-import { queryClient } from '../lib/@tanstack/react-query';
+import { queryClient } from '../lib/react-query';
 
 const style = {
   height: '100%',
