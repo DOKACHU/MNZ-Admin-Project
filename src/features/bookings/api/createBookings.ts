@@ -37,25 +37,26 @@ export const useCreateBookings = ({
   // const { addNotification } = useNotificationStore();
   return useMutation({
     onMutate: async (newBookings: any) => {
-      await queryClient.cancelQueries('bookings');
+      await queryClient.cancelQueries(['bookings']);
 
-      const previousBookings =
-        queryClient.getQueryData<BookingType[]>('bookings');
-
-      queryClient.setQueryData('bookings', [
-        ...(previousBookings || []),
-        newBookings.data,
+      const previousBookings = queryClient.getQueryData<BookingType[]>([
+        'bookings',
       ]);
+
+      queryClient.setQueryData(
+        ['bookings'],
+        [...(previousBookings || []), newBookings.data]
+      );
 
       return { previousBookings };
     },
     onError: (_, __, context: any) => {
       if (context?.previousBookings) {
-        queryClient.setQueryData('bookings', context.previousBookings);
+        queryClient.setQueryData(['bookings'], context.previousBookings);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('bookings');
+      queryClient.invalidateQueries(['bookings']);
       alert('예약 생성 완료');
       // addNotification({
       //   type: 'success',
