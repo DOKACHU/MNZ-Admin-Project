@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 // TODO : useAuth
-import React, { useState } from 'react';
-import { useRoutes, Navigate, Outlet } from 'react-router-dom';
+import { useRoutes, Navigate } from 'react-router-dom';
 
 // protect, public
 import { protectedRoutes } from './ProtectedRoutes';
