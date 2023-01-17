@@ -59,18 +59,12 @@ export default function AppProvider({ children }: AppProviderProps) {
 
             {/* TODO: notification */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {/* <AuthLoader
-                renderLoading={() => (
-                  <Box sx={style}>
-                    <CircularProgress />
-                  </Box>
-                )}
-                renderUnauthenticated={() => (
-                  <div>renderUnauthenticated ...</div>
-                )}
-              > */}
-              <Router>{children}</Router>
-              {/* </AuthLoader> */}
+              <AuthLoader
+                renderLoading={() => <div>Loading ...</div>}
+                renderUnauthenticated={() => <div>renderUnauthenticated</div>}
+              >
+                <Router>{children}</Router>
+              </AuthLoader>
             </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>

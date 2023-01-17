@@ -5,12 +5,9 @@ import { useRoutes, Navigate } from 'react-router-dom';
 // protect, public
 import { protectedRoutes } from './ProtectedRoutes';
 import { publicRoutes } from './PublicRoutes';
-// import { useAuth } from '../lib/auth';
 
 export default function AppRoutes() {
   // TODO: useAuth
-  // const auth = useAuth();
-  // console.log({ auth });
 
   const test = false;
 
