@@ -61,7 +61,7 @@ export default function AppProvider({ children }: AppProviderProps) {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <AuthLoader
                 renderLoading={() => <div>Loading ...</div>}
-                renderUnauthenticated={() => <div>renderUnauthenticated</div>}
+                // renderUnauthenticated={() => <div>renderUnauthenticated</div>}
               >
                 <Router>{children}</Router>
               </AuthLoader>
