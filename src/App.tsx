@@ -1,7 +1,7 @@
 import { AppProvider } from './providers';
 import { AppRoutes } from './routes';
 
-export default function NewApp() {
+export default function App() {
   return (
     <AppProvider>
       <AppRoutes />

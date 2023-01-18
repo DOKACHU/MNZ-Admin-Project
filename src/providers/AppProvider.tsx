@@ -57,9 +57,16 @@ export default function AppProvider({ children }: AppProviderProps) {
 
             {/* TODO: notification */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {/* <AuthLoader renderLoading={() => <div>Loading ...</div>}> */}
-              <Router>{children}</Router>
-              {/* </AuthLoader> */}
+              <AuthLoader
+                renderLoading={() => (
+                  <Box sx={style}>
+                    {/* <CircularProgress /> */}
+                    <span>로딩중..</span>
+                  </Box>
+                )}
+              >
+                <Router>{children}</Router>
+              </AuthLoader>
             </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>
