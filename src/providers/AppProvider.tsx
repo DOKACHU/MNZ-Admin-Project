@@ -29,7 +29,7 @@ interface AppProviderProps {
 }
 
 function ErrorFallback() {
-  //   console.log('ERROR');
+  console.log('ERROR');
   return (
     <Box sx={style}>
       <Typography variant="h5"> 뭔가 문제 발생 </Typography>
@@ -53,19 +53,18 @@ export default function AppProvider({ children }: AppProviderProps) {
         <CssBaseline />
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
-            {import.meta.env.MODE === 'development' && <ReactQueryDevtools />}
-
+            {/* {import.meta.env.MODE === 'development' && <ReactQueryDevtools />} d */}
             {/* TODO: notification */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {/* <AuthLoader
+              <AuthLoader
                 renderLoading={() => (
                   <Box sx={style}>
                     <CircularProgress />
                   </Box>
                 )}
-              > */}
-              <Router>{children}</Router>
-              {/* </AuthLoader> */}
+              >
+                <Router>{children}</Router>
+              </AuthLoader>
             </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>
