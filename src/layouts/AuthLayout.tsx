@@ -4,9 +4,14 @@ import { Box, Grid, Typography, Container, Card } from '@mui/material';
 type AuthLayoutProps = {
   children: React.ReactNode;
   title?: string;
+  onSubmit?: () => void;
 };
 
-export default function AuthLayout({ title, children }: AuthLayoutProps) {
+export default function AuthLayout({
+  title,
+  children,
+  onSubmit,
+}: AuthLayoutProps) {
   return (
     <Box
       sx={{
@@ -27,13 +32,16 @@ export default function AuthLayout({ title, children }: AuthLayoutProps) {
           background: '#e3f2fd',
         }}
       >
-        <Grid container spacing={2}>
-          <Grid item>
-            <Typography variant="h4">{title}</Typography>
+        <form onSubmit={onSubmit}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Typography variant="h4">{title}</Typography>
+            </Grid>
+            {children}
           </Grid>
-          {children}
-        </Grid>
+        </form>
       </Card>
+
       {/* </Container> */}
     </Box>
   );

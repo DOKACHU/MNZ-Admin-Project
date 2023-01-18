@@ -12,6 +12,7 @@ export default function Register() {
   const handleRoute = () => {
     navigate('/auth/login');
   };
+
   return (
     <AuthLayout title="회원가입">
       <Grid item xs={12}>
