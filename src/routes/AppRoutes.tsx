@@ -9,11 +9,11 @@ import { useUser } from '../lib/auth';
 
 export default function AppRoutes() {
   const user = useUser();
-
+  console.log({ user });
   const commonRoutes = [{ path: '/*', element: <Navigate to="/auth/login" /> }];
 
   // route
-  const routes = user.data ? protectedRoutes : publicRoutes;
+  const routes = !user.data ? protectedRoutes : publicRoutes;
 
   // element
   const element = useRoutes([...routes, ...commonRoutes]);

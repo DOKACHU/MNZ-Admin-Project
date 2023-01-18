@@ -15,8 +15,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthLoader } from '../lib/auth';
 import { queryClient } from '../lib/react-query';
-// import { } from '../features/auth'
-// import { publicRoutes } from '../routes/PublicRoutes';
 
 const style = {
   height: '100%',
@@ -59,12 +57,9 @@ export default function AppProvider({ children }: AppProviderProps) {
 
             {/* TODO: notification */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <AuthLoader
-                renderLoading={() => <div>Loading ...</div>}
-                // renderUnauthenticated={() => <div>renderUnauthenticated</div>}
-              >
-                <Router>{children}</Router>
-              </AuthLoader>
+              {/* <AuthLoader renderLoading={() => <div>Loading ...</div>}> */}
+              <Router>{children}</Router>
+              {/* </AuthLoader> */}
             </LocalizationProvider>
           </QueryClientProvider>
         </HelmetProvider>
