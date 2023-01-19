@@ -23,26 +23,25 @@ export default function AuthLayout({
         // background: 'red',
       }}
     >
-      {/* <Container maxWidth="sm"> */}
-      <Card
-        sx={{
-          // border: '1px solid red',
-          borderRadius: 4,
-          padding: 2,
-          background: '#e3f2fd',
-        }}
-      >
-        <form onSubmit={onSubmit}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <Typography variant="h4">{title}</Typography>
+      <Container maxWidth="sm">
+        <Card
+          sx={{
+            // border: '1px solid red',
+            borderRadius: 4,
+            padding: 2,
+            background: '#e3f2fd',
+          }}
+        >
+          <form onSubmit={onSubmit}>
+            <Grid container spacing={2}>
+              <Grid item>
+                <Typography variant="h4">{title}</Typography>
+              </Grid>
+              {children}
             </Grid>
-            {children}
-          </Grid>
-        </form>
-      </Card>
-
-      {/* </Container> */}
+          </form>
+        </Card>
+      </Container>
     </Box>
   );
 }

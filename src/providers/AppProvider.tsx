@@ -29,7 +29,6 @@ interface AppProviderProps {
 }
 
 function ErrorFallback() {
-  console.log('ERROR');
   return (
     <Box sx={style}>
       <Typography variant="h5"> 뭔가 문제 발생 </Typography>
