@@ -34,7 +34,7 @@ export default function UpdateCoupon({
 
   return (
     <Drawer
-      title="쿠폰 수정 모달"
+      title="프로 수정 모달"
       open={open}
       onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
