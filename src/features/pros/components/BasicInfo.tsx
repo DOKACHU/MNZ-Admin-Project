@@ -21,7 +21,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               프로 번호 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.proId}
+              {detail?.proId}
             </Typography>
           </Stack>
 
@@ -31,7 +31,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               프로 이름 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.name}
+              {detail?.name}
             </Typography>
           </Stack>
           {/*  */}
@@ -42,7 +42,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               핸드폰 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.phoneNumber}
+              {detail?.phoneNumber}
             </Typography>
           </Stack>
           {/*  */}
@@ -53,7 +53,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
               소개 :
             </Typography>
             <Typography variant="body2" sx={styleBody}>
-              {detail.description}
+              {detail?.description}
             </Typography>
           </Stack>
           {/*  */}

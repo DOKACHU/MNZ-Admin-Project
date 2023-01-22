@@ -9,17 +9,17 @@ import { CreatePros } from '../components';
 
 export default function Pros() {
   const pagination = usePagination();
-  const { isLoading, data } = usePros({ ...pagination });
+  // const { isLoading, data } = usePros({ ...pagination });
   const modal = useModal();
 
   return (
     <ContentLayout title="프로" isButton {...modal}>
       <CreatePros {...modal} />
       <Table<ProType>
-        loading={isLoading}
+        // loading={isLoading}
         {...pagination}
-        total={data?.total_count}
-        data={data?.proList}
+        // total={data?.total_count}
+        // data={data?.proList}
         columns={[
           {
             id: 'proId',
