@@ -32,7 +32,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     센터 번호 :
                   </Typography>
                   <Typography variant="body2" sx={styleBody}>
-                    {detail.centerId}
+                    {detail?.centerId}
                   </Typography>
                 </Stack>
 
@@ -42,7 +42,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     센터 이름 :
                   </Typography>
                   <Typography variant="body2" sx={styleBody}>
-                    {detail.name}
+                    {detail?.name}
                   </Typography>
                 </Stack>
                 {/*  */}
@@ -53,7 +53,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     센터 설명 :
                   </Typography>
                   <Typography variant="body2" sx={styleBody}>
-                    {detail.description}
+                    {detail?.description}
                   </Typography>
                 </Stack>
                 {/*  */}
@@ -62,7 +62,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                     센터 주소 :
                   </Typography>
                   <Typography variant="body2" sx={styleBody}>
-                    {detail.address}
+                    {detail?.address}
                   </Typography>
                 </Stack>
               </Stack>
@@ -96,8 +96,7 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
                 센터 상세 정보
               </Typography>
               <Divider />
-              {detail.businessHours.map((info, index) => {
-                console.log('work');
+              {detail.businessHours?.map((info, index) => {
                 return (
                   <Box
                     key={index}
