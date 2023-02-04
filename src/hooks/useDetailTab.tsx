@@ -19,7 +19,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 0 }}>
+        <Box sx={{ p: 2 }}>
           <Grid container spacing={2} display="row" alignItems="center">
             {children}
           </Grid>

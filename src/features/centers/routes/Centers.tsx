@@ -9,17 +9,17 @@ import { CreateCenters } from '../components';
 
 export default function Centers() {
   const pagination = usePagination();
-  // const { isLoading, data } = useCenters({ ...pagination });
+  const { isLoading, data } = useCenters({ ...pagination });
   const modal = useModal();
 
   return (
     <ContentLayout title="센터" isButton {...modal}>
       <CreateCenters {...modal} />
       <Table<CenterType>
-        // loading={isLoading}
+        loading={isLoading}
         {...pagination}
         total={0}
-        data={[]}
+        data={data?.centerList}
         columns={[
           {
             id: 'centerId',
