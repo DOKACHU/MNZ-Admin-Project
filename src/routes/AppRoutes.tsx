@@ -11,7 +11,8 @@ export default function AppRoutes() {
   console.log({ user });
   const commonRoutes = [{ path: '/*', element: <Navigate to="/auth/login" /> }];
   // route
-  const routes = user.data ? protectedRoutes : publicRoutes;
+  const routes = !user.data ? protectedRoutes : publicRoutes;
+
   // element
   const element = useRoutes([...routes, ...commonRoutes]);
 
