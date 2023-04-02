@@ -18,7 +18,7 @@ export default function Centers() {
       <Table<CenterType>
         loading={isLoading}
         {...pagination}
-        total={0}
+        total={data?.total_count}
         data={data?.centerList}
         columns={[
           {
