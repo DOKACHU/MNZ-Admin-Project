@@ -40,7 +40,7 @@ export const useCreateCenters = ({ config }: UseCreateCouponsOptions = {}) => {
   // const { addNotification } = useNotificationStore();
   return useMutation({
     onMutate: async (newCoupons: any) => {
-      await queryClient.cancelQueries('centers');
+      await queryClient.cancelQueries(['centers']);
       // mocking
       // const previousCoupons =
       //   queryClient.getQueryData<CouponsType[]>('coupons');
@@ -51,23 +51,24 @@ export const useCreateCenters = ({ config }: UseCreateCouponsOptions = {}) => {
       // ]);
 
       // server
-      const previousCoupons =
-        queryClient.getQueryData<ServerCenterType>('centers');
-
-      queryClient.setQueryData('centers', [
-        ...(previousCoupons?.centerList || []),
-        newCoupons.data,
+      const previousCoupons = queryClient.getQueryData<ServerCenterType>([
+        'centers',
       ]);
+
+      queryClient.setQueryData(
+        ['centers'],
+        [...(previousCoupons?.centerList || []), newCoupons.data]
+      );
 
       return { previousCoupons };
     },
     onError: (_, __, context: any) => {
       if (context?.previousCoupons) {
-        queryClient.setQueryData('centers', context.previousCoupons);
+        queryClient.setQueryData(['centers'], context.previousCoupons);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('centers');
+      queryClient.invalidateQueries(['centers']);
       alert('센터 정보 추가 하였습니다.');
       // addNotification({
       //   type: 'success',
