@@ -60,9 +60,13 @@ const { ProductsRoutes } = lazyImport(
   'ProductsRoutes'
 );
 
-const { EntryFormRoutes } = lazyImport(
-  () => import('../features/entryform'),
-  'EntryFormRoutes'
+const { CenterEntryFormRoutes } = lazyImport(
+  () => import('../features/centerform'),
+  'CenterEntryFormRoutes'
+);
+const { ProEntryFormRoutes } = lazyImport(
+  () => import('../features/proform'),
+  'ProEntryFormRoutes'
 );
 
 export default function App() {
@@ -129,8 +133,12 @@ export const protectedRoutes = [
         element: <ProductsRoutes />,
       },
       {
-        path: 'entryform/*',
-        element: <EntryFormRoutes />,
+        path: 'centerform/*',
+        element: <CenterEntryFormRoutes />,
+      },
+      {
+        path: 'proform/*',
+        element: <ProEntryFormRoutes />,
       },
       // TODO: /admin/asdfasdf 이렇게 아무렇게나 입려하면 /admin 으로 빠지기
       // { path: '*', element: <Navigate to="." /> },

@@ -68,8 +68,13 @@ export const mainNavbarItems = [
   },
   {
     id: 14,
-    label: '입점 폼 관리',
-    route: 'entryform',
+    label: '센터 폼 관리',
+    route: 'centerform',
+  },
+  {
+    id: 15,
+    label: '프로 폼 관리',
+    route: 'proform',
   },
 ];
 
