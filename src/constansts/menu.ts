@@ -66,6 +66,11 @@ export const mainNavbarItems = [
     label: '푸시 알림 관리',
     route: 'notifications',
   },
+  {
+    id: 14,
+    label: '입점 폼 관리',
+    route: 'entryform',
+  },
 ];
 
 export const reviewVoucherInfo = [

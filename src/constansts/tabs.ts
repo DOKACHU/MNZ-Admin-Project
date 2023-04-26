@@ -93,3 +93,16 @@ export const productTab = [
   //   to: '#',
   // },
 ];
+
+export const entryTab = [
+  {
+    id: 0,
+    label: '센터 입점 폼',
+    to: '#',
+  },
+  {
+    id: 1,
+    label: '프로 입점 폼',
+    to: '#',
+  },
+];
