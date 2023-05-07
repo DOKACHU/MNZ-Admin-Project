@@ -13,3 +13,17 @@ export type ServerProType = {
   total_count: number;
   proList: ProType[];
 };
+
+export type EntryProType = {
+  proEntryId: string;
+  proName: string;
+  gender: string;
+  city: string;
+  therapyCategory: string;
+  description: string;
+} & BaseEntity;
+
+export type ServerEntryType = {
+  total_count: number;
+  bookingList: EntryProType[];
+};

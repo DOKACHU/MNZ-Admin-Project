@@ -1,16 +1,20 @@
 import { BaseEntity } from '../../../types';
 
-export type CenterType = {
-  centerId: string;
-  name: string;
-  type: null;
-  latitude: null;
-  longitude: null;
-  address: string;
+export type EntryCenterType = {
+  centerEntryId: string;
+  centerName: string;
+  city: string;
+  address1: string;
+  address2: string;
+  businessRegistrationNumber: string;
+  memberCount: number;
+  therapyCategory: string;
+  phoneNumber: string;
+  email: string;
   description: string;
 } & BaseEntity;
 
-export type ServerCenterType = {
+export type ServerEntryType = {
   total_count: number;
-  centerList: CenterType[];
+  bookingList: EntryCenterType[];
 };

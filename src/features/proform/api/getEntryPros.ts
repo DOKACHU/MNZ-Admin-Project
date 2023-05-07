@@ -4,23 +4,23 @@ import { useQuery } from '@tanstack/react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { ServerCenterType, CenterType } from '../types';
+import { ServerEntryType } from '../types';
 
-export const getCenters = async (
+export const getEntryPros = async (
   page: number,
   rowsPerPage: number
-): Promise<ServerCenterType> => {
-  const result = await axios.get<ServerCenterType>(
-    `centers/?cursor=${page + 1}&per_page=${rowsPerPage}`
+): Promise<ServerEntryType> => {
+  const result = await axios.get<ServerEntryType>(
+    `entry/pros/?cursor=${page + 1}&per_page=${rowsPerPage}`
   );
 
   return {
     total_count: result.data.total_count,
-    centerList: result.data.centerList,
+    bookingList: result.data.bookingList,
   };
 };
 
-type QueryFnType = typeof getCenters;
+type QueryFnType = typeof getEntryPros;
 
 type UseCouponsOptions = {
   config?: QueryConfig<QueryFnType>;
@@ -28,14 +28,14 @@ type UseCouponsOptions = {
   rowsPerPage: number;
 };
 
-export const useCenters = ({
+export const useEntryPros = ({
   config,
   page,
   rowsPerPage,
 }: UseCouponsOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['centers', page, rowsPerPage],
-    queryFn: () => getCenters(page, rowsPerPage),
+    queryKey: ['entrypros', page, rowsPerPage],
+    queryFn: () => getEntryPros(page, rowsPerPage),
   });
 };
