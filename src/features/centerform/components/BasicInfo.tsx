@@ -75,10 +75,23 @@ export default function BasicInfo({ detail }: BasicInfoProps) {
           <Label>커버 이미지 *</Label>
         </Grid>
         {/*  */}
-        <Grid item xs={12}>
-          {multipleImages?.map((image: any) => {
+        <Grid
+          item
+          xs={12}
+          style={{
+            display: 'flex',
+            gap: '10px',
+          }}
+        >
+          <Img className="image" src="" alt="" />
+          <Img className="image" src="" alt="" />
+          <Img className="image" src="" alt="" />
+          <Img className="image" src="" alt="" />
+          <Img className="image" src="" alt="" />
+
+          {/* {multipleImages?.map((image: any) => {
             return <Img className="image" src={image} alt="" key={image} />;
-          })}
+          })} */}
         </Grid>
 
         {/* 1 */}

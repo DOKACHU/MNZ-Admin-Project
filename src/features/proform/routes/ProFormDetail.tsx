@@ -11,7 +11,7 @@ export default function ProFormDetail() {
   const { id } = useParams();
   const proId = id || '';
   const { value, handleTabChange, TabPanel } = useDetailTab();
-  // const modal = useModal();
+  const modal = useModal();
   // const { isLoading, data } = usePro({ proId });
   const dummy = {
     proId: 'asdf',
