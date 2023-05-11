@@ -2,7 +2,7 @@
 import React from 'react';
 import { ContentLayout } from '../../../layouts';
 import { Table } from '../../../components';
-import { EntryCenterType, ServerCenterType } from '../types';
+import { EntryCenterType } from '../types';
 import { useEntryCenters } from '../api';
 import { useModal, usePagination } from '../../../hooks';
 import { CreateCenters } from '../components';

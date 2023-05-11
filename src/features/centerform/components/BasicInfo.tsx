@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Typography, Stack, Divider, Box } from '@mui/material';
+import { Grid, Typography, Stack, Checkbox, Chip } from '@mui/material';
+import styled from 'styled-components';
 import {
   styleSubtitle,
   styleH4,
@@ -13,144 +14,197 @@ interface BasicInfoProps {
   detail?: any;
 }
 
+export const Label = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+`;
+
+export const Img = styled.img`
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  background: lightgray;
+  border-radius: 8px;
+`;
+
+export const Input = styled.input`
+  padding: 12px 16px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+
+  &:hover {
+    border: 1px solid #e4e4e4;
+  }
+
+  &:focus {
+    background-color: #f4f4f4;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  padding: 12px 16px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  resize: none;
+  width: 100%;
+
+  &:hover {
+    border: 1px solid #e4e4e4;
+  }
+
+  &:focus {
+    background-color: #f4f4f4;
+  }
+`;
+
+const multipleImages: any[] = [];
+
 export default function BasicInfo({ detail }: BasicInfoProps) {
   return (
     <Grid container spacing={2} display="row" alignItems="center">
-      <Grid item xs={6}>
-        <MainSubCard title="세부 사항">
-          {/*  */}
-          <Grid item xs={12}>
-            <Stack spacing={2}>
-              <Typography variant="h4" sx={styleH4}>
-                상세 정보
-              </Typography>
-              <Divider />
-              <Stack spacing={0}>
-                {/*  */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
-                    센터 번호 :
-                  </Typography>
-                  <Typography variant="body2" sx={styleBody}>
-                    {detail?.centerId}
-                  </Typography>
-                </Stack>
+      {/*  */}
+      <Grid item xs={12}>
+        {/* 커버 이미지 */}
+        <Grid item xs={2}>
+          <Label>커버 이미지 *</Label>
+        </Grid>
+        {/*  */}
+        <Grid item xs={12}>
+          {multipleImages?.map((image: any) => {
+            return <Img className="image" src={image} alt="" key={image} />;
+          })}
+        </Grid>
 
-                {/*  */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
-                    센터 이름 :
-                  </Typography>
-                  <Typography variant="body2" sx={styleBody}>
-                    {detail?.name}
-                  </Typography>
-                </Stack>
-                {/*  */}
-
-                {/*  */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
-                    센터 설명 :
-                  </Typography>
-                  <Typography variant="body2" sx={styleBody}>
-                    {detail?.description}
-                  </Typography>
-                </Stack>
-                {/*  */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1" sx={styleSubtitle}>
-                    센터 주소 :
-                  </Typography>
-                  <Typography variant="body2" sx={styleBody}>
-                    {detail?.address}
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
+        {/* 1 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>병원 이름</Label>
+            <Input disabled />
           </Grid>
           {/*  */}
-        </MainSubCard>
-      </Grid>
-      {/*  */}
-      <Grid item xs={6}>
-        <MainSubCard title="시간">
-          <Grid item xs={12}>
-            <Stack spacing={2}>
-              <Typography variant="h4" sx={styleH4}>
-                이미지 정보
-              </Typography>
-              <Divider />
-              <UploadImage />
-            </Stack>
-          </Grid>
-        </MainSubCard>
-      </Grid>
-      {/*  */}
-      {/*  */}
-      <Grid item xs={6}>
-        <MainSubCard title="시간">
-          {/*  */}
-          <Grid item xs={12}>
-            <Stack spacing={2}>
-              <Typography variant="h4" sx={styleH4}>
-                센터 상세 정보
-              </Typography>
-              <Divider />
-              {detail.businessHours?.map((info, index) => {
-                return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      borderBottom: '1px dotted #e5e5e5',
-                    }}
-                  >
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Typography variant="subtitle1" sx={styleSubtitle}>
-                        요일
-                      </Typography>
-                      <Typography variant="body2" sx={styleBody}>
-                        {
-                          dayOfWeeks.filter((week: any) => {
-                            return week.dayOfWeek === info.dayOfWeek;
-                          })[0].label
-                        }
-                      </Typography>
-                    </Stack>
 
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Typography variant="subtitle1" sx={styleSubtitle}>
-                        시작 시간:
-                      </Typography>
-                      <Typography variant="body2" sx={styleBody}>
-                        {info.startTime === ''
-                          ? '없음'
-                          : convertDate(info.startTime)}
-                      </Typography>
-                    </Stack>
-
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Typography variant="subtitle1" sx={styleSubtitle}>
-                        마감 시간:
-                      </Typography>
-                      <Typography variant="body2" sx={styleBody}>
-                        {info.closeTime === ''
-                          ? '없음'
-                          : convertDate(info.closeTime)}
-                      </Typography>
-                    </Stack>
-                  </Box>
-                );
-              })}
-            </Stack>
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>지역</Label>
+            <Input disabled />
           </Grid>
           {/*  */}
+        </Grid>
+        {/* 1 */}
+
+        {/* 2 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>대표 주소</Label>
+            <Input disabled />
+          </Grid>
           {/*  */}
-          <Grid item xs={12} />
-        </MainSubCard>
+
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>상세 주소</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 2 */}
+
+        {/* 3 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>사업자 등록 번호</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>진료 항목</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 3 */}
+
+        {/* 3 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>치료사 수</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>사업자 이미지</Label>
+            <Img className="image" src="" alt="" />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 3 */}
+
+        {/* 4 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={12}>
+            <Label>병원 소개</Label>
+            <TextArea readOnly rows={8} />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 4 */}
+
+        {/* 5 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>담당자 연락처</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>정보 수신 이메일</Label>
+            <Input disabled />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 5 */}
+
+        {/* 5 */}
+        <Grid container spacing={2} xs={12} display="row">
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>태그</Label>
+            <Chip label="tagLabel" />
+            <Chip label="tagLabel" />
+            <Chip label="tagLabel" />
+          </Grid>
+          {/*  */}
+
+          {/* 병원 이름 */}
+          <Grid item xs={6}>
+            <Label>이용약관 동의</Label>
+            <Checkbox
+              color="primary"
+              // onChange={(e) => onChange(e.target.checked)}
+            />
+          </Grid>
+          {/*  */}
+        </Grid>
+        {/* 5 */}
       </Grid>
-      {/*  */}
     </Grid>
   );
 }
