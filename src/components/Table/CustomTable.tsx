@@ -103,7 +103,11 @@ export function CustomTable<Entry extends { id: string }>({
                     key={entry?.id || entryIndex}
                     role="checkbox"
                     tabIndex={-1}
-                    onClick={(e) => handleRowClick(e, entry[rowId])}
+                    onClick={(e) => {
+                      console.log({ entry });
+
+                      handleRowClick(e, entry[rowId]);
+                    }}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox

@@ -10,6 +10,8 @@ const pathMap: any = {
   products: 'productId',
   points: 'pointEventId',
   users: 'userId',
+  centerform: 'centerEntryId',
+  proform: 'proEntryId',
 };
 
 export function useTableList() {
