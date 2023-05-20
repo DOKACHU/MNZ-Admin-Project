@@ -5,7 +5,6 @@ import { CustomDetailForm } from '../../../components';
 import { useDetailTab, useModal } from '../../../hooks';
 import { proTab } from '../../../constansts';
 import { BasicInfo, UpdatePro } from '../components';
-import { usePro } from '../api';
 
 export default function ProFormDetail() {
   const { id } = useParams();
@@ -21,7 +20,7 @@ export default function ProFormDetail() {
   };
 
   return (
-    <ContentLayout title="프로 상세" isUpdateButton {...modal}>
+    <ContentLayout title="프로 상세 입점 폼" isUpdateButton {...modal}>
       <CustomDetailForm
         value={value}
         tabs={proTab}
