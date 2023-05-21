@@ -10,7 +10,8 @@ export const getCenter = async ({
 }: {
   centerId: string;
 }): Promise<CenterType> => {
-  const result = await axios.get(`centers/${centerId}`);
+  const URL = `centers/${centerId}`;
+  const result = await axios.get(URL);
   return result.data;
   // const result = await axios.get<ServerCenterType>(
   //   `centers/?cursor=1&per_page=100`

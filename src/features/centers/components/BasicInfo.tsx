@@ -14,6 +14,7 @@ interface BasicInfoProps {
 }
 
 export default function BasicInfo({ detail }: BasicInfoProps) {
+  // console.log({ detail });
   return (
     <Grid container spacing={2} display="row" alignItems="center">
       <Grid item xs={6}>

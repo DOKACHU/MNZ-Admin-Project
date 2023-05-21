@@ -26,11 +26,17 @@ const StyleRadio = {
 
 export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
   const { mutateAsync } = useCreateCoupon();
-  const { control, handleSubmit, reset } = useForm<CreateCouponsDTO['data']>();
+  const { control, handleSubmit, reset } = useForm<CreateCouponsDTO['data']>({
+    defaultValues: {
+      couponCode: '',
+    },
+  });
   const [toggle, setToggle] = useState<boolean>(false);
+
   const onSubmit = async (data: CreateCouponsDTO['data']) => {
     const result = await mutateAsync({ data });
-    reset(result as any);
+    console.log({ result });
+    reset();
     handleClose();
   };
 
@@ -51,6 +57,14 @@ export default function CreateCoupon({ open, handleClose }: CreateCouponProps) {
             justifyContent: 'flex-end',
           }}
         >
+          <Button
+            type="button"
+            variant="contained"
+            sx={{ mr: 2 }}
+            onClick={() => reset()}
+          >
+            리셋
+          </Button>
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
             생성
           </Button>

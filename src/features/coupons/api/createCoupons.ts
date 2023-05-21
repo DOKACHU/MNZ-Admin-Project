@@ -32,35 +32,13 @@ type UseCreateCouponsOptions = {
 export const useCreateCoupon = ({ config }: UseCreateCouponsOptions = {}) => {
   // const { addNotification } = useNotificationStore();
   return useMutation({
-    onMutate: async (newCoupons: any) => {
-      await queryClient.cancelQueries('coupons');
-      // mocking
-      // const previousCoupons =
-      //   queryClient.getQueryData<CouponsType[]>('coupons');
-
-      //   queryClient.setQueryData('coupons', [
-      //   ...(previousCoupons. || []),
-      //   newCoupons.data,
-      // ]);
-
-      // server
-      const previousCoupons =
-        queryClient.getQueryData<ServerCouponType>('coupons');
-
-      queryClient.setQueryData('coupons', [
-        ...(previousCoupons?.couponList || []),
-        newCoupons.data,
-      ]);
-
-      return { previousCoupons };
-    },
     onError: (_, __, context: any) => {
       if (context?.previousCoupons) {
-        queryClient.setQueryData('coupons', context.previousCoupons);
+        queryClient.setQueryData(['coupons'], context.previousCoupons);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('coupons');
+      queryClient.invalidateQueries(['coupons']);
       alert('새로운 쿠폰이 추가되었습니다.');
       // addNotification({
       //   type: 'success',

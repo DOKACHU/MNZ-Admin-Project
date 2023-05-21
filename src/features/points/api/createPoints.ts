@@ -27,38 +27,16 @@ type UseCreateCouponsOptions = {
 export const useCreatePoint = ({ config }: UseCreateCouponsOptions = {}) => {
   // const { addNotification } = useNotificationStore();
   return useMutation({
-    onMutate: async (newCoupons: any) => {
-      await queryClient.cancelQueries('points');
-      // mocking
-      // const previousCoupons =
-      //   queryClient.getQueryData<CouponsType[]>('coupons');
-
-      //   queryClient.setQueryData('coupons', [
-      //   ...(previousCoupons. || []),
-      //   newCoupons.data,
-      // ]);
-
-      // server
-      const previousCoupons =
-        queryClient.getQueryData<ServerPointType>('points');
-
-      queryClient.setQueryData('points', [
-        ...(previousCoupons?.pointList || []),
-        newCoupons.data,
-      ]);
-
-      return { previousCoupons };
-    },
     onError: (e: any, _, context: any) => {
       if (context?.previousCoupons) {
-        queryClient.setQueryData('points', context.previousCoupons);
+        queryClient.setQueryData(['points'], context.previousCoupons);
       }
       if (e.response.data.statusCode === 409) {
         alert('포인트가 부족합니다.');
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('points');
+      queryClient.invalidateQueries(['points']);
       alert('포인트가 적립 되었습니다.');
       // addNotification({
       //   type: 'success',
